@@ -8,3 +8,19 @@ Tomcat版本为7.0 <br>
 Mysql版本为？ <br>
 
 如果需要引入jar包，请放在WebContent/WEB-INF/lib文件夹下 <br>
+
+客户端的网页和资源文件放在WebContent/Client文件夹下(自主定义该文件夹的构架)。<br>
+服务端的网页和资源文件放在WebContent/Server文件夹下(自主定义该文件夹的构架)。<br>
+包名的命名请按照com.greenlife.* <br>
+
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ <br>
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ <br>
+WebContent/Server文件夹说明：
+文件夹说明：
+CSS:bootstrap CSS文件和自定义CSS文件存储位置
+JS:自定义JS文件存储位置
+Scripts:bootstrap JS文件存储位置
+Page:自定义jsp和html文件存放位置。
+
+Page/header.jsp和footer.html是后台页面的模版页。
+Page/example.jsp示范了模版页的引用方法。
