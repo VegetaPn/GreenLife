@@ -15,12 +15,12 @@ Mysql版本为？ <br>
 
 －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ <br>
 －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ <br>
-WebContent/Server文件夹说明：
-文件夹说明：
-CSS:bootstrap CSS文件和自定义CSS文件存储位置
-JS:自定义JS文件存储位置
-Scripts:bootstrap JS文件存储位置
-Page:自定义jsp和html文件存放位置。
-
-Page/header.jsp和footer.html是后台页面的模版页。
-Page/example.jsp示范了模版页的引用方法。
+WebContent/Server文件夹说明： <br>
+文件夹说明：<br>
+CSS:bootstrap CSS文件和自定义CSS文件存储位置<br>
+JS:自定义JS文件存储位置<br>
+Scripts:bootstrap JS文件存储位置<br>
+Page:自定义jsp和html文件存放位置。<br>
+<br>
+Page/header.jsp和footer.html是后台页面的模版页。<br>
+Page/example.jsp示范了模版页的引用方法。<br>
