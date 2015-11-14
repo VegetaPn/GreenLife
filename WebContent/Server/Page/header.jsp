@@ -41,19 +41,19 @@
                     <div class="breaker-10"></div>
                     <ol class="list-group list-unstyled" style="border:0px">
                     	<li class="list-group-item" style="border:0px">
-                            <a href="?">商品管理</a>
+                            <a href="product.jsp">商品管理</a>
                         </li>
                         <li class="list-group-item" style="border:0px">
-                            <a href="?">订单管理</a>
+                            <a href="order.jsp">订单管理</a>
                         </li>
                         <li class="list-group-item" style="border:0px">
-                            <a href="?">团购管理</a>
+                            <a href="groupbuy.jsp">团购管理</a>
                         </li>
                         <li class="list-group-item" style="border:0px">
-                            <a href="?">标签管理</a>
+                            <a href="label.jsp">标签管理</a>
                         </li>
                         <li class="list-group-item" style="border:0px">
-                            <a href="?">用户管理</a>
+                            <a href="user.jsp">用户管理</a>
                         </li>
                         <!-- <li class="list-group-item" style="border:0px">
                             <a href="#ADD" class="nav-header collapsed" data-toggle="collapse">

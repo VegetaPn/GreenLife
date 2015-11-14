@@ -14,6 +14,6 @@
 <div >
 这是要写的内容
 
-<jsp:include page="footer.html"/>
+<%@ include file="footer.html"%>
 </body>
 </html>
