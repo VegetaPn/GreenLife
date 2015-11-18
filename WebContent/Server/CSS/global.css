@@ -128,31 +128,6 @@ a {
     left: 985px;
 }
 
-.pagination {
-    margin: 26px auto 0;
-    width: 100px;
-}
-
-    .pagination li {
-        float: left;
-        margin: 0 1px;
-    }
-
-        .pagination li a {
-            display: block;
-            width: 12px;
-            height: 0;
-            padding-top: 12px;
-            background-image: url(../img/pagination.png);
-            background-position: 0 0;
-            float: left;
-            overflow: hidden;
-        }
-
-        .pagination li.current a {
-            background-position: 0 -12px;
-        }
-
 .picholder 
 {
     height:300px;
@@ -173,7 +148,7 @@ a {
 .block 
 {
     padding:10px;
-    -moz-box-shadow: 5px 5px 15px #888888; /* �ϵ� Firefox */
+    -moz-box-shadow: 5px 5px 15px #888888; /* 锟较碉拷 Firefox */
     box-shadow: 5px 5px 15px #888888;
     background-color:White;
     text-align:left;
@@ -203,7 +178,7 @@ a {
     {
         transition: all 1s;
         -moz-transition: all 1s; /* Firefox 4 */
-        -webkit-transition: all 1s; /* Safari �� Chrome */
+        -webkit-transition: all 1s; /* Safari 锟斤拷 Chrome */
         -o-transition: all 1s; /* Opera */
         background-color: #f2fa5f;
     }
@@ -227,9 +202,9 @@ h1 {
 }
 
 ol {
-    counter-reset: li; /* ����һ�������� */
-    list-style: none; /* ����б�Ĭ�ϵı���*/
-    *list-style: decimal; /* ��IE6/7����Ĭ�ϵı��� */
+    counter-reset: li; /* 锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷 */
+    list-style: none; /* 锟斤拷锟斤拷斜锟侥拷系谋锟斤拷锟�*/
+    *list-style: decimal; /* 锟斤拷IE6/7锟斤拷锟斤拷默锟较的憋拷锟斤拷 */
     font-size:15px;
     padding: 0;
     margin-bottom: 4em;
@@ -238,7 +213,7 @@ ol {
 
 ol ol {
     font-size:12px;
-    margin: 0 0 0 2em; /* ������б�����һ������߾�*/
+    margin: 0 0 0 2em; /* 锟斤拷锟斤拷锟斤拷斜锟斤拷锟斤拷锟揭伙拷锟斤拷锟斤拷锟竭撅拷*/
 }
 
 .listtitle {
@@ -256,7 +231,7 @@ ol ol {
     background: White;
     color: black;
     text-decoration: none;
-    /*transition����Ч��*/
+    /*transition锟斤拷锟斤拷效锟斤拷*/
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
     -ms-transition: all 0.3s ease-out;
@@ -368,7 +343,7 @@ ol ol {
     float:left;
 }
 
-/*����*/
+/*锟斤拷锟斤拷*/
 .red {
     color:red;
 }
@@ -401,7 +376,7 @@ ol ol {
     height:1px;
 }
 
-/* ��ɫ���� */
+/* 锟斤拷色锟斤拷锟斤拷 */
 
 .bg-color1
 {
