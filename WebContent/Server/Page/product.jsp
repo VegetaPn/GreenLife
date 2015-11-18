@@ -10,12 +10,8 @@
 <body>
 
 	<%@ include file="header.jsp"%>
-
-
-
 	<!-- 商品表 -->
 	<div style="min-height: 362px; float: left" id="page-wrapper">
-  <%@ include file="header.jsp"%>
 		<!-- /.row -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -180,6 +176,18 @@
 									</div>
 								</div>
 								<!-- 翻页索引 -->
+
+
+
+								<div class="row">
+									<div class="col-sm-6">
+										<form>
+											<button type="submit" class="btn btn-primary" formaction="addproduct.jsp">新增</button>
+										</form>
+									</div>
+								</div>
+
+
 							</div>
 						</div>
 
