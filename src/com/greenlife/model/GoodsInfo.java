@@ -13,12 +13,12 @@ public class GoodsInfo {
 	private String tagText;
 	private String tagImage;
 	private double goodsDiscontPrice;
+	private String goods_unit;
 	private int isDelete;
 	private int isAdv;
-	private String goodText1;
-	private String goodText2;
+	private String goodsText1;
+	private String goodsText2;
 	private int reportId;
-	
 	public int getGoodsId() {
 		return goodsId;
 	}
@@ -91,6 +91,12 @@ public class GoodsInfo {
 	public void setGoodsDiscontPrice(double goodsDiscontPrice) {
 		this.goodsDiscontPrice = goodsDiscontPrice;
 	}
+	public String getGoods_unit() {
+		return goods_unit;
+	}
+	public void setGoods_unit(String goods_unit) {
+		this.goods_unit = goods_unit;
+	}
 	public int getIsDelete() {
 		return isDelete;
 	}
@@ -103,17 +109,17 @@ public class GoodsInfo {
 	public void setIsAdv(int isAdv) {
 		this.isAdv = isAdv;
 	}
-	public String getGoodText1() {
-		return goodText1;
+	public String getGoodsText1() {
+		return goodsText1;
 	}
-	public void setGoodText1(String goodText1) {
-		this.goodText1 = goodText1;
+	public void setGoodsText1(String goodsText1) {
+		this.goodsText1 = goodsText1;
 	}
-	public String getGoodText2() {
-		return goodText2;
+	public String getGoodsText2() {
+		return goodsText2;
 	}
-	public void setGoodText2(String goodText2) {
-		this.goodText2 = goodText2;
+	public void setGoodsText2(String goodsText2) {
+		this.goodsText2 = goodsText2;
 	}
 	public int getReportId() {
 		return reportId;
@@ -121,4 +127,5 @@ public class GoodsInfo {
 	public void setReportId(int reportId) {
 		this.reportId = reportId;
 	}
+
 }
