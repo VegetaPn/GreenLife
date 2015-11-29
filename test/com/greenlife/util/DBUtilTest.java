@@ -1,14 +1,13 @@
 package com.greenlife.util;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
+import com.greenlife.dao.AdressInfoDao;
+import com.greenlife.model.AdressInfo;
 
 public class DBUtilTest {
 
@@ -33,8 +32,16 @@ public class DBUtilTest {
 
 	@Test
 	public void testGetConn() {
-		DBUtil util = new DBUtil();
-		util.getConn();
+		//DBUtil util = new DBUtil();
+		//util.getConn();
+		AdressInfo info = new AdressInfo();
+		info.setAddrDetail("222");
+		info.setAddrId(2222);
+		info.setAddrZipcode("sdfsd");
+		info.setReceiverName("sdfsd");
+		info.setReceiverPhone("2e423423");
+		info.setWechatId("23423");
+		AdressInfoDao.addAdressInfo(info);
 	}
 
 }
