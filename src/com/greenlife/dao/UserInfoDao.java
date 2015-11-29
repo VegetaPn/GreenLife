@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.greenlife.model.GoodsInfo;
 import com.greenlife.model.UserInfo;
 import com.greenlife.util.DBUtil;
 
@@ -32,6 +35,35 @@ public class UserInfoDao {
 			clearUp(conn);
 		}
 		return true;
+	}
+	
+	public static List<UserInfo> getUsersList() {
+		
+		List<UserInfo> usersList = new ArrayList<>();
+		String sql = "select * from user_info";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				UserInfo userInfo = new UserInfo();
+				
+				userInfo.setWechatId(rs.getString("wechat_id"));
+				userInfo.setWechatName(rs.getString("wechat_name"));
+				userInfo.setPhone(rs.getString("phone"));
+				userInfo.setAddrId(rs.getInt("address_id"));
+				userInfo.setPhotoPath("photo_path");
+				
+				usersList.add(userInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+		
+		return usersList;
 	}
 	
 	public static void clearUp(Connection conn) {

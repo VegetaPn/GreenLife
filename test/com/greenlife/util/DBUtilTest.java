@@ -6,8 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.greenlife.dao.AdressInfoDao;
-import com.greenlife.model.AdressInfo;
+import com.greenlife.dao.GoodsOrderDao;
 
 public class DBUtilTest {
 
@@ -32,16 +31,8 @@ public class DBUtilTest {
 
 	@Test
 	public void testGetConn() {
-		//DBUtil util = new DBUtil();
-		//util.getConn();
-		AdressInfo info = new AdressInfo();
-		info.setAddrDetail("222");
-		info.setAddrId(2222);
-		info.setAddrZipcode("sdfsd");
-		info.setReceiverName("sdfsd");
-		info.setReceiverPhone("2e423423");
-		info.setWechatId("23423");
-		AdressInfoDao.addAdressInfo(info);
+		DBUtil util = new DBUtil();
+		util.getConn();
 	}
 
 }
