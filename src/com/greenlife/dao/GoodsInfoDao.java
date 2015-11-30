@@ -55,6 +55,64 @@ public class GoodsInfoDao {
 		return true;
 	}
 	
+	public static boolean updateGoodsInfo(GoodsInfo info){
+		String sql = "UPDATE `greenlife`.`goods_info` SET "
+				+ "goods_name = (?), "
+				+ "package_path = (?), "
+				+ "goods_price = (?), "
+				+ "goods_totalnum = (?), "
+				+ "goods_soldnum = (?), "
+				+ "start_time = (?), "
+				+ "end_time = (?), "
+				+ "tag_title = (?), "
+				+ "tag_text = (?), "
+				+ "tag_image = (?), "
+				+ "goods_discont_price = (?), "
+				+ "goods_unit = (?), "
+				+ "is_delete = (?), "
+				+ "is_adv = (?), "
+				+ "goods_text1 = (?), "
+				+ "goods_text2 = (?), "
+				+ "report_id = (?) "
+				+ "WHERE goods_id = (?);";
+//				+ "(`goods_id`, `goods_name`, `package_path`, `goods_price`, "
+//				+ "`goods_totalnum`, `goods_soldnum`, `start_time`, "
+//				+ "`end_time`, `tag_title`, `tag_text`, `tag_image`, "
+//				+ "`goods_discont_price`, `goods_unit`, `is_delete`, "
+//				+ "`is_adv`, `goods_text1`, `goods_text2`, `report_id`) "
+//				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, info.getGoodsName());
+			ps.setString(2, info.getPackagePath());
+			ps.setDouble(3, info.getGoodsPrice());
+			ps.setInt(4, info.getGoodsTotalnum());
+			ps.setInt(5, info.getGoodsSoldnum());
+			ps.setString(6, info.getStartTime());
+			ps.setString(7, info.getEndTime());
+			ps.setString(8, info.getTagTitle());
+			ps.setString(9, info.getTagText());
+			ps.setString(10, info.getTagImage());
+			ps.setDouble(11, info.getGoodsDiscontPrice());
+			ps.setString(12, info.getGoods_unit());
+			ps.setInt(13, info.getIsDelete());
+			ps.setInt(14, info.getIsAdv());
+			ps.setString(15, info.getGoodsText1());
+			ps.setString(16, info.getGoodsText2());
+			ps.setInt(17, info.getReportId());
+			ps.setInt(18, info.getGoodsId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
+	
 	
 	public static List<GoodsInfo> getGoodsList() {
 		
