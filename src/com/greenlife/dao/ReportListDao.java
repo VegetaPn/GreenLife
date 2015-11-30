@@ -29,6 +29,25 @@ public class ReportListDao {
 		return true;
 	}
 	
+	public static boolean updateReportList(ReportList list){
+		String sql = "UPDATE `greenlife`.`report_list` SET "
+				+"report_num = (?) "
+				+"WHERE report_id = (?);";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, list.getReportNum());
+			ps.setInt(2, list.getReportId());
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
+	
 	public static void clearUp(Connection conn) {
         try {
             if(rs != null){

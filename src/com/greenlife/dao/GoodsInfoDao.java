@@ -75,16 +75,9 @@ public class GoodsInfoDao {
 				+ "goods_text2 = (?), "
 				+ "report_id = (?) "
 				+ "WHERE goods_id = (?);";
-//				+ "(`goods_id`, `goods_name`, `package_path`, `goods_price`, "
-//				+ "`goods_totalnum`, `goods_soldnum`, `start_time`, "
-//				+ "`end_time`, `tag_title`, `tag_text`, `tag_image`, "
-//				+ "`goods_discont_price`, `goods_unit`, `is_delete`, "
-//				+ "`is_adv`, `goods_text1`, `goods_text2`, `report_id`) "
-//				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
-			
 			ps.setString(1, info.getGoodsName());
 			ps.setString(2, info.getPackagePath());
 			ps.setDouble(3, info.getGoodsPrice());

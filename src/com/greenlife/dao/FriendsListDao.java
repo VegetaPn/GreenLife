@@ -29,6 +29,26 @@ public class FriendsListDao {
 		return true;
 	}
 	
+	public static boolean updateFriendList(FriendsList list){
+		String sql = "UPDATE `greenlife`.`friends_list` SET "
+				+"friend_wechat_id = (?) "
+				+"WHERE wechat_id = (?);";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, list.getFriendsWechatId());
+			ps.setString(2, list.getWechatId());
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
+	
 	public static void clearUp(Connection conn) {
         try {
             if(rs != null){

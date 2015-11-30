@@ -37,6 +37,31 @@ public class UserInfoDao {
 		return true;
 	}
 	
+	public static boolean updateUserInfo(UserInfo info){
+		String sql = "UPDATE `greenlife`.`user_info` SET "
+				+"wechat_name = (?) "
+				+"phone = (?)"
+				+"address_id = (?)"
+				+"photo_path = (?)"
+				+"WHERE wechat_id = (?);";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, info.getWechatName());
+			ps.setString(2, info.getPhone());
+			ps.setInt(3, info.getAddrId());
+			ps.setString(4, info.getPhotoPath());
+			ps.setString(5, info.getWechatId());
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
+	
 	public static List<UserInfo> getUsersList() {
 		
 		List<UserInfo> usersList = new ArrayList<>();

@@ -31,6 +31,27 @@ public class SharedListDao {
 		return true;
 	}
 	
+	public static boolean updateSharedList(SharedList list){
+		String sql = "UPDATE `greenlife`.`shared_list` SET "
+				+"friend_wechat_id = (?) "
+				+"goods_id = (?)"
+				+"WHERE wechat_id = (?);";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, list.getFirendWechatId());
+			ps.setInt(2, list.getGoodsId());
+			ps.setString(3, list.getWechatId());
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
+	
 	public static void clearUp(Connection conn) {
         try {
             if(rs != null){

@@ -45,6 +45,49 @@ public class GoodsOrderDao {
 		}
 		return true;
 	}
+	
+	
+	public static boolean updateGoodsOrder(GoodsOrder order){
+		String sql = "UPDATE `greenlife`.`goods_order` SET "
+				+ "goods_id = (?), "
+				+ "wechat_id = (?), "
+				+ "addr_id = (?), "
+				+ "goods_num = (?), "
+				+ "trade_time = (?), "
+				+ "comment = (?), "
+				+ "mail_price = (?), "
+				+ "total_price = (?), "
+				+ "group_id = (?), "
+				+ "send_time = (?), "
+				+ "group_minnum = (?), "
+				+ "order_state = (?), "
+				+ "WHERE order_id = (?);";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, order.getGoodsId());
+			ps.setString(2, order.getWechatId());
+			ps.setInt(3, order.getAddrId());
+			ps.setInt(4, order.getGoodsNum());
+			ps.setString(5, order.getTradeTime());
+			ps.setString(6, order.getComment());
+			ps.setDouble(7, order.getMailPrice());
+			ps.setDouble(8, order.getTotalPrice());
+			ps.setInt(9, order.getGroupId());
+			ps.setString(10, order.getSendTime());
+			ps.setInt(11, order.getGroupMinnum());
+			ps.setInt(12, order.getOrderState());
+			ps.setInt(13, order.getOrderId());
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
+	
 public static List<GoodsOrder> getGoodsOrderList() {
 		
 		List<GoodsOrder> orderList = new ArrayList<>();

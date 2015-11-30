@@ -32,6 +32,26 @@ public class AdminListDao {
 		return true;
 	}
 	
+	public static boolean updateAdminList(AdminList admin){
+		String sql = "UPDATE `greenlife`.`admin_list` SET "
+				+"password = (?) "
+				+"WHERE user_id = (?);";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, admin.getPassword());
+			ps.setString(2, admin.getUserId());
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
+	
 	public static List<AdminList> getGoodsList() {
 		
 		List<AdminList> adminList = new ArrayList<>();

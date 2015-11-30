@@ -31,6 +31,28 @@ public class TodayGroupDao {
 		return true;
 	}
 	
+	public static boolean updateTodayGroup(TodayGroup group){
+		String sql = "UPDATE `greenlife`.`today_group` SET "
+				+"start_time = (?) "
+				+"group_state = (?)"
+				+"WHERE group_id = (?);";
+	
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, group.getStartTime());
+			ps.setInt(2, group.getGroupState());
+			ps.setInt(3, group.getGroupId());
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
+	
 	public static void clearUp(Connection conn) {
         try {
             if(rs != null){

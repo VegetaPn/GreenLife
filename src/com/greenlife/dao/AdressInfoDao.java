@@ -36,6 +36,33 @@ public class AdressInfoDao {
 		return true;
 	}
 	
+	public static boolean updateAdressInfo(AdressInfo info){
+		String sql = "UPDATE `greenlife`.`address_info` SET "
+				+"addr_detail = (?), "
+				+"addr_zipcode = (?), "
+				+"receiver_phone = (?), "
+				+"wechat_id = (?), "
+				+"receiver_name = (?) "
+				+"WHERE addr_id = (?);";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, info.getAddrDetail());
+			ps.setString(2, info.getAddrZipcode());
+			ps.setString(3, info.getReceiverPhone());
+			ps.setString(4, info.getWechatId());
+			ps.setString(5, info.getReceiverName());
+			ps.setInt(6, info.getAddrId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
+	
 	public static void clearUp(Connection conn) {
         try {
             if(rs != null){
