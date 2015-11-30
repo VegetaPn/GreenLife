@@ -1,0 +1,427 @@
+
+#product{
+	width:100%;
+	position:relative;
+	background-color:#E4E4E4;
+	text-align:center;
+	/*padding-top:3vw;
+	padding-bottom:3vw;*/
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+#productImgDiv{
+	width:90%;
+	/*width:90vw;*/
+	margin:auto;
+}
+
+#productImg{
+	/*width:90vw;
+	height:45vw;*/
+	width:100%;
+	border:1px solid #333333;
+	border-radius:10px;
+}
+
+
+
+#productName{
+	position: absolute;
+	background-color:rgba(215,215,215,0.7);
+	width:100%;
+	bottom:0;
+	/*font-size:6vw;*/
+	font-weight:bold;
+	text-align:center;
+	
+	
+}
+
+.middleTag
+{
+    margin:14px 0px 0px 0px;
+
+}
+
+.blackBold
+{
+    //font-size:5vw;
+    font-weight: bold;
+    color:#000000;
+    //letter-spacing: -0.5vw;    
+}
+
+.orangeText
+{
+    //font-size:4.5vw;
+    color:#FF3300;
+    //letter-spacing: -0.4vw;
+}
+
+.blackNormal
+{
+    //font-size:4.5vw;
+    color:#333333;
+    //letter-spacing: -0.4vw;
+    //line-height: 2vh;
+}
+
+.line
+{
+
+    margin:14px 0px 0px 0px;
+    color: #797979;
+}
+
+.smallTag
+{
+    color:#F76F00;
+    //font-size:3.5vw;
+
+    margin:5px 0px 5px 0px;
+    //letter-spacing: 0.1vw;
+}
+
+.functionButton
+{   
+    width:80%;
+    background-color:#F76F00;
+    color:#ffffff;
+    font-weight: bold;
+    font-family: SimHei;
+    margin-left:10%;
+    border-radius:10px;
+    //clear:both;
+    text-align:center;
+    //line-height: 9vw;
+    
+}
+
+
+
+
+.startGroupIMG
+{
+    width: 100%;
+    //height:50vw;
+}
+
+.detail h2
+{
+    color:#000000;
+    //font-size:3.5vw;
+    font-weight: bold;
+    //margin:3vh 0vw 3vh 0vw;
+}
+
+.detail p
+{
+    color:#333333;
+    //font-size:3.5vw;
+    
+    
+}
+
+
+
+
+
+@media screen and (max-device-width: 479px)
+{
+
+	#productImg{
+		
+		height:180px;
+	}
+
+	#productName{
+		font-size:24px;
+	}
+	
+    .blackBold
+    {
+        font-size:22px;
+        letter-spacing: -2px;    
+    }
+    .orangeText
+    {
+        font-size:20px;
+        letter-spacing: -2px;
+    }
+    .blackNormal
+    {
+        font-size:20px;
+        letter-spacing: -2px;
+    }
+    .smallTag
+    {
+        font-size:14px;
+        letter-spacing: 1px;
+    }
+    .functionButton
+    {   
+        height:50px;
+        font-size: 25px;
+        line-height: 50px;
+    }
+    .startGroupIMG
+    {
+        height:220px;
+    }
+    .detail h2
+    {
+        font-size:14px;
+        margin:21px 0px 21px 0px;
+    }
+    .detail p
+    {        
+        font-size:14px;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 639px)
+{
+	#productImg{
+		height:300px;
+	}
+
+	#productName{
+		font-size:28px;
+	}
+	
+    .blackBold
+    {
+        font-size:26px;
+        letter-spacing: -2px;    
+    }
+    .orangeText
+    {
+        font-size:24px;
+        letter-spacing: -2px;
+    }
+    .blackNormal
+    {
+        font-size:26px;
+        letter-spacing: -2px;
+    }
+    .smallTag
+    {
+        font-size:18px;
+        letter-spacing: 1px;
+    }
+    .functionButton
+    {   
+        height:60px;
+        font-size: 30px;
+        line-height: 60px;
+    }
+    .startGroupIMG
+    {
+        height:330px;
+    }
+    .detail h2
+    {
+        font-size:18px;
+        margin:24px 0px 24px 0px;
+    }
+    .detail p
+    {        
+        font-size:18px;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 767px) 
+{
+	#productImg{
+		height:360px;
+	}
+
+	#productName{
+		font-size:32px;
+	}
+
+    .blackBold
+    {
+        font-size:28px;
+        letter-spacing: -3px;    
+    }
+    .orangeText
+    {
+        font-size:28px;
+        letter-spacing: -3px;
+    }
+    .blackNormal
+    {
+        font-size:28px;
+        letter-spacing: -2px;
+    }
+    .smallTag
+    {
+        font-size:20px;
+        letter-spacing: 1px;
+    }
+    .functionButton
+    {   
+        height:65px;
+        font-size: 35px;
+        line-height: 65px;
+    }
+    .startGroupIMG
+    {
+        height:420px;
+    }
+    .detail h2
+    {
+        font-size:20px;
+        margin:26px 0px 26px 0px;
+    }
+    .detail p
+    {        
+        font-size:20px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 979px) 
+{
+	 #productImg{
+		height:420px;
+	}
+
+	#productName{
+		font-size:36px;
+	}
+
+    .blackBold
+    {
+        font-size:30px;
+        letter-spacing: -3px;    
+    }
+    .orangeText
+    {
+        font-size:30px;
+        letter-spacing: -3px;
+    }
+    .blackNormal
+    {
+        font-size:30px;
+        letter-spacing: -2px;
+    }
+    .smallTag
+    {
+        font-size:22px;
+        letter-spacing: 2px;
+    }
+    .functionButton
+    {   
+        height:70px;
+        font-size: 40px;
+        line-height: 70px;
+    }
+    .startGroupIMG
+    {
+        height:500px;
+    }
+    .detail h2
+    {
+        font-size:22px;
+        margin:28px 0px 28px 0px;
+    }
+    .detail p
+    {        
+        font-size:22px;
+    }
+}
+
+@media screen and (min-width: 980px)/* and (max-width: 1199px)*/
+{
+	#productImg{
+		height:500px;
+	}
+
+	#productName{
+		font-size:40px;
+	}
+
+    .blackBold
+    {
+        font-size:34px;
+        letter-spacing: -4px;    
+    }
+    .orangeText
+    {
+        font-size:34px;
+        letter-spacing: -4px;
+    }
+    .blackNormal
+    {
+        font-size:30px;
+        letter-spacing: -3px;
+    }
+    .smallTag
+    {
+        font-size:26px;
+        letter-spacing: 3px;
+    }
+    .functionButton
+    {   
+        height:80px;
+        font-size: 40px;
+        line-height: 80px;
+    }
+    .startGroupIMG
+    {
+        height:600px;
+    }
+    .detail h2
+    {
+        font-size:26px;
+        margin:30px 0px 30px 0px;
+    }
+    .detail p
+    {        
+        font-size:26px;
+    }
+}
+/*
+@media screen and (min-width: 1200px) 
+{
+    .blackBold
+    {
+        font-size:38px;
+        letter-spacing: -4px;    
+    }
+    .orangeText
+    {
+        font-size:38px;
+        letter-spacing: -4px;
+    }
+    .blackNormal
+    {
+        font-size:34px;
+        letter-spacing: -3px;
+    }
+    .smallTag
+    {
+        font-size:30px;
+        letter-spacing: 3px;
+    }
+    .functionButton
+    {   
+        height:90px;
+        font-size: 45px;
+        line-height: 90px;
+    }
+    .startGroupIMG
+    {
+        height:700px;
+    }
+    .detail h2
+    {
+        font-size:30px;
+        margin:34px 0px 34px 0px;
+    }
+    .detail p
+    {        
+        font-size:30px;
+    }
+}*/

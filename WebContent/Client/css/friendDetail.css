@@ -1,0 +1,409 @@
+#product{
+	width:100%;
+	position:relative;
+	background-color:#E4E4E4;
+	text-align:center;
+	/*padding-top:3vw;
+	padding-bottom:3vw;*/
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+#productImgDiv{
+	width:90%;
+	/*width:90vw;*/
+	margin:auto;
+	
+	
+}
+
+#productImg{
+	width:100%;
+	/*width:90vw;
+	height:45vw;*/
+	border:1px solid #333333;
+	border-radius:10px;
+}
+
+#productName{
+	position: absolute;
+	background-color:rgba(215,215,215,0.7);
+	width:100%;
+	bottom:0;
+	/*font-size:6vw;*/
+	font-weight:bold;
+	text-align:center;
+	
+}
+
+
+
+#totalPurchase{
+	width:90%;
+	margin:auto;
+	/*padding-top:3vw;*/
+	padding-top:15px;
+	/*font-size:5vw;*/
+	font-weight:bold;
+	
+}
+
+.purchaseNum{
+	color:#F76F00;
+	/*font-size:7vw;*/
+}
+
+
+.personalPurchaseDiv{
+	width:90%;
+	margin:auto;
+	position:relative;
+
+}
+
+.avatar{
+	border:1px solid #797979;
+	border-radius:100%;
+	/*width:14vw;
+	height:14vw;*/
+	
+}
+
+.name{
+	/*font-size:5vw;*/
+	margin-left:25px;
+	
+	position:absolute;
+	/*bottom:6vw;*/
+}
+
+.personalPurchaseNum{
+	/*font-size:5vw;*/
+	position:absolute;
+	right:0;
+	/*bottom:6vw;*/
+}
+
+
+#purchase{
+	width:90%;
+	margin:auto;
+	
+}
+
+#teamPurchase{
+	padding:10px 10px 0 0px;
+	
+	float:left;
+}
+
+#personalPurchase{
+	padding-top:10px;
+	padding-left:10px;
+	
+	float:left;
+}
+
+.salesPrice{
+	/*font-size:7vw;*/
+	font-weight:bold;
+	/*padding:2vw;*/
+	padding:5px;
+	
+	border-top-right-radius:5px;
+    border-top-left-radius:5px;
+	
+	color:#ffffff;'
+	
+}
+
+#teamPrice{
+	background-color:#FF3300;
+	
+}
+
+#personalPrice{
+	background-color:#FFCC33;
+	
+}
+
+.purchaseLink{
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	/*padding:0.5vw;*/
+	padding:2px;
+	background-color:#F76F00;
+	/*font-size:5vw;*/
+	font-weight:bold;
+	color:#ffffff;
+	text-align:center;
+}
+
+/*如果使用者视图宽度 < 480px，將会载入这里的 CSS。*/  
+@media screen and (max-width: 479px) {  
+	#productImg{
+		height:180px;
+	}
+
+	#productName{
+		font-size:24px;
+	}
+
+	#totalPurchase{
+		font-size:20px;
+	
+	}
+
+	.purchaseNum{
+		
+		font-size:24px;
+	}
+
+
+	.avatar{
+		width:40px;
+		height:40px;
+		
+	}
+
+	.name{
+		font-size:16px;
+		bottom:24px;
+	}
+
+	.personalPurchaseNum{
+		font-size:16px;
+		bottom:24px;
+	}
+
+
+
+	.salesPrice{
+		font-size:24px;
+		
+	}
+
+
+	.purchaseLink{
+
+		font-size:20px;
+		
+	}
+
+}  
+
+
+/* 如果使用者视图宽度介于 480 ~ 639，將会载入这里的 CSS。*/    
+@media screen and (min-width:480px) and (max-width:639px) {
+	#productImg{
+		height:300px;
+	}
+
+	#productName{
+		font-size:28px;
+	}
+
+	#totalPurchase{
+		font-size:24px;
+	
+	}
+
+	.purchaseNum{
+		
+		font-size:28px;
+	}
+
+
+	.avatar{
+		width:64px;
+		height:64px;
+		
+	}
+
+	.name{
+		font-size:20px;
+		bottom:32px;
+	}
+
+	.personalPurchaseNum{
+		font-size:20px;
+		bottom:32px;
+	}
+
+
+
+	.salesPrice{
+		font-size:28px;
+		
+	}
+
+
+	.purchaseLink{
+
+		font-size:24px;
+		
+	}
+}
+
+
+   
+   
+/* 如果使用者视图宽度介于 640 ~ 767，將会载入这里的 CSS。*/ 
+
+@media screen and (min-width:640px) and (max-width:767px) {  
+	#productImg{
+		height:360px;
+	}
+
+	#productName{
+		font-size:32px;
+	}
+
+	#totalPurchase{
+		font-size:28px;
+	
+	}
+
+	.purchaseNum{
+		
+		font-size:32px;
+	}
+
+
+	.avatar{
+		width:100px;
+		height:100px;
+		
+	}
+
+	.name{
+		font-size:24px;
+		bottom:50px;
+	}
+
+	.personalPurchaseNum{
+		font-size:24px;
+		bottom:50px;
+	}
+
+
+
+	.salesPrice{
+		font-size:32px;
+		
+	}
+
+
+	.purchaseLink{
+
+		font-size:28px;
+		
+	}
+}  
+   
+
+/*如果使用者视图宽度介于 768px ~ 979px，將会载入这里的 CSS。*/
+@media screen and (min-width:768px) and (max-width:979px) {  
+    #productImg{
+		height:420px;
+	}
+
+	#productName{
+		font-size:36px;
+	}
+
+	#totalPurchase{
+		font-size:32px;
+	
+	}
+
+	.purchaseNum{
+		
+		font-size:36px;
+	}
+
+
+	.avatar{
+		width:120px;
+		height:120px;
+		
+	}
+
+	.name{
+		font-size:28px;
+		bottom:60px;
+	}
+
+	.personalPurchaseNum{
+		font-size:28px;
+		bottom:60px;
+	}
+
+
+
+	.salesPrice{
+		font-size:36px;
+		
+	}
+
+
+	.purchaseLink{
+
+		font-size:32px;
+		
+	}
+}  
+   
+   
+
+/*如果使用者视图宽度 >980px，將会载入这里的 CSS。*/
+@media screen and (min-width:980px){  
+	#productImg{
+		height:500px;
+	}
+
+	#productName{
+		font-size:40px;
+	}
+
+	#totalPurchase{
+		font-size:36px;
+	
+	}
+
+	.purchaseNum{
+		
+		font-size:40px;
+	}
+
+
+	.avatar{
+		width:120px;
+		height:120px;
+		
+	}
+
+	.name{
+		font-size:32px;
+		bottom:60px;
+	}
+
+	.personalPurchaseNum{
+		font-size:32px;
+		bottom:60px;
+	}
+
+
+
+	.salesPrice{
+		font-size:40px;
+		
+	}
+
+
+	.purchaseLink{
+
+		font-size:36px;
+		
+	}	
+} 

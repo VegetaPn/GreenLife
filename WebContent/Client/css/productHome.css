@@ -1,0 +1,1050 @@
+#product{
+	width:100%;
+	position:relative;
+	background-color:#E4E4E4;
+	text-align:center;
+	/*padding-top:3vw;
+	padding-bottom:3vw;*/
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+
+#productImgDiv{
+	width:90%;
+	/*width:90vw;*/
+	margin:auto;
+
+}
+
+#productImg{
+	/*width:90vw;
+	height:36vw;*/
+	width:100%;
+	border:1px solid #333333;
+	border-radius:10px;
+}
+
+#productName{
+	position: absolute;
+	background-color:rgba(215,215,215,0.7);
+	width:100%;
+	bottom:0;
+	/*font-size:6vw;*/
+	font-weight:bold;
+	text-align:center;
+	
+}
+
+
+#heart{
+	position: absolute;
+	width:15%;
+	
+	right:10%;
+	bottom:15%;
+}
+
+
+.arcLabel{
+	background-color:#F76F00;
+	color:#FFFFFF;
+	/*font-size:5vw;*/
+	font-weight:bold;
+	padding:5px 15px 5px 15px;
+	border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+}
+
+
+#salesState{
+	position:absolute;
+	left:0;
+	top:45%;
+}
+
+#orderNum{
+	position:absolute;
+	left:0;
+	top:65%;
+}
+
+#productInfo{
+	border-top:1px solid #000000;
+	border-bottom:1px solid #000000;
+	overflow:hidden;
+	padding-top:20px;
+	padding-bottom:15px;
+	/*
+	padding-top:5vw;
+	padding-bottom:4vw;*/
+}
+
+#infoDesc{
+	width:90%;
+	margin: auto;
+}
+
+
+/*
+.descFont{
+	font-size:5vw;
+}*/
+
+.link{
+	float:right;
+	text-decoration:none;
+	color:#FF6600;
+	/*font-size:7vw;*/
+	font-weight:bold;
+}
+
+
+
+.grayDiv{
+	background-color:#CCCCCC;
+	border:1px solid #CCCCCC;
+	
+}
+
+
+
+
+#friendPurchase{
+	width:90%;
+	margin:auto;
+	padding-top:20px;
+}
+
+.labelHeader{
+	position:relative;
+	/*height:8vw;*/
+}
+
+.label{
+	background-color:#F76F00;
+	color:#FFFFFF;
+	padding:5px 15px 5px 15px;
+	
+	/*font-size:5vw;*/
+	font-weight:bold;
+	position:absolute;
+	left:10px;
+}
+
+.whiteDiv{
+	position:absolute;
+	background-color:#FFFFFF;
+	width:100%;
+	/*margin-top:3vw;
+	height:5vw;*/
+	border-bottom:1px solid #FFFFFF;
+}
+
+
+
+
+#purchaseNum{
+	color:#FFFF00;
+	/*font-size:7vw;*/
+}
+
+#purchaseDetail{
+	padding-top:15px;
+	padding-left:15px;
+	background-color:#FFFFFF;
+	overflow:hidden;
+}
+
+
+
+.personalPurchaseDiv{
+	float:left;
+	margin-right:5px;
+	text-align:center;
+}
+
+.avatar{
+	border:1px solid #797979;
+	border-radius:100%;
+	/*width:14vw;
+	height:14vw;*/
+}
+
+#friendLink{
+	float:left;
+	/*margin-top:4vw;*/
+}
+
+
+#productSalesPrice{
+	width:90%;
+	margin:auto;
+	margin-top:20px;
+}
+
+#salesProductImgDiv{
+	padding-top:10px;
+	text-align:center;
+	
+	
+}
+
+#salesProductImg{
+	width:80%;
+	/*width:80vw;
+	height:32vw;*/
+	border:1px solid #333333;
+	border-radius:10px;
+}
+
+#productSalesInfo{
+	width:90%;
+	margin:auto;
+	background-color:#ffffff;
+	overflow:hidden;
+	margin-top:10px;
+	padding-bottom:20px;
+	
+}
+
+#salesInfo{
+	padding:10px 0 10px 15px;
+}
+
+.titleFont{
+	/*font-size:5vw;*/
+	font-weight:bold;
+}
+
+
+#teamPurchase{
+	padding:10px 10px 0 10px;		
+	float:left;
+}
+
+#personalPurchase{
+	padding-top:10px;
+	padding-left:10px;
+	
+	float:left;
+}
+
+.salesPrice{
+	/*font-size:7vw;*/
+	font-weight:bold;
+	padding:5px;
+	border-top-right-radius:5px;
+    border-top-left-radius:5px;
+	
+	color:#ffffff;'
+	
+}
+
+#teamPrice{
+	background-color:#FF3300;
+}
+
+#personalPrice{
+	background-color:#FFCC33;
+}
+
+.purchaseLink{
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	padding:2px;
+	background-color:#F76F00;
+	/*font-size:5vw;*/
+	font-weight:bold;
+	color:#ffffff;
+	text-align:center;
+}
+
+#productQuality{
+	width:90%;
+	margin:auto;
+	background-color:#ffffff;
+	overflow:hidden;
+	margin-top:20px;
+	padding-bottom:15px;
+}
+
+#qualityContent{
+	margin:20px 20px 20px 10px;
+}
+
+#qualityLogo{
+	float:left;
+}
+/*
+#qualityLogoImg{
+	width:18vw;
+	height:18vw;
+}
+*/
+#qualityInfo{
+	float:left;
+	
+}
+
+#qualityFont{
+	color:#F76F00;
+	/*font-size:5.5vw;*/
+	font-weight:bold;
+}
+
+#qualityLink{
+
+	color:#FFFFFF;
+	/*font-size:5.5vw;*/
+	font-weight:bold;
+	
+	background-color:#F76F00;
+	border-radius:13px;
+	/*margin-left:4vw;*/
+	padding:5px 15px 5px 15px;
+}
+
+#productComment{
+
+	width:90%;
+	margin:auto;
+	
+	margin-top:20px;
+	
+}
+
+
+
+#commentContent{
+	background-color:#ffffff;
+	overflow:hidden;
+	
+}
+
+#commentInfo{
+	padding:15px;
+}
+
+.avatarDiv{
+	float:left;
+	
+}
+
+
+.name{
+	color:#FF6600;
+	/*font-size:7vw;*/
+	font-weight:bold;
+	float:left;
+	/*margin-top:3.5vw;*/
+	margin-left:10px;
+}
+
+.time{
+	color:#999999;
+	/*font-size:4vw;*/
+	float:left;
+	/*margin-top:5vw;*/
+	margin-left:10px;
+}
+
+.comment{
+	clear:both;
+	/*margin-left:14vw;
+	font-size:5vw;*/
+	color:#333333;
+}
+
+
+.commentImg{
+	width:90%;
+}
+
+#commentLinkDiv{
+	text-align:center;
+	padding-bottom:20px;
+}
+
+
+
+
+#commentLink{
+	color:#FFFFFF;
+	/*font-size:7vw;*/
+	font-weight:bold;
+	
+	background-color:#F76F00;
+	border-radius:5px;
+	
+	padding:15px 25px 15px 25px;
+}
+
+#LastGrayDiv{
+	padding-bottom:20px;
+}
+
+
+ 
+/*如果使用者视图宽度 < 480px，將会载入这里的 CSS。*/  
+@media screen and (max-width: 479px) {  
+	#productImg{
+		
+		height:180px;
+	}
+
+	#productName{
+		font-size:24px;
+	}
+
+
+	.arcLabel{
+
+		font-size:16px;
+	}
+
+
+
+	.descFont{
+		font-size:16px;
+	}
+
+	.link{
+		font-size:20px;
+	}
+
+	.labelHeader{
+	
+		height:35px;
+	}
+
+	.label{
+
+		
+		font-size:16px;
+		
+	}
+
+	.whiteDiv{
+		margin-top:10px;
+		height:25px;
+	}
+
+
+
+
+	#purchaseNum{
+		font-size:20px;
+	}
+	
+	
+
+	.personalPurchaseDiv{
+		font-size:16px;
+	}
+
+	.avatar{
+		width:40px;
+		height:40px;
+	}
+
+	#friendLink{
+		margin-top:12px;
+	}
+
+
+	#salesProductImg{
+		
+		height:160px;
+
+	}
+
+	.titleFont{
+		font-size:16px;
+	
+	}
+
+
+	.salesPrice{
+		font-size:20px;
+		
+		
+	}
+
+
+	.purchaseLink{
+		font-size:16px;
+	}
+
+
+	#qualityLogoImg{
+		width:60px;
+		height:60px;
+	}
+
+
+	#qualityFont{
+		font-size:18px;
+	}
+
+	#qualityLink{
+		font-size:18px;
+		
+		margin-left:16px;
+		
+	}
+
+	.name{
+		font-size:20px;
+		margin-top:10px;
+		
+	}
+
+	.time{
+		font-size:16px;
+		margin-top:12px;
+		
+	}
+
+	.comment{
+		margin-left:40px;
+		font-size:16px;
+
+	}
+
+	#commentLink{
+		font-size:20px;
+		
+	}
+
+} 
+   
+/* 如果使用者视图宽度介于 480 ~ 639，將会载入这里的 CSS。*/    
+@media screen and (min-width:480px) and (max-width:639px) {
+	#productImg{
+		height:300px;
+	}
+
+	#productName{
+		font-size:28px;
+	}
+
+
+	.arcLabel{
+	
+		font-size:20px;
+
+	}
+
+
+
+	.descFont{
+		font-size:20px;
+	}
+
+	.link{
+		font-size:24px;
+	}
+
+
+	.labelHeader{
+	
+		height:40px;
+	}
+
+	.label{
+
+		font-size:20px;
+		
+	}
+
+	.whiteDiv{
+		margin-top:15px;
+		height:25px;
+	}
+
+
+
+
+	#purchaseNum{
+		font-size:24px;
+	}
+
+	.personalPurchaseDiv{
+		font-size:20px;
+	}
+	
+	.avatar{
+		width:64px;
+		height:64px;
+	}
+
+	#friendLink{
+		margin-top:20px;
+	}
+
+
+	#salesProductImg{
+		height:260px;
+	}
+
+	.titleFont{
+		font-size:20px;
+	
+	}
+
+
+	.salesPrice{
+		font-size:24px;
+		
+	}
+
+
+	.purchaseLink{
+		font-size:20px;
+	}
+
+
+	#qualityLogoImg{
+		width:80px;
+		height:80px;
+	}
+
+	#qualityInfo{
+		margin-top:5px;
+		margin-left:10px;
+	}
+	
+	
+	#qualityFont{
+		font-size:24px;
+	}
+
+	#qualityLink{
+		font-size:24px;
+		
+		margin-left:30px;
+		
+	}
+
+	.name{
+		font-size:24px;
+		margin-top:20px;
+		
+	}
+
+	.time{
+		font-size:20px;
+		margin-top:24px;
+		
+	}
+
+	.comment{
+		margin-left:64px;
+		font-size:20px;
+
+	}
+
+	#commentLink{
+		font-size:24px;
+		
+	}
+}
+   
+ 
+   
+/* 如果使用者视图宽度介于 640 ~ 767，將会载入这里的 CSS。*/ 
+
+@media screen and (min-width:640px) and (max-width:767px) {  
+	#productImg{
+		height:360px;
+	}
+
+	#productName{
+		font-size:32px;
+	}
+
+
+	.arcLabel{
+	
+		font-size:24px;
+
+	}
+
+
+
+	.descFont{
+		font-size:24px;
+	}
+
+	.link{
+		font-size:28px;
+	}
+
+
+	.labelHeader{
+	
+		height:45px;
+	}
+
+	.label{
+
+		font-size:24px;
+		
+	}
+
+	.whiteDiv{
+		margin-top:20px;
+		height:25px;
+	}
+
+
+
+
+	#purchaseNum{
+		font-size:28px;
+	}
+	
+	.personalPurchaseDiv{
+		font-size:24px;
+	}
+
+	.avatar{
+		width:100px;
+		height:100px;
+	}
+
+	#friendLink{
+		margin-top:38px;
+	}
+
+
+	#salesProductImg{
+		height:320px;
+	}
+
+	.titleFont{
+		font-size:24px;
+	
+	}
+
+
+	.salesPrice{
+		font-size:28px;
+		
+	}
+
+
+	.purchaseLink{
+		font-size:24px;
+	}
+
+
+	#qualityLogoImg{
+		width:128px;
+		height:128px;
+	}
+
+	#qualityInfo{
+		margin-top:40px;
+		margin-left:10px;
+	}
+
+	#qualityFont{
+		font-size:28px;
+	}
+
+	#qualityLink{
+		font-size:28px;
+		
+		margin-left:32px;
+		
+	}
+
+	.name{
+		font-size:28px;
+		margin-top:36px;
+		
+	}
+
+	.time{
+		font-size:24px;
+		margin-top:40px;
+		
+	}
+
+	.comment{
+		margin-left:100px;
+		font-size:24px;
+
+	}
+
+	#commentLink{
+		font-size:28px;
+		
+	}
+}  
+ 
+   
+/*如果使用者视图宽度介于 768px ~ 979px，將会载入这里的 CSS。*/
+@media screen and (min-width:768px) and (max-width:979px) {  
+    #productImg{
+		height:420px;
+	}
+
+	#productName{
+		font-size:36px;
+	}
+
+
+	.arcLabel{
+	
+		font-size:28px;
+
+	}
+
+
+
+	.descFont{
+		font-size:28px;
+	}
+
+	.link{
+		font-size:32px;
+	}
+
+
+	.labelHeader{
+	
+		height:50px;
+	}
+
+	.label{
+
+		font-size:28px;
+		
+	}
+
+	.whiteDiv{
+		margin-top:20px;
+		height:30px;
+	}
+
+
+
+
+	#purchaseNum{
+		font-size:32px;
+	}
+	
+	.personalPurchaseDiv{
+		font-size:28px;
+	}
+
+	.avatar{
+		width:120px;
+		height:120px;
+	}
+
+	#friendLink{
+		margin-top:44px;
+	}
+
+
+	#salesProductImg{
+		height:380px;
+	}
+
+	.titleFont{
+		font-size:28px;
+	
+	}
+
+
+	.salesPrice{
+		font-size:32px;
+		
+	}
+
+
+	.purchaseLink{
+		font-size:28px;
+	}
+
+
+	#qualityLogoImg{
+		width:150px;
+		height:150px;
+	}
+
+	#qualityInfo{
+		margin-top:50px;
+		margin-left:10px;
+	}
+
+	#qualityFont{
+		font-size:32px;
+	}
+
+	#qualityLink{
+		font-size:32px;
+		
+		margin-left:36px;
+		
+	}
+
+	.name{
+		font-size:32px;
+		margin-top:44px;
+		
+	}
+
+	.time{
+		font-size:28px;
+		margin-top:48px;
+		
+	}
+
+	.comment{
+		margin-left:120px;
+		font-size:28px;
+
+	}
+
+	#commentLink{
+		font-size:32px;
+		
+	}    
+}  
+
+
+/*如果使用者视图宽度 >980px，將会载入这里的 CSS。*/
+@media screen and (min-width:980px){  
+    #productImg{
+		height:500px;
+	}
+
+	#productName{
+		font-size:40px;
+	}
+
+
+	.arcLabel{
+	
+		font-size:32px;
+
+	}
+
+
+
+	.descFont{
+		font-size:32px;
+	}
+
+	.link{
+		font-size:36px;
+	}
+
+
+	.labelHeader{
+	
+		height:60px;
+	}
+
+	.label{
+
+		font-size:32px;
+		
+	}
+
+	.whiteDiv{
+		margin-top:25px;
+		height:35px;
+	}
+
+
+
+
+	#purchaseNum{
+		font-size:36px;
+	}
+	
+	.personalPurchaseDiv{
+		font-size:32px;
+	}
+
+	.avatar{
+		width:120px;
+		height:120px;
+	}
+
+	#friendLink{
+		margin-top:44px;
+	}
+
+
+	#salesProductImg{
+		height:440px;
+	}
+
+	.titleFont{
+		font-size:32px;
+	
+	}
+
+
+	.salesPrice{
+		font-size:36px;
+		
+	}
+
+
+	.purchaseLink{
+		font-size:32px;
+	}
+
+
+	#qualityLogoImg{
+		width:150px;
+		height:150px;
+	}
+
+	#qualityInfo{
+		margin-top:45px;
+		margin-left:10px;
+	}
+
+	#qualityFont{
+		font-size:36px;
+	}
+
+	#qualityLink{
+		font-size:36px;
+		
+		margin-left:40px;
+		
+	}
+
+	.name{
+		font-size:36px;
+		margin-top:40px;
+		
+	}
+
+	.time{
+		font-size:32px;
+		margin-top:44px;
+		
+	}
+
+	.comment{
+		margin-left:120px;
+		font-size:32px;
+
+	}
+
+	#commentLink{
+		font-size:36px;
+		
+	}         
+} 
