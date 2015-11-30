@@ -1,0 +1,279 @@
+html{
+	background:#D7D7D7;
+}
+
+body {
+	background:#FFFFFF;
+}
+
+#content{
+	overflow:hidden;
+}
+
+.blank{
+	background:#D7D7D7;
+	width:100%;
+	height:15px;
+}
+
+
+
+.dCusMess{
+	 width:100%;
+	 overflow:hidden;
+	 border-top:1px solid gray; 
+	 border-bottom:1px solid #333333;
+	 color:black;
+}
+
+.dCusInfor{
+	width:90%;
+	float:left;
+	padding-top:8px;
+	padding-bottom:8px;
+}
+
+.dCusInfor .top{
+	width:100%;
+}
+
+.dCusInfor .bottom{
+	width:100%;
+	padding-top:8px;
+}
+
+.dDefault{
+	float:left;
+	width:20%;
+	background-color:#9BCD5B;
+	border-radius:5px;
+	color:#ffffff;
+	margin-top:4px;
+	text-align:center;
+	margin-left:10px;
+}
+
+.dCusInfor img{
+	margin-left:8px;
+	width:8%;
+}
+
+.iPosition{
+	float:left;
+}
+
+.sCusName{
+   font-weight:bold;
+}
+
+.sPhoneNum{
+	font-weight:bold;
+}
+
+.dAddress{
+	color:black;
+	float:left;
+	margin-top: 8px;
+    width:70%;
+	float:left;
+}
+
+.dAddress img{
+	width:10%;
+}
+
+#sCusName1{
+	color:#F76F00;
+}
+
+#sPhoneNum1{
+	color:#F76F00;
+}
+
+#dAddress1{
+	color:#F76F00;
+}
+
+
+
+#dMask{
+	display:none;
+	background-color:black;
+	opacity:0.7;
+    z-index:10;
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:overflow;
+	padding-top:30px;
+}
+
+.dSuspension{
+	position:relative;
+	font-weight:bold;
+	z-index:15;
+	width:80%;
+	margin:auto;
+	margin-bottom:20px;
+	margin-top:30px;
+	clear:both;
+	padding-top:10px;
+	padding-bottom:10px;
+	text-align:center;
+}
+
+#setDefault{
+	border:2px solid green;
+	color:green;
+}
+
+#setAddress{
+	border:2px solid #F76F00;
+	color:#F76F00;
+}
+
+#delAddress{
+	border:2px solid red;
+	color:red;
+}
+
+@media screen and (max-width: 480px){
+	.dDefault{
+	    font-size:16px;
+		padding:6px 4px 6px 4px;
+	}
+	
+	.sCusName{
+        font-size: 20px;
+    }
+	
+	.sPhoneNum{
+	    font-size:16px;
+	}
+	
+	.dAddress{
+	    font-size:16px;
+	}
+
+	.dSuspension{
+		font-size:20px;
+	}
+	
+	.dSuspension img{
+		width:20px;
+		height:20px;
+	}
+}
+
+@media screen and (min-width: 480px) and (max-width: 639px){
+	.dDefault{
+	    font-size:20px;
+		padding:8px 6px 8px 6px;
+	}
+	
+	.sCusName{
+        font-size: 24px;
+    }
+	
+	.sPhoneNum{
+	    font-size:20px;
+	}
+	
+	.dAddress{
+	    font-size:20px;
+	}
+	
+	.dSuspension{
+		font-size:24px;
+	}
+	
+	.dSuspension img{
+		width:24px;
+		height:24px;
+	}
+}
+
+@media screen and (min-width: 640px ) and (max-width: 767px){
+	.dDefault{
+	    font-size:24px;
+		padding:10px 8px 10px 8px;
+	}
+	
+	.sCusName{
+        font-size: 28px;
+    }
+	
+	.sPhoneNum{
+	    font-size:24px;
+	}
+	
+	.dAddress{
+	    font-size:24px;
+	}
+	
+	.dSuspension{
+		font-size:28px;
+	}
+	
+	.dSuspension img{
+		width:28px;
+		height:28px;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px){
+	.dDefault{
+	    font-size:28px;
+		padding:12px 10px 12px 10px;
+	}
+	
+	.sCusName{
+        font-size: 32px;
+    }
+	
+	.sPhoneNum{
+	    font-size:28px;
+	}
+	
+	.dAddress{
+	    font-size:28px;
+	}
+	
+	.dSuspension{
+		font-size:32px;
+	}
+	
+	.dSuspension img{
+		width:32px;
+		height:32px;
+	}
+}
+
+@media screen and (min-width: 980px){
+	.dDefault{
+	    font-size:32px;
+		padding:14px 12px 14px 12px;
+	}
+	
+	.sCusName{
+        font-size: 36px;
+    }
+	
+	.sPhoneNum{
+	    font-size:32px;
+	}
+	
+	.dAddress{
+	    font-size:32px;
+	}
+	
+	.dSuspension{
+		font-size:36px;
+	}
+	
+	.dSuspension img{
+		width:36px;
+		height:36px;
+	}
+}

@@ -1,0 +1,194 @@
+
+html{
+	background-color:#D7D7D7;
+}
+
+#content{
+	background-color:#D7D7D7;
+}
+
+.dOutside{
+	margin-top:10px;
+	width:100%;
+	background-color:#ffffff;
+	border-top:1px solid black;
+	border-bottom:1px solid #797979;
+}
+
+.dInside{
+	width:95%;
+	margin:auto;
+	margin-top:10px;
+	margin-bottom:5px;
+	background-color:#ffffff;
+}
+
+#dCity{
+	overflow:hidden;
+}
+
+#dCity span{
+	font-weight:bold;
+}
+
+.dChildCity{
+	overflow:hidden;
+	clear:both;
+}
+
+.sChildCity{
+	float:left;
+	color:#999999;
+}
+
+.toGrandChild{
+	float:right;
+	font-weight:bold;
+	color:#999999;
+}
+
+@media screen and (max-width: 480px){
+	.dInside{
+		margin-top:10px;
+		margin-bottom:5px;
+	}
+	
+	#dCity{
+		margin-top:15px;
+	}
+
+	#dCity span{
+	    font-size:24px;
+    }
+	
+	.dChildCity hr{
+		margin-bottom:15px;
+	}
+	
+	.sChildCity{
+		margin-left:24px;
+		font-size:16px;
+	}
+	
+	.toGrandChild{
+		font-size:20px;
+		margin-right:16px;
+	}
+
+}
+
+@media screen and (min-width: 480px) and (max-width: 639px){
+	.dInside{
+		margin-top:15px;
+		margin-bottom:10px;
+	}
+	
+	#dCity{
+		margin-top:20px;
+	}
+
+	#dCity span{
+	    font-size:28px;
+    }
+	
+	.dChildCity hr{
+		margin-bottom:20px;
+	}
+	
+	.sChildCity{
+		margin-left:28px;
+		font-size:20px;
+	}
+	
+	.toGrandChild{
+		font-size:24px;
+		margin-right:20px;
+	}
+}
+
+@media screen and (min-width: 640px ) and (max-width: 767px){
+	.dInside{
+		margin-top:20px;
+		margin-bottom:15px;
+	}
+	
+	#dCity{
+		margin-top:25px;
+	}
+
+	#dCity span{
+	    font-size:32px;
+    }
+	
+	.dChildCity hr{
+		margin-bottom:25px;
+	}
+	
+	.sChildCity{
+		margin-left:32px;
+		font-size:24px;
+	}
+	
+	.toGrandChild{
+		font-size:28px;
+		margin-right:24px;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px){
+	.dInside{
+		margin-top:25px;
+		margin-bottom:20px;
+	}
+	
+	#dCity{
+		margin-top:30px;
+	}
+
+	#dCity span{
+	    font-size:36px;
+    }
+	
+	.dChildCity hr{
+		margin-bottom:30px;
+	}
+	
+	.sChildCity{
+		margin-left:36px;
+		font-size:28px;
+	}
+	
+	.toGrandChild{
+		font-size:32px;
+		margin-right:28px;
+	}
+}
+
+@media screen and (min-width: 980px){
+	.dInside{
+		margin-top:30px;
+		margin-bottom:25px;
+	}
+	
+	#dCity{
+		margin-top:35px;
+	}
+
+	#dCity span{
+	    font-size:40px;
+    }
+	
+	.dChildCity hr{
+		margin-bottom:35px;
+	}
+	
+	.sChildCity{
+		margin-left:40px;
+		font-size:32px;
+	}
+	
+	.toGrandChild{
+		font-size:36px;
+		margin-right:32px;
+	}
+}

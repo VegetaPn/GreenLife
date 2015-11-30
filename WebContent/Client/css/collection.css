@@ -1,0 +1,450 @@
+body{
+	background-color:#ffffff;
+}
+
+html{
+	background-color:#E4E4E4;
+}
+
+
+
+
+#collectProduct{
+	position:relative;
+}
+
+.arcLabel{
+	background-color:#F76F00;
+	color:#FFFFFF;
+	/*font-size:5vw;
+	padding:1vw 5vw 1vw 5vw;*/
+	padding:5px 15px 5px 15px;
+	border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+	position:absolute;
+	left:0;
+	top:25%;
+}
+
+.sellOutLabel{
+	background-color:#999999;
+	color:#FFFFFF;
+	/*font-size:5vw;
+	padding:1vw 5vw 1vw 5vw;*/
+	padding:5px 15px 5px 15px;
+	border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+	position:absolute;
+	left:0;
+	top:25%;
+}
+
+.link{
+	/*width:5vw;
+	height:5vw;*/
+	position:absolute;
+	right:5%;
+	top:50%;
+	width:10%;
+}
+
+
+
+	
+.normalProduct{
+	
+	border-top:15px solid #E4E4E4;
+	border-bottom:1px solid #999999;
+	width:100%;
+	overflow:hidden;
+}
+
+
+.nPic{
+	margin-left:12px;
+	margin-top:12px;
+	margin-bottom:12px;
+	float:left;
+	
+}
+
+.nPic img{
+	width:100%;
+	height:100%;
+	
+}
+
+.nSellInfo{
+	
+	margin-left:2px;
+	margin-top:15px;
+	float:left;
+	
+}
+
+.nName{
+
+	font-weight:bold;
+
+	margin-bottom:2px;
+	
+}
+
+.nIntro{
+
+	color:#999999;
+	
+	margin-bottom:2px;
+	
+}
+
+.nCheapprice{
+	
+	color:#FF3366;
+	margin-bottom:2px;
+	
+
+}
+
+.nCheapprice span{
+	
+	color:#000;
+	margin-bottom:2px;
+
+}
+
+.nMarketprice{
+	
+	color:#999999;
+	margin-bottom:2px;
+	
+}
+
+
+@media screen and (max-width: 479px){
+
+	.arcLabel{
+
+		font-size:16px;
+	}
+	
+	.sellOutLabel{
+		font-size:16px;
+	}
+	
+	
+	.link{
+		width:20px;
+		height:20px;
+	}
+	
+	
+	.nPic{
+		width:120px;
+		height:120px;
+		
+	}
+	
+	.nSellInfo{
+		width:55%;
+		
+	}
+		
+	.nName{
+		font-size: 16px;	
+
+	}
+	
+	.nIntro{
+
+		font-size: 14px;
+	}
+	
+	.nCheapprice{
+		
+		font-size: 20px;
+	}
+	
+	.nCheapprice span{
+		
+		font-size: 14px;
+
+	}
+	
+	.nMarketprice{
+		
+		font-size: 14px;
+	}
+
+	.nFriendorder{
+		
+		font-size: 16px;
+	
+	
+	}
+}
+
+
+@media screen and (min-width:480px) and (max-width:639px){
+	.arcLabel{
+
+		font-size:20px;
+	}
+	
+	.sellOutLabel{
+		font-size:20px;
+	}
+	
+	
+	.link{
+		width:25px;
+		height:25px;
+	}
+
+	
+	.nPic{
+		width:160px;
+		height:160px;
+		
+	}
+	
+	.nSellInfo{
+		width:60%;
+		margin-top:16px;
+	}
+		
+	.nName{
+		font-size: 20px;	
+		margin-bottom:3px;
+	}
+	
+	.nIntro{
+
+		font-size: 16px;
+		margin-bottom:3px;
+	}
+	
+	.nCheapprice{
+		margin-bottom:3px;
+		font-size: 24px;
+	}
+	
+	.nCheapprice span{
+		margin-bottom:3px;
+		font-size: 16px;
+
+	}
+	
+	.nMarketprice{
+		margin-bottom:3px;
+		font-size: 16px;
+	}
+
+	.nFriendorder{
+		margin-bottom:3px;
+		font-size: 20px;
+	
+	
+	}
+}
+
+
+
+
+@media screen and (min-width: 640px) and (max-width: 767px) {
+	
+	.arcLabel{
+
+		font-size:24px;
+	}
+	
+	.sellOutLabel{
+		font-size:24px;
+	}
+	
+	
+	.link{
+		width:30px;
+		height:30px;
+	}
+
+	
+	.nPic{
+		width:180px;
+		height:180px;
+		
+	}
+	
+	.nSellInfo{
+		width:60%;
+		margin-top:16px;
+	}
+		
+	.nName{
+		font-size: 24px;	
+		margin-bottom:3px;
+	}
+	
+	.nIntro{
+
+		font-size: 20px;
+		margin-bottom:3px;
+	}
+	
+	.nCheapprice{
+		margin-bottom:3px;
+		font-size: 28px;
+	}
+	
+	.nCheapprice span{
+		margin-bottom:3px;
+		font-size: 28px;
+
+	}
+	
+	.nMarketprice{
+		margin-bottom:3px;
+		font-size: 24px;
+	}
+
+	.nFriendorder{
+		margin-bottom:3px;
+		font-size: 28px;
+	
+	
+	}
+	
+}
+	
+
+@media screen and (min-width: 768px) and (max-width: 979px) {  
+
+	.arcLabel{
+
+		font-size:28px;
+	}
+	
+	.sellOutLabel{
+		font-size:28px;
+	}
+	
+	
+	.link{
+		width:35px;
+		height:35px;
+	}
+
+
+	.nPic{
+		width:200px;
+		height:200px;
+		
+	}
+	
+	.nSellInfo{
+		width:60%;
+		margin-top:16px;
+	}
+		
+	.nName{
+		font-size: 32px;	
+		margin-bottom:3px;
+	}
+	
+	.nIntro{
+
+		font-size: 28px;
+		margin-bottom:3px;
+	}
+	
+	.nCheapprice{
+		margin-bottom:3px;
+		font-size: 36px;
+	}
+	
+	.nCheapprice span{
+		margin-bottom:3px;
+		font-size: 28px;
+
+	}
+	
+	.nMarketprice{
+		margin-bottom:3px;
+		font-size: 28px;
+	}
+
+	.nFriendorder{
+		margin-bottom:3px;
+		font-size: 32px;
+	
+	
+	}
+}	
+
+
+	
+@media screen and (min-width: 980px) {  
+
+	.arcLabel{
+
+		font-size:32px;
+	}
+	
+	.sellOutLabel{
+		font-size:32px;
+	}
+	
+	
+	.link{
+		width:40px;
+		height:40px;
+	}
+
+	.nPic{
+		width:240px;
+		height:240px;
+		
+	}
+	
+	.nSellInfo{
+		width:60%;
+		margin-top:24px;
+	}
+		
+	.nName{
+		font-size: 32px;	
+		margin-bottom:5px;
+	}
+	
+	.nIntro{
+
+		font-size: 28px;
+		margin-bottom:5px;
+	}
+	
+	.nCheapprice{
+		margin-bottom:5px;
+		font-size: 36px;
+	}
+	
+	.nCheapprice span{
+		margin-bottom:5px;
+		font-size: 28px;
+
+	}
+	
+	.nMarketprice{
+		margin-bottom:5px;
+		font-size: 28px;
+	}
+
+	.nFriendorder{
+		margin-bottom:5px;
+		font-size: 32px;
+	
+	
+	}
+}		
+	
+	
+	

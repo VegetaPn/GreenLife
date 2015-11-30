@@ -1,0 +1,638 @@
+html,body {
+	
+	background-color:  #fff;
+	border:solid 1px #999999;
+
+}
+
+#content{
+	background-color:  #999999;
+}
+
+#visitingCard {
+	background-color:#E4E4E4;
+	width:100%;
+	height:140px;
+	position:relative;
+
+}
+
+#bgImage{
+	width:100%;
+	height:100%;
+	position:absolute;
+	z-index:1;
+}
+
+#bgImage img{
+	width:100%;
+	height:100%;
+	z-index:2;
+}
+
+#icon{
+	background-color:#fff;
+	position:absolute;
+	width:70px;
+	height:70px;
+	border-radius:50px;
+	z-index:3;
+	top:40px;
+	left:30px;
+}
+
+#icon img{
+	width:100%;
+	height:100%;
+	position:absolute;
+	border-radius:50px;
+	z-index:3;
+}
+
+#userName{
+	color:#fff;
+	font-family:"黑体";
+	font-size: 16px;
+	font-weight:bold;
+	position:absolute;
+	top:60px;
+	left:120px;
+	z-index:3;
+}
+
+#service{
+	width:100%;
+	background-color:#E4E4E4;
+	overflow:hidden;
+}
+
+.func{
+	background-color:#fff;
+	border-bottom:1px solid #797979;
+	overflow:hidden;
+}
+
+.icon{
+	width:40px;
+	height:40px;
+	float:left;
+	margin-top:6px;
+	margin-left:6px;
+	margin-bottom:6px;
+}
+
+.icon img{
+	width:100%;
+	height:100%;
+}
+
+.myFunc{
+	font-family:"微软雅黑";
+	font-size: 16px;
+	margin-top:16px;
+	margin-left:8px;
+	margin-bottom:16px;
+	float:left;
+}
+
+.arrowHead{
+	width:32px;
+	height:32px;
+	margin-top:10px;
+	margin-right:3px;
+	margin-bottom:10px;
+	float:right;
+}
+
+.arrowHead img{
+	width:100%;
+	height:100%;
+}
+
+.undetermined{
+	background-color:#fff;
+	font-family:"微软雅黑";
+	font-size: 14px;
+	padding-top:6px;
+	padding-bottom:12px;
+	margin-bottom:6px;
+	overflow:hidden;
+}	
+
+.um{
+
+	float:left;
+	text-align:center;
+	
+}
+
+.um img{
+	width:100%;
+	height:100%;
+}
+
+.um span{
+	
+	margin-bottom:2px;
+}
+
+#quit{
+	
+	background-color:#fff;
+	text-align:center;
+	padding-top:2px;
+	padding-bottom:2px;
+	overflow:hidden;
+	margin-top:20px;
+	
+}
+
+#logout{
+	width:200px;
+	height:30px;
+	background-color:#707070;
+	margin: 0 auto;
+	padding-top:10px;
+	border-radius:5px;
+	color:#fff;
+	font-family:"微软雅黑";
+	font-size: 16px;
+}
+
+@media screen and (min-width:980px){
+	#visitingCard {
+
+	height:280px;
+
+}
+
+
+#icon{
+	width:140px;
+	height:140px;
+	border-radius:70px;
+	top:70px;
+	left:50px;
+}
+
+#icon img{
+	border-radius:70px;
+
+}
+
+#userName{
+
+	font-size: 32px;
+	top:100px;
+	left:220px;
+}
+
+
+.icon{
+	width:100px;
+	height:100px;
+	margin-top:6px;
+	margin-left:10px;
+	margin-bottom:6px;
+}
+
+
+.myFunc{
+
+	font-size: 36px;
+	margin-top:32px;
+	margin-left:8px;
+	margin-bottom:36px;
+}
+
+.arrowHead{
+	width:80px;
+	height:80px;
+	margin-top:10px;
+	margin-right:3px;
+	margin-bottom:10px;
+}
+
+
+.undetermined{
+	font-size: 14px;
+	padding-top:6px;
+	padding-bottom:12px;
+	margin-bottom:6px;
+	
+}	
+
+.um{
+	width:15%;
+	margin-left:8%;
+	float:left;
+	
+}
+
+.um span{
+	font-size:28px;
+	margin-bottom:2px;
+}
+
+#quit{
+	
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-top:20px;
+	height:100px;
+}
+
+#logout{
+	font-size: 36px;
+	width:400px;
+	height:80px;
+	padding-top:20px;
+	border-radius:5px;
+
+}
+
+	
+}
+
+@media screen and (min-width:768px) and (max-width:979px){
+		
+#visitingCard {
+
+	height:280px;
+
+}
+
+
+#icon{
+	width:140px;
+	height:140px;
+	border-radius:70px;
+	top:70px;
+	left:50px;
+}
+
+#icon img{
+	border-radius:70px;
+
+}
+
+#userName{
+
+	font-size: 32px;
+	top:100px;
+	left:220px;
+}
+
+
+.icon{
+	width:100px;
+	height:100px;
+	margin-top:6px;
+	margin-left:10px;
+	margin-bottom:6px;
+}
+
+
+.myFunc{
+
+	font-size: 36px;
+	margin-top:32px;
+	margin-left:8px;
+	margin-bottom:36px;
+}
+
+.arrowHead{
+	width:80px;
+	height:80px;
+	margin-top:10px;
+	margin-right:3px;
+	margin-bottom:10px;
+}
+
+
+.undetermined{
+	font-size: 14px;
+	padding-top:6px;
+	padding-bottom:12px;
+	margin-bottom:6px;
+	
+}	
+
+.um{
+	width:15%;
+	margin-left:8%;
+	float:left;
+	
+}
+
+.um span{
+	font-size:28px;
+	margin-bottom:2px;
+}
+
+#quit{
+	
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-top:20px;
+	height:100px;
+}
+
+#logout{
+	font-size: 36px;
+	width:400px;
+	height:80px;
+	padding-top:20px;
+	border-radius:5px;
+
+}
+
+}
+
+@media screen and (min-width:640px) and (max-width:767px){
+	
+
+#visitingCard {
+
+	height:140px;
+
+}
+
+
+#icon{
+	width:70px;
+	height:70px;
+	border-radius:50px;
+	top:40px;
+	left:30px;
+}
+
+#icon img{
+	border-radius:50px;
+
+}
+
+#userName{
+
+	font-size: 16px;
+	top:60px;
+	left:120px;
+}
+
+
+.icon{
+	width:40px;
+	height:40px;
+	margin-top:6px;
+	margin-left:6px;
+	margin-bottom:6px;
+}
+
+
+.myFunc{
+
+	font-size: 16px;
+	margin-top:16px;
+	margin-left:8px;
+	margin-bottom:16px;
+}
+
+.arrowHead{
+	width:32px;
+	height:32px;
+	margin-top:10px;
+	margin-right:3px;
+	margin-bottom:10px;
+}
+
+
+.undetermined{
+	font-size: 14px;
+	padding-top:6px;
+	padding-bottom:12px;
+	margin-bottom:6px;
+	
+}	
+
+.um{
+	width:10%;
+	margin-left:12%;
+	float:left;
+	text-align:center;
+	
+}
+
+.um span{
+	
+	margin-bottom:2px;
+}
+
+#quit{
+	
+	padding-top:2px;
+	padding-bottom:2px;
+	margin-top:20px;
+	
+}
+
+#logout{
+	font-size: 16px;
+	width:200px;
+	height:30px;
+	padding-top:10px;
+	border-radius:5px;
+	
+}
+
+}
+
+@media screen and (min-width:480px) and (max-width:639px){
+	
+
+#visitingCard {
+
+	height:140px;
+
+}
+
+
+#icon{
+	width:70px;
+	height:70px;
+	border-radius:50px;
+	top:40px;
+	left:30px;
+}
+
+#icon img{
+	border-radius:50px;
+
+}
+
+#userName{
+
+	font-size: 16px;
+	top:60px;
+	left:120px;
+}
+
+
+.icon{
+	width:40px;
+	height:40px;
+	margin-top:6px;
+	margin-left:6px;
+	margin-bottom:6px;
+}
+
+
+.myFunc{
+
+	font-size: 16px;
+	margin-top:16px;
+	margin-left:8px;
+	margin-bottom:16px;
+}
+
+.arrowHead{
+	width:32px;
+	height:32px;
+	margin-top:10px;
+	margin-right:3px;
+	margin-bottom:10px;
+}
+
+
+.undetermined{
+	font-size: 14px;
+	padding-top:6px;
+	padding-bottom:12px;
+	margin-bottom:6px;
+	
+}	
+
+.um{
+	width:10%;
+	margin-left:12%;
+	float:left;
+	text-align:center;
+	
+}
+
+.um span{
+	
+	margin-bottom:2px;
+}
+
+#quit{
+	
+	padding-top:2px;
+	padding-bottom:2px;
+	margin-top:20px;
+	
+}
+
+#logout{
+	font-size: 16px;
+	width:200px;
+	height:30px;
+	padding-top:10px;
+	border-radius:5px;
+	
+}
+
+}
+
+@media screen and (max-width: 479px){
+	
+
+#visitingCard {
+
+	height:140px;
+
+}
+
+
+#icon{
+	width:70px;
+	height:70px;
+	border-radius:50px;
+	top:40px;
+	left:30px;
+}
+
+#icon img{
+	border-radius:50px;
+
+}
+
+#userName{
+
+	font-size: 16px;
+	top:60px;
+	left:120px;
+}
+
+
+.icon{
+	width:40px;
+	height:40px;
+	margin-top:6px;
+	margin-left:6px;
+	margin-bottom:6px;
+}
+
+
+.myFunc{
+
+	font-size: 16px;
+	margin-top:16px;
+	margin-left:8px;
+	margin-bottom:16px;
+}
+
+.arrowHead{
+	width:32px;
+	height:32px;
+	margin-top:10px;
+	margin-right:3px;
+	margin-bottom:10px;
+}
+
+
+.undetermined{
+	font-size: 14px;
+	padding-top:6px;
+	padding-bottom:12px;
+	margin-bottom:6px;
+}	
+
+.um{
+	width:15%;
+	margin-left:8%;
+
+}
+
+.um span{
+	
+	margin-bottom:2px;
+}
+
+#quit{
+	
+	padding-top:2px;
+	padding-bottom:2px;
+	margin-top:20px;
+	
+}
+
+#logout{
+	font-size: 16px;
+	width:200px;
+	height:30px;
+	padding-top:10px;
+	border-radius:5px;
+	
+}
+
+}

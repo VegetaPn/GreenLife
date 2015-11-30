@@ -1,0 +1,146 @@
+html{
+	background-color:#D7D7D7;
+}
+
+body{
+	background-color:#FFFFFF;
+}
+
+#content{
+	overflow:hidden;
+}
+
+.blank{
+	background:#D7D7D7;
+	width:100%;
+	border-bottom:2px solid #F76F00;
+}
+
+
+.dPanel{
+	width:95%;
+	margin:auto;
+	padding-bottom:15px;
+	background-color:#ffffff;
+}
+
+.cell{
+	font-weight:bold;
+	margin-top:20px;
+}
+
+.input{
+	margin-top:8px;
+	width:95%;
+	border:1px solid gray;
+	border-radius:5px;
+	padding-left:15px;
+}
+
+#iSure{
+	width:100%;
+	text-align:center;
+	background-color:#F76F00;
+	font-weight:bold;
+	color:#ffffff;
+}
+
+@media screen and (max-width: 480px){
+	.blank{
+		height:15px;
+	}
+	
+	.cell{
+	    font-size:16px;
+	}
+	
+	.input{
+		font-size:16px;
+		height:35px;
+	}
+	
+	#iSure{
+		font-size:20px;
+		height:40px;
+	}
+}
+
+@media screen and (min-width: 480px) and (max-width: 639px){
+	.blank{
+		height:20px;
+	}
+	
+	.cell{
+	    font-size:20px;
+	}
+	
+	.input{
+		font-size:20px;
+		height:50px;
+	}
+	
+	#iSure{
+		font-size:24px;
+		height:50px;
+	}
+}
+
+@media screen and (min-width: 640px ) and (max-width: 767px){
+	.blank{
+		height:25px;
+	}
+	
+	.cell{
+	    font-size:24px;
+	}
+	
+	.input{
+		font-size:24px;
+		height:60px;
+	}
+	
+	#iSure{
+		font-size:28px;
+		height:60px;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px){
+	.blank{
+		height:30px;
+	}
+	
+	.cell{
+	    font-size:28px;
+	}
+	
+	.input{
+		font-size:28px;
+		height:70px;
+	}
+	
+	#iSure{
+		font-size:32px;
+		height:70px;
+	}
+}
+
+@media screen and (min-width: 980px){
+	.blank{
+		height:35px;
+	}
+	
+	.cell{
+	    font-size:32px;
+	}
+	
+	.input{
+		font-size:32px;
+		height:80px;
+	}
+	
+	#iSure{
+		font-size:36px;
+		height:80px;
+	}
+}

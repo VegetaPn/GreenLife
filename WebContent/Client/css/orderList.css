@@ -1,0 +1,518 @@
+html,body
+{
+    background-color:#E4E4E4;
+    /*padding:0px;
+    //margin:0px;*/
+}
+
+
+.labelHeader{
+	position:relative;
+	/*height:8vw;*/
+}
+
+.label{
+	background-color:#F76F00;
+	color:#FFFFFF;
+	
+	padding:5px 15px 5px 15px;
+	/*font-size:5vw;*/
+	
+	position:absolute;
+	left:10px;
+}
+
+.whiteDiv{
+	position:absolute;
+	background-color:#FFFFFF;
+	width:100%;
+	/*margin-top:3vw;
+	height:5vw;*/
+	border-bottom:1px solid #FFFFFF;
+}
+
+
+
+.tag{
+	border-top:15px solid #E4E4E4;
+	border-bottom:1px solid #999999;
+}
+
+
+.blackBold
+{
+    /*font-size:5.5vw;*/
+    font-weight: bold;
+    color:#000000;
+}
+
+.orangeText
+{
+    //font-size:5vw;
+    color:#FF3300;
+    //letter-spacing: -0.5vw;
+}
+
+.blackNormal
+{
+    //font-size:5vw;
+    color:#333333;
+    //letter-spacing: -0.5vw;
+}
+.listTag
+{
+    background-color:#FFFFFF;
+    width:100%;
+    //padding-bottom: 3vw;
+    //padding-top:2vw;    
+
+    overflow:hidden;
+}
+
+.productView
+{
+    //background-image:url(howToStartGroup.bmp);
+    
+    margin:3% 0% 0% 2%;
+    width:22%;
+    //height:22vw;
+    float:left;
+}
+
+.detailMessage
+{
+    float:left;
+    padding-left: 5%;
+    width:66%;
+}
+    
+
+
+
+.productImg
+{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+}
+
+.functionButton
+{   
+    width:70%;
+    //height:15vw;
+    
+        
+    background-color:#F76F00;
+    color:#ffffff;
+    //font-size: 7vw;
+    font-weight: bold;
+    font-family: SimHei;
+    margin-left:15%;
+    border-radius:10px;
+    clear:both;
+    text-align:center;
+    //line-height: 15vw;
+}
+
+
+
+
+.line
+{
+    float:left;
+    width:84%;
+    margin-top:12px;
+    color: #797979;
+}
+
+.morePNG
+{
+
+    width:100%;
+    height: 100%;
+    //padding-top
+    
+}
+.morePNGalign
+{
+    
+    width:11%;
+    height:100%;
+    float:left;
+    vertical-align: middle;
+}
+
+
+.orderMessage
+{
+    margin-bottom: 8px;
+    overflow:hidden;
+
+    width:100%;
+
+}
+
+
+
+
+
+.seeMore
+{
+
+    height:24px;
+    margin-bottom: 8px;
+}
+.productName
+{
+    width:90%;
+}
+.cargoReciever
+{
+    clear:both;
+}
+.shouldPay
+{
+    width:95%;
+}
+.orderTime
+{
+    width:95%;
+}
+.deliverTime
+{
+    width:95%;
+}
+
+
+
+
+
+
+@media screen and (max-device-width: 479px)
+{
+
+	.labelHeader{
+	
+		height:35px;
+	}
+
+	.label{
+
+		
+		font-size:16px;
+		
+	}
+
+	.whiteDiv{
+		margin-top:10px;
+		height:25px;
+	}
+    
+    .blackBold
+    {
+        font-size:22px;
+        letter-spacing: -2px;  
+    }
+    .orangeText
+    {
+        font-size:20px;
+        letter-spacing: -1px;
+    }
+    .blackNormal
+    {
+        font-size:20px;
+        letter-spacing: -1px;
+    }
+    .listTag
+    {
+        padding-bottom: 12px;
+        padding-top:8px;   
+    }
+    .productView
+    {
+        height:88px;
+    }
+    .functionButton
+    {   
+        height:60px;
+        font-size: 28px;        
+        line-height: 60px;
+    }
+    .seeMore
+    {
+        height:24px;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 639px)
+{
+ 
+	.labelHeader{
+		height:40px;
+	}
+
+	.label{
+
+		font-size:20px;
+		
+	}
+
+	.whiteDiv{
+		margin-top:15px;
+		height:25px;
+	}
+	
+    .blackBold
+    {
+        font-size:26px;
+        letter-spacing: -2px;  
+    }
+    .orangeText
+    {
+        font-size:24px;
+        letter-spacing: -1px;
+    }
+    .blackNormal
+    {
+        font-size:24px;
+        letter-spacing: -1px;
+    }
+    .listTag
+    {
+        padding-bottom: 12px;
+        padding-top:8px;   
+    }
+    .productView
+    {
+        height:120px;
+    }
+    .functionButton
+    {   
+        height:65px;
+        font-size: 33px;        
+        line-height: 65px;
+    }
+    .seeMore
+    {
+        height:36px;
+    }
+	
+	
+}
+
+@media screen and (min-width: 640px) and (max-width: 767px) 
+{
+
+	.labelHeader{
+	
+		height:45px;
+	}
+
+	.label{
+
+		font-size:24px;
+		
+	}
+
+	.whiteDiv{
+		margin-top:20px;
+		height:25px;
+	}
+	
+    .blackBold
+    {
+        font-size:30px;
+        letter-spacing: -2px;  
+    }
+    .orangeText
+    {
+        font-size:28px;
+        letter-spacing: -1px;
+    }
+    .blackNormal
+    {
+        font-size:28px;
+        letter-spacing: -1px;
+    }
+    .listTag
+    {
+        padding-bottom: 16px;
+        padding-top:12px;   
+    }
+    .productView
+    {
+        height:160px;
+    }
+    .functionButton
+    {   
+        height:70px;
+        font-size: 38px;        
+        line-height: 70px;
+    }
+    .seeMore
+    {
+        height:48px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 979px) 
+{
+	.labelHeader{
+	
+		height:50px;
+	}
+
+	.label{
+
+		font-size:28px;
+		
+	}
+
+	.whiteDiv{
+		margin-top:20px;
+		height:30px;
+	}
+
+    .blackBold
+    {
+        font-size:32px;
+        letter-spacing: -3px;  
+    }
+    .orangeText
+    {
+        font-size:30px;
+        letter-spacing: -2px;
+    }
+    .blackNormal
+    {
+        font-size:30px;
+        letter-spacing: -2px;
+    }
+    .listTag
+    {
+        padding-bottom: 18px;
+        padding-top:14px;   
+    }
+    .productView
+    {
+        height:190px;
+    }
+    .functionButton
+    {   
+        height:70px;
+        font-size: 40px;        
+        line-height: 70px;
+    }
+    .seeMore
+    {
+        height:57px;
+    }
+}
+
+@media screen and (min-width: 980px)/* and (max-width: 1199px)*/
+{
+	.labelHeader{
+	
+		height:60px;
+	}
+
+	.label{
+
+		font-size:32px;
+		
+	}
+
+	.whiteDiv{
+		margin-top:25px;
+		height:35px;
+	}
+
+
+    .blackBold
+    {
+        font-size:34px;
+        letter-spacing: -3px;  
+    }
+    .orangeText
+    {
+        font-size:32px;
+        letter-spacing: -2px;
+    }
+    .blackNormal
+    {
+        font-size:32px;
+        letter-spacing: -2px;
+    }
+    .listTag
+    {
+        padding-bottom: 20px;
+        padding-top:16px;   
+    }
+    .productView
+    {
+        height:250px;
+    }
+    .functionButton
+    {   
+        height:75px;
+        font-size: 44px;        
+        line-height: 75px;
+    }
+    .seeMore
+    {
+        height:72px;
+    }
+}
+/*
+@media screen and (min-width: 1200px) 
+{
+	.labelHeader{
+	
+		height:60px;
+	}
+
+	.label{
+
+		font-size:32px;
+		
+	}
+
+	.whiteDiv{
+		margin-top:25px;
+		height:35px;
+	}
+
+    .blackBold
+    {
+        font-size:38px;
+        letter-spacing: -4px;  
+    }
+    .orangeText
+    {
+        font-size:36px;
+        letter-spacing: -3px;
+    }
+    .blackNormal
+    {
+        font-size:36px;
+        letter-spacing: -3px;
+    }
+    .listTag
+    {
+        padding-bottom: 24px;
+        padding-top:20px;   
+    }
+    .productView
+    {
+        height:320px;
+    }
+    .functionButton
+    {   
+        height:80px;
+        font-size: 48px;        
+        line-height: 80px;
+    }
+    .seeMore
+    {
+        height:80px;
+    }
+}*/

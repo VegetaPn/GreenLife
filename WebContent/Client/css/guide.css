@@ -1,0 +1,466 @@
+#guide{
+	background-color: #fff;
+	width:70%;
+	position:absolute;
+	top:32px;
+	z-index:6;
+	left:-70%;
+	bottom:0; 
+	transition:0.2s ease-out; 
+	-webkit-transition:0.2s ease-out; 
+}
+
+#visitingCard {
+	background-color:#E4E4E4;
+	width:100%;
+	height:145px;
+	position:relative;
+
+}
+
+#bgImage{
+	width:100%;
+	height:100%;
+	position:absolute;
+	z-index:1;
+}
+
+#bgImage img{
+	width:100%;
+	height:100%;
+	z-index:2;
+}
+
+#icon{
+	background-color:#fff;
+	width:80px;
+	height:80px;
+	position:absolute;
+	border-radius:50px;
+	top:20px;
+	left:50px;
+	z-index:3;
+}
+
+#icon img{
+	width:100%;
+	height:100%;
+	position:absolute;
+	border-radius:50px;
+	z-index:2;
+}
+
+#userName{
+	color:#fff;
+	font-family:"黑体";
+	font-size: 24px;
+	font-weight:bold;
+	position:absolute;
+	top:50px;
+	left:140px;
+	z-index:3;
+}
+
+#logout{
+	color:#F76F00;
+	font-family:"黑体";
+	font-size: 16px;
+	position:absolute;
+	top:80px;
+	left:140px;
+	z-index:3;
+}
+
+#service{
+	width:100%;
+	background-color:#E4E4E4;
+	overflow:hidden;
+}
+
+.func{
+	background-color:#fff;
+	border-bottom:1px solid #797979;
+	overflow:hidden;
+	margin-left:10px;
+}
+
+.icon{
+	width:50px;
+	height:50px;
+	float:left;
+	margin-top:10px;
+	margin-left:5px;
+	margin-bottom:10px;
+}
+
+.icon img{
+	width:100%;
+	height:100%;
+}
+
+.myFunc{
+	font-family:"微软雅黑";
+	font-size: 20px;
+	margin-top:20px;
+	margin-left:10px;
+	margin-bottom:20px;
+	float:left;
+}
+
+
+.undetermined{
+	background-color:#fff;
+	border-bottom:1px solid #797979;
+	overflow:hidden;
+	margin-left:10px;
+
+}	
+
+.um{
+	font-family:"微软雅黑";
+	font-size: 20px;
+	margin-top:10px;
+	margin-left:65px;
+	margin-bottom:10px;
+	float:left;
+}
+
+#gray{ 
+	position:absolute; 
+	top:32px; 
+	bottom:0; 
+	left:0;
+	right:0;
+	background:#999999; 
+	opacity:0.7; 
+	z-index:5;
+	display:none;
+}
+
+@media screen and (min-width:979px){
+	#guide{
+		top:44px;
+	}
+	
+	#gray{
+		top:44px; 
+	}
+	
+	#visitingCard {
+
+		height:360px;
+
+	}	
+	
+
+	#icon{
+		
+		width:180px;
+		height:180px;
+		top:80px;
+		left:60px;
+		border-radius:100px;
+	}
+
+	#userName{
+
+		font-size: 40px;
+		top:120px;
+		left:260px;
+
+	}
+
+	#logout{
+
+		font-size: 32px;
+		top:180px;
+		left:260px;
+		
+	}
+
+	.func{
+
+		margin-left:30px;
+	}
+
+	.icon{
+		width:120px;
+		height:120px;
+		margin-top:10px;
+		margin-left:5px;
+		margin-bottom:10px;
+	}
+
+	#icon img{
+		
+		border-radius:100px;
+		z-index:2;
+	}
+
+	.myFunc{
+		
+		font-size: 32px;
+		margin-top:42px;
+		margin-left:18px;
+		margin-bottom:42px;
+
+	}
+
+
+	.undetermined{
+		
+		margin-left:10px;
+
+	}	
+
+	.um{
+
+		font-size: 32px;
+		margin-top:42px;
+		margin-left:165px;
+		margin-bottom:42px;
+
+	}
+
+}
+
+@media screen and (min-width:768px) and (max-width:979px){
+	#guide{
+		top:40px;
+	}
+
+	#gray{
+		top:40px; 
+	}
+	
+	#visitingCard {
+
+	height:260px;
+
+}	
+	
+
+	#icon{
+		
+		width:150px;
+		height:150px;
+		top:60px;
+		left:40px;
+		border-radius:80px;
+	}
+
+	#userName{
+
+		font-size: 36px;
+		top:100px;
+		left:210px;
+
+	}
+
+	#logout{
+
+		font-size: 28px;
+		top:160px;
+		left:210px;
+		
+	}
+
+	.func{
+
+		margin-left:30px;
+	}
+
+	.icon{
+		width:100px;
+		height:100px;
+		margin-top:10px;
+		margin-left:5px;
+		margin-bottom:10px;
+	}
+
+	#icon img{
+		border-radius:80px;
+		z-index:2;
+	}
+
+	.myFunc{
+		
+		font-size: 28px;
+		margin-top:36px;
+		margin-left:18px;
+		margin-bottom:36px;
+
+	}
+
+
+	.undetermined{
+		
+		margin-left:10px;
+
+	}	
+
+	.um{
+
+		font-size: 28px;
+		margin-top:36px;
+		margin-left:140px;
+		margin-bottom:36px;
+
+	}
+
+}
+
+@media screen and (min-width:640px) and (max-width:767px) {
+	#guide{
+		top:36px;
+	}
+	
+	#gray{
+		top:36px; 
+	}
+		
+	#visitingCard {
+
+		height:220px;
+
+	}	
+		
+
+	#icon{
+		
+		width:110px;
+		height:110px;
+		top:40px;
+		left:40px;
+	}
+
+	#userName{
+
+		font-size: 28px;
+		top:60px;
+		left:170px;
+
+	}
+
+	#logout{
+
+		font-size: 20px;
+		top:100px;
+		left:170px;
+		
+	}
+
+	.func{
+
+		margin-left:30px;
+	}
+
+	.icon{
+		width:80px;
+		height:80px;
+		margin-top:10px;
+		margin-left:5px;
+		margin-bottom:10px;
+	}
+
+	.myFunc{
+		
+		font-size: 24px;
+		margin-top:28px;
+		margin-left:14px;
+		margin-bottom:28px;
+
+	}
+
+
+	.undetermined{
+		
+		margin-left:10px;
+
+	}	
+
+	.um{
+
+		font-size: 24px;
+		margin-top:26px;
+		margin-left:120px;
+		margin-bottom:26px;
+
+	}
+
+}
+
+@media screen and (max-width: 479px){
+
+	#guide{
+		top:28px;
+	}
+	
+	#gray{
+		top:28px; 
+	}
+	
+	#icon{
+		
+		width:70px;
+		height:70px;
+		top:40px;
+		left:40px;
+	}
+
+	#userName{
+
+		font-size: 20px;
+		top:50px;
+		left:130px;
+
+	}
+
+	#logout{
+
+		font-size: 16px;
+		top:80px;
+		left:130px;
+		
+	}
+
+	.func{
+
+		margin-left:10px;
+	}
+
+	.icon{
+		width:40px;
+		height:40px;
+		float:left;
+		margin-top:10px;
+		margin-left:5px;
+		margin-bottom:10px;
+	}
+
+	.myFunc{
+		
+		font-size: 16px;
+		margin-top:20px;
+		margin-left:10px;
+		margin-bottom:20px;
+
+	}
+
+
+	.undetermined{
+		
+		margin-left:10px;
+
+	}	
+
+	.um{
+
+		font-size: 16px;
+		margin-top:10px;
+		margin-left:55px;
+		margin-bottom:10px;
+
+	}
+
+}

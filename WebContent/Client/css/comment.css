@@ -1,0 +1,415 @@
+#product{
+	width:100%;
+	position:relative;
+	background-color:#E4E4E4;
+	text-align:center;
+	/*padding-top:3vw;
+	padding-bottom:3vw;*/
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+#productImgDiv{
+	width:90%;
+	/*width:90vw;*/
+	margin:auto;
+	
+	
+}
+
+#productImg{
+	width:100%;
+	/*width:90vw;
+	height:45vw;*/
+	border:1px solid #333333;
+	border-radius:10px;
+}
+
+#productName{
+	position: absolute;
+	background-color:rgba(215,215,215,0.7);
+	width:100%;
+	bottom:0;
+	/*font-size:6vw;*/
+	font-weight:bold;
+	text-align:center;
+	
+}
+
+
+#commentDiv{
+	width:96%;
+	margin:auto;
+	/*padding-top:3vw;*/
+	padding-top:15px;
+}
+
+
+#commentDiv hr{
+	width:96%;
+}
+
+
+
+#commentLink{
+	/*margin-top:4vw;*/
+	margin-top:15px;
+	color:#FFFFFF;
+	/*font-size:7vw;*/
+	font-weight:bold;
+	
+	background-color:#F76F00;
+	border-radius:8px;
+	padding:10px 0 10px 0;
+	text-align:center;
+}
+
+
+#commentLabel{
+	/*font-size:5vw;*/
+	font-weight:bold;
+	margin-top:25px;
+	margin-top:10px;
+	/*margin-top:5vw;*/
+	/*margin-bottom:2vw;*/
+}
+
+
+
+
+#commentInfo{
+	width:90%;
+	margin:auto;
+	
+}
+
+.avatarDiv{
+	float:left;
+	
+}
+.avatar{
+	border:1px solid #797979;
+	border-radius:100%;
+	/*width:14vw;
+	height:14vw;*/
+}
+
+.name{
+	color:#FF6600;
+	/*font-size:7vw;*/
+	font-weight:bold;
+	float:left;
+	margin-left:10px;
+	/*margin-top:3.5vw;
+	margin-left:1vw;*/
+}
+
+.time{
+	color:#999999;
+	/*font-size:4vw;*/
+	float:left;
+	margin-left:10px;
+	/*margin-top:5vw;
+	margin-left:1vw;*/
+}
+
+.comment{
+	clear:both;
+	/*margin-left:14vw;
+	font-size:5vw;*/
+	color:#333333;
+}
+
+
+.commentImg{
+	width:90%;
+}
+
+
+#blackDiv{
+	display:none;
+	background-color:black;
+	opacity:0.7;
+    z-index:10;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+#commentPost{
+	display:none;
+	z-index:15;
+	position:fixed;
+	width:80%;
+	height:35%;
+	left:10%;
+	top:25%;
+}
+
+#postText{
+	
+	width:99%;
+	height:70%;
+	font-size:20px;
+	
+}
+
+#postArea{
+	background-color:#FFFFFF;
+	border-top:0;
+	padding-right:5px;
+	width:99%;
+	height:30%;
+}
+
+#postImg{
+	width:50px;
+}
+
+#postBtn{
+	float:right;
+	color:#FFFFFF;
+	background-color:#F76F00;
+	border-radius:8px;
+	font-size:20px;
+	padding:5px 30px 5px 30px;
+}
+
+
+/*如果使用者视图宽度 < 480px，將会载入这里的 CSS。*/  
+@media screen and (max-width: 479px) {  
+	
+	#productImg{
+		height:180px;
+	}
+
+	#productName{
+		font-size:24px;
+		
+	}
+
+
+	#commentLink{
+		
+		font-size:20px;
+	
+	}
+
+
+	#commentLabel{
+		font-size:16px;
+	}
+
+
+	.avatar{
+		width:40px;
+		height:40px;
+	
+	}
+
+	.name{
+		font-size:20px;
+		margin-top:10px;
+	}
+
+	.time{
+		font-size:16px;
+		margin-top:12px;
+	}
+
+	.comment{
+		margin-left:40px;
+		font-size:16px;
+	}
+
+}  
+
+/* 如果使用者视图宽度介于 480 ~ 639，將会载入这里的 CSS。*/    
+@media screen and (min-width:480px) and (max-width:639px) {
+	#productImg{
+		height:300px;
+	}
+
+	#productName{
+		font-size:28px;
+		
+	}
+
+
+	#commentLink{
+		
+		font-size:24px;
+	
+	}
+
+
+	#commentLabel{
+		font-size:20px;
+	}
+
+
+	.avatar{
+		width:64px;
+		height:64px;
+	}
+
+	.name{
+		font-size:24px;
+		margin-top:20px;
+	}
+
+	.time{
+		font-size:20px;
+		margin-top:24px;
+	}
+
+	.comment{
+		margin-left:64px;
+		font-size:20px;
+	}
+}
+
+
+   
+   
+/* 如果使用者视图宽度介于 640 ~ 767，將会载入这里的 CSS。*/ 
+
+@media screen and (min-width:640px) and (max-width:767px) {  
+	#productImg{
+		height:360px;
+	}
+
+	#productName{
+		font-size:32px;
+		
+	}
+
+
+	#commentLink{
+		
+		font-size:28px;
+	
+	}
+
+
+	#commentLabel{
+		font-size:24px;
+	}
+
+
+	.avatar{
+		width:100px;
+		height:100px;
+	}
+
+	.name{
+		font-size:28px;
+		margin-top:36px;
+	}
+
+	.time{
+		font-size:24px;
+		margin-top:40px;
+	}
+
+	.comment{
+		margin-left:100px;
+		font-size:24px;
+	}
+}  
+   
+
+/*如果使用者视图宽度介于 768px ~ 979px，將会载入这里的 CSS。*/
+@media screen and (min-width:768px) and (max-width:979px) {  
+    #productImg{
+		height:420px;
+	}
+
+	#productName{
+		font-size:36px;
+		
+	}
+
+
+	#commentLink{
+		
+		font-size:32px;
+	
+	}
+
+
+	#commentLabel{
+		font-size:28px;
+	}
+
+
+	.avatar{
+		width:120px;
+		height:120px;
+	}
+
+	.name{
+		font-size:32px;
+		margin-top:44px;
+	}
+
+	.time{
+		font-size:28px;
+		margin-top:48px;
+	}
+
+	.comment{
+		margin-left:120px;
+		font-size:28px;
+	}
+}  
+   
+   
+
+/*如果使用者视图宽度 >980px，將会载入这里的 CSS。*/
+@media screen and (min-width:980px){  
+	#productImg{
+		height:500px;
+	}
+
+	#productName{
+		font-size:40px;
+		
+	}
+
+
+	#commentLink{
+		
+		font-size:36px;
+	
+	}
+
+
+	#commentLabel{
+		font-size:32px;
+	}
+
+
+	.avatar{
+		width:120px;
+		height:120px;
+	}
+
+	.name{
+		font-size:36px;
+		margin-top:40px;
+	}
+
+	.time{
+		font-size:32px;
+		margin-top:44px;
+	}
+
+	.comment{
+		margin-left:120px;
+		font-size:32px;
+	}	
+} 
+

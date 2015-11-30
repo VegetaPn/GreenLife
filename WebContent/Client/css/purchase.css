@@ -1,0 +1,923 @@
+#content{
+	overflow:hidden;
+	margin-bottom:50px;
+}
+
+.blank{
+	background:#D7D7D7;
+	width:100%;
+	height:3%;
+}
+
+
+
+#dCusMess{
+	 width:100%;
+	 overflow:hidden;
+	 border-bottom:1px solid #797979;
+}
+
+#dCusInfor{
+	width:85%;
+	overflow:hidden;
+	float:left;
+	padding-top:6px;
+	padding-bottom:6px;
+}
+
+#dCusInfor .top{
+	width:100%;
+	overflow:hidden;
+}
+
+#dCusInfor .bottom{
+	width:100%;
+	overflow:hidden;
+}
+
+#dCusInfor img{
+	margin-left:6px;
+	width:10%;
+}
+
+#sCusName{
+   color:#F76F00;
+   font-weight:bold;
+}
+
+#sPhoneNum{
+	color:#F76F00;
+	font-weight:bold;
+}
+
+#sAddress{
+	color:#F78F00;
+}
+
+#dToAddress{
+	width:15%;
+	overflow:hidden;
+	vertical-align: middle;
+	float:right;
+}
+
+#dToAddress div{
+	float:right;
+	border-radius:70px;
+	border:2px solid gray;
+	text-align:center;
+}
+
+
+
+
+#dProductMess{
+	overflow:hidden;
+	width:100%;
+	border-bottom:1px solid #797979;
+}
+
+#dProductImg{
+	float:left;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+	
+	
+#iProductImg{
+	width:100%;
+	height:100%;
+	float:left;
+	margin-left:6px;
+}
+
+#dProductInfor{
+	width:60%;
+	float:right;
+	text-align:right;
+}
+
+#pProductName{
+	color:#000000;
+	font-weight:bold;
+}
+
+#pPrice{
+	color:#F76F00;
+	font-weight:bold;
+}
+
+
+
+
+
+#dQuality{
+	width:100%;
+	overflow:hidden;
+	border-bottom:1px solid #797979;
+	padding-bottom:6px;
+	padding-top:6px;
+}
+
+#dQualityInfor{
+	float:left;
+	color:#F76F00;
+	font-weight:bold;
+	margin-left:8px;
+}
+
+#iQuaLogo{
+	width:15%;
+    float:left;	
+	margin-top:4px;
+}
+
+#toQualityInfor{
+	float:right;
+    border-radius:70px;
+	border:2px solid gray;
+	text-align:center;
+}
+
+
+
+
+
+#dSell{
+	width:100%;
+	overflow:hidden;
+	border-bottom:1px solid #797979;
+}
+
+#dSell .left{
+	font-weight:bold;
+	color:black;
+	overflow:hidden;
+	width:13%;
+	float:left;
+	margin-left:6px;
+}
+
+#dSell .middle{
+	overflow:hidden;
+	width:44%;
+	float:left;
+	padding-top:8px;
+}
+
+#iNumber{
+	width:40%;
+	text-align:center;
+	float:left;
+	margin-left:5px;
+	margin-right:5px;
+	border-radius:5px;
+}
+
+#dSell .middle div{
+	border-radius:50px;
+	border:2px solid gray;
+	text-align:center;
+	float:left;
+}
+
+#dSell .right{
+	width:30%;
+	font-weight:bold;
+	float:right;
+	text-align:right;
+	color:#F76F00;
+}
+
+#dSell .right p{
+	margin:0;
+}
+
+
+
+#dOriAddress{
+    width:100%;
+	border-bottom:1px solid #797979;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+#dOriAddress .left{
+	float:left;
+    font-weight:bold;
+	margin-left:6px;
+}
+
+#sPostage{
+	float:right;
+	font-weight:bold;
+}
+
+
+#dPostTime{
+	width:100%;
+	border-bottom:1px solid #797979;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+#dPostTime span{
+	color:#F76F00;
+	margin-left:6px;
+}
+
+
+#dMessage{
+	overflow:hidden;
+	border-top:1px solid #797979;
+	margin-bottom:8px;
+	padding-top:8px;
+}
+
+#dMessage input{
+	width:80%;
+	margin-top:6px;
+	float:right;
+	border-radius: 3px;
+}
+
+#dMessage span{
+	float:right;
+	margin-top:5px;
+	color:#F76F00;
+}
+
+
+
+#dSubmit{
+	z-index:2;
+	position:fixed;
+    bottom:0;
+	width:100%;
+	background-color:white;
+	border-top:1px solid #797979;
+	border-bottom:1px solid #797979;
+	box-shadow: #333 0px 0px 10px;
+}
+
+#dSubmit .left{
+    font-weight:bold;
+	color:#F76F00;
+	float:right;
+	margin-right:15px;
+}
+
+#dSubmit .right{
+	float:right;
+}
+
+#iSubmit{
+	width:100%;
+	color:white;
+	border-radius: 5px;
+	font-weight:bold;
+	background-color:#F76F00;
+}
+
+@media screen and (max-width: 480px){
+	#sCusName{
+        font-size: 20px;
+	}
+	
+	#sPhoneNum{
+	    font-size:16px;
+	}
+	
+	#sAddress{
+	    font-size:16px;
+	}
+	
+	#dToAddress div{
+		width:29px;
+		height:29px;
+		margin-right:8px;
+		margin-top:20px;
+		font-size:26px;
+		margin-bottom:20px;
+	}
+
+	#dProductImg{
+		width:90px;
+		height:70px;
+	}
+	
+	#dProductInfor{
+		margin-right:8px;
+	}
+	
+	#pProductName{
+		font-size:16px;
+	}
+
+	#pPrice{
+		font-size:14px;
+	}
+
+	#dQualityInfor{
+		font-size:16px;
+		margin-top:18px;
+	}
+	
+	#toQualityInfor{
+		width:29px;
+		height:29px;
+		margin-right:8px;
+		margin-top:8px;
+		font-size:26px;
+	}
+	
+	#dSell{
+		font-size:12px;
+	}
+
+	#dSell .left{
+		padding-top:20px;
+	}
+	
+	#iNumber{
+		padding-top:6px;
+		margin-bottom:6px;
+		font-size:20px;
+	}
+
+	#dSell .middle div{
+		width:22px;
+		height:22px;
+		font-size:20px;
+		margin-top:4px;
+	}
+	
+	#dSell .right{
+		margin-right:8px;
+		margin-top:3px;
+	}
+	
+	#dSell .right p{
+		padding-top:3px;
+	}
+	
+	#dOriAddress{
+		font-size:14px;
+	}
+	
+	#sPostage{
+		margin-right:8px;
+	}
+	
+	#dPostTime{
+		font-size:14px;
+	}
+	
+	#dMessage{
+		font-size:12px;
+	}
+	
+	
+	#dMessage input{
+		font-size:14px;
+		margin-right:8px;
+		height:35px;
+	}
+	
+	#dMessage span{
+		margin-right:8px;
+		margin-bottom:5px;
+	}
+	
+	#dSubmit{
+		height:50px;
+	}
+	
+	#dSubmit .left{
+		font-size:18px;
+		margin-top:20px;
+	}
+	
+	#dSubmit .right{
+		margin-right:20px;
+	}
+	
+	#iSubmit{
+		height:50px;
+		font-size:18px;
+	}
+}
+
+
+@media screen and (min-width: 480px) and (max-width: 639px){
+	#sCusName{
+        font-size: 24px;
+	}
+	
+	#sPhoneNum{
+	    font-size:20px;
+	}
+	
+	#sAddress{
+	    font-size:20px;
+	}
+	
+	#dToAddress div{
+		width:39px;
+		height:39px;
+		margin-right:10px;
+		margin-top:28px;
+		font-size:35px;
+		margin-bottom:28px;
+	}
+
+	#dProductInfor{
+		margin-right:10px;
+	}
+	
+	#dProductImg{
+		width:100px;
+		height:80px;
+	}
+	
+	#pProductName{
+		font-size:20px;
+	}
+
+	#pPrice{
+		font-size:18px;
+	}
+
+	#dQualityInfor{
+		font-size:20px;
+		margin-top:24px;
+	}
+	
+	#toQualityInfor{
+		width:39px;
+		height:39px;
+		margin-right:10px;
+		margin-top:14px;
+		font-size:35px;
+	}
+	
+	#dSell{
+		font-size:16px;
+	}
+
+	#dSell .left{
+		padding-top:24px;
+	}
+	
+	#iNumber{
+		padding-top:10px;
+		margin-bottom:10px;
+		font-size:30px;
+	}
+
+	#dSell .middle div{
+		width:26px;
+		height:26px;
+		font-size:24px;
+		margin-top:10px;
+	}
+	
+	#dSell .right{
+		margin-right:10px;
+		margin-top:6px;
+	}
+	
+	#dSell .right p{
+		padding-top:6px;
+	}
+	
+	#dOriAddress{
+		font-size:18px;
+	}
+	
+	#sPostage{
+		margin-right:10px;
+	}
+	
+	#dPostTime{
+		font-size:18px;
+	}
+	
+	#dMessage{
+		font-size:16px;
+	}
+
+	#dMessage input{
+		font-size:18px;
+		margin-right:10px;
+		height:45px;
+	}
+	
+	#dMessage span{
+		margin-right:10px;
+		margin-bottom:10px;
+	}
+	
+	#dSubmit{
+		height:55px;
+	}
+	
+	#dSubmit .left{
+		font-size:22px;
+		margin-top:20px;
+	}
+	
+	#dSubmit .right{
+		margin-right:22px;
+	}
+	
+	#iSubmit{
+		height:55px;
+		font-size:22px;
+	}
+}
+
+@media screen and (min-width: 640px ) and (max-width: 767px){
+	#sCusName{
+        font-size: 28px;
+	}
+	
+	#sPhoneNum{
+	    font-size:28px;
+	}
+	
+	#sAddress{
+	    font-size:24px;
+	}
+	
+	#dToAddress div{
+		width:49px;
+		height:49px;
+		margin-right:12px;
+		margin-top:36px;
+		font-size:42px;
+		margin-bottom:36px;
+	}
+
+	#dProductInfor{
+		margin-right:12px;
+	}
+	
+	#dProductImg{
+		width:120px;
+		height:100px;
+	}
+	
+	#pProductName{
+		font-size:24px;
+	}
+
+	#pPrice{
+		font-size:22px;
+	}
+
+	#dQualityInfor{
+		font-size:24px;
+		margin-top:28px;
+	}
+	
+	#toQualityInfor{
+		width:49px;
+		height:49px;
+		margin-right:12px;
+		margin-top:20px;
+		font-size:42px;
+	}
+	
+	#dSell{
+		font-size:20px;
+	}
+
+	#dSell .left{
+		padding-top:28px;
+	}
+	
+	#iNumber{
+		padding-top:14px;
+		margin-bottom:14px;
+		font-size:35px;
+	}
+
+	#dSell .middle div{
+		width:30px;
+		height:30px;
+		font-size:26px;
+		margin-top:16px;
+	}
+	
+	#dSell .right{
+		margin-right:12px;
+		margin-top:9px;
+	}
+	
+	#dSell .right p{
+		padding-top:9px;
+	}
+	
+	#dOriAddress{
+		font-size:22px;
+	}
+	
+	#sPostage{
+		margin-right:12px;
+	}
+	
+	#dPostTime{
+		font-size:22px;
+	}
+	
+	#dMessage{
+		font-size:20px;
+	}
+
+	#dMessage input{
+		font-size:22px;
+		margin-right:12px;
+		height:50px;
+	}
+	
+	#dMessage span{
+		margin-right:12px;
+		margin-bottom:15px;
+	}
+	
+	#dSubmit{
+		height:60px;
+	}
+	
+	#dSubmit .left{
+		font-size:26px;
+		margin-top:20px;
+	}
+	
+	#dSubmit .right{
+		margin-right:24px;
+	}
+	
+	#iSubmit{
+		height:60px;
+		font-size:26px;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px){
+	#sCusName{
+        font-size: 32px;
+	}
+	
+	#sPhoneNum{
+	    font-size:32px;
+	}
+	
+	#sAddress{
+	    font-size:28px;
+	}
+	
+	#dToAddress div{
+		width:59px;
+		height:59px;
+		margin-right:14px;
+		margin-top:42px;
+		font-size:50px;
+		margin-bottom:42px;
+	}
+
+	#dProductInfor{
+		margin-right:14px;
+	}
+	
+	#dProductImg{
+		width:140px;
+		height:120px;
+	}
+	
+	#pProductName{
+		font-size:28px;
+	}
+
+	#pPrice{
+		font-size:26px;
+	}
+
+	#dQualityInfor{
+		font-size:28px;
+		margin-top:34px;
+	}
+	
+	#toQualityInfor{
+		width:59px;
+		height:59px;
+		margin-right:14px;
+		margin-top:25px;
+		font-size:50px;
+	}
+	
+	#dSell{
+		font-size:24px;
+	}
+
+	#dSell .left{
+		padding-top:32px;
+	}
+	
+	#iNumber{
+		padding-top:18px;
+		margin-bottom:18px;
+		font-size:40px;
+	}
+
+	#dSell .middle div{
+		width:34px;
+		height:34px;
+		font-size:30px;
+		margin-top:20px;
+	}
+	
+	#dSell .right{
+		margin-right:14px;
+		margin-top:9px;
+	}
+	
+	#dSell .right p{
+		padding-top:9px;
+	}
+	
+	#dOriAddress{
+		font-size:26px;
+	}
+	
+	#sPostage{
+		margin-right:14px;
+	}
+	
+	#dPostTime{
+		font-size:26px;
+	}
+	
+	#dMessage{
+		font-size:24px;
+	}	
+
+	#dMessage input{
+		font-size:26px;
+		margin-right:14px;
+		height:55px;
+	}
+	
+	#dMessage span{
+		margin-right:14px;
+		margin-bottom:20px;
+	}
+
+	#dSubmit{
+		height:65px;
+	}
+	
+	#dSubmit .left{
+		font-size:30px;
+		margin-top:20px;
+	}
+	
+	#dSubmit .right{
+		margin-right:28px;
+	}
+	
+	#iSubmit{
+		height:65px;
+		font-size:30px;
+	}
+}
+
+@media screen and (min-width: 980px){
+	#sCusName{
+        font-size: 36px;
+	}
+	
+	#sPhoneNum{
+	    font-size:36px;
+	}
+	
+	#sAddress{
+	    font-size:32px;
+	}
+	
+	#dToAddress div{
+		width:69px;
+		height:69px;
+		margin-right:16px;
+		margin-top:50px;
+		font-size:60px;
+		margin-bottom:50px;
+	}
+
+	#dProductInfor{
+		margin-right:16px;
+	}
+	
+	#dProductImg{
+		width:160px;
+		height:140px;
+	}
+	
+	#pProductName{
+		font-size:32px;
+	}
+
+	#pPrice{
+		font-size:30px;
+	}
+
+	#dQualityInfor{
+		font-size:32px;
+		margin-top:44px;
+	}
+	
+	#toQualityInfor{
+		width:69px;
+		height:69px;
+		margin-right:16px;
+		margin-top:30px;
+		font-size:60px;
+	}
+	
+	#dSell{
+		font-size:28px;
+	}
+
+	#dSell .left{
+		padding-top:36px;
+	}
+	
+	#iNumber{
+		padding-top:22px;
+		margin-bottom:22px;
+		font-size:44px;
+	}
+
+	#dSell .middle div{
+		width:40px;
+		height:40px;
+		font-size:34px;
+		margin-top:24px;
+	}
+	
+	#dSell .right{
+		margin-right:16px;
+		margin-top:12px;
+	}
+	
+	#dSell .right p{
+		padding-top:12px;
+	}
+	
+	#dOriAddress{
+		font-size:30px;
+	}
+	
+	#sPostage{
+		margin-right:16px;
+	}
+	
+	#dPostTime{
+		font-size:30px;
+	}
+	
+	#dMessage{
+		font-size:28px;
+	}
+	
+
+	#dMessage input{
+		font-size:30px;
+		margin-right:16px;
+		height:65px;
+	}
+	
+	#dMessage span{
+		margin-right:16px;
+		margin-bottom:25px;
+	}
+	
+	#dSubmit{
+		height:70px;
+	}
+	
+	#dSubmit .left{
+		font-size:34px;
+		margin-top:20px;
+	}
+	
+	#dSubmit .right{
+		margin-right:32px;
+	}
+	
+	#iSubmit{
+		height:70px;
+		font-size:34px;
+	}
+}

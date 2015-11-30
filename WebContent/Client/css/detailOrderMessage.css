@@ -1,0 +1,499 @@
+html,body
+{
+    background-color:#E4E4E4;
+    padding:0px;
+    margin:0px;
+}
+
+
+#product{
+	width:100%;
+	position:relative;
+	background-color:#E4E4E4;
+	text-align:center;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+
+#productImgDiv{
+	width:90%;
+	margin:auto;
+
+}
+
+#productImg{
+	width:100%;
+	border:1px solid #333333;
+	border-radius:10px;
+}
+
+
+
+
+
+.blackBold
+{
+   /* font-size:5.5vw;*/
+    font-weight: bold;
+    color:#000000;
+   /* letter-spacing: -0.5vw;  
+    line-height: 7vw;*/
+}
+
+.orangeText
+{
+   /* font-size:5vw;*/
+    color:#FF3300;
+   /* letter-spacing: -0.4vw;
+    line-height: 7vw;*/
+}
+
+.blackNormal
+{
+   /* font-size:5vw;*/
+    color:#333333;
+   /* letter-spacing: -0.4vw;
+    line-height: 7vw;*/
+}
+
+
+
+
+.orderMainMessage
+{
+    background-color: #FFFFFF;
+    /*margin:0vw 3vw 0vw 3vw;*/
+    margin-left:3%;
+    width:94%;
+    overflow:hidden;
+    border:1px solid;
+}
+
+.productName
+{
+    margin-top:8px;
+    margin-bottom: 12px;
+    margin-left:4%;
+}
+
+
+
+
+.functionButton
+{   
+    width:70%;
+    /*height:13vw;*/
+    background-color:#F76F00;
+    color:#ffffff;
+    /*font-size: 7vw;*/
+    font-weight: bold;
+    font-family: SimHei;
+    margin-left:15%;
+    /*margin-top:3vw;*/
+    /*margin-bottom: 3vw;*/
+    border-radius:10px;
+    clear:both;
+    text-align:center;
+    /*line-height: 13vw;*/
+}
+
+.middleTag
+{
+    /*width:100%;*/
+        
+}
+
+.orderMessage
+{
+    
+    overflow:hidden;
+}
+/*
+.productPhoto
+{
+    
+    width:94%;
+    margin-left:3%;
+    padding-bottom: 3%;
+    height:42vw
+    background-color:#CCCCCC;
+    overflow:hidden;
+}*/
+/*
+#productImg
+{
+    width:94%;
+    height:94%;
+    padding-left:3%;
+    padding-top:3%;
+    overflow:hidden;
+}
+*/
+
+#productPrice
+{
+    float:left;
+    text-align: right;
+    width:48%;
+    padding-right:3%;
+}
+
+#freight
+{
+    float:left;
+    text-align: right;
+    width:48%;
+    padding-right:3%;
+}
+#paid
+{
+    float:left;
+    text-align: right;
+    width:48%;
+    padding-right:3%;
+}
+
+#timeToDeliver
+{
+    float:left;
+    text-align: right;
+    width:48%;
+    padding-right:3%;
+}
+
+
+
+.tagLeft
+{
+    clear:both;
+    width:45%;
+    padding-left:4%;
+    float:left;
+    /*font-size:5vw;*/
+    color:#333333;
+   /* letter-spacing: -0.4vw;
+    line-height: 7vw;*/
+}
+
+
+.moreMessage
+{
+    background-color: #FFFFFF;
+    width:94%;    
+    margin-left:3%;
+    overflow:hidden;
+    margin-top:20px;
+    padding-top:16px;
+    padding-bottom: 8px;
+    margin-bottom:12px;
+    border:1px solid;
+}
+
+
+#aimLocation
+{
+    float:left;
+    width:48%;
+    padding-right:3%;
+}
+#recieverName
+{
+    float:left;
+    width:48%;
+    padding-right:3%;
+}
+#telephoneNumber
+{
+    float:left;
+    width:48%;
+    padding-right:3%;
+}
+#content
+{
+    margin-left:0px;
+    padding-top:0px;
+    margin-top:37px;
+}
+
+
+@media screen and (max-device-width: 479px)
+{
+	#productImg{
+		height:180px;
+	}	
+	
+    .blackBold
+    {
+        font-size:22px;
+        letter-spacing: -2px;  
+        line-height: 28px;
+    }
+    .orangeText
+    {
+        font-size:20px;
+        letter-spacing: -1px;
+        line-height: 28px;
+    }
+    .blackNormal
+    {
+        font-size:20px;
+        letter-spacing: -1px;
+        line-height: 28px;
+    }
+    
+    .functionButton
+    {   
+                
+        height:52px;
+        font-size: 28px;        
+        margin-top:12px;
+        margin-bottom: 12px;
+        line-height: 52px;
+    }
+	/*
+    .productPhoto
+    {
+        height:180px;
+    }*/
+    .tagLeft
+    {        
+        font-size:20px;
+        letter-spacing: -1px;
+        line-height: 28px;
+    }
+    
+}
+
+@media screen and (min-width: 480px) and (max-width: 639px)
+{
+    #productImg{
+		height:300px;
+	}	
+	
+    .blackBold
+    {
+        font-size:26px;
+        letter-spacing: -2px;  
+        line-height: 32px;
+    }
+    .orangeText
+    {
+        font-size:24px;
+        letter-spacing: -1px;
+        line-height: 32px;
+    }
+    .blackNormal
+    {
+        font-size:24px;
+        letter-spacing: -1px;
+        line-height: 32px;
+    }
+    
+    .functionButton
+    {                   
+        height:60px;
+        font-size: 30px;        
+        margin-top:14px;
+        margin-bottom: 14px;
+        line-height: 56px;
+    }
+	/*
+    .productPhoto
+    {
+        height:260px;
+    }*/
+    .tagLeft
+    {        
+        font-size:24px;
+        letter-spacing: -1px;
+        line-height: 32px;
+    }
+    
+}
+
+@media screen and (min-width: 640px) and (max-width: 767px) 
+{
+	#productImg{
+		height:360px;
+	}	
+
+    .blackBold
+    {
+        font-size:28px;
+        letter-spacing: -2px;  
+        line-height: 34px;
+    }
+    .orangeText
+    {
+        font-size:26px;
+        letter-spacing: -1px;
+        line-height: 34px;
+    }
+    .blackNormal
+    {
+        font-size:26px;
+        letter-spacing: -1px;
+        line-height: 34px;
+    }
+    
+    .functionButton
+    {                   
+        height:65px;
+        font-size: 34px;        
+        margin-top:16px;
+        margin-bottom: 16px;
+        line-height: 60px;
+    }
+	/*
+    .productPhoto
+    {
+        height:300px;
+    }*/
+    .tagLeft
+    {        
+        font-size:26px;
+        letter-spacing: -1px;
+        line-height: 34px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 979px) 
+{
+
+	#productImg{
+		height:420px;
+	}
+	
+    .blackBold
+    {
+        font-size:30px;
+        letter-spacing: -2px;  
+        line-height: 36px;
+    }
+    .orangeText
+    {
+        font-size:28px;
+        letter-spacing: -1px;
+        line-height: 36px;
+    }
+    .blackNormal
+    {
+        font-size:28px;
+        letter-spacing: -1px;
+        line-height: 36px;
+    }
+    
+    .functionButton
+    {                   
+        height:65px;
+        font-size: 40px;        
+        margin-top:16px;
+        margin-bottom: 16px;
+        line-height: 60px;
+    }
+	/*
+    .productPhoto
+    {
+        height:330px;
+    }*/
+    .tagLeft
+    {        
+        font-size:28px;
+        letter-spacing: -1px;
+        line-height: 36px;
+    }
+    
+}
+
+@media screen and (min-width: 980px)/* and (max-width: 1199px)*/
+{
+	#productImg{
+		height:500px;
+	}
+
+    .blackBold
+    {
+        font-size:34px;
+        letter-spacing: -4px;  
+        line-height: 40px;
+    }
+    .orangeText
+    {
+        font-size:32px;
+        letter-spacing: -2px;
+        line-height: 40px;
+    }
+    .blackNormal
+    {
+        font-size:28px;
+        letter-spacing: -2px;
+        line-height: 40px;
+    }
+    
+    .functionButton
+    {                   
+        height:70px;
+        font-size: 42px;        
+        margin-top:18px;
+        margin-bottom: 18px;
+        line-height: 65px;
+    }
+	/*
+    .productPhoto
+    {
+        height:400px;
+    }*/
+    .tagLeft
+    {        
+        font-size:32px;
+        letter-spacing: -2px;
+        line-height: 40px;
+    }
+}
+/*
+@media screen and (min-width: 1200px) 
+{
+	#productImg{
+		height:560px;
+	}
+
+    .blackBold
+    {
+        font-size:38px;
+        letter-spacing: -4px;  
+        line-height: 44px;
+    }
+    .orangeText
+    {
+        font-size:32px;
+        letter-spacing: -2px;
+        line-height: 44px;
+    }
+    .blackNormal
+    {
+        font-size:32px;
+        letter-spacing: -2px;
+        line-height: 44px;
+    }
+    
+    .functionButton
+    {                   
+        height:75px;
+        font-size: 45px;        
+        margin-top:18px;
+        margin-bottom: 18px;
+        line-height: 65px;
+    }
+	/*
+    .productPhoto
+    {
+        height:470px;
+    }*/
+	/*
+    .tagLeft
+    {        
+        font-size:36px;
+        letter-spacing: -3px;
+        line-height: 44px;
+    }
+}*/

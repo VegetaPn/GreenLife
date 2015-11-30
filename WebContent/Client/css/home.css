@@ -1,0 +1,556 @@
+body{
+	background-color:#ffffff;
+	
+}
+
+html{
+	background-color:#E4E4E4;
+}
+
+#pushDiv{
+	width:100%;
+	background-color:#E4E4E4;
+	/*padding-top:3vw;
+	padding-bottom:3vw;*/
+	padding-top:15px;
+	padding-bottom:15px;
+	margin-bottom:-1px;
+}
+
+#product{
+	/*width:90vw;*/
+	width:90%;
+	margin:auto;
+	border:1px solid #333333;
+	border-radius:10px;
+}
+
+#productImgDiv{
+	position:relative;
+}
+
+#productImg{
+	width:100%;
+	/*width:90vw;
+	height:36vw;*/
+	border-radius:10px 10px 0 0;
+}
+
+#productName{
+	position: absolute;
+	background-color:rgba(215,215,215,0.7);
+	width:100%;
+	bottom:0;
+	color:#ffffff;
+	/*font-size:6vw;*/
+	font-weight:bold;
+}
+
+
+
+#price{
+	background-color:#fff;
+	width:100%;
+	
+	text-align: left;
+	
+	/*height:5vw;*/
+	
+	border-radius:0 0 10px 10px;
+	position:relative;
+
+}
+
+.cheapPrice{
+	/*height:5vw;*/
+	/*font-size: 5vw;*/
+	color:#FF3366;
+	position:absolute;
+	left:1%;
+	bottom:0;
+	
+}
+
+.cheapPrice span{
+	/*font-size: 4vw;*/
+	color:#000;
+}
+
+.marketPrice{
+	/*font-size: 3.2vw;*/
+	color:#999999;
+	left:25%;
+	position:absolute;
+	bottom:0;
+}
+
+	
+.normalProduct{
+	
+	border-top:15px solid #E4E4E4;
+	border-bottom:1px solid #999999;
+	width:100%;
+	overflow:hidden;
+}
+
+
+.nPic{
+	margin-left:12px;
+	margin-top:12px;
+	margin-bottom:12px;
+	float:left;
+	
+}
+
+.nPic img{
+	width:100%;
+	height:100%;
+	
+}
+
+.nSellInfo{
+	
+	margin-left:2px;
+	margin-top:15px;
+	float:left;
+	
+}
+
+.nName{
+	font-family: "黑体";
+	font-weight:bold;
+
+	margin-bottom:2px;
+	
+}
+
+.nIntro{
+
+	font-family: "黑体";
+	color:#999999;
+	
+	margin-bottom:2px;
+	
+}
+
+.nCheapprice{
+	
+	font-family: "黑体";
+	color:#FF3366;
+	margin-bottom:2px;
+	
+
+}
+
+.nCheapprice span{
+	
+	font-family: "黑体";
+	color:#000;
+	margin-bottom:2px;
+
+}
+
+.nMarketprice{
+	
+	font-family: "黑体";
+	color:#999999;
+	margin-bottom:2px;
+	
+
+}
+
+.nFriendorder{
+	
+	font-family: "黑体";
+}
+
+	
+@media screen and (min-width: 980px) {  
+
+	#productImg{
+		
+		height:500px;
+	}
+
+	#productName{
+		font-size:40px;
+	}
+
+	#price{	
+		height:36px;	
+	}
+
+	.cheapPrice{
+		height:36px;
+		font-size: 36px;
+		
+	}
+
+	.cheapPrice span{
+		font-size: 28px;
+	}
+
+	.marketPrice{
+		font-size: 28px;
+		
+	}
+
+	.nPic{
+		width:240px;
+		height:240px;
+		
+	}
+	
+	.nSellInfo{
+		width:60%;
+		margin-top:24px;
+	}
+		
+	.nName{
+		font-size: 32px;	
+		margin-bottom:5px;
+	}
+	
+	.nIntro{
+
+		font-size: 28px;
+		margin-bottom:5px;
+	}
+	
+	.nCheapprice{
+		margin-bottom:5px;
+		font-size: 36px;
+	}
+	
+	.nCheapprice span{
+		margin-bottom:5px;
+		font-size: 28px;
+
+	}
+	
+	.nMarketprice{
+		margin-bottom:5px;
+		font-size: 28px;
+	}
+
+	.nFriendorder{
+		margin-bottom:5px;
+		font-size: 32px;
+	
+	
+	}
+}		
+	
+	
+@media screen and (min-width: 768px) and (max-width: 979px) {  
+
+	#productImg{
+		
+		height:420px;
+	}
+
+	#productName{
+		font-size:36px;
+	}
+
+	#price{	
+		height:36px;	
+	}
+
+	.cheapPrice{
+		height:36px;
+		font-size: 36px;
+		
+	}
+
+	.cheapPrice span{
+		font-size: 28px;
+	}
+
+	.marketPrice{
+		font-size: 28px;
+		
+	}
+
+	.nPic{
+		width:200px;
+		height:200px;
+		
+	}
+	
+	.nSellInfo{
+		width:60%;
+		margin-top:16px;
+	}
+		
+	.nName{
+		font-size: 32px;	
+		margin-bottom:3px;
+	}
+	
+	.nIntro{
+
+		font-size: 28px;
+		margin-bottom:3px;
+	}
+	
+	.nCheapprice{
+		margin-bottom:3px;
+		font-size: 36px;
+	}
+	
+	.nCheapprice span{
+		margin-bottom:3px;
+		font-size: 28px;
+
+	}
+	
+	.nMarketprice{
+		margin-bottom:3px;
+		font-size: 28px;
+	}
+
+	.nFriendorder{
+		margin-bottom:3px;
+		font-size: 32px;
+	
+	
+	}
+}	
+	
+
+@media screen and (min-width: 640px) and (max-width: 767px) {
+	#productImg{
+		
+		height:360px;
+	}
+
+	#productName{
+		font-size:32px;
+	}
+
+	#price{	
+		height:28px;	
+	}
+
+	.cheapPrice{
+		height:28px;
+		font-size: 28px;
+		
+	}
+
+	.cheapPrice span{
+		font-size: 28px;
+	}
+
+	.marketPrice{
+		font-size: 24px;
+		
+	}
+
+
+	.nPic{
+		width:180px;
+		height:180px;
+		
+	}
+	
+	.nSellInfo{
+		width:60%;
+		margin-top:16px;
+	}
+		
+	.nName{
+		font-size: 24px;	
+		margin-bottom:3px;
+	}
+	
+	.nIntro{
+
+		font-size: 20px;
+		margin-bottom:3px;
+	}
+	
+	.nCheapprice{
+		margin-bottom:3px;
+		font-size: 28px;
+	}
+	
+	.nCheapprice span{
+		margin-bottom:3px;
+		font-size: 28px;
+
+	}
+	
+	.nMarketprice{
+		margin-bottom:3px;
+		font-size: 24px;
+	}
+
+	.nFriendorder{
+		margin-bottom:3px;
+		font-size: 28px;
+	
+	
+	}
+	
+}
+	
+
+@media screen and (min-width:480px) and (max-width:639px){
+	#productImg{
+		
+		height:300px;
+	}
+
+	#productName{
+		font-size:28px;
+	}
+
+	#price{	
+		height:24px;	
+	}
+
+	.cheapPrice{
+		height:24px;
+		font-size: 24px;
+		
+	}
+
+	.cheapPrice span{
+		font-size: 16px;
+	}
+
+	.marketPrice{
+		font-size: 16px;
+		
+	}
+
+	
+	
+	
+	.nPic{
+		width:160px;
+		height:160px;
+		
+	}
+	
+	.nSellInfo{
+		width:60%;
+		margin-top:16px;
+	}
+		
+	.nName{
+		font-size: 20px;	
+		margin-bottom:3px;
+	}
+	
+	.nIntro{
+
+		font-size: 16px;
+		margin-bottom:3px;
+	}
+	
+	.nCheapprice{
+		margin-bottom:3px;
+		font-size: 24px;
+	}
+	
+	.nCheapprice span{
+		margin-bottom:3px;
+		font-size: 16px;
+
+	}
+	
+	.nMarketprice{
+		margin-bottom:3px;
+		font-size: 16px;
+	}
+
+	.nFriendorder{
+		margin-bottom:3px;
+		font-size: 20px;
+	
+	
+	}
+}
+
+
+@media screen and (max-width: 479px){
+
+	#productImg{
+		
+		height:180px;
+	}
+
+	#productName{
+		font-size:24px;
+	}
+
+	#price{	
+		height:20px;	
+	}
+
+	.cheapPrice{
+		height:20px;
+		font-size: 20px;
+		
+	}
+
+	.cheapPrice span{
+		font-size: 14px;
+	}
+
+	.marketPrice{
+		font-size: 14px;
+		
+	}
+
+	
+	
+	
+	.nPic{
+		width:120px;
+		height:120px;
+		
+	}
+	
+	.nSellInfo{
+		width:55%;
+		
+	}
+		
+	.nName{
+		font-size: 16px;	
+
+	}
+	
+	.nIntro{
+
+		font-size: 14px;
+	}
+	
+	.nCheapprice{
+		
+		font-size: 20px;
+	}
+	
+	.nCheapprice span{
+		
+		font-size: 14px;
+
+	}
+	
+	.nMarketprice{
+		
+		font-size: 14px;
+	}
+
+	.nFriendorder{
+		
+		font-size: 16px;
+	
+	
+	}
+}
+
