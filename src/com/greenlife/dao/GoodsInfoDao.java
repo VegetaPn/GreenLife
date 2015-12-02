@@ -107,6 +107,46 @@ public class GoodsInfoDao {
 	}
 	
 	
+	public static GoodsInfo getGoodsInfo(int goodsId) {
+		GoodsInfo goodsInfo = new GoodsInfo();
+		
+		String sql = "select * from goods_info where goods_id = ?";
+		Connection conn = new DBUtil().getConn();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, goodsId);
+			rs = ps.executeQuery();
+			rs.next();
+			// stupid set method......
+			goodsInfo.setGoodsId(rs.getInt("goods_id"));
+			goodsInfo.setGoodsName(rs.getString("goods_name"));
+			goodsInfo.setPackagePath(rs.getString("package_path"));
+			goodsInfo.setGoodsPrice(rs.getDouble("goods_price"));
+			goodsInfo.setGoodsTotalnum(rs.getInt("goods_totalnum"));
+			goodsInfo.setGoodsSoldnum(rs.getInt("goods_soldnum"));
+			goodsInfo.setStartTime(rs.getString("start_time"));
+			goodsInfo.setEndTime(rs.getString("end_time"));
+			goodsInfo.setTagTitle(rs.getString("tag_title"));
+			goodsInfo.setTagText(rs.getString("tag_text"));
+			goodsInfo.setTagImage(rs.getString("tag_image"));
+			goodsInfo.setGoodsDiscontPrice(rs.getDouble("goods_discount_price"));
+			goodsInfo.setGoods_unit(rs.getString("goods_unit"));
+			goodsInfo.setIsDelete(rs.getInt("is_delete"));
+			goodsInfo.setIsAdv(rs.getInt("is_adv"));
+			goodsInfo.setGoodsText1(rs.getString("goods_text1"));
+			goodsInfo.setGoodsText2(rs.getString("goods_text2"));
+			goodsInfo.setReportId(rs.getInt("report_id"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+		
+		return goodsInfo;
+	}
+	
+	
 	public static List<GoodsInfo> getGoodsList() {
 		
 		List<GoodsInfo> goodsList = new ArrayList<>();
