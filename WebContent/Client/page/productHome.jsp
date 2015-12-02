@@ -1,4 +1,33 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
+import="com.greenlife.dao.*" import="com.greenlife.model.*"
+import="java.util.*" 
+import="java.text.SimpleDateFormat"%>
+
+
+<%
+String wechatId = (String)session.getAttribute("wechatId");
+int goodsId = 1;//Integer.parseInt(request.getParameter("goosId"));
+GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
+
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
+Date startTime = sdf.parse(goodsInfo.getStartTime());
+Date endTime = sdf.parse(goodsInfo.getStartTime());
+Date date = new Date();
+String salesState;
+if(date.getTime()<startTime.getTime()){
+	salesState = "预售中";
+}else if(date.getTime()>endTime.getTime()){
+	salesState = "已售完";
+}else{
+	salesState = "进行中";
+}
+
+if(goodsInfo.getGoodsSoldnum()>=goodsInfo.getGoodsTotalnum()){
+	salesState = "已售完";
+}
+
+%>
+
 <!DOCTYPE html>
 
 <html>
@@ -22,23 +51,25 @@
 	
 	
 		<div id="product">
-			<div id="productImgDiv"><img id="productImg" src="../images/product.jpg"/></div>
-			<span class="arcLabel" id="salesState">进行中</span>
+			<div id="productImgDiv"><img id="productImg" src="<%=goodsInfo.getPackagePath()+"goods/"+goodsInfo.getGoodsId()+ "/small.png"%>"/></div>
+			<span class="arcLabel" id="salesState"><%=salesState%></span>
 			<span class="arcLabel" id="orderNum">订单数：387</span>
 			<img id="heart" src="../images/collect.png"/>
 			<div id="productName">
-				2015现磨五常稻花香大米
+				<%=goodsInfo.getGoodsName()%>
 			</div>
 		</div>
 		<div id="productInfo">
 			<div id="infoDesc">
 			
 			<hr/>
-			
+			<%=goodsInfo.getGoodsText1()%>
+			<!--  
 			<span class="descFont">田园生活黏度最畅销产品</span><br/><br/>
 			<span class="descFont">通过ISO9001国际认证</span><br/><br/>
 			<span class="descFont">在《舌尖上的中国中播出》的产品</span><br/><br/>
 			<span class="descFont">中国羽毛球队指定唯一产品</span><br/><br/>
+			-->
 			<div href="#" class="link">项目详情 ></div>
 			
 			</div>
@@ -66,7 +97,7 @@
 			<div class="labelHeader" id="productSalesPrice">
 				
 				<div class="whiteDiv"></div>
-				<span class="label">99元10斤</span>
+				<span class="label"><%=goodsInfo.getGoodsPrice()+"/"+goodsInfo.getGoods_unit()%></span>
 				
 			</div>
 		
@@ -76,12 +107,15 @@
 		</div>
 		
 		<div class="grayDiv" id="salesProductImgDiv">
-			<img id="salesProductImg" src="../images/product.jpg"/>
+			<img id="salesProductImg" src="<%=goodsInfo.getPackagePath()+"small.png"%>"/>
 		</div>
 		
 		<div class="grayDiv" id="LastGrayDiv">
 			<div id="productSalesInfo">
 				<div id="salesInfo">
+				
+				<%=goodsInfo.getGoodsText2()%>
+				<!--
 				<span class="titleFont">产品品种：</span><span class="descFont">稻花香2号</span><br/>
 				<span class="titleFont">产品产地：</span><span class="descFont">黑龙江五常</span><br/>
 				<span class="titleFont">产品特征：</span><span class="descFont">不惨假；现磨不抛光</span><br/>
@@ -89,12 +123,13 @@
 				<span class="titleFont">包装说明：</span><span class="descFont">10斤/袋，真空包装</span><br/>
 				<span class="titleFont">生产日期：</span><span class="descFont">2015年10月</span><br/>
 				<span class="titleFont">发货地点：</span><span class="descFont">五常</span><br/>
+				-->
 				</div>
 			
 			
 				<div id="teamPurchase" onclick="window.location.href='#'">
 					<div class="salesPrice" id="teamPrice">
-						89.00元/份
+						<%=goodsInfo.getGoodsDiscontPrice()%>元/份
 					</div>
 					<div class="purchaseLink">
 						2人团>
@@ -103,7 +138,7 @@
 				
 				<div id="personalPurchase" onclick="window.location.href='#'">
 					<div  class="salesPrice"  id="personalPrice">
-						99.00元/份
+						<%=goodsInfo.getGoodsPrice()%>元/份
 					</div>
 					<div class="purchaseLink">
 						单独预定

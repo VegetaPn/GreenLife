@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.greenlife.model.FriendsList;
 import com.greenlife.util.DBUtil;
@@ -11,6 +13,28 @@ import com.greenlife.util.DBUtil;
 public class FriendsListDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
+	
+	/*
+	 * 获取好友wechatid列表
+	 */
+	public static List<String> getFriendWechatIdList(String wechatId) {
+		List<String> list = new ArrayList<String>();
+		String sql = "select * from friends_list where wechat_id = ?";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, wechatId);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(rs.getString("friend_wechat_id"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+		return list;
+	}
 	
 	public static boolean addFriendList(FriendsList list){
 		String sql = "INSERT INTO `greenlife`.`friends_list` (`wechat_id`, `friend_wechat_id`) VALUES (?, ?);";

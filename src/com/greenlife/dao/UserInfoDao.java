@@ -62,9 +62,33 @@ public class UserInfoDao {
 		return true;
 	}
 	
+	public static UserInfo getUserInfo(String wechatId) {
+		UserInfo userInfo = new UserInfo();
+		String sql = "select * from user_info where wechat_id = ?";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, wechatId);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				userInfo.setWechatId(rs.getString("wechat_id"));
+				userInfo.setWechatName(rs.getString("wechat_name"));
+				userInfo.setPhone(rs.getString("phone"));
+				userInfo.setAddrId(rs.getInt("address_id"));
+				userInfo.setPhotoPath("photo_path");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+		
+		return userInfo;
+	}
+	
 	public static List<UserInfo> getUsersList() {
 		
-		List<UserInfo> usersList = new ArrayList<>();
+		List<UserInfo> usersList = new ArrayList<UserInfo>();
 		String sql = "select * from user_info";
 		
 		Connection conn = new DBUtil().getConn();
