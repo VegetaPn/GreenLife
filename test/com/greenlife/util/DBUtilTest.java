@@ -8,8 +8,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.greenlife.dao.AdressInfoDao;
-import com.greenlife.model.AdressInfo;
+import com.greenlife.dao.SharedListDao;
+import com.greenlife.dao.UserInfoDao;
+import com.greenlife.model.SharedList;
 
 public class DBUtilTest {
 
@@ -34,12 +35,7 @@ public class DBUtilTest {
 
 	@Test
 	public void testGetConn() {
-		List<AdressInfo> list = AdressInfoDao.getAdressList("huangjianqiang");
-		for(int i=0;i<list.size();i++){
-			System.out.println(list.get(i).getReceiverName());
-		}
-		AdressInfo info = AdressInfoDao.getAdressInfo(2);
-		System.out.println(info.getReceiverName());
+		System.out.println(UserInfoDao.getUserInfo("huangjianqiang").getWechatName());
 	}
 
 }

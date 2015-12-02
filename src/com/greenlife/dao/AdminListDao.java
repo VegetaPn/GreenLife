@@ -8,12 +8,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.greenlife.model.AdminList;
+import com.greenlife.model.AdressInfo;
 import com.greenlife.util.DBUtil;
 
 
 public class AdminListDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
+	
+	public static boolean loginCheck(String userId, String pwd){
+		String sql = "select * from admin_list where user_id = ?";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userId);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				String password = rs.getString("password");
+				if(pwd.equals(password)){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			else{
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
 	
 	public static boolean addAdminList(AdminList admin){
 		String sql = "INSERT INTO `greenlife`.`admin_list` (`user_id`, `password`) VALUES (?, ?);";
@@ -52,9 +80,9 @@ public class AdminListDao {
 		return true;
 	}
 	
-	public static List<AdminList> getGoodsList() {
+	public static List<AdminList> getAdminList() {
 		
-		List<AdminList> adminList = new ArrayList<>();
+		List<AdminList> adminList = new ArrayList<AdminList>();
 		String sql = "select * from admin_list";
 		
 		Connection conn = new DBUtil().getConn();
