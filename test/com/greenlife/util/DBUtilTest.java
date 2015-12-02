@@ -1,14 +1,15 @@
 package com.greenlife.util;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.greenlife.dao.GoodsInfoDao;
-import com.greenlife.dao.GoodsOrderDao;
-import com.greenlife.model.GoodsInfo;
+import com.greenlife.dao.AdressInfoDao;
+import com.greenlife.model.AdressInfo;
 
 public class DBUtilTest {
 
@@ -33,9 +34,12 @@ public class DBUtilTest {
 
 	@Test
 	public void testGetConn() {
-		GoodsInfo info;
-		info = GoodsInfoDao.getGoodsInfo(1);
-		System.out.println("name: " + info.getGoodsName());
+		List<AdressInfo> list = AdressInfoDao.getAdressList("huangjianqiang");
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i).getReceiverName());
+		}
+		AdressInfo info = AdressInfoDao.getAdressInfo(2);
+		System.out.println(info.getReceiverName());
 	}
 
 }
