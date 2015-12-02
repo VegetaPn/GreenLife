@@ -2,41 +2,50 @@ html,body
 {
     background-color:#E4E4E4;
     
-    
+    padding:0px;
     margin:0px;
 }
 
 .blackBold
 {
-    //font-size:5.5vw;
+    
     font-weight: bold;
     color:#000000;
-    //letter-spacing: -0.5vw;  
-    //line-height: 7vw;
+    
+    
+    font-size:22px;
+    letter-spacing: -2px;  
+    line-height: 28px;
 }
 
 .orangeText
 {
     font-size:5vw;
     color:#FF3300;
-    //letter-spacing: -0.4vw;
-    //line-height: 7vw;
+
+    font-size:20px;
+    letter-spacing: -1px;
+    line-height: 28px;
 }
 
 .blackNormal
 {
     //font-size:5vw;
     color:#333333;
-    //letter-spacing: -0.4vw;
-    //line-height: 7vw;
+    font-size:20px;
+    letter-spacing: -1px;
+    line-height: 28px;
+    
+    
 }
 
 
 .middleTag
 {
     margin-left:5%;
-    //margin-top:3.5vw;
     overflow:hidden;
+    width:95%;
+    margin-top:14px;
 }
 
 .bigTag
@@ -50,10 +59,11 @@ html,body
     clear:both;
     width:28%;
     float:left;
-    //font-size:5vw;
     color:#333333;
-    //letter-spacing: -0.4vw;
-    //line-height: 7vw;
+
+    font-size:20px;
+    letter-spacing: -2px;
+    line-height: 28px;
 }
 
 #orderMessage
@@ -66,13 +76,18 @@ html,body
 .blackNormalRight
 {
     float:left;
-    width:70%;
+    width:68%;
+
+    font-size:20px;
+    letter-spacing: -1px;
+    line-height: 28px;
+    
 }
 
 .topTag
 {
     width:100%;
-
+    padding:3% 0% 3% 0%;
 
     background-color:#FFFFFF;
     overflow:hidden;
@@ -80,20 +95,22 @@ html,body
     border-top: 1px solid;
     //padding-top:3vw;
     //padding-bottom: 3vw;
-    margin:3% 0% 0% 0%;
+    
 }
 
 .detailLocation
 {
 
     margin-left:5%;
-    //margin-top:2vw;
+    
+    margin-top:8px;
 }
 .locationIMGAlign
 {
     width:5%;
-    //height: 5vw;
     float:left;
+    
+    height: 20px;
 }
 .locationIMG
 {
@@ -111,27 +128,26 @@ html,body
 
 .line
 {
-    width:86%;
-    //margin-top:3vw;
+    width:90%;
     color: #797979;
+    
+    margin-top:12px;
 }
 
 .functionButton
 {   
     width:22%;
-    
-        
-    //height:9vw;
     background-color:#F76F00;
     color:#ffffff;
-    //font-size: 5vw;
     font-weight: bold;
     font-family: SimHei;
     margin-left:2%;
     border-radius:10px;
-    //clear:both;
     text-align:center;
-    //line-height: 9vw;
+
+    height:36px;
+    font-size: 20px;
+    line-height: 36px;
     
 }
 #payBlock
@@ -144,12 +160,13 @@ html,body
 {
     
     clear:both;
-    width:45%;
-    //height:9vw;
+    width:50%;
+    padding-right: 15%;
     float:left;
-    text-align: right;
-    margin-left: 3%;
-    //line-height: 9vw;
+    margin-left: 5%;
+
+    height:36px;
+    line-height: 36px;
 }
 #totalSym
 {
@@ -158,11 +175,12 @@ html,body
 #cancelButton
 {
     
-    //font-size:4vw;
     color:#333333;
     background-color: #959595;
-    //letter-spacing: -0.5vw;
     float:left;
+
+    font-size:20px;
+    letter-spacing: -2px;
 }
 
 #payButton
@@ -220,6 +238,7 @@ html,body
     }
     .locationIMGAlign
     {
+        width:20px;
         height: 20px;
     }
     .line
@@ -297,6 +316,7 @@ html,body
     }
     .locationIMGAlign
     {
+        width:30px;
         height: 30px;
     }
     .line
@@ -373,6 +393,7 @@ html,body
     }
     .locationIMGAlign
     {
+        width:40px;
         height: 40px;
     }
     .line
@@ -448,6 +469,7 @@ html,body
     }
     .locationIMGAlign
     {
+        width:50px;
         height: 50px;
     }
     .line
@@ -524,6 +546,7 @@ html,body
     }
     .locationIMGAlign
     {
+        width:60px;
         height: 60px;
     }
     .line

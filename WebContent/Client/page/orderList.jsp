@@ -50,7 +50,7 @@
 
                             <div class="seeMore">
                                 <hr class="line"/>
-                                <div class="morePNGalign"><img class="morePNG" src="../images/rightArrowCircle.png"/></div>
+                                <!--<div class="morePNGalign"><img class="morePNG" src="../images/rightArrowCircle.png"/></div>-->
                             </div>
 
 
@@ -118,7 +118,7 @@
 
                             <div class="seeMore">
                                 <hr class="line"/>
-                                <div class="morePNGalign"><img class="morePNG" src="../images/rightArrowCircle.png"/></div>
+                                <!--<div class="morePNGalign"><img class="morePNG" src="../images/rightArrowCircle.png"/></div>-->
                             </div>
 
 

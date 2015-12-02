@@ -61,7 +61,7 @@
             <div class="bigTag"><span class=blackBold>张二狗 13333333333</span></div>
             
             <div class="detailLocation">
-                <div class="locationIMGAlign"><img src="../images/map-marker -black.png" class="locationIMG"/></div>
+                <div class="locationIMGAlign"><img src="../images/mapMarkerBlack.png" class="locationIMG"/></div>
                 <div class="blackNormal" id="detailLocationInfo">北京市海淀区北京交通大学999号宿舍楼101室</div>
             </div>
             
@@ -74,9 +74,9 @@
             <div id="totalPrice">
                 <span class="blackBold" id="totalSym">合计：￥</span><span class="orangeText">99.00</span>
             </div>
-            
+            <!--
             <div class="functionButton" id="cancelButton">取消预订</div>
-
+            -->
             <div class="functionButton" id="payButton">支付</div>
 
             

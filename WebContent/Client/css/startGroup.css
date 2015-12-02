@@ -1,3 +1,11 @@
+.body
+{
+    width:100%;
+    padding:0px;
+    margin:0px;
+}
+
+
 
 #product{
 	width:100%;
@@ -40,31 +48,36 @@
 
 .middleTag
 {
-    margin:14px 0px 0px 0px;
-
+    margin:4% 0% 4% 3%;
+    
 }
 
 .blackBold
 {
-    //font-size:5vw;
+    
     font-weight: bold;
     color:#000000;
-    //letter-spacing: -0.5vw;    
+
+    font-size:22px;
+    letter-spacing: -2px;
 }
 
 .orangeText
 {
-    //font-size:4.5vw;
+    
     color:#FF3300;
-    //letter-spacing: -0.4vw;
+
+    font-size:20px;
+    letter-spacing: -2px;
 }
 
 .blackNormal
 {
-    //font-size:4.5vw;
+    
     color:#333333;
-    //letter-spacing: -0.4vw;
-    //line-height: 2vh;
+
+    font-size:20px;
+    letter-spacing: -2px;
 }
 
 .line
@@ -77,10 +90,11 @@
 .smallTag
 {
     color:#F76F00;
-    //font-size:3.5vw;
-
-    margin:5px 0px 5px 0px;
-    //letter-spacing: 0.1vw;
+    margin:2% 0% 3% 2%;
+    
+    height:20px;
+    font-size:14px;
+    letter-spacing: 1px;
 }
 
 .functionButton
@@ -91,10 +105,12 @@
     font-weight: bold;
     font-family: SimHei;
     margin-left:10%;
-    border-radius:10px;
-    //clear:both;
+    border-radius:10px;    
     text-align:center;
-    //line-height: 9vw;
+
+    height:50px;
+    font-size: 25px;
+    line-height: 50px;
     
 }
 
@@ -104,15 +120,18 @@
 .startGroupIMG
 {
     width: 100%;
-    //height:50vw;
+    
+    height:220px;
 }
-
+.detail
+{
+    padding-left:3%;
+}
 .detail h2
 {
     color:#000000;
-    //font-size:3.5vw;
     font-weight: bold;
-    //margin:3vh 0vw 3vh 0vw;
+    
 }
 
 .detail p
@@ -154,10 +173,14 @@
         font-size:20px;
         letter-spacing: -2px;
     }
+    
+    
     .smallTag
     {
+        height:20px;
         font-size:14px;
         letter-spacing: 1px;
+        
     }
     .functionButton
     {   

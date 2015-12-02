@@ -26,6 +26,7 @@ html,body
 	width:100%;
 	border:1px solid #333333;
 	border-radius:10px;
+        height:180px;
 }
 
 
@@ -34,27 +35,29 @@ html,body
 
 .blackBold
 {
-   /* font-size:5.5vw;*/
+   
     font-weight: bold;
     color:#000000;
-   /* letter-spacing: -0.5vw;  
-    line-height: 7vw;*/
+    font-size:22px;
+    letter-spacing: -2px;  
+    line-height: 28px;
 }
 
 .orangeText
 {
-   /* font-size:5vw;*/
     color:#FF3300;
-   /* letter-spacing: -0.4vw;
-    line-height: 7vw;*/
+    font-size:20px;
+    letter-spacing: -1px;
+    line-height: 28px;
 }
 
 .blackNormal
 {
-   /* font-size:5vw;*/
+   
     color:#333333;
-   /* letter-spacing: -0.4vw;
-    line-height: 7vw;*/
+    font-size:20px;
+    letter-spacing: -1px;
+    line-height: 28px;
 }
 
 
@@ -83,19 +86,21 @@ html,body
 .functionButton
 {   
     width:70%;
-    /*height:13vw;*/
     background-color:#F76F00;
     color:#ffffff;
-    /*font-size: 7vw;*/
     font-weight: bold;
     font-family: SimHei;
     margin-left:15%;
-    /*margin-top:3vw;*/
-    /*margin-bottom: 3vw;*/
     border-radius:10px;
     clear:both;
-    text-align:center;
-    /*line-height: 13vw;*/
+    text-align:center;    
+    
+    height:52px;
+    font-size: 28px;        
+    margin-top:12px;
+    margin-bottom: 12px;
+    line-height: 52px;
+    
 }
 
 .middleTag
