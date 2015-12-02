@@ -31,10 +31,9 @@ body{
 
 .input{
 	margin-top:8px;
-	width:95%;
+	width:100%;
 	border:1px solid gray;
 	border-radius:5px;
-	padding-left:15px;
 }
 
 #iSure{

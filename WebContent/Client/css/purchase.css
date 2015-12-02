@@ -59,16 +59,13 @@
 	overflow:hidden;
 	vertical-align: middle;
 	float:right;
-}
-
-#dToAddress div{
-	float:right;
-	border-radius:70px;
-	border:2px solid gray;
 	text-align:center;
 }
 
-
+#dToAddress img{
+	margin-top:50px;
+	margin-bottom:50px;
+}
 
 
 #dProductMess{
@@ -106,39 +103,6 @@
 	color:#F76F00;
 	font-weight:bold;
 }
-
-
-
-
-
-#dQuality{
-	width:100%;
-	overflow:hidden;
-	border-bottom:1px solid #797979;
-	padding-bottom:6px;
-	padding-top:6px;
-}
-
-#dQualityInfor{
-	float:left;
-	color:#F76F00;
-	font-weight:bold;
-	margin-left:8px;
-}
-
-#iQuaLogo{
-	width:15%;
-    float:left;	
-	margin-top:4px;
-}
-
-#toQualityInfor{
-	float:right;
-    border-radius:70px;
-	border:2px solid gray;
-	text-align:center;
-}
-
 
 
 
