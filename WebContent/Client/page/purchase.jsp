@@ -4,8 +4,10 @@
 <!DOCTYPE html>
 
 <%
-String wechatId = (String)session.getAttribute("wechatId");
-int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+//String wechatId = (String)session.getAttribute("wechatId");
+String wechatId = "huangjianqiang";
+//int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+int goodsId =1;
 GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -14,6 +16,19 @@ Calendar calendar = new GregorianCalendar();
 calendar.setTime(endTime); 
 calendar.add(calendar.DATE,1); 
 endTime=calendar.getTime(); 
+
+UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
+int addressId = userInfo.getAddrId();
+List<AdressInfo> addressInfos = AdressInfoDao.getAdressList(wechatId);
+AdressInfo defaultAddressInfo = null;
+int index = -1;
+
+for(int i =0; i<addressInfos.size();i++){
+	   if(addressInfos.get(i).getAddrId() == addressId){
+		   defaultAddressInfo = addressInfos.get(i);
+		   index = i;
+	   }
+}
 %>
 <html>
     <head>
@@ -41,13 +56,13 @@ endTime=calendar.getTime();
 				<div id="dCusInfor">
 				    <div class="top">
 						<img src="../images/maleOrange.png"/>
-						<span id="sCusName">唐先生</span>
+						<span id="sCusName"><%=defaultAddressInfo.getReceiverName()%></span>
 						<img src="../images/phoneOrange.png"/>
-						<span id="sPhoneNum">18813090000</span>
+						<span id="sPhoneNum"><%=defaultAddressInfo.getReceiverPhone()%></span>
 					</div>
 					<div class="bottom">
 						<img src="../images/mapMarkerOrange.png"/>
-						<span id="sAddress">北京市海淀区上园村3号</span>
+						<span id="sAddress"><%=defaultAddressInfo.getAddrDetail()%></span>
 					</div>
 				</div>
 				<div id="dToAddress">
