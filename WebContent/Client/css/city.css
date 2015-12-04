@@ -28,7 +28,7 @@ html{
 }
 
 #dCity span{
-	font-weight:bold;
+	//font-weight:bold;
 }
 
 .dChildCity{
@@ -43,7 +43,7 @@ html{
 
 .toGrandChild{
 	float:right;
-	font-weight:bold;
+	//font-weight:bold;
 	color:#999999;
 }
 

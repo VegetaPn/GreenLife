@@ -63,11 +63,11 @@ body {
 }
 
 .sCusName{
-   font-weight:bold;
+   //font-weight:bold;
 }
 
 .sPhoneNum{
-	font-weight:bold;
+	//font-weight:bold;
 }
 
 .dAddress{
@@ -111,7 +111,7 @@ body {
 
 .dSuspension{
 	position:relative;
-	font-weight:bold;
+	//font-weight:bold;
 	z-index:15;
 	width:80%;
 	margin:auto;

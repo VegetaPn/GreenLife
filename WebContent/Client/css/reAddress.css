@@ -25,7 +25,7 @@ body{
 }
 
 .cell{
-	font-weight:bold;
+	//font-weight:bold;
 	margin-top:20px;
 }
 
@@ -40,7 +40,7 @@ body{
 	width:100%;
 	text-align:center;
 	background-color:#F76F00;
-	font-weight:bold;
+	//font-weight:bold;
 	color:#ffffff;
 }
 

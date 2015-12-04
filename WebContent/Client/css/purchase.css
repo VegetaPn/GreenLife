@@ -42,12 +42,12 @@
 
 #sCusName{
    color:#F76F00;
-   font-weight:bold;
+   //font-weight:bold;
 }
 
 #sPhoneNum{
 	color:#F76F00;
-	font-weight:bold;
+	//font-weight:bold;
 }
 
 #sAddress{
@@ -60,11 +60,6 @@
 	vertical-align: middle;
 	float:right;
 	text-align:center;
-}
-
-#dToAddress img{
-	margin-top:50px;
-	margin-bottom:50px;
 }
 
 
@@ -96,12 +91,12 @@
 
 #pProductName{
 	color:#000000;
-	font-weight:bold;
+	//font-weight:bold;
 }
 
 #pPrice{
 	color:#F76F00;
-	font-weight:bold;
+	//font-weight:bold;
 }
 
 
@@ -114,7 +109,7 @@
 }
 
 #dSell .left{
-	font-weight:bold;
+	//font-weight:bold;
 	color:black;
 	overflow:hidden;
 	width:13%;
@@ -138,16 +133,13 @@
 	border-radius:5px;
 }
 
-#dSell .middle div{
-	border-radius:50px;
-	border:2px solid gray;
-	text-align:center;
+#dSell .middle img{
 	float:left;
 }
 
 #dSell .right{
 	width:30%;
-	font-weight:bold;
+	//font-weight:bold;
 	float:right;
 	text-align:right;
 	color:#F76F00;
@@ -168,13 +160,13 @@
 
 #dOriAddress .left{
 	float:left;
-    font-weight:bold;
+   // font-weight:bold;
 	margin-left:6px;
 }
 
 #sPostage{
 	float:right;
-	font-weight:bold;
+	//font-weight:bold;
 }
 
 
@@ -225,7 +217,7 @@
 }
 
 #dSubmit .left{
-    font-weight:bold;
+    //font-weight:bold;
 	color:#F76F00;
 	float:right;
 	margin-right:15px;
@@ -239,7 +231,7 @@
 	width:100%;
 	color:white;
 	border-radius: 5px;
-	font-weight:bold;
+	//font-weight:bold;
 	background-color:#F76F00;
 }
 
@@ -264,6 +256,13 @@
 		font-size:26px;
 		margin-bottom:20px;
 	}
+	
+	#dToAddress img{
+	   width:30px;
+	   height:30px;
+	   margin-top:15px;
+	   margin-bottom:15px;
+    }
 
 	#dProductImg{
 		width:90px;
@@ -309,11 +308,11 @@
 		font-size:20px;
 	}
 
-	#dSell .middle div{
+	#dSell .middle img{
 		width:22px;
 		height:22px;
-		font-size:20px;
-		margin-top:4px;
+		margin-top:5px;
+		margin-bottom:5px;
 	}
 	
 	#dSell .right{
@@ -363,7 +362,7 @@
 	}
 	
 	#dSubmit .right{
-		margin-right:20px;
+		margin-right:5px;
 	}
 	
 	#iSubmit{
@@ -395,6 +394,13 @@
 		margin-bottom:28px;
 	}
 
+	#dToAddress img{
+	   width:40px;
+	   height:40px;
+	   margin-top:25px;
+	   margin-bottom:25px;
+    }
+    
 	#dProductInfor{
 		margin-right:10px;
 	}
@@ -439,11 +445,11 @@
 		font-size:30px;
 	}
 
-	#dSell .middle div{
+	#dSell .middle img{
 		width:26px;
 		height:26px;
-		font-size:24px;
 		margin-top:10px;
+		margin-bottom:10px;
 	}
 	
 	#dSell .right{
@@ -492,7 +498,7 @@
 	}
 	
 	#dSubmit .right{
-		margin-right:22px;
+		margin-right:10px;
 	}
 	
 	#iSubmit{
@@ -523,6 +529,13 @@
 		margin-bottom:36px;
 	}
 
+	#dToAddress img{
+	   width:50px;
+	   height:50px;
+	   margin-top:35px;
+	   margin-bottom:35px;
+    }
+    
 	#dProductInfor{
 		margin-right:12px;
 	}
@@ -567,11 +580,11 @@
 		font-size:35px;
 	}
 
-	#dSell .middle div{
+	#dSell .middle img{
 		width:30px;
 		height:30px;
-		font-size:26px;
-		margin-top:16px;
+		margin-top:15px;
+		margin-bottom:15px;
 	}
 	
 	#dSell .right{
@@ -620,7 +633,7 @@
 	}
 	
 	#dSubmit .right{
-		margin-right:24px;
+		margin-right:12px;
 	}
 	
 	#iSubmit{
@@ -651,6 +664,13 @@
 		margin-bottom:42px;
 	}
 
+	#dToAddress img{
+	   width:60px;
+	   height:60px;
+	   margin-top:45px;
+	   margin-bottom:45px;
+    }
+    
 	#dProductInfor{
 		margin-right:14px;
 	}
@@ -695,12 +715,13 @@
 		font-size:40px;
 	}
 
-	#dSell .middle div{
+	#dSell .middle img{
 		width:34px;
 		height:34px;
-		font-size:30px;
 		margin-top:20px;
+		margin-bottom:20px;
 	}
+	
 	
 	#dSell .right{
 		margin-right:14px;
@@ -748,7 +769,7 @@
 	}
 	
 	#dSubmit .right{
-		margin-right:28px;
+		margin-right:12px;
 	}
 	
 	#iSubmit{
@@ -779,6 +800,13 @@
 		margin-bottom:50px;
 	}
 
+	#dToAddress img{
+	   width:70px;
+	   height:70px;
+	   margin-top:55px;
+	   margin-bottom:55px;
+    }
+    
 	#dProductInfor{
 		margin-right:16px;
 	}
@@ -823,12 +851,13 @@
 		font-size:44px;
 	}
 
-	#dSell .middle div{
+	#dSell .middle img{
 		width:40px;
 		height:40px;
-		font-size:34px;
-		margin-top:24px;
+		margin-top:25px;
+		margin-bottom:25px;
 	}
+	
 	
 	#dSell .right{
 		margin-right:16px;
@@ -877,7 +906,7 @@
 	}
 	
 	#dSubmit .right{
-		margin-right:32px;
+		margin-right:12px;
 	}
 	
 	#iSubmit{

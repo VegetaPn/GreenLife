@@ -37,6 +37,7 @@ for(int i =0; i<addressInfos.size();i++){
         <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <link rel="stylesheet" href="../css/header.css" type="text/css">
 		<link rel="stylesheet" href="../css/purchase.css" type="text/css">
+		<script type="text/javascript" src="../js/purchase.js"></script>
     </head>
     <body>
 	
@@ -66,7 +67,7 @@ for(int i =0; i<addressInfos.size();i++){
 					</div>
 				</div>
 				<div id="dToAddress">
-					<img src="../images/rightArrowCircle3.png"/>
+					<a href="myAddress.jsp"><img id="iToAddress" src="../images/rightArrowCircle3.png" ></a>
 				</div>
 			</div>
 			
@@ -78,7 +79,7 @@ for(int i =0; i<addressInfos.size();i++){
 				<div id="dProductInfor">
 				    <p id="pProductName"><%=goodsInfo.getGoodsName()%></P>
 					<p id="pPrice">单价:<span id="sProductPrice">
-					      <%=goodsInfo.getGoodsPrice()%>元/<%=goodsInfo.getGoods_unit()%></span></p>
+					      <%=goodsInfo.getGoodsPrice()%></span>元/<%=goodsInfo.getGoods_unit()%></p>
 				</div>
 			</div>
 			
@@ -86,13 +87,13 @@ for(int i =0; i<addressInfos.size();i++){
 			<div id="dSell">
 			    <div class="left"><span>数量:</span></div>
 				<div class="middle">
-				    <div id="iDecrease">-</div>
-					<input type="text" id="iNumber"/>
-					<div id="iIncrease">+</div>
+				    <img id="iDecrease" src="../images/minusCommodity.png" onclick="decrease()"/>
+					<input type="number" id="iNumber" value="1" onchange ="calculate()"/>
+					<img id="iIncrease" src="../images/addCommodity.png" onclick="increase()"/>
 				</div>
 				<div class="right">
 				    <p>x<span id="sNumber">1</span>份</p>
-					<p>合计：<span><%=goodsInfo.getGoodsPrice() %></span></p>
+					<p>合计：<span id="stPrice"><%=goodsInfo.getGoodsPrice()%></span></p>
 				</div>
 			</div>
 			
@@ -114,7 +115,7 @@ for(int i =0; i<addressInfos.size();i++){
 			<div class="right">
 				<input id="iSubmit" type="button" value="确认支付"/>
 			</div>
-			<div class="left">实付款：<span id="sTotalPrice">￥99.00</span></div>
+			<div class="left">实付款：<span><span id="sTotalPrice"><%=goodsInfo.getGoodsPrice()%></span>元</span></div>
 		</div>
        
     </body>
