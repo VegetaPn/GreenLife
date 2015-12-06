@@ -1,6 +1,9 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.greenlife.dao.*" import="com.greenlife.model.*" import="java.util.*"%>
 <!DOCTYPE html>
-
+<%
+	List<GoodsInfo> goodsList = new ArrayList<>();
+	goodsList = GoodsInfoDao.getGoodsList();
+%>
 <html>
     <head>
         <title>田园生活</title>
@@ -26,61 +29,38 @@
 			<div id="product">
 				<div id="productImgDiv">
 					<img id="productImg" src="../images/product.jpg"/>
-					<div id="productName">17.8度甜新疆阿克苏苹果</div>
-					
+						<div id="productName">来自孔雀河的库尔勒一级香梨</div>
 				</div>
 				<div id="price">
 					<div class="cheapPrice">￥7.90<span>/2个</span></div>
-					<div class="marketPrice">&#12288;&#12288;超市：￥9.90</div>
+					
 				</div>
 			</div>
 		</div>
 			
-			
-			<div class="normalProduct">
-				<div class="nPic"><img src="../images/product.jpg"/></div>
+			<% 
+				for(int i=0;i<goodsList.size();i++){
+				GoodsInfo gi = goodsList.get(i);
+				int id = gi.getGoodsId();
+			%>
+			<a href="productHome.jsp?Id="+id>
+			<div class="normalProduct" >
+				<div class="nPic"><img src=<%=gi.getPackagePath()+"photo.jpg"%>/></div>
 				<div class="nSellInfo">
-					<div class="nName">一级香梨</div>
-					<div class="nIntro">单果100克1级香梨</div>
-					<div class="nCheapprice">￥7.90<span>/5个</span></div>
-					<div class="nMarketprice">超市：￥11.90</div>	
-					<div class="nFriendorder">你有100位好友订购此产品120份</div>
+					<div class="nName"><%=gi.getGoodsName()%></div>
+					<div class="nCheapprice">￥<%=gi.getGoodsPrice()%><span>/<%=gi.getGoods_unit()%></span>
+						</div>
+					<div class="nMarketprice">团购价：￥<%=gi.getGoodsDiscontPrice()%></div>	
+					<div class="nOrderTime">预定时间：<%=gi.getStartTime()%>-<%=gi.getEndTime()%></div>
+					<div class="nFriendorder">你有100位好友订购此产品</div>
 				</div>
 			</div>
+			</a>
+			<%
+			}
+			%>
 			
-			<div class="normalProduct">
-				<div class="nPic"><img src="../images/product.jpg"/></div>
-				<div class="nSellInfo">
-					<div class="nName">来自孔雀河的库尔勒一级香梨</div>
-					<div class="nIntro">单果100克以上才叫1级香梨</div>
-					<div class="nCheapprice">￥7.90<span>/5个</span></div>
-					<div class="nMarketprice">超市：￥11.90</div>	
-					<div class="nFriendorder">你有100位好友订购此产品100份</div>
-				</div>
-			</div>
 			
-			<div class="normalProduct">
-				<div class="nPic"><img src="../images/product.jpg"/></div>
-				<div class="nSellInfo">
-					<div class="nName">来自孔雀河的库尔勒一级香梨</div>
-					<div class="nIntro">单果100克以上才叫1级香梨</div>
-					<div class="nCheapprice">￥7.90<span>/5个</span></div>
-					<div class="nMarketprice">超市：￥11.90</div>	
-					<div class="nFriendorder">你有100位好友订购此产品100份</div>
-				</div>
-			</div>
-			
-			<div class="normalProduct">
-				<div class="nPic"><img src="../images/product.jpg"/></div>
-				<div class="nSellInfo">
-					<div class="nName">来自孔雀河的库尔勒一级香梨</div>
-					<div class="nIntro">单果100克以上才叫1级香梨</div>
-					<div class="nCheapprice">￥7.90<span>/5个</span></div>
-					<div class="nMarketprice">超市：￥11.90</div>	
-					<div class="nFriendorder">你有100位好友订购此产品120份</div>
-				</div>
-			</div>
-		
 		</div>
 	
 		
@@ -153,7 +133,7 @@
        
 		function slideOut(){
 			document.getElementById("gray").style.display="none";
-			document.getElementById("guide").style.left="-70vw";
+			document.getElementById("guide").style.left="-70%";
 			}
 		
 		function adjust(){ 
