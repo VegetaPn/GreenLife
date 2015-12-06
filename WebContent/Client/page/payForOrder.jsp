@@ -1,8 +1,10 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="com.greenlife.dao.*"
+	import="com.greenlife.model.*"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>订单支付</title>
+        <title>田园生活</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">      
 		<link rel="stylesheet"  type="text/css"  href="../css/header.css"/>  
@@ -11,7 +13,7 @@
     <body>
 
 		<div id="header">
-			<div id="leftButton"><img src="../images/leftArrowBlack.png"/></div> <!-- 左上角功能键：返回、或是菜单按键-->
+			<div id="leftButton"><img src="../images/leftArrowBlack.png" onclick="javascript:location.href='orderList.jsp'"/></div> <!-- 左上角功能键：返回、或是菜单按键-->
 			
 			<div id="homeButton"><img src="../images/home.png"></div>   <!-- 右上角功能键，其实就是主页按钮-->
 			<div id="title">订单支付</div>
@@ -62,6 +64,9 @@
             
             <div class="detailLocation">
                 <div class="locationIMGAlign"><img src="../images/mapMarkerBlack.png" class="locationIMG"/></div>
+                
+                
+                
                 <div class="blackNormal" id="detailLocationInfo">北京市海淀区北京交通大学999号宿舍楼101室</div>
             </div>
             
