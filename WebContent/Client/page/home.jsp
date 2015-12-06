@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.greenlife.dao.*" import="com.greenlife.model.*" import="java.util.*"%>
 <!DOCTYPE html>
 <%
-	List<GoodsInfo> goodsList = new ArrayList<>();
+	List<GoodsInfo> goodsList = new ArrayList<GoodsInfo>();
 	goodsList = GoodsInfoDao.getGoodsList();
 %>
 <html>
