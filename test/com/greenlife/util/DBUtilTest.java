@@ -1,16 +1,13 @@
 package com.greenlife.util;
 
-import java.util.List;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.greenlife.dao.SharedListDao;
-import com.greenlife.dao.UserInfoDao;
-import com.greenlife.model.SharedList;
+import com.greenlife.dao.AdressInfoDao;
+import com.greenlife.model.AdressInfo;
 
 public class DBUtilTest {
 
@@ -35,7 +32,14 @@ public class DBUtilTest {
 
 	@Test
 	public void testGetConn() {
-		System.out.println(UserInfoDao.getUserInfo("huangjianqiang").getWechatName());
+		AdressInfo info = new AdressInfo();
+		info.setAddrDetail("sdfsdf");
+		info.setAddrZipcode("100044");
+		info.setReceiverName("黄坚强");
+		info.setWechatId("huangjianqiang");
+		info.setReceiverPhone("133301000332");
+		int ret = AdressInfoDao.addAdressInfo(info);
+		System.out.println("AddrId:" + ret);
 	}
 
 }
