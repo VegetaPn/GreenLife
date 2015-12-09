@@ -36,6 +36,7 @@
 		    	   if(addressInfos.get(i).getAddrId() == addressId){
 		    		   defaultAddressInfo = addressInfos.get(i);
 		    		   index = i;
+		    		   break;
 		    	   }
 		       }
 		     %>

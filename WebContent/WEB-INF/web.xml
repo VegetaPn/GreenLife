@@ -15,4 +15,13 @@
     <url-pattern>/TestServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>ReAddressServlet</servlet-name>
+    <servlet-class>com.greenlife.client.controller.ReAddressServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReAddressServlet</servlet-name>
+    <url-pattern>/ReAddressServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

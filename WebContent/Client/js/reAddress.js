@@ -4,8 +4,7 @@ function validate(){
 	var phoneNo = document.getElementById("iPhnoe").value;
 	var regione = document.getElementById("iRegione").value;
 	var address = document.getElementById("iAddress").value;
-	var reg = /^(\(\d{3,4}\)|\d{3,4}-)?\d{7,8}$/;
-	alert(phoneNo);
+	var reg = /^((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$/;
 	
 	if(consigne == ""){
 		return false;
@@ -21,6 +20,5 @@ function validate(){
 		return false;
 	}
 	
-	alert("success");
 	return true;
 }
