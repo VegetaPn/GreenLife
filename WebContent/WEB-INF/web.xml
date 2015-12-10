@@ -22,6 +22,6 @@
 
   <servlet-mapping>
     <servlet-name>ReAddressServlet</servlet-name>
-    <url-pattern>/ReAddressServlet</url-pattern>
+    <url-pattern>/reAddress</url-pattern>
   </servlet-mapping>
 </web-app>

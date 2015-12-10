@@ -104,8 +104,10 @@ body {
 	position:absolute;
 	left:0;
 	top:0;
+	position:fixed;
 	width:100%;
-	height:overflow;
+	//height:overflow;
+	height:100%;
 	padding-top:30px;
 }
 
@@ -157,12 +159,12 @@ body {
 	}
 
 	.dSuspension{
-		font-size:20px;
+		font-size:16px;
 	}
 	
 	.dSuspension img{
-		width:20px;
-		height:20px;
+		width:16px;
+		height:16px;
 	}
 }
 

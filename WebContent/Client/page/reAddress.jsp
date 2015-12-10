@@ -17,12 +17,11 @@
 			<div id="homeButton"><img src="../images/home.png"></div>   <!-- 右上角功能键，其实就是主页按钮-->
 			<div id="title">收货地址</div>
 		</div>
-		 <% String wechatId = "huangjianqiang";%>
 		<div id="content">
 		
 			<!-- 在此加入各自的内容物-->
 			<div class="blank"></div>
-			<form action="/GreenLife/ReAddressServlet" method="post" onsubmit="return validate()">
+			<form action="/GreenLife/reAddress" method="post" onsubmit="return validate()">
 				<div class="dPanel">
 					<div class="cell">
 					   <span>收货人</span><br/>
@@ -34,11 +33,15 @@
 					</div>
 					<div class="cell">
 					   <span>地区信息</span><br/>
-					   <input type="text" id="iRegione" name="iRegione" class="input" value="北京 北京 海淀区"/>
+					   <input type="text" id="iRegione" name="iRegione" class="input" value="北京  海淀区"/>
 					</div>
 					<div class="cell">
 					   <span>详细地址</span><br/>
 					   <input type="text" id="iAddress" name="iAddress" class="input" value="北京交通大学巴拉巴拉"/>
+					</div>
+					<div class="cell">
+					   <span>邮编</span><br/>
+					   <input type="text" id="zipAddress" name="zipAddress" class="input" value="100044"/>
 					</div>
 					<div class="cell">
 					   <input type="checkbox" id="iCheck" name="iCheck"/>

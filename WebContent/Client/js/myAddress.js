@@ -10,6 +10,7 @@ function init(){
 		
 	document.getElementById("dMask").onclick = hiddMask;
 	document.getElementById("setDefault").addEventListener('click',function(e){e.stopPropagation()},false);
+	document.getElementById("setDefault").onclick = operate;
 	
 }
 
@@ -21,6 +22,10 @@ function displayMask(){
 
 function hiddMask(){
    document.getElementById("dMask").style.display = "none";
+}
+
+function operate(){
+	
 }
 
 function resize(){
