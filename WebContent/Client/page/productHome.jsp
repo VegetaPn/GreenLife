@@ -13,7 +13,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
 Date startTime = sdf.parse(goodsInfo.getStartTime());
 Date endTime = sdf.parse(goodsInfo.getStartTime());
 Date date = new Date();
-String salesState;
+String salesState = null;
 if(date.getTime()<startTime.getTime()){
 	salesState = "预售中";
 }else if(date.getTime()>endTime.getTime()){
@@ -26,6 +26,8 @@ if(goodsInfo.getGoodsSoldnum()>=goodsInfo.getGoodsTotalnum()){
 	salesState = "已售完";
 }
 
+
+
 %>
 
 <!DOCTYPE html>
@@ -37,7 +39,8 @@ if(goodsInfo.getGoodsSoldnum()>=goodsInfo.getGoodsTotalnum()){
         <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 		<link rel="stylesheet" href="../css/header.css" type="text/css">
         <link rel="stylesheet" href="../css/productHome.css">
-		
+		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" src="../js/productHome.js"></script>
     </head>
     <body>
 		<div id="header">
@@ -53,8 +56,23 @@ if(goodsInfo.getGoodsSoldnum()>=goodsInfo.getGoodsTotalnum()){
 		<div id="product">
 			<div id="productImgDiv"><img id="productImg" src="<%=goodsInfo.getPackagePath()+"goods/"+goodsInfo.getGoodsId()+ "/small.png"%>"/></div>
 			<span class="arcLabel" id="salesState"><%=salesState%></span>
-			<span class="arcLabel" id="orderNum">订单数：387</span>
+			<span class="arcLabel" id="orderNum">订单数：<%= %></span>
 			<img id="heart" src="../images/collect.png"/>
+			<script>
+			$(document).ready(function(){
+ 				 $("#orderNum").click(function(){
+	   			 	 $.ajax({
+	    				type: "post",//数据提交的类型（post或者get）
+	       				url: "collect",//数据提交得地址
+	        			data: {goodsId:<%=goodsId%>,collect:collect},//提交的数据(自定义的一些后台程序需要的参数)
+	        			dataType: "json",//返回的数据类型
+	        			success: function(data){//请求成功后返执行的方法（这里处理添加五条的数据 data为处理之后的返回数据）
+		       				
+	        		 	}
+	   			 	});
+  				});
+			});</script>
+			
 			<div id="productName">
 				<%=goodsInfo.getGoodsName()%>
 			</div>
