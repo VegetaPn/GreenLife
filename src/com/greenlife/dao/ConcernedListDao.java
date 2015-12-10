@@ -15,6 +15,23 @@ public class ConcernedListDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static boolean CancleConcerned(String wechatId, int goodsId){
+		String sql = "delete from concerned_list where wechat_id = ? and goods_id = ?";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, wechatId);
+			ps.setInt(2, goodsId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
+	
 	/*
 	 * 根据商品id获取关注商品的用户wechat_id，结果以字符串list返回
 	 */

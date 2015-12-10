@@ -1,5 +1,7 @@
 package com.greenlife.util;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -7,7 +9,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.greenlife.dao.AdressInfoDao;
+import com.greenlife.dao.ConcernedListDao;
+import com.greenlife.dao.GoodsOrderDao;
 import com.greenlife.model.AdressInfo;
+import com.greenlife.model.GoodsOrder;
 
 public class DBUtilTest {
 
@@ -32,14 +37,8 @@ public class DBUtilTest {
 
 	@Test
 	public void testGetConn() {
-		AdressInfo info = new AdressInfo();
-		info.setAddrDetail("sdfsdf");
-		info.setAddrZipcode("100044");
-		info.setReceiverName("黄坚强");
-		info.setWechatId("huangjianqiang");
-		info.setReceiverPhone("133301000332");
-		int ret = AdressInfoDao.addAdressInfo(info);
-		System.out.println("AddrId:" + ret);
+		List<GoodsOrder> orderList = GoodsOrderDao.getGoodsOrderList();
+		System.out.println(orderList.size());
 	}
 
 }

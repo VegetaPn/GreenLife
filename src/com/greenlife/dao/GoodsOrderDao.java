@@ -14,6 +14,30 @@ public class GoodsOrderDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static int getGoodsOrderNum(int goodsId){
+		int num = -1;
+		
+		List<GoodsOrder> orderList = new ArrayList<>();
+		String sql = "select count(*) as cnt from goods_order where goods_id = ?";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, goodsId);
+			rs = ps.executeQuery();
+			rs.next();
+			num = rs.getInt("cnt");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return num;
+	}
+	
+	
 	public static boolean addGoodsOrder(GoodsOrder order){
 		String sql = "INSERT INTO `greenlife`.`goods_order` (`order_id`, `goods_id`, "
 				+ "`wechat_id`, `addr_id`, `goods_num`, `trade_time`, `comment`, "
