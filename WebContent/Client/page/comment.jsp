@@ -1,5 +1,21 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+import="com.greenlife.dao.*" import="com.greenlife.model.*"
+import="java.util.*" 
+import="java.text.SimpleDateFormat"
+import="com.greenlife.util.PropertiesUtil"
+%>
 <!DOCTYPE html>
+
+<% 
+String wechatId = (String)session.getAttribute("wechatId");
+wechatId = "huangjianqiang";//测试
+int goodsId = 1;//Integer.parseInt(request.getParameter("goosId"));
+GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
+String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"normal.jpg";
+List<Comment> commentList = CommentDao.getCommentList(goodsId);
+
+int commentListSize = commentList.size();
+%>
 
 <html>
     <head>
@@ -22,14 +38,14 @@
 		
 		<div id="content">
 		
-		
 		<div id="product">
-			<div id="productImgDiv"><img id="productImg" src="../images/product.jpg"/></div>
+			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
+						
 			<div id="productName">
-				2015现磨五常稻花香大米
+				<%=goodsInfo.getGoodsName()%>
 			</div>
-			
 		</div>
+		
 		
 		<div id="commentDiv">
 			<hr/>
@@ -40,35 +56,43 @@
 
 		
 			<div id="commentInfo">
-				<div>
-					<div class="avatarDiv"><img class="avatar" src="../images/1.png"/></div>
-
-					<div class="name">秦始皇</div>
-					<div class="time">一天前</div>
-				</div>
-				
-				
-				<div class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.</div>
-				<hr/>	
-				
-				<div>
-					<div class="avatarDiv"><img class="avatar" src="../Images/2.png"/></div>
-
-					<div class="name">姚晨</div>
-					<div class="time">两天前</div>
-				</div>
-				
-				
-				<div class="comment">
-				Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar
-				tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-				Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien 
-				nunc eget odio.
-				<br/>
-				<img class="commentImg" src="../images/product.jpg"/>
-				</div>
-				<hr/>	
-				
+				<%
+						for(int i=commentListSize-1;i>=0;i--){
+							Comment comment = commentList.get(i);
+							
+							UserInfo userInfo = UserInfoDao.getUserInfo(comment.getWechatId());
+							
+					%>
+						<div>
+							<div class="avatarDiv"><img class="avatar" src="<%=userInfo.getPhotoPath()%>"/></div>
+	
+							<div class="name"><%=userInfo.getWechatName()%></div>
+							<div class="time"><%=comment.getTime()%></div>
+						</div>
+						
+						<div class="comment">
+						<%=comment.getContent()%>
+						
+						
+						<%
+							if(!comment.getImgPath().equals("")){
+								
+							
+						%>
+							<br/>
+							<img class="commentImg" src=""/>
+							
+							
+						<% 
+							}
+						%>
+						</div>
+						<hr/>
+						
+					<%
+						}
+						
+					%>	
 						
 			</div>
 		</div>

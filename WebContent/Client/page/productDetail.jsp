@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
     import="com.greenlife.dao.*" import="com.greenlife.model.*" import="java.util.*"
+    import="com.greenlife.util.PropertiesUtil"
 %>
 
 <!DOCTYPE html>
@@ -9,7 +10,8 @@
 	wechatId = "huangjianqiang";//测试
 	int goodsId = 1;//Integer.parseInt(request.getParameter("goosId"));
 	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
-	String detailPath = goodsInfo.getPackagePath()+"goods/"+goodsInfo.getGoodsId()+ "/detail.jpg";
+	String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"normal.jpg";
+	String detailPath = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"detail.jpg";
 %>
 
 
@@ -35,7 +37,7 @@
 		
 		
 			<div id="product">
-			<div id="productImgDiv"><img id="productImg" src="<%=goodsInfo.getPackagePath()+"goods/"+goodsInfo.getGoodsId()+ "/normal.jpg"%>"/></div>
+			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
 						
 			<div id="productName">
 				<%=goodsInfo.getGoodsName()%>
