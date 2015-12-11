@@ -8,12 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.greenlife.model.SharedList;
-import com.greenlife.model.UserInfo;
 import com.greenlife.util.DBUtil;
 
 public class SharedListDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
+	
+	public static boolean deleteShared(String wechatId, String friendId){
+		String sql = "delete from shared_list where wechat_id = ? and friend_wecaht_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, wechatId);
+			ps.setString(2, friendId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
 	
 	public static boolean addSharedList(SharedList list){
 		String sql = "INSERT INTO `greenlife`.`shared_list` "

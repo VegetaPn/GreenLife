@@ -1,22 +1,17 @@
 window.onload = init;
 
 window.onresize = resize;
+var currentid = -1;
 
 function init(){
     var dCusInfors = document.getElementsByClassName("dCusInfor");
-	for(var i=0;i<dCusInfors.length;i++){
-	    dCusInfors[i].onclick = displayMask;
-	}
-		
 	document.getElementById("dMask").onclick = hiddMask;
 	document.getElementById("setDefault").addEventListener('click',function(e){e.stopPropagation()},false);
-	
 }
 
-function displayMask(){
+function displayMask(obj){
    document.getElementById("dMask").style.display = "block";
-
-   resize();
+   currentid = obj.id;
 }
 
 function hiddMask(){
@@ -27,13 +22,13 @@ function resize(){
    var screenHeight = window.screen.height;
    var maskHeight = document.getElementById("dMask").offsetHeight;
    var bodyHeight = document.body.clientHeight;
-   
+		   
    var max = maskHeight;
    if(max<screenHeight)
       max = screenHeight;
    else if(max<bodyHeight)
       max = bodyHeight;
- 
+		 
    document.getElementById("dMask").style.height = max+"px";
-   
+		   
 }

@@ -14,6 +14,25 @@ public class FriendsListDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static boolean deleteFriend(String wechatId, String friendId){
+		String sql = "delete from friends_list where wechat_id = ? and friend_wecaht_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, wechatId);
+			ps.setString(2, friendId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
+	
 	/*
 	 * 获取好友wechatid列表
 	 */

@@ -8,12 +8,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.greenlife.model.AdressInfo;
-import com.greenlife.model.GoodsInfo;
 import com.greenlife.util.DBUtil;
 
 public class AdressInfoDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
+	
+	public static boolean deleteAdressList(int addrId){
+		String sql = "delete from address_info where addr_id = ?";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, addrId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
 	
 	public static List<AdressInfo> getAdressList(String wechatId){
 		List<AdressInfo> list = new ArrayList<AdressInfo>();
@@ -66,35 +81,49 @@ public class AdressInfoDao {
 		return info;
 	}
 	
-	
-	public static boolean addAdressInfo(AdressInfo info){
+	//return value -1 means add error
+	public static int addAdressInfo(AdressInfo info){
+		int addrId = -1;
 		String sql = "INSERT INTO `greenlife`.`address_info` "
-			+"(`addr_id`, `addr_detail`, `addr_zipcode`, "
+			+"(`addr_detail`, `addr_zipcode`, "
 				+"`receiver_phone`, `wechat_id`, `receiver_name`)"
-				+" VALUES (?, ?, ?, ?, ?, ?);";
+				+" VALUES (?, ?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, info.getAddrId());
-			ps.setString(2, info.getAddrDetail());
-			ps.setString(3, info.getAddrZipcode());
-			ps.setString(4, info.getReceiverPhone());
-			ps.setString(5, info.getWechatId());
-			ps.setString(6, info.getReceiverName());
+			//ps.setInt(1, info.getAddrId());
+			ps.setString(1, info.getAddrDetail());
+			ps.setString(2, info.getAddrZipcode());
+			ps.setString(3, info.getReceiverPhone());
+			ps.setString(4, info.getWechatId());
+			ps.setString(5, info.getReceiverName());
 			ps.execute();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			return -1;
 		} finally {
 			clearUp(conn);
 		}
-		return true;
+		sql = "select max(addr_id) as id from address_info";
+		conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			rs.next();
+			addrId = rs.getInt("id");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+		return addrId;
 	}
 	
 	public static boolean updateAdressInfo(AdressInfo info){
 		String sql = "UPDATE `greenlife`.`address_info` SET "
 				+"addr_detail = (?), "
-				+"addr_zipcode = (?), "
+				+"and addr_zipcode = (?), "
 				+"receiver_phone = (?), "
 				+"wechat_id = (?), "
 				+"receiver_name = (?) "

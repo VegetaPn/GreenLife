@@ -12,6 +12,24 @@ public class TodayGroupDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static boolean deleteTodayGroup(int groupId){
+		String sql = "delete from today_group where group_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, groupId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
+	
 	public static boolean addTodayGroup(TodayGroup group){
 		String sql = "INSERT INTO `greenlife`.`today_group` "
 				+ "(`group_id`, `start_time`, `group_state`) VALUES (?, ?, ?);";

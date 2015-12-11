@@ -14,6 +14,47 @@ public class GoodsOrderDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static boolean deleteGoodsOrder(int orderId){
+		String sql = "delete from goods_order where order_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, orderId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
+	
+	public static int getGoodsOrderNum(int goodsId){
+		int num = -1;
+		
+		String sql = "select count(*) as cnt from goods_order where goods_id = ?";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, goodsId);
+			rs = ps.executeQuery();
+			rs.next();
+			num = rs.getInt("cnt");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return num;
+	}
+	
+	
 	public static boolean addGoodsOrder(GoodsOrder order){
 		String sql = "INSERT INTO `greenlife`.`goods_order` (`order_id`, `goods_id`, "
 				+ "`wechat_id`, `addr_id`, `goods_num`, `trade_time`, `comment`, "
@@ -96,8 +137,9 @@ public class GoodsOrderDao {
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
 			ps.setString(1, wechat_id);
+			rs = ps.executeQuery();
+			
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
 				

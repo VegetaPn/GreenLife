@@ -1,26 +1,26 @@
 # GreenLife
-ç”°å›­ç”Ÿæ´»
+ÌïÔ°Éú»î
 
-æœ¬é¡¹ç›®ä¸ºç”°å›­ç”Ÿæ´»å®¢æˆ·ç«¯&ç®¡ç†ç«¯çš„åŠ¨æ€Webé¡¹ç›® <br>
-å¼€å‘è¯­è¨€ï¼šJspã€Htmlã€Java <br>
-å¼€å‘çŽ¯å¢ƒï¼šEclipse Mars <br>
-Tomcatç‰ˆæœ¬ä¸º7.0 <br>
-Mysqlç‰ˆæœ¬ä¸ºï¼Ÿ <br>
+±¾ÏîÄ¿ÎªÌïÔ°Éú»î¿Í»§¶Ë&¹ÜÀí¶ËµÄ¶¯Ì¬WebÏîÄ¿ <br>
+¿ª·¢ÓïÑÔ£ºJsp¡¢Html¡¢Java <br>
+¿ª·¢»·¾³£ºEclipse Mars <br>
+Tomcat°æ±¾Îª7.0 <br>
+Mysql°æ±¾Îª£¿ <br>
 
-å¦‚æžœéœ€è¦å¼•å…¥jaråŒ…ï¼Œè¯·æ”¾åœ¨WebContent/WEB-INF/libæ–‡ä»¶å¤¹ä¸‹ <br>
+Èç¹ûÐèÒªÒýÈëjar°ü£¬Çë·ÅÔÚWebContent/WEB-INF/libÎÄ¼þ¼ÐÏÂ <br>
 
-å®¢æˆ·ç«¯çš„ç½‘é¡µå’Œèµ„æºæ–‡ä»¶æ”¾åœ¨WebContent/Clientæ–‡ä»¶å¤¹ä¸‹(è‡ªä¸»å®šä¹‰è¯¥æ–‡ä»¶å¤¹çš„æž„æž¶)ã€‚<br>
-æœåŠ¡ç«¯çš„ç½‘é¡µå’Œèµ„æºæ–‡ä»¶æ”¾åœ¨WebContent/Serveræ–‡ä»¶å¤¹ä¸‹(è‡ªä¸»å®šä¹‰è¯¥æ–‡ä»¶å¤¹çš„æž„æž¶)ã€‚<br>
-åŒ…åçš„å‘½åè¯·æŒ‰ç…§com.greenlife.* <br>
+¿Í»§¶ËµÄÍøÒ³ºÍ×ÊÔ´ÎÄ¼þ·ÅÔÚWebContent/ClientÎÄ¼þ¼ÐÏÂ(×ÔÖ÷¶¨Òå¸ÃÎÄ¼þ¼ÐµÄ¹¹¼Ü)¡£<br>
+·þÎñ¶ËµÄÍøÒ³ºÍ×ÊÔ´ÎÄ¼þ·ÅÔÚWebContent/ServerÎÄ¼þ¼ÐÏÂ(×ÔÖ÷¶¨Òå¸ÃÎÄ¼þ¼ÐµÄ¹¹¼Ü)¡£<br>
+°üÃûµÄÃüÃûÇë°´ÕÕcom.greenlife.* <br>
 
-ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ <br>
-ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ <br>
-WebContent/Serveræ–‡ä»¶å¤¹è¯´æ˜Žï¼š <br>
-æ–‡ä»¶å¤¹è¯´æ˜Žï¼š<br>
-CSS:bootstrap CSSæ–‡ä»¶å’Œè‡ªå®šä¹‰CSSæ–‡ä»¶å­˜å‚¨ä½ç½®<br>
-JS:è‡ªå®šä¹‰JSæ–‡ä»¶å­˜å‚¨ä½ç½®<br>
-Scripts:bootstrap JSæ–‡ä»¶å­˜å‚¨ä½ç½®<br>
-Page:è‡ªå®šä¹‰jspå’Œhtmlæ–‡ä»¶å­˜æ”¾ä½ç½®ã€‚<br>
+£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­ <br>
+£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­£­ <br>
+WebContent/ServerÎÄ¼þ¼ÐËµÃ÷£º <br>
+ÎÄ¼þ¼ÐËµÃ÷£º<br>
+CSS:bootstrap CSSÎÄ¼þºÍ×Ô¶¨ÒåCSSÎÄ¼þ´æ´¢Î»ÖÃ<br>
+JS:×Ô¶¨ÒåJSÎÄ¼þ´æ´¢Î»ÖÃ<br>
+Scripts:bootstrap JSÎÄ¼þ´æ´¢Î»ÖÃ<br>
+Page:×Ô¶¨ÒåjspºÍhtmlÎÄ¼þ´æ·ÅÎ»ÖÃ¡£<br>
 <br>
-Page/header.jspå’Œfooter.htmlæ˜¯åŽå°é¡µé¢çš„æ¨¡ç‰ˆé¡µã€‚<br>
-Page/example.jspç¤ºèŒƒäº†æ¨¡ç‰ˆé¡µçš„å¼•ç”¨æ–¹æ³•ã€‚<br>
+Page/header.jspºÍfooter.htmlÊÇºóÌ¨Ò³ÃæµÄÄ£°æÒ³¡£<br>
+Page/example.jspÊ¾·¶ÁËÄ£°æÒ³µÄÒýÓÃ·½·¨¡£<br>

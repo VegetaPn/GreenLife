@@ -12,6 +12,44 @@ public class ReportListDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static boolean deleteReportList(int reportId){
+		String sql = "delete from report_list where report_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, reportId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
+	
+	public static ReportList getReportList(int reportId){
+		String sql = "select * from `greenlife`.`report_list` where report_id = ?;";
+		Connection conn = new DBUtil().getConn();
+		ReportList rpList = new ReportList();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, reportId);
+			rs = ps.executeQuery();
+			rs.next();
+			rpList.setReportId(reportId);
+			rpList.setReportNum(rs.getInt("report_num"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+		return rpList;
+	}
+	
 	public static boolean addReportList(ReportList list){
 		String sql = "INSERT INTO `greenlife`.`report_list` (`report_id`, `report_num`) VALUES (?, ?);";
 		Connection conn = new DBUtil().getConn();

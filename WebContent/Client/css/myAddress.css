@@ -18,6 +18,15 @@ body {
 
 
 
+.dDeCusMess{
+	 width:100%;
+	 overflow:hidden;
+	 border-top:1px solid gray; 
+	 border-bottom:1px solid #333333;
+	 color:black;
+	 display:none;
+}
+
 .dCusMess{
 	 width:100%;
 	 overflow:hidden;
@@ -82,15 +91,15 @@ body {
 	width:10%;
 }
 
-#sCusName1{
+#sDeCusName{
 	color:#F76F00;
 }
 
-#sPhoneNum1{
+#sDePhoneNum{
 	color:#F76F00;
 }
 
-#dAddress1{
+#dDeAddress{
 	color:#F76F00;
 }
 
@@ -104,8 +113,10 @@ body {
 	position:absolute;
 	left:0;
 	top:0;
+	position:fixed;
 	width:100%;
-	height:overflow;
+	//height:overflow;
+	height:100%;
 	padding-top:30px;
 }
 
@@ -157,12 +168,12 @@ body {
 	}
 
 	.dSuspension{
-		font-size:20px;
+		font-size:16px;
 	}
 	
 	.dSuspension img{
-		width:20px;
-		height:20px;
+		width:16px;
+		height:16px;
 	}
 }
 

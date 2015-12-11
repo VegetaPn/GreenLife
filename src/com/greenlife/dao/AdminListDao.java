@@ -8,13 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.greenlife.model.AdminList;
-import com.greenlife.model.AdressInfo;
 import com.greenlife.util.DBUtil;
 
 
 public class AdminListDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
+	
+	public static boolean deleteAdminList(String userId){
+		String sql = "delete from admin_list where user_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
 	
 	public static boolean loginCheck(String userId, String pwd){
 		String sql = "select * from admin_list where user_id = ?";
