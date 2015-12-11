@@ -71,6 +71,34 @@ public class CommentDao {
 		return comment_id;
 	}
 	
+	public static boolean updateCommentt(Comment cmt){
+		int comment_id = -1;
+		
+		String sql = "UPDATE `greenlife`.`comment` SET"
+				+ "comment_content = (?), "
+				+ "time = (?), "
+				+ "img_path = (?) "
+				+ "WHERE goods_id = (?) AND wechat_id=(?);";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, cmt.getContent());
+			ps.setString(2, cmt.getTime());
+			ps.setString(3, cmt.getImgPath());
+			ps.setInt(4, cmt.getGoodsId());
+			ps.setString(5, cmt.getWechatId());
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
+	
 	public static List<Comment> getCommentList(int goodsId){
 		List<Comment> list = new ArrayList<Comment>();
 		

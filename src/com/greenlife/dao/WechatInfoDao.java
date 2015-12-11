@@ -45,6 +45,44 @@ public class WechatInfoDao {
 		return true;
 	}
 	
+public static boolean updateWechatInfo(WechatInfo info){
+		
+		String sql = "UPDATE `greenlife`.`wechat_info` SET "
+				+ "nickname = (?), "
+				+ "sex = (?), "
+				+ "province = (?), "
+				+ "city = (?), "
+				+ "country = (?), "
+				+ "headimgurl = (?), "
+				+ "privilege = (?), "
+				+ "unionid = (?) "
+				+ "WHERE wechat_id = (?);";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, info.getNickname());
+			ps.setString(2, info.getSex());
+			ps.setString(3, info.getProvince());
+			ps.setString(4, info.getCity());
+			ps.setString(5, info.getCountry());
+			ps.setString(6, info.getHeadimgurl());
+			ps.setString(7, info.getPrivilege());
+			ps.setString(8, info.getUnionId());
+			ps.setString(9, info.getWechatId());
+			
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
+	
 	public static boolean deleteWechatInfo(String wechatId){
 		String sql = "delete from wechat_info where wechat_id = ?;";
 		
