@@ -15,8 +15,6 @@
 
 
 
-
-
 </head>
 <body>
 	<div id="header">
@@ -38,22 +36,20 @@
 	    //获取订单列表
 	    List<GoodsOrder> orderList = new ArrayList<>();
 	    orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
-	    int orderAmount=orderList.size();
+	    int orderAmount = orderList.size();
 	    System.out.println(orderAmount);
-	    orderAmount=1;
-	    GoodsOrder orderToShow=new GoodsOrder();
+	    orderAmount = 1;
+	    GoodsOrder orderToShow = new GoodsOrder();
 	%>
 
 	<div id="content">
 
 		<%
-		    for (int goodsOrderIndex = 0; goodsOrderIndex < orderAmount; goodsOrderIndex++) 
-		    {
-				orderToShow=orderList.get(goodsOrderIndex);
-				int goodsId=orderToShow.getGoodsId();
-				GoodsInfo goodsinfo=GoodsInfoDao.getGoodsInfo(goodsId);
-				//GoodsInfo goodsinfo=new GoodsInfo();
-				
+		    for (int goodsOrderIndex = 0; goodsOrderIndex < orderAmount; goodsOrderIndex++) {
+				//orderToShow=orderList.get(goodsOrderIndex);
+				//int goodsId=orderToShow.getGoodsId();
+				//GoodsInfo goodsinfo=GoodsInfoDao.getGoodsInfo(goodsId);
+				GoodsInfo goodsinfo = new GoodsInfo();
 		%>
 
 		<!--一个订单条目-->
@@ -76,8 +72,7 @@
 						<img class="productImg" src="../images/product.jpg" />
 					</div>
 					<!--订单详情-->
-					<div class="detailMessage"
-						onclick="javascript:location.href='detailOrderMessage.jsp?goodsName=lalala&goodsPrice=666666&recieverName=txy&recieverPhone=13333333333&sendTime=20150613&mailPrice=333333&totalPrice=999999&address=418/16#'">
+					<div class="detailMessage" onclick="javascript:location.href='detailOrderMessage.jsp?orderIndex=<%=goodsOrderIndex%>'">
 
 						<div class="productName">
 							<span class="blackBold"><%=goodsinfo.getGoodsName()%></span>
@@ -91,15 +86,15 @@
 
 						<div class="cargoReciever">
 							<span class="blackNormal">收货人：</span><span class="orangeText"
-								id="recieverName">唐兴元</span>
+								id="recieverName"><%=orderToShow.getWechatId()%></span>
 						</div>
 
 						<div class="shouldPay">
 							<span class="blackNormal">应付款：</span><span class="orangeText"
-								id="groupPrice"><%=orderToShow.getTotalPrice()%></span><span class="blackNormal"
-								id="originPrice">元 共</span><span class="orangeText"
-								id="groupPrice"><%=orderToShow.getGoodsNum()%></span><span class="blackNormal"
-								id="originPrice">件</span>
+								id="groupPrice"><%=orderToShow.getTotalPrice()%></span><span
+								class="blackNormal" id="originPrice">元 共</span><span
+								class="orangeText" id="groupPrice"><%=orderToShow.getGoodsNum()%></span><span
+								class="blackNormal" id="originPrice">件</span>
 						</div>
 
 						<div class="orderTime">

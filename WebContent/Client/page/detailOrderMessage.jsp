@@ -35,7 +35,9 @@
 
 		<%
 			
-			
+			int orderIndex=Integer.parseInt(request.getParameter("orderIndex"));
+			System.out.println("orderIndex:"+orderIndex);
+		
 		    int orderType = 0;
 		    int orderId;
 		    //int goodsId;
