@@ -7,13 +7,31 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.greenlife.model.AdressInfo;
 import com.greenlife.model.ConcernedList;
 import com.greenlife.util.DBUtil;
 
 public class ConcernedListDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
+	
+	public static boolean deleteConcernedList(String wechatId, int goodsId){
+		String sql = "delete from concerned_list where wechat_id = ? and goods_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, wechatId);
+			ps.setInt(2, goodsId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
 	
 	public static boolean CancleConcerned(String wechatId, int goodsId){
 		String sql = "delete from concerned_list where wechat_id = ? and goods_id = ?";

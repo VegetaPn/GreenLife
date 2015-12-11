@@ -15,6 +15,23 @@ public class GoodsInfoDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 
+	public static boolean deleteGoodsInfo(int goodsId){
+		String sql = "delete from goods_info where goods_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, goodsId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
 	
 	public static boolean addGoodsInfo(GoodsInfo info){
 		String sql = "INSERT INTO `greenlife`.`goods_info` "

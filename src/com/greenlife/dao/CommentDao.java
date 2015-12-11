@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.greenlife.model.Comment;
-import com.greenlife.model.UserInfo;
 import com.greenlife.util.DBUtil;
 
 public class CommentDao {
@@ -16,11 +15,30 @@ public class CommentDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static boolean deleteComment(String wechatId, int goodsId){
+		String sql = "delete from comment where wechat_id = ? and goods_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, wechatId);
+			ps.setInt(2, goodsId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
+	
 	public static boolean addCommentList(Comment cmt){
-		List<Comment> list = new ArrayList<Comment>();
 		
 		String sql = "INSERT INTO `greenlife`.`comment` "
-				+ "(`goods_id`, `wechat_id`, `comment_content`) VALUES (?, ?, ?);";
+				+ "(`goods_id`, `wechat_id`, `comment_content`, `time`, `img_path`) "
+				+ "VALUES (?, ?, ?, ?, ?);";
 		
 		Connection conn = new DBUtil().getConn();
 		try {
@@ -28,6 +46,8 @@ public class CommentDao {
 			ps.setInt(1, cmt.getGoodsId());
 			ps.setString(2, cmt.getWechatId());
 			ps.setString(3, cmt.getContent());
+			ps.setString(4, cmt.getTime());
+			ps.setString(5, cmt.getImgPath());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -53,6 +73,8 @@ public class CommentDao {
 				cmt.setWechatId(rs.getString("wechat_id"));
 				cmt.setGoodsId(rs.getInt("goods_id"));
 				cmt.setContent(rs.getString("comment_content"));
+				cmt.setTime(rs.getString("time"));
+				cmt.setImgPath(rs.getString("img_path"));
 				list.add(cmt);
 			}
 		} catch (SQLException e) {

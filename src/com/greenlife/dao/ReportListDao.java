@@ -12,6 +12,24 @@ public class ReportListDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static boolean deleteReportList(int reportId){
+		String sql = "delete from report_list where report_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, reportId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
+	
 	public static ReportList getReportList(int reportId){
 		String sql = "select * from `greenlife`.`report_list` where report_id = ?;";
 		Connection conn = new DBUtil().getConn();

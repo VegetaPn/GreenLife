@@ -14,10 +14,27 @@ public class GoodsOrderDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static boolean deleteGoodsOrder(int orderId){
+		String sql = "delete from goods_order where order_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, orderId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
+	
 	public static int getGoodsOrderNum(int goodsId){
 		int num = -1;
 		
-		List<GoodsOrder> orderList = new ArrayList<>();
 		String sql = "select count(*) as cnt from goods_order where goods_id = ?";
 		
 		Connection conn = new DBUtil().getConn();

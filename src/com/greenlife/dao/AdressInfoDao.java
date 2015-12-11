@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.greenlife.model.AdressInfo;
-import com.greenlife.model.GoodsInfo;
 import com.greenlife.util.DBUtil;
 
 public class AdressInfoDao {

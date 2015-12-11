@@ -7,13 +7,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.greenlife.model.GoodsInfo;
 import com.greenlife.model.UserInfo;
 import com.greenlife.util.DBUtil;
 
 public class UserInfoDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
+	
+	public static boolean deleteUserInfo(String wechatId){
+		String sql = "delete from user_info where wechat_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, wechatId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return true;
+	}
 	
 	public static boolean addUserInfo(UserInfo info){
 		String sql = "INSERT INTO `greenlife`.`user_info` "

@@ -5,7 +5,21 @@ public class Comment {
 	private String wechatId;
 	private int goodsId;
 	private String content;
+	private String time;
+	private String imgPath;
 	
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getImgPath() {
+		return imgPath;
+	}
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
+	}
 	public String getWechatId() {
 		return wechatId;
 	}

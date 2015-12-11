@@ -1,15 +1,13 @@
 package com.greenlife.util;
 
-import java.util.List;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.greenlife.dao.CommentDao;
-import com.greenlife.model.Comment;
+import com.greenlife.dao.WechatInfoDao;
+import com.greenlife.model.WechatInfo;
 
 public class DBUtilTest {
 
@@ -34,13 +32,18 @@ public class DBUtilTest {
 
 	@Test
 	public void testGetConn() {
-		Comment cmt = new Comment();
-		cmt.setContent("sdfsdkfjsl");
-		cmt.setGoodsId(1);
-		cmt.setWechatId("huangjianqiang");
-		CommentDao.addCommentList(cmt);
-		List<Comment> list = CommentDao.getCommentList(1);
-		System.out.println(list.size());
+		WechatInfo info = new WechatInfo();
+		info.setCity("234");
+		info.setCountry("fsdfsdf");
+		info.setHeadimgurl("sdfsd");
+		info.setNickname("sdfsd");
+		info.setPrivilege("sdfsdfsd");
+		info.setProvince("flkfjsd");
+		info.setSex("male");
+		info.setUnionId("2323423");
+		info.setWechatId("huangjianqiang");
+		WechatInfoDao.addWechatInfo(info);
+		info = WechatInfoDao.getWechatInfo("huangjianqiang");
 	}
 
 }
