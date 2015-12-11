@@ -15,6 +15,22 @@ public class AdressInfoDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static boolean deleteAdressList(int addrId){
+		String sql = "delete from address_info where addr_id = ?";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, addrId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
+	
 	public static List<AdressInfo> getAdressList(String wechatId){
 		List<AdressInfo> list = new ArrayList<AdressInfo>();
 		String sql = "select * from address_info where wechat_id = ?";

@@ -8,11 +8,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.greenlife.dao.AdressInfoDao;
-import com.greenlife.dao.ConcernedListDao;
-import com.greenlife.dao.GoodsOrderDao;
-import com.greenlife.model.AdressInfo;
-import com.greenlife.model.GoodsOrder;
+import com.greenlife.dao.CommentDao;
+import com.greenlife.model.Comment;
 
 public class DBUtilTest {
 
@@ -37,8 +34,13 @@ public class DBUtilTest {
 
 	@Test
 	public void testGetConn() {
-		List<GoodsOrder> orderList = GoodsOrderDao.getGoodsOrderList();
-		System.out.println(orderList.size());
+		Comment cmt = new Comment();
+		cmt.setContent("sdfsdkfjsl");
+		cmt.setGoodsId(1);
+		cmt.setWechatId("huangjianqiang");
+		CommentDao.addCommentList(cmt);
+		List<Comment> list = CommentDao.getCommentList(1);
+		System.out.println(list.size());
 	}
 
 }
