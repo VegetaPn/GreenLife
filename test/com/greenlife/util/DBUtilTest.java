@@ -6,9 +6,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.greenlife.dao.GoodsInfoDao;
-import com.greenlife.model.GoodsInfo;
-
 public class DBUtilTest {
 
 //	static DBUtil util;
@@ -32,25 +29,7 @@ public class DBUtilTest {
 
 	@Test
 	public void testGetConn() {
-		GoodsInfo info = new GoodsInfo();
-		info.setEndTime("sdf22332");
-		info.setGoods_unit("sdfsd");
-		info.setGoodsDiscontPrice(23);
-		info.setGoodsName("dsfsd");
-		info.setGoodsPrice(23);
-		info.setGoodsSoldnum(11);
-		info.setGoodsText1("sbsdb");
-		info.setGoodsText2("sdf2323");
-		info.setGoodsTotalnum(2323);
-		info.setIsAdv(1);
-		info.setIsDelete(0);
-		info.setPackagePath("path");
-		info.setReportId(123223);
-		info.setStartTime("ds232232323");
-		info.setTagImage("s23223");
-		info.setTagText("s23223");
-		info.setTagTitle("title");
-		GoodsInfoDao.addGoodsInfo(info);
+		System.out.print(PropertiesUtil.getPath());
 	}
 
 }
