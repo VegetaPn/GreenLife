@@ -137,8 +137,9 @@ public class GoodsOrderDao {
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
 			ps.setString(1, wechat_id);
+			rs = ps.executeQuery();
+			
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
 				

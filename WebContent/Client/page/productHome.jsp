@@ -65,7 +65,11 @@
 		String jsapi_ticket = (String) session.getAttribute("ticket");
 		String noncestr = "abcdefg";
 		String timestamp = Long.toString((new Date()).getTime());
-		String url = request.getRequestURI() + "?" + request.getQueryString();
+		String url = request.getScheme()+"://"+ request.getServerName()+request.getRequestURI();
+	 	
+	 	if(request.getQueryString() != null){
+	 		url = url + "?" + request.getQueryString();
+	 	}
 
 		String signature = WeixinJssdkUtil.buildSignature(noncestr, jsapi_ticket, timestamp, url);
 
@@ -74,7 +78,7 @@
 
 	<script>
 		wx.config({
-		    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+		    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
 		    appId: '<%=appId%>', 
 		    timestamp: '<%=timestamp%>',
 		    nonceStr: '<%=noncestr%>', 
@@ -92,9 +96,6 @@
 		                ]
 		});
 		
-		wx.error(function(res){
-			alert(res);
-		});
 	</script>
 
 

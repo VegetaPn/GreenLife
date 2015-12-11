@@ -36,7 +36,7 @@
 
 	<%
 	    //获取订单列表
-	    List<GoodsOrder> orderList = new ArrayList<>();
+	    List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
 	    orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
 	    int orderAmount=orderList.size();
 	    System.out.println(orderAmount);

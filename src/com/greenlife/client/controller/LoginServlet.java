@@ -110,11 +110,7 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("appid", appid);
 		
 		
-		String forward = "/Client/page/home.jsp";
-		RequestDispatcher rd = request.getRequestDispatcher(forward);
-		rd.forward(request, response);
-		
-		
+		response.sendRedirect("/Client/page/home.jsp");
 		
 	}
 	
