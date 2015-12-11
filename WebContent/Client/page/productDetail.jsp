@@ -1,5 +1,17 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+    import="com.greenlife.dao.*" import="com.greenlife.model.*" import="java.util.*"
+%>
+
 <!DOCTYPE html>
+
+<%
+	String wechatId = (String)session.getAttribute("wechatId");
+	wechatId = "huangjianqiang";//测试
+	int goodsId = 1;//Integer.parseInt(request.getParameter("goosId"));
+	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
+	String detailPath = goodsInfo.getPackagePath()+"goods/"+goodsInfo.getGoodsId()+ "/detail.jpg";
+%>
+
 
 <html>
     <head>
@@ -8,6 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/productDetail.css" type="text/css">
 		<link rel="stylesheet" href="../css/header.css" type="text/css">
+		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
     </head>
     <body>
 	
@@ -22,15 +35,15 @@
 		
 		
 			<div id="product">
-			<div id="productImgDiv"><img id="productImg" src="../images/product.jpg"/></div>
-			<img id="heart" src="../images/collect.png"/>
+			<div id="productImgDiv"><img id="productImg" src="<%=goodsInfo.getPackagePath()+"goods/"+goodsInfo.getGoodsId()+ "/normal.jpg"%>"/></div>
+						
 			<div id="productName">
-				2015现磨五常稻花香大米
+				<%=goodsInfo.getGoodsName()%>
 			</div>
 			</div>
 		
-			
-			
+			<img id="detailImg" src="<%=detailPath%>"/>
+			<!--  
 			<div class="details">
 			    <span>产品标准:</span>
 				<p>介绍文字介绍文字介绍文字介绍文字介绍文字介绍文字介绍文字介绍文字介绍文字介绍文字介绍文字介绍文字</p>
@@ -52,6 +65,8 @@
 				</div>
 				<br/>
 			</div>
+			-->
+			
 			
 		
 		</div>

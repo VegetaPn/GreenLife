@@ -1,11 +1,13 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
 import="com.greenlife.dao.*" import="com.greenlife.model.*"
 import="java.util.*" 
-import="java.text.SimpleDateFormat"%>
+import="java.text.SimpleDateFormat"
+%>
 
 
 <%
 String wechatId = (String)session.getAttribute("wechatId");
+wechatId = "huangjianqiang";//测试
 int goodsId = 1;//Integer.parseInt(request.getParameter("goosId"));
 GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 
@@ -27,6 +29,22 @@ if(goodsInfo.getGoodsSoldnum()>=goodsInfo.getGoodsTotalnum()){
 }
 
 
+int orderNum = GoodsOrderDao.getGoodsOrderNum(goodsId);
+
+
+ReportList reportList = ReportListDao.getReportList(goodsInfo.getReportId());
+
+int reportNum = 0;
+
+if(reportList == null){
+	reportNum = 0;
+}else{
+	reportNum = reportList.getReportNum();
+}
+
+List<Comment> commentList = CommentDao.getCommentList(goodsId);
+
+int commentListSize = commentList.size();
 
 %>
 
@@ -40,38 +58,73 @@ if(goodsInfo.getGoodsSoldnum()>=goodsInfo.getGoodsTotalnum()){
 		<link rel="stylesheet" href="../css/header.css" type="text/css">
         <link rel="stylesheet" href="../css/productHome.css">
 		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
-		<script type="text/javascript" src="../js/productHome.js"></script>
+		
     </head>
     <body>
 		<div id="header">
 			<div id="leftButton"><img src="../images/leftArrowBlack.png"/></div> <!-- 左上角功能键：返回、或是菜单按键-->
 			
 			<div id="homeButton"><img src="../images/home.png"></div>   <!-- 右上角功能键，其实就是主页按钮-->
-			<div id="title">产品主页</div>
+			<div id="title">田园生活</div>
 		</div>
 		
 		<div id="content">
 	
 	
 		<div id="product">
-			<div id="productImgDiv"><img id="productImg" src="<%=goodsInfo.getPackagePath()+"goods/"+goodsInfo.getGoodsId()+ "/small.png"%>"/></div>
+		
+			<div id="productImgDiv"><img id="productImg" src="<%=goodsInfo.getPackagePath()+"goods/"+goodsInfo.getGoodsId()+ "/normal.jpg"%>"/></div>
 			<span class="arcLabel" id="salesState"><%=salesState%></span>
-			<span class="arcLabel" id="orderNum">订单数：<%= %></span>
-			<img id="heart" src="../images/collect.png"/>
+			<span class="arcLabel" id="orderNum">订单数：<%=orderNum %></span>
+			<script>var isCollected = false;</script>
+
+
+			<%
+				boolean isConcerned = false;
+			
+				List<Integer> concerdedGoodsList = ConcernedListDao.getGoodsList(wechatId);
+				for(Integer concerdedGoodsId : concerdedGoodsList){
+					if(goodsId == concerdedGoodsId){
+						isConcerned = true;
+					}
+				}
+				if(!isConcerned){
+			%>
+					<img id="heart" src="../images/collect.png"/>
+					
+			<%
+				}else{
+			%>
+					<img id="heart" src="../images/noCollect.png"/>
+					<script>isCollected = true;</script>
+			<%
+				}
+			%>
+			
 			<script>
 			$(document).ready(function(){
- 				 $("#orderNum").click(function(){
+ 				 $("#heart").click(function(){
 	   			 	 $.ajax({
 	    				type: "post",//数据提交的类型（post或者get）
-	       				url: "collect",//数据提交得地址
-	        			data: {goodsId:<%=goodsId%>,collect:collect},//提交的数据(自定义的一些后台程序需要的参数)
-	        			dataType: "json",//返回的数据类型
-	        			success: function(data){//请求成功后返执行的方法（这里处理添加五条的数据 data为处理之后的返回数据）
-		       				
-	        		 	}
+	       				url: "/GreenLife/collect",//数据提交得地址
+	        			data: {goodsId:"<%=goodsId%>",isCollected:isCollected},//提交的数据(自定义的一些后台程序需要的参数)
+	        			dataType: "text",//返回的数据类型
+	        			success: function(data){//请求成功后返执行的方法
+		       				if(!isCollected){
+		       					isCollected = true;
+		       					$("#heart").attr('src',"../images/noCollect.png"); 
+		       				}else{
+		       					isCollected = false;
+		       					$("#heart").attr('src',"../images/collect.png"); 
+		       				}
+	        		 	},
+	        		 	error: function(){
+	        		        alert(arguments[1]);
+	        			}
 	   			 	});
   				});
-			});</script>
+			});
+			</script>
 			
 			<div id="productName">
 				<%=goodsInfo.getGoodsName()%>
@@ -125,7 +178,7 @@ if(goodsInfo.getGoodsSoldnum()>=goodsInfo.getGoodsTotalnum()){
 		</div>
 		
 		<div class="grayDiv" id="salesProductImgDiv">
-			<img id="salesProductImg" src="<%=goodsInfo.getPackagePath()+"small.png"%>"/>
+			<img id="salesProductImg" src="<%=goodsInfo.getPackagePath()+"goods/"+goodsInfo.getGoodsId()+ "/normal.jpg"%>"/>
 		</div>
 		
 		<div class="grayDiv" id="LastGrayDiv">
@@ -175,7 +228,7 @@ if(goodsInfo.getGoodsSoldnum()>=goodsInfo.getGoodsTotalnum()){
 						
 					</div>
 					<div id="qualityInfo">
-						<span id="qualityFont">已通过2333项田园检测</span><br/><br/>
+						<span id="qualityFont">已通过<%=reportNum%>项田园检测</span><br/><br/>
 						<span id="qualityLink">查看检测详情></span>
 					</div>
 				</div>
@@ -186,39 +239,48 @@ if(goodsInfo.getGoodsSoldnum()>=goodsInfo.getGoodsTotalnum()){
 			<div id="productComment">
 				<div class="labelHeader">
 					<div class="whiteDiv"></div>
-					<span class="label" id="commentLabel">产品评价（35条）</span>
+					<span class="label" id="commentLabel">产品评价（<%=commentListSize%>条）</span>
 				</div>
 				<div id="commentContent">
 					<div id="commentInfo">
+					
+					<%
+						for(int i=commentListSize-1;i>commentListSize-3&&i>=0;i--){
+							Comment comment = commentList.get(i);
+							
+							WechatInfo wechatInfo = WechatInfoDao.getWechatInfo(comment.getWechatId());
+							
+					%>
 						<div>
-							<div class="avatarDiv"><img class="avatar" src="../images/1.png"/></div>
+							<div class="avatarDiv"><img class="avatar" src="<%=wechatInfo.getHeadimgurl()%>"/></div>
 	
-							<div class="name">秦始皇</div>
-							<div class="time">一天前</div>
+							<div class="name"><%=wechatInfo.getNickname()%></div>
+							<div class="time"><%=comment.getTime()%></div>
 						</div>
-						
-						
-						<div class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.</div>
-						<hr/>	
-						
-						<div>
-							<div class="avatarDiv"><img class="avatar" src="../Images/2.png"/></div>
-	
-							<div class="name">姚晨</div>
-							<div class="time">两天前</div>
-						</div>
-						
 						
 						<div class="comment">
-						Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar
-						tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-						Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien 
-						nunc eget odio.
-						<br/>
-						<img class="commentImg" src="../images/product.jpg"/>
-						</div>
-						<hr/>	
+						<%=comment.getContent()%>
 						
+						
+						<%
+							if(comment.getImgPath() != null){
+								
+							
+						%>
+							<br/>
+							<img class="commentImg" src=""/>
+							
+							
+						<% 
+							}
+						%>
+						</div>
+						<hr/>
+						
+					<%
+						}
+						
+					%>	
 						
 					</div>
 					

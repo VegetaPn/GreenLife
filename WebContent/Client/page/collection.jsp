@@ -15,7 +15,7 @@
 			<div id="leftButton"><img src="../images/leftArrowBlack.png"/></div> <!-- 左上角功能键：返回、或是菜单按键-->
 			
 			<div id="homeButton"><img src="../images/home.png"></div>   <!-- 右上角功能键，其实就是主页按钮-->
-			<div id="title">收藏列表</div>
+			<div id="title">田园生活</div>
 		</div>
 		
 		<div id="content">

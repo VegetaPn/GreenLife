@@ -6,6 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.greenlife.dao.ConcernedListDao;
+import com.greenlife.model.ConcernedList;
 
 
 @WebServlet("/CollectServlet")
@@ -21,7 +25,30 @@ public class CollectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String wechatId = null;
 		
+		//测试
+		wechatId ="huangjianqiang";
+		
+		/*
+		HttpSession session = request.getSession();
+		wechatId = (String)session.getAttribute("wechatId");
+		*/
+		Integer goodsId = Integer.parseInt(request.getParameter("goodsId"));
+		String isCollected = request.getParameter("isCollected");
+		
+		
+		if(isCollected.equalsIgnoreCase("false")){
+			ConcernedList list = new ConcernedList();
+			list.setWechatId(wechatId);
+			list.setGoodsId(goodsId);
+			ConcernedListDao.addConcernedList(list);
+		}else{
+	
+			ConcernedListDao.CancleConcerned(wechatId, goodsId);
+		}
+		
+	
 	}
 
 
