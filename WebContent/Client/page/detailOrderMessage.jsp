@@ -1,6 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.greenlife.dao.*"
-	import="com.greenlife.model.*"%>
+	import="com.greenlife.model.*" import="java.util.*" import="java.util.Properties"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +20,8 @@
 
 	<div id="header">
 		<div id="leftButton">
-			<img src="../images/leftArrowBlack.png" onclick="javascript:location.href='orderList.jsp'"/>
+			<img src="../images/leftArrowBlack.png"
+				onclick="javascript:location.href='orderList.jsp'" />
 		</div>
 		<!-- 左上角功能键：返回、或是菜单按键-->
 
@@ -34,36 +35,27 @@
 	<div id="content">
 
 		<%
-			
-			int orderIndex=Integer.parseInt(request.getParameter("orderIndex"));
-			System.out.println("orderIndex:"+orderIndex);
-		
-		    int orderType = 0;
-		    int orderId;
-		    //int goodsId;
-		    //String wechatId;
-		    //int addrId;
-		    //int goodsNum;
-		    //String tradeTime;
-		    //String comment;
-		    double mailPrice = Double.parseDouble(request.getParameter("mailPrice"));
-		    double totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
-		    int groupId;
-		    String sendTime = request.getParameter("sendTime");
-		    //int groupMinnum = Integer.parseInt(request.getParameter("groupMinnum"));
+		    int orderIndex = Integer.parseInt(request.getParameter("orderIndex"));
+		    System.out.println("orderIndex:" + orderIndex);
 
-		    String goodsName = request.getParameter("goodsName");
-		    String goodsPrice = request.getParameter("goodsPrice");
-		    String recieverName = request.getParameter("recieverName");
-		    String recieverPhone = request.getParameter("recieverPhone");
+		    List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
+		    orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
 		    
-		    String address = request.getParameter("address");
+		    GoodsOrder orderToShow=orderList.get(orderIndex);
+			AdressInfo addressinfo = AdressInfoDao.getAdressInfo(orderToShow.getAddrId());
+			GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
+			
+			//String productImg = PropertiesUtil.getPath()+ goodsinfo.getPackagePath()+"normal.jpg";
+			
+			String productImg = "../img/product.jpg";
+
+			
 		%>
 
 		<div id="product">
 			<div id="productImgDiv">
 
-				<img id="productImg" src="../images/product.jpg" />
+				<img id="productImg" src=<%=productImg%> />
 			</div>
 
 		</div>
@@ -73,33 +65,33 @@
 
 			<div class="orderMessage">
 				<div class="productName">
-					<span class="blackBold"><%=goodsName%></span>
+					<span class="blackBold"><%=goodsinfo.getGoodsName()%></span>
 				</div>
 
 				<div class="middleTag">
 					<div class="tagLeft">商品价格：</div>
-					<div class="blackNormal" id="productPrice"><%=goodsPrice%></div>
+					<div class="blackNormal" id="productPrice"><%=goodsinfo.getGoodsPrice()%></div>
 				</div>
 
 				<div class="middleTag">
 					<div class="tagLeft">运费：</div>
-					<div class="orangeText" id="freight"><%=mailPrice%>元
+					<div class="orangeText" id="freight"><%=orderToShow.getMailPrice()%>元
 					</div>
 				</div>
 
 				<div class="middleTag">
 					<div class="tagLeft">实付款：</div>
-					<div class="orangeText" id="paid"><%=totalPrice%></div>
+					<div class="orangeText" id="paid"><%=orderToShow.getTotalPrice()%></div>
 				</div>
 
 				<div class="middleTag">
 					<div class="tagLeft">预计发货时间：</div>
-					<div class="blackNormal" id="timeToDeliver"><%=sendTime%></div>
+					<div class="blackNormal" id="timeToDeliver"><%=orderToShow.getSendTime()%></div>
 				</div>
 			</div>
 
 			<div class="functionButton" id="button1"
-				onclick="javascript:location.href='payForOrder.jsp'">去付款</div>
+				onclick="javascript:location.href='payForOrder.jsp?orderIndex=<%= orderIndex%>'">去付款</div>
 
 
 
@@ -111,17 +103,17 @@
 
 			<div class="middleTag">
 				<div class="tagLeft">收货地址：</div>
-				<div class="blackNormal" id="aimLocation"><%=address%></div>
+				<div class="blackNormal" id="aimLocation"><%=addressinfo.getAddrDetail()%></div>
 			</div>
 
 			<div class="middleTag">
 				<div class="tagLeft">收货人：</div>
-				<div class="blackNormal" id="recieverName"><%=recieverName%></div>
+				<div class="blackNormal" id="recieverName"><%=addressinfo.getReceiverName()%></div>
 			</div>
 
 			<div class="middleTag">
 				<div class="tagLeft">手机号码：</div>
-				<div class="blackNormal" id="telephoneNumber"><%=recieverPhone %></div>
+				<div class="blackNormal" id="telephoneNumber"><%=addressinfo.getReceiverPhone()%></div>
 			</div>
 
 		</div>

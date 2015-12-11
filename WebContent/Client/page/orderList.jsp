@@ -38,18 +38,25 @@
 	    orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
 	    int orderAmount = orderList.size();
 	    System.out.println(orderAmount);
-	    orderAmount = 1;
+	    
+	    
+	    
+	    orderAmount=1;
 	    GoodsOrder orderToShow = new GoodsOrder();
+	    GoodsInfo goodsinfo = new GoodsInfo();
+	    int orderstate = 0;
 	%>
 
 	<div id="content">
 
 		<%
-		    for (int goodsOrderIndex = 0; goodsOrderIndex < orderAmount; goodsOrderIndex++) {
+		    for (int orderIndex = 0; orderIndex < orderAmount; orderIndex++) {
 				//orderToShow=orderList.get(goodsOrderIndex);
 				//int goodsId=orderToShow.getGoodsId();
 				//GoodsInfo goodsinfo=GoodsInfoDao.getGoodsInfo(goodsId);
-				GoodsInfo goodsinfo = new GoodsInfo();
+				
+				//String productImg = PropertiesUtil.getPath()+goodsinfo.getPackagePath()+"small.jpg";
+				String productImg = "../images/product.jpg";
 		%>
 
 		<!--一个订单条目-->
@@ -69,10 +76,11 @@
 				<div class="orderMessage">
 					<!--订单产品图片-->
 					<div class="productView">
-						<img class="productImg" src="../images/product.jpg" />
+						<img class="productImg" src=<%=productImg%> />
 					</div>
 					<!--订单详情-->
-					<div class="detailMessage" onclick="javascript:location.href='detailOrderMessage.jsp?orderIndex=<%=goodsOrderIndex%>'">
+					<div class="detailMessage"
+						onclick="javascript:location.href='detailOrderMessage.jsp?orderIndex=<%=orderIndex%>'">
 
 						<div class="productName">
 							<span class="blackBold"><%=goodsinfo.getGoodsName()%></span>
@@ -98,7 +106,7 @@
 						</div>
 
 						<div class="orderTime">
-							<span class="blackNormal">预定时间：</span><span class="blackNormal"
+							<span class="blackNormal">预订时间：</span><span class="blackNormal"
 								id="timeOrdered"><%=orderToShow.getTradeTime()%></span>
 						</div>
 
@@ -118,7 +126,7 @@
 				    if (true) {
 				%>
 				<div class="functionButton" id="goToPay"
-					onclick="javascript:location.href='payForOrder.jsp'">去付款</div>
+					onclick="javascript:location.href='payForOrder.jsp?orderIndex=<%=orderIndex%>'">去付款</div>
 				<%
 				    } else if (false) {
 				%>
