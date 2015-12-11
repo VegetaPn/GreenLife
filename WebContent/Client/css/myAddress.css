@@ -18,6 +18,15 @@ body {
 
 
 
+.dDeCusMess{
+	 width:100%;
+	 overflow:hidden;
+	 border-top:1px solid gray; 
+	 border-bottom:1px solid #333333;
+	 color:black;
+	 display:none;
+}
+
 .dCusMess{
 	 width:100%;
 	 overflow:hidden;
@@ -82,15 +91,15 @@ body {
 	width:10%;
 }
 
-#sCusName1{
+#sDeCusName{
 	color:#F76F00;
 }
 
-#sPhoneNum1{
+#sDePhoneNum{
 	color:#F76F00;
 }
 
-#dAddress1{
+#dDeAddress{
 	color:#F76F00;
 }
 

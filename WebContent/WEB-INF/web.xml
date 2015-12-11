@@ -26,4 +26,13 @@
     <servlet-name>ReAddressServlet</servlet-name>
     <url-pattern>/reAddress</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>MyAddressServlet</servlet-name>
+    <servlet-class>com.greenlife.client.controller.MyAddressServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyAddressServlet</servlet-name>
+    <url-pattern>/myAddress</url-pattern>
+  </servlet-mapping>
 </web-app>
