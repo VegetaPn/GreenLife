@@ -14,6 +14,26 @@ public class UserInfoDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static boolean isExist(String wechatId){
+		String sql = "select * from user_info where wechat_id = ?";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, wechatId);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+	}
+	
 	public static boolean deleteUserInfo(String wechatId){
 		String sql = "delete from user_info where wechat_id = ?;";
 		

@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.greenlife.dao.UserInfoDao;
+
 public class DBUtilTest {
 
 //	static DBUtil util;
@@ -29,7 +31,7 @@ public class DBUtilTest {
 
 	@Test
 	public void testGetConn() {
-		System.out.print(PropertiesUtil.getPath());
+		System.out.print(UserInfoDao.isExist("huangjianqiang"));
 	}
 
 }
