@@ -2,12 +2,19 @@ package com.greenlife.model;
 
 public class Comment {
 	
+	private int commentId;
 	private String wechatId;
 	private int goodsId;
 	private String content;
 	private String time;
 	private String imgPath;
 	
+	public int getCommentId() {
+		return commentId;
+	}
+	public void setCommentId(int commentId) {
+		this.commentId = commentId;
+	}
 	public String getTime() {
 		return time;
 	}

@@ -34,7 +34,8 @@ public class CommentDao {
 		return true;
 	}
 	
-	public static boolean addCommentList(Comment cmt){
+	public static int addCommentList(Comment cmt){
+		int comment_id = -1;
 		
 		String sql = "INSERT INTO `greenlife`.`comment` "
 				+ "(`goods_id`, `wechat_id`, `comment_content`, `time`, `img_path`) "
@@ -51,12 +52,23 @@ public class CommentDao {
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			return -1;
 		} finally {
 			clearUp(conn);
 		}
-		
-		return true;
+		sql = "select max(comment_id) as id from comment";
+		conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			rs.next();
+			comment_id = rs.getInt("id");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+		return comment_id;
 	}
 	
 	public static List<Comment> getCommentList(int goodsId){
@@ -70,6 +82,7 @@ public class CommentDao {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Comment cmt = new Comment();
+				cmt.setCommentId(rs.getInt("comment_id"));
 				cmt.setWechatId(rs.getString("wechat_id"));
 				cmt.setGoodsId(rs.getInt("goods_id"));
 				cmt.setContent(rs.getString("comment_content"));

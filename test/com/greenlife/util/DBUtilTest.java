@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.greenlife.dao.WechatInfoDao;
-import com.greenlife.model.WechatInfo;
+import com.greenlife.dao.GoodsInfoDao;
+import com.greenlife.model.GoodsInfo;
 
 public class DBUtilTest {
 
@@ -32,18 +32,25 @@ public class DBUtilTest {
 
 	@Test
 	public void testGetConn() {
-		WechatInfo info = new WechatInfo();
-		info.setCity("234");
-		info.setCountry("fsdfsdf");
-		info.setHeadimgurl("sdfsd");
-		info.setNickname("sdfsd");
-		info.setPrivilege("sdfsdfsd");
-		info.setProvince("flkfjsd");
-		info.setSex("male");
-		info.setUnionId("2323423");
-		info.setWechatId("huangjianqiang");
-		WechatInfoDao.addWechatInfo(info);
-		info = WechatInfoDao.getWechatInfo("huangjianqiang");
+		GoodsInfo info = new GoodsInfo();
+		info.setEndTime("sdf22332");
+		info.setGoods_unit("sdfsd");
+		info.setGoodsDiscontPrice(23);
+		info.setGoodsName("dsfsd");
+		info.setGoodsPrice(23);
+		info.setGoodsSoldnum(11);
+		info.setGoodsText1("sbsdb");
+		info.setGoodsText2("sdf2323");
+		info.setGoodsTotalnum(2323);
+		info.setIsAdv(1);
+		info.setIsDelete(0);
+		info.setPackagePath("path");
+		info.setReportId(123223);
+		info.setStartTime("ds232232323");
+		info.setTagImage("s23223");
+		info.setTagText("s23223");
+		info.setTagTitle("title");
+		GoodsInfoDao.addGoodsInfo(info);
 	}
 
 }
