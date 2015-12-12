@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.greenlife.dao.*"
-	import="com.greenlife.model.*" import="java.util.*" import="java.util.Properties"%>
+	import="com.greenlife.model.*" import="java.util.*" import="java.util.Properties"
+	import="com.greenlife.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,7 @@
 
 		<%
 		    int orderIndex = Integer.parseInt(request.getParameter("orderIndex"));
-		    System.out.println("orderIndex:" + orderIndex);
+		    System.out.println("detailmessage orderIndex:" + orderIndex);
 
 		    List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
 		    orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
@@ -45,11 +46,10 @@
 			AdressInfo addressinfo = AdressInfoDao.getAdressInfo(orderToShow.getAddrId());
 			GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
 			
-			//String productImg = PropertiesUtil.getPath()+ goodsinfo.getPackagePath()+"normal.jpg";
+			String productImg = PropertiesUtil.getPath()+ goodsinfo.getPackagePath()+"normal.jpg";
 			
-			String productImg = "../img/product.jpg";
-
-			
+			System.out.println("detailmessage orderToShow.addrid:" + orderToShow.getAddrId());
+			System.out.println("detailmessage addressinfo.len:" + addressinfo.getWechatId());
 		%>
 
 		<div id="product">

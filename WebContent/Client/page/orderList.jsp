@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.greenlife.dao.*"
 	import="com.greenlife.model.*" import="java.util.ArrayList"
-	import="java.util.List"%>
+	import="java.util.List" import="com.greenlife.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +41,6 @@
 	    
 	    
 	    
-	    orderAmount=1;
 	    GoodsOrder orderToShow = new GoodsOrder();
 	    GoodsInfo goodsinfo = new GoodsInfo();
 	    int orderstate = 0;
@@ -51,12 +50,11 @@
 
 		<%
 		    for (int orderIndex = 0; orderIndex < orderAmount; orderIndex++) {
-				//orderToShow=orderList.get(goodsOrderIndex);
-				//int goodsId=orderToShow.getGoodsId();
-				//GoodsInfo goodsinfo=GoodsInfoDao.getGoodsInfo(goodsId);
+				orderToShow=orderList.get(orderIndex);
+				goodsinfo=GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
 				
-				//String productImg = PropertiesUtil.getPath()+goodsinfo.getPackagePath()+"small.jpg";
-				String productImg = "../images/product.jpg";
+				String productImg = PropertiesUtil.getPath()+goodsinfo.getPackagePath()+"small.jpg";
+				
 		%>
 
 		<!--一个订单条目-->
