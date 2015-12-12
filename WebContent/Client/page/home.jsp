@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.greenlife.dao.*" import="com.greenlife.model.*" import="java.util.*" import="com.greenlife.util.*"%>
+﻿<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.greenlife.dao.*" import="com.greenlife.model.*" import="java.util.*" import="com.greenlife.util.*"%>
 <!DOCTYPE html>
 <%
 	List<GoodsInfo> goodsList = new ArrayList<GoodsInfo>();
@@ -47,7 +47,6 @@
 			%>
 			<div class="normalProduct" onclick="javascript:location.href='productHome.jsp?Id=<%=id%>'">
 				<div class="nPic"><img src=<%=productImg%>/></div>
-				<div><%=productImg%></div>
 				<div class="nSellInfo">
 					<div class="nName"><%=gi.getGoodsName()%></div>
 					<div class="nCheapprice">￥<%=gi.getGoodsPrice()%><span>/<%=gi.getGoods_unit()%></span>
