@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.greenlife.dao.*" import="com.greenlife.model.*" import="java.util.*"%>
+﻿<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.greenlife.dao.*" import="com.greenlife.model.*" import="java.util.*" import="com.greenlife.util.*"%>
 <!DOCTYPE html>
 <%
 	List<GoodsInfo> goodsList = new ArrayList<GoodsInfo>();
@@ -42,10 +42,11 @@
 				for(int i=0;i<goodsList.size();i++){
 				GoodsInfo gi = goodsList.get(i);
 				int id = gi.getGoodsId();
+				String productImg = PropertiesUtil.getPath()+gi.getPackagePath()+"small.jpg";
+		
 			%>
-			<a href="productHome.jsp?Id="+id>
-			<div class="normalProduct" >
-				<div class="nPic"><img src=<%=gi.getPackagePath()+"photo.jpg"%>/></div>
+			<div class="normalProduct" onclick="javascript:location.href='productHome.jsp?Id=<%=id%>'">
+				<div class="nPic"><img src=<%=productImg%>/></div>
 				<div class="nSellInfo">
 					<div class="nName"><%=gi.getGoodsName()%></div>
 					<div class="nCheapprice">￥<%=gi.getGoodsPrice()%><span>/<%=gi.getGoods_unit()%></span>
@@ -55,7 +56,7 @@
 					<div class="nFriendorder">你有100位好友订购此产品</div>
 				</div>
 			</div>
-			</a>
+			
 			<%
 			}
 			%>

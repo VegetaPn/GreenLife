@@ -112,7 +112,7 @@ public class UserInfoDao {
 				userInfo.setWechatName(rs.getString("wechat_name"));
 				userInfo.setPhone(rs.getString("phone"));
 				userInfo.setAddrId(rs.getInt("address_id"));
-				userInfo.setPhotoPath("photo_path");
+				userInfo.setPhotoPath(rs.getString("photo_path"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

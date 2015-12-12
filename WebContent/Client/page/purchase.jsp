@@ -22,13 +22,25 @@ int addressId = userInfo.getAddrId();
 List<AdressInfo> addressInfos = AdressInfoDao.getAdressList(wechatId);
 AdressInfo defaultAddressInfo = null;
 int index = -1;
+String defaultAddr = new String();
 
 for(int i =0; i<addressInfos.size();i++){
 	   if(addressInfos.get(i).getAddrId() == addressId){
 		   defaultAddressInfo = addressInfos.get(i);
 		   index = i;
+		   
+    	   StringBuffer temp = new StringBuffer();
+    	   String[] temps = addressInfos.get(i).getAddrDetail().split(";");
+    	   for(int j = 0;j<temps.length; j++){
+    		   if(!temps[j].equals("null")){
+    			   temp.append(temps[j]+" ");
+    		   }
+    	   }
+    	   defaultAddr = temp.toString();
 	   }
 }
+
+
 %>
 <html>
     <head>
@@ -63,7 +75,7 @@ for(int i =0; i<addressInfos.size();i++){
 					</div>
 					<div class="bottom">
 						<img src="../images/mapMarkerOrange.png"/>
-						<span id="sAddress"><%=defaultAddressInfo.getAddrDetail()%></span>
+						<span id="sAddress"><%=defaultAddr%></span>
 					</div>
 				</div>
 				<div id="dToAddress">

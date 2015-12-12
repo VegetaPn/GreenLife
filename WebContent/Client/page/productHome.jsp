@@ -159,18 +159,10 @@
 								data) {//请求成功后返执行的方法
 							if (!isCollected) {
 								isCollected = true;
-								$(
-										"#heart")
-										.attr(
-												'src',
-												"../images/noCollect.png");
+								$("#heart").attr('src',"../images/noCollect.png");
 							} else {
 								isCollected = false;
-								$(
-										"#heart")
-										.attr(
-												'src',
-												"../images/collect.png");
+								$("#heart").attr('src',"../images/collect.png");
 							}
 						},
 						error : function() {
@@ -312,6 +304,12 @@
 								Comment comment = commentList.get(i);
 
 								UserInfo userInfo = UserInfoDao.getUserInfo(comment.getWechatId());
+								
+								String commentTime = comment.getTime();
+								Date commentDate = sdf.parse(commentTime);
+								SimpleDateFormat commentSdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+								String showTime = commentSdf.format(commentDate);
+								
 						%>
 						<div>
 							<div class="avatarDiv">
@@ -319,7 +317,7 @@
 							</div>
 
 							<div class="name"><%=userInfo.getWechatName()%></div>
-							<div class="time"><%=comment.getTime()%></div>
+							<div class="time"><%=showTime%></div>
 						</div>
 
 						<div class="comment">
@@ -327,9 +325,10 @@
 
 
 							<%
-								if (!comment.getImgPath().equals("")) {
+								if (comment.getImgPath() != null) {
+									String commentImgSrc = PropertiesUtil.getPath()+comment.getImgPath();
 							%>
-							<br /> <img class="commentImg" src="" />
+							<br /> <img class="commentImg" src="<%=commentImgSrc%>" />
 
 
 							<%
