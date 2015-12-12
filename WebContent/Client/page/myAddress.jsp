@@ -32,13 +32,22 @@
 		       List<AdressInfo> addressInfos = AdressInfoDao.getAdressList(wechatId);
 		       AdressInfo defaultAddressInfo = null;
 		       
+		       List<String> addrList = new ArrayList<String>();
 		       int index = -1;
 		       for(int i =0; i<addressInfos.size();i++){
 		    	   if(addressInfos.get(i).getAddrId() == addressId){
 		    		   defaultAddressInfo = addressInfos.get(i);
 		    		   index = i;	    		   
-		    		   break;
 		    	   }
+		    	   
+		    	   StringBuffer temp = new StringBuffer();
+		    	   String[] temps = addressInfos.get(i).getAddrDetail().split(";");
+		    	   for(int j = 0;j<temps.length; j++){
+		    		   if(!temps[j].equals("null")){
+		    			   temp.append(temps[j]+" ");
+		    		   }
+		    	   }
+		    	   addrList.add(temp.toString());
 		       }
 		     %>
 		   <script>
@@ -72,20 +81,30 @@
 								var sDePhoneNum = $("#sPhoneNum"+currentid).text();
 								var dDeAddress = $("#dAddress"+currentid).text();
 								
-								//判断是否有默认地址，如果替换位置，否则，删除
-								if(!$(".dDeCusMess").is(':hidden')){
-									$("#sCusName"+currentid).text($("#sDeCusName").text());
-									$("#sPhoneNum"+currentid).text(	$("#sDePhoneNum").text());
-									$("#dAddress"+currentid).html("<img class ='iPosition' src='../images/mapMarkerBlack.png'/>"+$("#dDeAddress").text());
-								}
-								else{
-									$("#"+currentid).remove();
-								}
+								$("#sCusName"+currentid).text($("#sDeCusName").text());
+								$("#sPhoneNum"+currentid).text(	$("#sDePhoneNum").text());
+								$("#dAddress"+currentid).html("<img class ='iPosition' src='../images/mapMarkerBlack.png'/>"+$("#dDeAddress").text());
+
 								$("#sDeCusName").text(sDeCusName);
 								$("#sDePhoneNum").text(sDePhoneNum);
 								$("#dDeAddress").html("<img class ='iPosition' src='../images/mapMarkerOrange.png'/>"+dDeAddress);
+								
+								//修改Id
+								$("#sCusName"+currentid).attr({id:"sCusName"+defAdr});
+								$("#sPhoneNum"+currentid).attr({id:"sPhoneNum"+defAdr});
+								$("#dAddress"+currentid).attr({id:"dAddress"+defAdr});
+								
+								$("#"+currentid).attr({id:"-100"});
+								$("#"+defAdr).attr({id:currentid});
+								$("#-100").attr({id:defAdr});
+								
+								//判断是否有默认地址，如果替换位置，否则，删除
+								if($(".dDeCusMess").is(':hidden')){
+									$("#"+defAdr).remove();
+								}
 								//现实默认地址								
 								$(".dDeCusMess").show();
+								defAdr = currentid;
 								//隐藏mask
 								hiddMask();
 						 	},
@@ -95,13 +114,15 @@
 						 	});
 						}); 
 					 
-					 
+					 $("#modifyAddress").click(function(){
+						 location.href = "reAddress.jsp?addressid="+currentid;
+						}); 					 
 					 
 					 $("#delAddress").click(function(){
 					 	 $.ajax({		 
 							type: "post",//数据提交的类型（post或者get）
 							url: "/GreenLife/myAddress",//数据提交得地址
-							data: {addressid:currentid,type:2},//提交的数据(自定义的一些后台程序需要的参数)
+							data: {addressid:currentid,type:1},//提交的数据(自定义的一些后台程序需要的参数)
 							dataType: "text",//返回的数据类型
 							success: function(data){//请求成功后返执行的方法
 								if(currentid == null){
@@ -140,14 +161,13 @@
 					    <div class="dDefault">默认</div>
 						<div id="dDeAddress" class="dAddress">
 						    <img class ="iPosition" src="../images/mapMarkerOrange.png"/>
-							<%=defaultAddressInfo!=null?defaultAddressInfo.getAddrDetail():-1%>
+							<%=defaultAddressInfo!=null?addrList.get(index):-1%>
 						</div>
 					</div>
 				</div>
 			</div>
 				
-		<%if(index !=-1){
-			for(int i =0; i<addressInfos.size();i++){
+		<%for(int i =0; i<addressInfos.size();i++){
 				if(i != index){%>
 				 <div class="dCusMess" id="<%=addressInfos.get(i).getAddrId()%>" onclick="displayMask(this)">
 					<div class="dCusInfor" >
@@ -160,15 +180,14 @@
 						<div class="bottom">
 						    <div id="dAddress<%=addressInfos.get(i).getAddrId()%>" class="dAddress">
 							    <img class ="iPosition" src="../images/mapMarkerBlack.png"/>
-								<%=addressInfos.get(i).getAddrDetail()%>
+								<%=addrList.get(i)%>
 							</div>
 						</div>
 					</div>
 				</div>
 				<%
 				}
-			}
-		} %>
+			}%>
 		</div>
 		
 		<div id="dMask">
@@ -177,7 +196,7 @@
 				<span>设为默认</span>
 			</div>
 				
-			<div id="setAddress" class="dSuspension">
+			<div id="modifyAddress" class="dSuspension">
 			    <img src="../images/arrow.png"></img>
 				<span>修改地址</span>
 			</div>

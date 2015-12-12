@@ -123,7 +123,7 @@ public class AdressInfoDao {
 	public static boolean updateAdressInfo(AdressInfo info){
 		String sql = "UPDATE `greenlife`.`address_info` SET "
 				+"addr_detail = (?), "
-				+"and addr_zipcode = (?), "
+				+"addr_zipcode = (?), "
 				+"receiver_phone = (?), "
 				+"wechat_id = (?), "
 				+"receiver_name = (?) "

@@ -27,6 +27,7 @@ body{
 .cell{
 	//font-weight:bold;
 	margin-top:20px;
+	position:relative;
 }
 
 .input{
@@ -36,12 +37,39 @@ body{
 	border-radius:5px;
 }
 
+#iToAddress{
+    position:absolute;
+    right:0px;
+    z-index: 1;
+}
+
 #iSure{
 	width:100%;
 	text-align:center;
 	background-color:#F76F00;
 	//font-weight:bold;
 	color:#ffffff;
+}
+
+#province{
+	display:none;
+}
+
+.select{
+    width:30%;
+}
+
+#location{
+	display:none;
+}
+
+#s3{
+	float:right;
+}
+
+#s2{
+	margin-left: 3%;
+	margin-right: 3%;
 }
 
 @media screen and (max-width: 480px){
@@ -58,10 +86,24 @@ body{
 		height:35px;
 	}
 	
+	#iToAddress{
+	    width:25px;
+	    height:25px;
+	    bottom:5px;
+	}
+	
 	#iSure{
 		font-size:20px;
 		height:40px;
 	}
+	
+	.select{
+	    height:35px;
+	    //margin-right:2px;
+	    //float:left;
+	    //font-size:16px;
+    }
+	
 }
 
 @media screen and (min-width: 480px) and (max-width: 639px){
@@ -78,10 +120,24 @@ body{
 		height:50px;
 	}
 	
+	#iToAddress{
+	    width:40px;
+	    height:40px;
+	    bottom:5px;
+	}
+	
 	#iSure{
 		font-size:24px;
 		height:50px;
 	}
+	
+	.select{
+	    height:50px;
+	    //margin-right:2px;
+	    //float:left;
+	    font-size:20px;
+    }
+	
 }
 
 @media screen and (min-width: 640px ) and (max-width: 767px){
@@ -97,11 +153,22 @@ body{
 		font-size:24px;
 		height:60px;
 	}
-	
+
+	#iToAddress{
+	    width:50px;
+	    height:50px;
+	    bottom:5px;
+	}
+		
 	#iSure{
 		font-size:28px;
 		height:60px;
 	}
+	
+	.select{
+		font-size:24px;
+		height:60px;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 979px){
@@ -117,11 +184,22 @@ body{
 		font-size:28px;
 		height:70px;
 	}
-	
+
+	#iToAddress{
+	    width:60px;
+	    height:60px;
+	    bottom:5px;
+	}
+		
 	#iSure{
 		font-size:32px;
 		height:70px;
 	}
+
+	.select{
+		font-size:28px;
+		height:70px;
+    }
 }
 
 @media screen and (min-width: 980px){
@@ -137,9 +215,20 @@ body{
 		font-size:32px;
 		height:80px;
 	}
-	
+
+	#iToAddress{
+	    width:70px;
+	    height:70px;
+	    bottom:5px;
+	}
+		
 	#iSure{
 		font-size:36px;
 		height:80px;
 	}
+
+	.select{
+		font-size:32px;
+		height:80px;
+    }
 }
