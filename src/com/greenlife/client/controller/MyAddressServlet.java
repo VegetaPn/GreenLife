@@ -42,6 +42,7 @@ public class MyAddressServlet extends HttpServlet{
        }
        
        int itype = Integer.valueOf(type);
+       int iAddress = Integer.valueOf(addressId);
        
        //设置默认值
        if(itype == 0){
@@ -51,14 +52,10 @@ public class MyAddressServlet extends HttpServlet{
 	       userInfo.setAddrId(Integer.valueOf(addressId));
 	       userInfoDao.updateUserInfo(userInfo);
        }
-       //修改
+       //删除  
        else if(itype == 1){
-    	   
-       }
-       //删除                        --------------------------------添加
-       else if(itype == 2){
     	   AdressInfoDao addressInfoDao = new AdressInfoDao();
-    	   //addressInfoDao.
+    	   addressInfoDao.deleteAdressList(iAddress);
        }
 	 }
 }
