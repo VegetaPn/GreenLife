@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.greenlife.dao.*"
-	import="com.greenlife.model.*" import="java.util.*" import="java.util.Properties"%>
+	import="com.greenlife.model.*" import="java.util.*"
+	import="java.util.Properties"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,16 +33,20 @@
 
 
 		<%
-		    int orderIndex = Integer.parseInt(request.getParameter("orderIndex"));
-		    System.out.println("orderIndex:" + orderIndex);
+			int orderIndex = Integer.parseInt(request.getParameter("orderIndex"));
+			System.out.println("orderIndex:" + orderIndex);
 
-		    List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
-		    orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
+			List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
+			orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
 
-		    GoodsOrder orderToShow = orderList.get(orderIndex);
-		    AdressInfo addressinfo = AdressInfoDao.getAdressInfo(orderToShow.getAddrId());
-		    GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
+			GoodsOrder orderToShow = orderList.get(orderIndex);
+			GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
 
+			boolean isgroup = false;
+			if (orderToShow.getOrderState() == 1)
+			{
+				isgroup = true;
+			}
 		%>
 
 
@@ -55,7 +60,7 @@
 
 			<div class="middleTag">
 				<div class="tagLeft">订单号：</div>
-				<div class="blackNormalRight" id="orderNumber"><%= orderToShow.getOrderId()%></div>
+				<div class="blackNormalRight" id="orderNumber"><%=orderToShow.getOrderId()%></div>
 			</div>
 
 			<div class="middleTag">
@@ -65,7 +70,18 @@
 
 			<div class="middleTag">
 				<div class="tagLeft">单价：</div>
-				<div class="blackNormalRight" id="productPrice"><%=goodsinfo.getGoodsPrice()%> 元</div>
+				<div class="blackNormalRight" id="productPrice">
+					<%
+						if (isgroup)
+						{
+							out.write("(成团价)" + goodsinfo.getGoodsDiscontPrice()+"元");
+						}
+						else
+						{
+							out.write(goodsinfo.getGoodsPrice()+"元");
+						}
+					%>
+				</div>
 			</div>
 
 			<div class="middleTag">
@@ -77,12 +93,14 @@
 
 			<div class="middleTag">
 				<div class="tagLeft">快递费：</div>
-				<div class="blackNormalRight" id="freight"><%=orderToShow.getMailPrice() %> 元</div>
+				<div class="blackNormalRight" id="freight"><%=orderToShow.getMailPrice()%>
+					元
+				</div>
 			</div>
 
 			<div class="middleTag">
 				<div class="tagLeft">留言：</div>
-				<div class="blackNormalRight" id="leftMessage"><%=orderToShow.getComment() %></div>
+				<div class="blackNormalRight" id="leftMessage"><%=orderToShow.getComment()%></div>
 			</div>
 
 		</div>
@@ -91,17 +109,14 @@
 		<div class="topTag">
 
 			<div class="bigTag">
-				<span class=blackBold><%=addressinfo.getReceiverName()+"  "+addressinfo.getReceiverPhone()%></span>
+				<span class=blackBold><%=orderToShow.getReceiverName() + "  " + orderToShow.getPhoneNumber()%></span>
 			</div>
 
 			<div class="detailLocation">
 				<div class="locationIMGAlign">
 					<img src="../images/mapMarkerBlack.png" class="locationIMG" />
 				</div>
-
-
-
-				<div class="blackNormal" id="detailLocationInfo"><%=addressinfo.getAddrDetail()%></div>
+				<div class="blackNormal" id="detailLocationInfo"><%=orderToShow.getAddrDetail()%></div>
 			</div>
 
 
@@ -114,10 +129,7 @@
 				<span class="blackBold" id="totalSym">合计：￥</span><span
 					class="orangeText"><%=orderToShow.getTotalPrice()%></span>
 			</div>
-			<!--
-            <div class="functionButton" id="cancelButton">取消预订</div>
-            -->
-			<div class="functionButton" id="payButton">支付</div>
+			<div class="functionButton" id="payButton" onclick="">支付</div>
 
 
 
