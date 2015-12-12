@@ -76,11 +76,11 @@ int commentListSize = commentList.size();
 						
 						<%
 							if(!comment.getImgPath().equals("")){
-								
+								String commentImgSrc = PropertiesUtil.getPath()+comment.getImgPath();
 							
 						%>
 							<br/>
-							<img class="commentImg" src=""/>
+							<img class="commentImg" src="<%=commentImgSrc%>"/>
 							
 							
 						<% 
@@ -110,6 +110,6 @@ int commentListSize = commentList.size();
 		</div>
 		
 		
-		</div>
+		
     </body>
 </html>

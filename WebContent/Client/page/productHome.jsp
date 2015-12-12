@@ -328,8 +328,9 @@
 
 							<%
 								if (!comment.getImgPath().equals("")) {
+									String commentImgSrc = PropertiesUtil.getPath()+comment.getImgPath();
 							%>
-							<br /> <img class="commentImg" src="" />
+							<br /> <img class="commentImg" src="<%=commentImgSrc%>" />
 
 
 							<%
