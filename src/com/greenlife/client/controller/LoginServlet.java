@@ -108,7 +108,7 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("headimgurl",headimgurl);
 		session.setAttribute("ticket", ticket);
 		session.setAttribute("appid", appid);
-		
+		session.setAttribute("accessToken", jsAccessToken);
 		
 		response.sendRedirect("/Client/page/home.jsp");
 		

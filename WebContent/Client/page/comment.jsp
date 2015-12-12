@@ -164,7 +164,8 @@ int commentListSize = commentList.size();
 	</div>
 	
 	<script>
-		var localIds = "";
+		var localId = "";
+		
 		$("#postImg").click(function () {
 			   
 		   		wx.chooseImage({
@@ -172,7 +173,8 @@ int commentListSize = commentList.size();
 				    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
 				    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
 				    success: function (res) {
-				    	var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+				    	localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+				    	localId = localIds[0];
 				    	$("#showImg").attr('src',localIds);
 				    	$("#showImgDiv").show();
 				    }
@@ -181,26 +183,54 @@ int commentListSize = commentList.size();
 		  
 		 
 		  $("#close").click(function () {
-			  localIds = "";
-			  $("#showImg").attr('src',localIds);
+			  localId = "";
+			  $("#showImg").attr('src',localId);
 		      $("#showImgDiv").hide();
 		      
 	  	 }); 
 		  
 		  
 		 $("#postBtn").click(function () {
-			 $.ajax({
- 				type: "post",
-    			url: "/GreenLife/comment",
-     			data: {goodsId: "<%=goodsId%>",text:$("#postText").val(),img:localIds},
-				dataType : "text",
-				success : function(data) {
-					window.location.reload();
-				},
-				error : function() {
-					alert(arguments[1]);
-				}
-			});	
+			 $("#postBtn").attr({"disabled":"disabled"});
+			 if(localId == ""){
+				
+				 $.ajax({
+		 				type: "post",
+		    			url: "/GreenLife/comment",
+		     			data: {goodsId: "<%=goodsId%>",text:$("#postText").val(),img:""},
+						dataType : "text",
+						success : function(data) {
+							window.location.reload();
+						},
+						error : function() {
+							alert(arguments[1]);
+							$("#postBtn").removeAttr("disabled");
+						}
+				});	
+			 }else{
+				 wx.uploadImage({
+					   localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+					   isShowProgressTips: 1, // 默认为1，显示进度提示
+					   success: function (res) {
+						   var serverId = res.serverId; // 返回图片的服务器端ID
+						   $.ajax({
+				 				type: "post",
+				    			url: "/GreenLife/comment",
+				     			data: {goodsId: "<%=goodsId%>",text:$("#postText").val(),img:serverId},
+								dataType : "text",
+								success : function(data) {
+									window.location.reload();
+								},
+								error : function() {
+									alert(arguments[1]);
+									$("#postBtn").removeAttr("disabled");
+								}
+						});	
+							 
+					    }
+					});
+			 }
+			 
 	  	 });
 	</script>	
 	
