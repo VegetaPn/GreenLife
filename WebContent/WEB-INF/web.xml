@@ -32,13 +32,20 @@
     <servlet-name>MyAddressServlet</servlet-name>
     <url-pattern>/myAddress</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
+  <servlet>
     <servlet-name>CommentServlet</servlet-name>
     <servlet-class>com.greenlife.client.controller.CommentServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CommentServlet</servlet-name>
     <url-pattern>/comment</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>PurchaseServlet</servlet-name>
+    <servlet-class>com.greenlife.client.controller.PurchaseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PurchaseServlet</servlet-name>
+    <url-pattern>/purchase</url-pattern>
   </servlet-mapping>
 </web-app>

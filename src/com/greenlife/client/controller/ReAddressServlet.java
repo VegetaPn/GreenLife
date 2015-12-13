@@ -33,8 +33,10 @@ public class ReAddressServlet extends HttpServlet{
 	   String wechatId = "huangjianqiang";
 	   //HttpSession session = request.getSession();
 	   //String wechatId = session.getAttribute("wechatId");
+	   String type = request.getParameter("type");
+	   int iType = Integer.valueOf(type);
 	   
-	   int addrId = Integer.valueOf(request.getParameter("addressid"));
+	   int addrId = -1;		   
 	   String receiverName =request.getParameter("iConsignee");
 	   String receiverPhone =request.getParameter("iPhnoe");
 	   String addrDetail1  =request.getParameter("iRegione").trim();  
@@ -53,19 +55,26 @@ public class ReAddressServlet extends HttpServlet{
 	   String check = request.getParameter("iCheck");
 	   
 	   AdressInfo address = new AdressInfo();
-	   address.setAddrId(addrId);
 	   address.setWechatId(wechatId);
 	   address.setAddrZipcode(zipAddress); 
 	   address.setReceiverName(receiverName);
 	   address.setReceiverPhone(receiverPhone);
        address.setAddrDetail(addrDetail.toString());
        
-       //更新地址
-       AdressInfoDao addressInfoDao = new AdressInfoDao();
-       addressInfoDao.updateAdressInfo(address);
+       if(iType == 1){
+    	   addrId = Integer.valueOf(request.getParameter("addressid"));
+    	   address.setAddrId(addrId);
+           //更新地址
+    	   if(addrId!=-1)
+    		   AdressInfoDao.updateAdressInfo(address);
+       }
+       else{
+    	   addrId = AdressInfoDao.addAdressInfo(address);
+       }
+
       //int addrid = addressInfoDao.addAdressInfo(address);
        
-      // if(addrid !=-1){
+       if(addrId !=-1){
            //修改默认地址
            if(check!=null){
         	   UserInfoDao userInfoDao = new UserInfoDao();
@@ -73,7 +82,7 @@ public class ReAddressServlet extends HttpServlet{
         	   userInfo.setAddrId(addrId);
         	   userInfoDao.updateUserInfo(userInfo);
            }
-       //}  
+       }  
        
       response.sendRedirect("/GreenLife/Client/page/myAddress.jsp");
 	 }

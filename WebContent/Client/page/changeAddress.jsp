@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="../css/header.css" type="text/css">
 		<link rel="stylesheet" href="../css/myAddress.css" type="text/css">
 		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
-		<script type="text/javascript" src="../js/myAddress.js"></script>
     </head>
     <body>
 	
@@ -192,23 +191,6 @@
 				<%
 				}
 			}%>
-		</div>
-		
-		<div id="dMask">
-		    <div id="setDefault" class="dSuspension">
-			    <img src="../images/mapMarkerGreen.png"></img>
-				<span>设为默认</span>
-			</div>
-				
-			<div id="modifyAddress" class="dSuspension">
-			    <img src="../images/arrow.png"></img>
-				<span>修改地址</span>
-			</div>
-			
-		    <div id="delAddress" class="dSuspension">
-			    <img src="../images/remove.png"></img>
-				<span>删除地址</span>
-			</div>
 		</div>
     </body>
 </html>
