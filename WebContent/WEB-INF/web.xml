@@ -52,4 +52,7 @@
     <servlet-name>PurchaseServlet</servlet-name>
     <url-pattern>/purchase</url-pattern>
   </servlet-mapping>
+  <listener>
+  	<listener-class>com.greenlife.util.MyTimerListener</listener-class>
+  </listener>
 </web-app>
