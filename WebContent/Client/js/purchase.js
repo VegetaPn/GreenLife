@@ -14,12 +14,17 @@ function decrease(){
 function increase(){
 	var number = document.getElementById("iNumber").value;
 	number = parseInt(number) + 1;
+	if(number>reminder){
+		alert("供货不足！");
+		return;
+	}
 	document.getElementById("iNumber").value = number;
 	document.getElementById("sNumber").innerText = number;
 	var price = document.getElementById("sProductPrice").innerText;
-	document.getElementById("stPrice").innerText = parseInt(number)*parseFloat(price);
+	var total = (parseInt(number)*parseFloat(price)).toFixed(2);
+	document.getElementById("stPrice").innerText = total;
 	
-	document.getElementById("sTotalPrice").innerText = parseInt(number)*parseFloat(price);
+	document.getElementById("sTotalPrice").innerText = total;
 }
 
 function calculate(){
@@ -32,9 +37,10 @@ function calculate(){
     }
 	document.getElementById("sNumber").innerText = number;
 	var price = document.getElementById("sProductPrice").innerText;
-	document.getElementById("stPrice").innerText = parseInt(number)*parseFloat(price);
+	var total = (parseInt(number)*parseFloat(price)).toFixed(2);
+	document.getElementById("stPrice").innerText = total;
 	
-	document.getElementById("sTotalPrice").innerText = parseInt(number)*parseFloat(price);	
+	document.getElementById("sTotalPrice").innerText = total;	
 }
 
 function mousedown(){

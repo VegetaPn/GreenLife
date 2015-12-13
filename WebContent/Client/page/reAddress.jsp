@@ -20,40 +20,44 @@
 		</div>
 		<%  
 		    String addressId =request.getParameter("addressid");
-		    int iAddress = Integer.valueOf(addressId);
-		    AdressInfoDao addressInfoDao = new AdressInfoDao();
- 	        AdressInfo addressInfo =addressInfoDao.getAdressInfo(iAddress);
-		    StringBuffer region = new StringBuffer();
 		    String addressDetail = new String();
-		    String[] temps = addressInfo.getAddrDetail().split(";");
-		    for(int j = 0;j<temps.length;j++){
-		    	if(j==temps.length -1){
-		    		addressDetail = temps[j];
-		    	}
-		    	else{
-			    	if(!temps[j].equals("null")){
-			    		region.append(temps[j]+" ");
-		    		}
-		    	}
+		    AdressInfo addressInfo = null;
+		    int iAddress = -1;
+		    StringBuffer region = new StringBuffer();
+		    if(addressId!=null){
+			    iAddress = Integer.valueOf(addressId);
+	 	        addressInfo =AdressInfoDao.getAdressInfo(iAddress);
+			    
+			    String[] temps = addressInfo.getAddrDetail().split(";");
+			    for(int j = 0;j<temps.length;j++){
+			    	if(j==temps.length -1){
+			    		addressDetail = temps[j];
+			    	}
+			    	else{
+				    	if(!temps[j].equals("null")){
+				    		region.append(temps[j]+" ");
+			    		}
+			    	}
+			    }
 		    }
 		%>
 		<div id="content">
 		
 			<!-- 在此加入各自的内容物-->
 			<div class="blank"></div>
-			<form action="/GreenLife/reAddress?addressid=<%=iAddress%>" method="post" onsubmit="return validate()">
+			<form action="/GreenLife/reAddress<%=iAddress!=-1?"?type=1&addressid="+iAddress:"?type=2"%>" method="post" onsubmit="return validate()">
 				<div class="dPanel">
 					<div class="cell">
 					   <span>收货人</span><br/>
-					   <input type="text" id="iConsignee" name="iConsignee" class="input" value="<%=addressInfo.getReceiverName()%>"/>
+					   <input type="text" id="iConsignee" name="iConsignee" class="input" value="<%=iAddress!=-1?addressInfo.getReceiverName():""%>"/>
 					</div>
 					<div class="cell">
 					   <span>手机号码</span><br/>
-					   <input type="text" id="iPhnoe" name="iPhnoe" class="input" value="<%=addressInfo.getReceiverPhone()%>"/>
+					   <input type="text" id="iPhnoe" name="iPhnoe" class="input" value="<%=iAddress!=-1?addressInfo.getReceiverPhone():""%>"/>
 					</div>
 					<div class="cell">
 					   <span>地区信息</span><br/>
-					   <input type="text" id="iRegione" name="iRegione" class="input" value="<%=region.toString()%>" readonly="readonly"></input>
+					   <input type="text" id="iRegione" name="iRegione" class="input" value="<%=iAddress!=-1?region.toString():""%>" readonly="readonly"></input>
 					   <img id="iToAddress" src="../images/rightArrowGray.png"/>
 					</div>
 					<div id="location" class="cell">
@@ -69,11 +73,11 @@
 				    </div>
 					<div class="cell">
 					   <span>详细地址</span><br/>
-					   <input type="text" id="iAddress" name="iAddress" class="input" value="<%=addressDetail%>"/>
+					   <input type="text" id="iAddress" name="iAddress" class="input" value="<%=iAddress!=-1?addressDetail:""%>"/>
 					</div>
 					<div class="cell">
 					   <span>邮编</span><br/>
-					   <input type="text" id="zipAddress" name="zipAddress" class="input" value="<%=addressInfo.getAddrZipcode()%>"/>
+					   <input type="text" id="zipAddress" name="zipAddress" class="input" value="<%=iAddress!=-1?addressInfo.getAddrZipcode():""%>"/>
 					</div>
 					<div class="cell">
 					   <input type="checkbox" id="iCheck" name="iCheck"/>

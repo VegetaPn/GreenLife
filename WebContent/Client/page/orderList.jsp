@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.greenlife.dao.*"
 	import="com.greenlife.model.*" import="java.util.ArrayList"
-	import="java.util.List" import="com.greenlife.util.*" %>
+	import="java.util.List" import="com.greenlife.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +17,24 @@
 
 </head>
 <body>
+
+	<%
+	    //获取订单列表
+		List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
+		orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
+		int orderAmount = orderList.size();
+		System.out.println(orderAmount);
+		//用于填充的变量
+		int whatToShow = 4;
+		String showtype = request.getParameter("whatToShow");
+		if (showtype != null)
+		{
+			whatToShow = Integer.parseInt(showtype);
+		}
+		GoodsOrder orderToShow = new GoodsOrder();
+		GoodsInfo goodsinfo = new GoodsInfo();
+		int orderstate = 0;
+	%>
 	<div id="header">
 		<div id="leftButton">
 			<img src="../images/leftArrowBlack.png" />
@@ -27,34 +45,62 @@
 			<img src="../images/home.png">
 		</div>
 		<!-- 右上角功能键，其实就是主页按钮-->
-		<div id="title">订单列表</div>
+		<div id="title">
+			<%
+			    if (whatToShow == 4)
+				{
+					out.write("订单列表");
+				}
+				else if (whatToShow == 0)
+				{
+					out.write("订单列表-待成团");
+				}
+				else if (whatToShow == 1)
+				{
+					out.write("订单列表-待付款");
+				}
+				else if (whatToShow == 2)
+				{
+					out.write("订单列表-待发货");
+				}
+				else if (whatToShow == 3)
+				{
+					out.write("订单列表-待评论");
+				}
+			%>
+		</div>
 	</div>
-
-
-
-	<%
-	    //获取订单列表
-	    List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
-	    orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
-	    int orderAmount = orderList.size();
-	    System.out.println(orderAmount);
-	    
-	    
-	    
-	    GoodsOrder orderToShow = new GoodsOrder();
-	    GoodsInfo goodsinfo = new GoodsInfo();
-	    int orderstate = 0;
-	%>
-
 	<div id="content">
-
 		<%
-		    for (int orderIndex = 0; orderIndex < orderAmount; orderIndex++) {
-				orderToShow=orderList.get(orderIndex);
-				goodsinfo=GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
-				
-				String productImg = PropertiesUtil.getPath()+goodsinfo.getPackagePath()+"small.jpg";
-				
+		    for (int orderIndex = 0; orderIndex < orderAmount; orderIndex++)
+			{
+				orderToShow = orderList.get(orderIndex);
+				goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
+				orderstate = orderToShow.getOrderState();
+				String productImg = PropertiesUtil.getPath() + goodsinfo.getPackagePath() + "small.jpg";
+				if (whatToShow != 4)
+				{
+					if (whatToShow == 0 && orderstate != 2)
+					{
+						//跳过不是待成团的条目
+						continue;
+					}
+					if (whatToShow == 1 && orderstate != 1 && orderstate != 5)
+					{
+						//跳过不是待付款的条目
+						continue;
+					}
+					if (whatToShow == 2 && orderstate != 3 && orderstate != 6)
+					{
+						//跳过不是待发货的条目
+						continue;
+					}
+					if (whatToShow == 3 && orderstate != 4 && orderstate != 7)
+					{
+						//跳过不是待评论的条目
+						continue;
+					}
+				}
 		%>
 
 		<!--一个订单条目-->
@@ -63,7 +109,46 @@
 			<div class="labelHeader" id="productSalesPrice">
 
 				<div class="whiteDiv"></div>
-				<span class="label">待付款</span>
+				<span class="label"> 
+				<%
+	     			if (orderstate == 1)
+	 				{
+	 					out.write("待付款");
+	 				}
+	 				else if (orderstate == 2)
+	 				{
+	 					out.write("待成团");
+	 				}
+	 				else if (orderstate == 3)
+	 				{
+	 					out.write("待发货");
+	 				}
+	 				else if (orderstate == 4)
+	 				{
+	 					out.write("待评价");
+	 				}
+	 				else if (orderstate == 5)
+	 				{
+	 					out.write("待付款");
+	 				}
+	 				else if (orderstate == 6)
+	 				{
+	 					out.write("待成团");
+	 				}
+	 				else if (orderstate == 7)
+	 				{
+	 					out.write("待发货");
+	 				}
+	 				else if (orderstate == 8)
+	 				{
+	 					out.write("已完成");
+	 				}
+	 				else
+	 				{
+	 					out.write("未知类型订单");
+	 				}
+				 %>
+				</span>
 
 			</div>
 
@@ -92,7 +177,7 @@
 
 						<div class="cargoReciever">
 							<span class="blackNormal">收货人：</span><span class="orangeText"
-								id="recieverName"><%=orderToShow.getWechatId()%></span>
+								id="recieverName"><%=orderToShow.getReceiverName()%></span>
 						</div>
 
 						<div class="shouldPay">
@@ -121,22 +206,29 @@
 
 
 				<%
-				    if (true) {
+				    if (orderstate == 1 || orderstate == 5)
+					{
 				%>
 				<div class="functionButton" id="goToPay"
-					onclick="javascript:location.href='payForOrder.jsp?orderIndex=<%=orderIndex%>'">去付款</div>
+					onclick="javascript:location.href='detailOrderMessage.jsp?orderIndex=<%=orderIndex%>'">去付款</div>
 				<%
-				    } else if (false) {
+				    }
+					else if (orderstate == 2)
+					{
 				%>
-				<div class="functionButton" id="makeGroup">约好友成团</div>
+				<div class="functionButton" id="makeGroup" onclick="">约好友成团</div>
 				<%
-				    } else if (false) {
+				    }
+					else if (orderstate == 4 || orderstate == 7)
+					{
 				%>
-				<div class="functionButton" id="giveComment">我来说两句</div>
+				<div class="functionButton" id="giveComment" onclick="">我来说两句</div>
 				<%
-				    } else if (false) {
+				    }
+					else if (orderstate == 8)
+					{
 				%>
-				<div class="functionButton" id="showToFriends">分享给好友</div>
+				<div class="functionButton" id="showToFriends" onclick="">分享给好友</div>
 				<%
 				    }
 				%>
@@ -145,6 +237,6 @@
 		<%
 		    }
 		%>
-	
+	</div>
 </body>
 </html>

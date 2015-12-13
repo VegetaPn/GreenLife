@@ -56,7 +56,7 @@ body{
 }
 
 .select{
-    width:30%;
+    width:25%;
 }
 
 #location{
@@ -65,11 +65,13 @@ body{
 
 #s3{
 	float:right;
+	width:35%;
 }
 
 #s2{
 	margin-left: 3%;
-	margin-right: 3%;
+	//margin-right: 3%;
+	width:30%;
 }
 
 @media screen and (max-width: 480px){

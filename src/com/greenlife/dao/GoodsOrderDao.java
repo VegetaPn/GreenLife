@@ -55,36 +55,55 @@ public class GoodsOrderDao {
 	}
 	
 	
-	public static boolean addGoodsOrder(GoodsOrder order){
-		String sql = "INSERT INTO `greenlife`.`goods_order` (`order_id`, `goods_id`, "
-				+ "`wechat_id`, `addr_id`, `goods_num`, `trade_time`, `comment`, "
-				+ "`mail_price`, `total_price`, `group_id`, `send_time`,"
-				+ " `group_minnum`, `order_state`) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+	public static int addGoodsOrder(GoodsOrder order){
+		String sql = "INSERT INTO `greenlife`.`goods_order`"
+				+ " (`goods_id`, `wechat_id`, "
+				+ "`goods_num`, `trade_time`, `comment`, "
+				+ "`mail_price`, `total_price`, `group_id`, "
+				+ "`send_time`, `group_minnum`, `order_state`, "
+				+ "`addr_detail`, `receiver_name`, `phone_number`) "
+				+ "VALUES (?, ?, ?, ?, "
+				+ "?, ?, ?, ?, ?,"
+				+ " ?, ?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, order.getOrderId());
-			ps.setInt(2, order.getGoodsId());
-			ps.setString(3, order.getWechatId());
-			ps.setInt(4, order.getAddrId());
-			ps.setInt(5, order.getGoodsNum());
-			ps.setString(6, order.getTradeTime());
-			ps.setString(7, order.getComment());
-			ps.setDouble(8, order.getMailPrice());
-			ps.setDouble(9, order.getTotalPrice());
-			ps.setInt(10, order.getGroupId());
-			ps.setString(11, order.getSendTime());
-			ps.setInt(12, order.getGroupMinnum());
-			ps.setInt(13, order.getOrderState());
+			//ps.setInt(1, order.getOrderId());
+			ps.setInt(1, order.getGoodsId());
+			ps.setString(2, order.getWechatId());
+			ps.setInt(3, order.getGoodsNum());
+			ps.setString(4, order.getTradeTime());
+			ps.setString(5, order.getComment());
+			ps.setDouble(6, order.getMailPrice());
+			ps.setDouble(7, order.getTotalPrice());
+			ps.setInt(8, order.getGroupId());
+			ps.setString(9, order.getSendTime());
+			ps.setInt(10, order.getGroupMinnum());
+			ps.setInt(11, order.getOrderState());
+			ps.setString(12, order.getAddrDetail());
+			ps.setString(13, order.getReceiverName());
+			ps.setString(14, order.getPhoneNumber());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			return -1;
 		} finally {
 			clearUp(conn);
 		}
-		return true;
+		int order_id = -1;
+		sql = "select max(order_id) as id from goods_order;";
+		conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			rs.next();
+			order_id = rs.getInt("id");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+		return order_id;
 	}
 	
 	
@@ -92,7 +111,6 @@ public class GoodsOrderDao {
 		String sql = "UPDATE `greenlife`.`goods_order` SET "
 				+ "goods_id = (?), "
 				+ "wechat_id = (?), "
-				+ "addr_id = (?), "
 				+ "goods_num = (?), "
 				+ "trade_time = (?), "
 				+ "comment = (?), "
@@ -102,23 +120,29 @@ public class GoodsOrderDao {
 				+ "send_time = (?), "
 				+ "group_minnum = (?), "
 				+ "order_state = (?), "
+				+ "addr_detail = (?), "
+				+ "receiver_name = (?), "
+				+ "phone_number = (?), "
 				+ "WHERE order_id = (?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, order.getGoodsId());
 			ps.setString(2, order.getWechatId());
-			ps.setInt(3, order.getAddrId());
-			ps.setInt(4, order.getGoodsNum());
-			ps.setString(5, order.getTradeTime());
-			ps.setString(6, order.getComment());
-			ps.setDouble(7, order.getMailPrice());
-			ps.setDouble(8, order.getTotalPrice());
-			ps.setInt(9, order.getGroupId());
-			ps.setString(10, order.getSendTime());
-			ps.setInt(11, order.getGroupMinnum());
-			ps.setInt(12, order.getOrderState());
-			ps.setInt(13, order.getOrderId());
+			ps.setInt(3, order.getGoodsNum());
+			ps.setString(4, order.getTradeTime());
+			ps.setString(5, order.getComment());
+			ps.setDouble(6, order.getMailPrice());
+			ps.setDouble(7, order.getTotalPrice());
+			ps.setInt(8, order.getGroupId());
+			ps.setString(9, order.getSendTime());
+			ps.setInt(10, order.getGroupMinnum());
+			ps.setInt(11, order.getOrderState());
+			ps.setString(12, order.getAddrDetail());
+			ps.setString(13, order.getReceiverName());
+			ps.setString(14, order.getPhoneNumber());
+			ps.setInt(15, order.getOrderId());
+			
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -146,7 +170,6 @@ public class GoodsOrderDao {
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
-				goodsOrder.setAddrId(rs.getInt("addr_id"));
 				goodsOrder.setGoodsNum(rs.getInt("goods_num"));
 				goodsOrder.setTradeTime(rs.getString("trade_time"));
 				goodsOrder.setComment(rs.getString("comment"));
@@ -156,6 +179,9 @@ public class GoodsOrderDao {
 				goodsOrder.setSendTime(rs.getString("send_time"));
 				goodsOrder.setGroupMinnum(rs.getInt("group_minnum"));
 				goodsOrder.setOrderState(rs.getInt("order_state"));
+				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
+				goodsOrder.setReceiverName(rs.getString("receiver_name"));
+				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
 				
 				orderList.add(goodsOrder);
 			}
@@ -185,7 +211,6 @@ public class GoodsOrderDao {
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
-				goodsOrder.setAddrId(rs.getInt("addr_id"));
 				goodsOrder.setGoodsNum(rs.getInt("goods_num"));
 				goodsOrder.setTradeTime(rs.getString("trade_time"));
 				goodsOrder.setComment(rs.getString("comment"));
@@ -195,6 +220,9 @@ public class GoodsOrderDao {
 				goodsOrder.setSendTime(rs.getString("send_time"));
 				goodsOrder.setGroupMinnum(rs.getInt("group_minnum"));
 				goodsOrder.setOrderState(rs.getInt("order_state"));
+				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
+				goodsOrder.setReceiverName(rs.getString("receiver_name"));
+				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
 				
 				orderList.add(goodsOrder);
 			}
@@ -223,7 +251,6 @@ public class GoodsOrderDao {
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
-				goodsOrder.setAddrId(rs.getInt("addr_id"));
 				goodsOrder.setGoodsNum(rs.getInt("goods_num"));
 				goodsOrder.setTradeTime(rs.getString("trade_time"));
 				goodsOrder.setComment(rs.getString("comment"));
@@ -233,6 +260,9 @@ public class GoodsOrderDao {
 				goodsOrder.setSendTime(rs.getString("send_time"));
 				goodsOrder.setGroupMinnum(rs.getInt("group_minnum"));
 				goodsOrder.setOrderState(rs.getInt("order_state"));
+				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
+				goodsOrder.setReceiverName(rs.getString("receiver_name"));
+				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
 				
 				orderList.add(goodsOrder);
 			}

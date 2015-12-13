@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.greenlife.dao.*"
-	import="com.greenlife.model.*" import="java.util.*" import="java.util.Properties"
-	import="com.greenlife.util.*"%>
+	import="com.greenlife.model.*" import="java.util.*"
+	import="java.util.Properties" import="com.greenlife.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,20 +36,22 @@
 	<div id="content">
 
 		<%
-		    int orderIndex = Integer.parseInt(request.getParameter("orderIndex"));
-		    System.out.println("detailmessage orderIndex:" + orderIndex);
+			int orderIndex = Integer.parseInt(request.getParameter("orderIndex"));
+			System.out.println("detailmessage orderIndex:" + orderIndex);
 
-		    List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
-		    orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
-		    
-		    GoodsOrder orderToShow=orderList.get(orderIndex);
-			AdressInfo addressinfo = AdressInfoDao.getAdressInfo(orderToShow.getAddrId());
+			List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
+			orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
+
+			GoodsOrder orderToShow = orderList.get(orderIndex);
 			GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
-			
-			String productImg = PropertiesUtil.getPath()+ goodsinfo.getPackagePath()+"normal.jpg";
-			
-			System.out.println("detailmessage orderToShow.addrid:" + orderToShow.getAddrId());
-			System.out.println("detailmessage addressinfo.len:" + addressinfo.getWechatId());
+			int orderstate = orderToShow.getOrderState();
+			boolean isgroup = false;
+			if (orderToShow.getGroupId() != 0)
+			{
+				isgroup = true;
+			}
+
+			String productImg = PropertiesUtil.getPath() + goodsinfo.getPackagePath() + "normal.jpg";
 		%>
 
 		<div id="product">
@@ -70,7 +72,18 @@
 
 				<div class="middleTag">
 					<div class="tagLeft">商品价格：</div>
-					<div class="blackNormal" id="productPrice"><%=goodsinfo.getGoodsPrice()%></div>
+					<div class="blackNormal" id="productPrice">
+						<%
+							if (isgroup)
+							{
+								out.write("(成团价)" + goodsinfo.getGoodsDiscontPrice()+"元");
+							}
+							else
+							{
+								out.write(goodsinfo.getGoodsPrice()+"元");
+							}
+						%>
+					</div>
 				</div>
 
 				<div class="middleTag">
@@ -90,30 +103,55 @@
 				</div>
 			</div>
 
-			<div class="functionButton" id="button1"
-				onclick="javascript:location.href='payForOrder.jsp?orderIndex=<%= orderIndex%>'">去付款</div>
 
+			<%
+				if (orderstate == 1 || orderstate == 5)
+				{
+			%>
+			<div class="functionButton"
+				onclick="javascript:location.href='payForOrder.jsp?orderIndex=<%=orderIndex%>'">去付款</div>
 
-
-			<div class="functionButton" id="button2">取消订单</div>
-
+			<div class="functionButton" onclick="">取消订单</div>
+			<%
+				}
+				else if (orderstate == 2)
+				{
+			%>
+			<div class="functionButton" onclick="">约好友成团</div>
+			<div class="functionButton" onclick="">取消订单</div>
+			<%
+				}
+				else if (orderstate == 3 || orderstate == 6)
+				{
+			%>
+			<div class="functionButton" onclick="">取消订单</div>
+			<%
+				}
+				else if (orderstate == 4 || orderstate == 7 || orderstate == 8)
+				{
+			%>
+			<div class="functionButton" onclick="">我来说两句</div>
+			<div class="functionButton" onclick="">分享给好友</div>
+			<%
+				}
+			%>
 		</div>
 
 		<div class="moreMessage">
 
 			<div class="middleTag">
 				<div class="tagLeft">收货地址：</div>
-				<div class="blackNormal" id="aimLocation"><%=addressinfo.getAddrDetail()%></div>
+				<div class="blackNormal" id="aimLocation"><%=orderToShow.getAddrDetail()%></div>
 			</div>
 
 			<div class="middleTag">
 				<div class="tagLeft">收货人：</div>
-				<div class="blackNormal" id="recieverName"><%=addressinfo.getReceiverName()%></div>
+				<div class="blackNormal" id="recieverName"><%=orderToShow.getReceiverName()%></div>
 			</div>
 
 			<div class="middleTag">
 				<div class="tagLeft">手机号码：</div>
-				<div class="blackNormal" id="telephoneNumber"><%=addressinfo.getReceiverPhone()%></div>
+				<div class="blackNormal" id="telephoneNumber"><%=orderToShow.getPhoneNumber()%></div>
 			</div>
 
 		</div>

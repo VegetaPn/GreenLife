@@ -21,40 +21,44 @@
 		</div>
 		
 		<div id="content">
+		<%
+		//session.getAttribute("nickname");
+		
+		%>
 			<div id="visitingCard">
 				<div id="bgImage"><img src="../images/bg.jpg"/></div>
-				<div id="icon"><img src="../images/1.png"/></div>
-				<div id="userName">张二狗</div>
+				<div id="icon"><img src=<%=session.getAttribute("headimgurl")%>/></div>
+				<div id="userName"><%=session.getAttribute("nickname")%></div>
 			</div>
 			
 			<div class="service">
-				<div class="func">
+				<div class="func" onclick="javascript:location.href='orderList.jsp'">
 					<div class="icon"><img src="../images/shoppingCart.png"/></div>
 					<div class="myFunc">我的订单</div>
 					<div class="arrowHead"><img src="../images/rightArrowOrange.png"/></div>
 				</div>
 				
-				<div class="func">
-					<div class="icon"><img src="../images/heartfull.png"/></div>
+				<div class="func" onclick="javascript:location.href='collection.jsp'">
+					<div class="icon"><img src="../images/heartFull.png"/></div>
 					<div class="myFunc">我的收藏</div>
 					<div class="arrowHead"><img src="../images/rightArrowOrange.png"/></div>
 				</div>
 				
 				<div class="undetermined">
-					<div class="um"><img src="../images/profileGroup.png"/><span>待成团</span></div>
-					<div class="um"><img src="../images/bankCards.png"/><span>待付款</span></div>
-					<div class="um"><img src="../images/truck.png"/><span>待发货</span></div>
-					<div class="um"><img src="../images/comment.png"/><span>待评论</span></div>
+					<div class="um" onclick="javascript:location.href='orderList.jsp?state=1'"><img src="../images/profileGroup.png"/><span>待成团</span></div>
+					<div class="um" onclick="javascript:location.href='orderList.jsp?state=2'"><img src="../images/bankCards.png"/><span>待付款</span></div>
+					<div class="um" onclick="javascript:location.href='orderList.jsp?state=3'"><img src="../images/truck.png"/><span>待发货</span></div>
+					<div class="um" onclick="javascript:location.href='orderList.jsp?state=4'"><img src="../images/comment.png"/><span>待评论</span></div>
 				</div>
 				
 				
-				<div class="func">
+				<div class="func" onclick="javascript:location.href='myAddress.jsp'">
 					<div class="icon"><img src="../images/mapMarkerOrange.png"/></div>
 					<div class="myFunc">收货地址</div>
 					<div class="arrowHead"><img src="../images/rightArrowOrange.png"/></div>
 				</div>
 				
-				<div id="quit">
+				<div id="quit" onclick="javascript:location.href='login.jsp'">
 					<div id="logout">退出登录</div>
 				</div>
 			

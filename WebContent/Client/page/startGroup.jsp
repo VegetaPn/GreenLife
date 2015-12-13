@@ -17,18 +17,19 @@
 
 	<%
 		//获取产品ID，然后显示信息
+<<<<<<< HEAD
 		int goodsID=Integer.parseInt(request.getParameter("goodsId"));
 	
+=======
+		int goodsID = 1;
+		String str_goodsID = request.getParameter("goodsID");
+		if (str_goodsID != null)
+		{
+			goodsID = Integer.parseInt(str_goodsID);
+		}
+>>>>>>> 52871ce9147836c8eafca0bff065eb94192d3cd9
 		GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(goodsID);
-	
-	
-	
-	
-	
 	%>
-
-
-
 
 	<div id="header">
 		<div id="leftButton">
@@ -58,14 +59,15 @@
 		<div class="mainMessage">
 			<h2 class="middleTag">
 				<span class="blackBold">成团价格：</span><span class="orangeText"
-					id="groupPrice"><%=goodsinfo.getGoodsDiscontPrice()%>元</span><span class="blackNormal"
-					id="originPrice">（原价：<%=goodsinfo.getGoodsPrice()%>元）</span>
+					id="groupPrice"><%=goodsinfo.getGoodsDiscontPrice()%>元</span><span
+					class="blackNormal" id="originPrice">（原价：<%=goodsinfo.getGoodsPrice()%>元）
+				</span>
 			</h2>
 			<hr class="line" />
 
 			<h2 class="middleTag">
 				<span class="blackBold">发货时间：</span><span class="blackNormal"
-					id="deliverTime">2015.11.12-2016.04.12</span>
+					id="deliverTime"><%=goodsinfo.getEndTime()%></span>
 			</h2>
 			<hr class="line" />
 
@@ -79,7 +81,8 @@
 		</div>
 
 
-		<div class="functionButton" >我要开团</div>
+		<div class="functionButton"
+			onclick="javascript:location.href='purchase.jsp?group=true&goodsId=<%=goodsID%>'">我要开团</div>
 
 
 		<img src="../images/howToStartGroup.bmp" class="startGroupIMG" />
@@ -87,8 +90,11 @@
 
 		<div class="detail">
 			<h2>详细说明：</h2>
-			<p id="detailInfo">如此这般，这里那里，就是这样，以上以上，好的好的,233,how are
-				you,我是谁，我在哪里</p>
+			<p id="detailInfo">
+				<%
+					out.println(goodsinfo.getGoodsText1() + "<br/>" + goodsinfo.getGoodsText2());
+				%>
+			</p>
 
 		</div>
 
