@@ -17,7 +17,7 @@
 
 	<%
 		//获取产品ID，然后显示信息
-		int goodsID=Integer.parseInt(request.getParameter("orderIndex"));
+		int goodsID=Integer.parseInt(request.getParameter("goodsId"));
 	
 		GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(goodsID);
 	

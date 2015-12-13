@@ -45,7 +45,7 @@
 				String productImg = PropertiesUtil.getPath()+gi.getPackagePath()+"small.jpg";
 		
 			%>
-			<div class="normalProduct" onclick="javascript:location.href='productHome.jsp?Id=<%=id%>'">
+			<div class="normalProduct" onclick="javascript:location.href='productHome.jsp?goodsId=<%=id%>'">
 				<div class="nPic"><img src=<%=productImg%>/></div>
 				<div class="nSellInfo">
 					<div class="nName"><%=gi.getGoodsName()%></div>

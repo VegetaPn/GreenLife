@@ -8,7 +8,7 @@
 <%
 	String wechatId = (String)session.getAttribute("wechatId");
 	wechatId = "huangjianqiang";//测试
-	int goodsId = 1;//Integer.parseInt(request.getParameter("goosId"));
+	int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 	String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"normal.jpg";
 	String detailPath = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"detail.jpg";
