@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.greenlife.model.TodayGroup;
 import com.greenlife.util.DBUtil;
@@ -12,6 +14,29 @@ public class TodayGroupDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static List<Integer> getGroupIdByStatus(int group_state){
+		List<Integer> list = new ArrayList<Integer>();
+		String sql = "select group_id from today_group where group_state = ?";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, group_state);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				int groupId = rs.getInt("group_id");
+				list.add(groupId);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return list;
+	}
+
 	public static boolean deleteTodayGroup(int groupId){
 		String sql = "delete from today_group where group_id = ?;";
 		

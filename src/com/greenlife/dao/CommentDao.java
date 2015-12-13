@@ -72,7 +72,6 @@ public class CommentDao {
 	}
 	
 	public static boolean updateCommentt(Comment cmt){
-		int comment_id = -1;
 		
 		String sql = "UPDATE `greenlife`.`comment` SET"
 				+ "comment_content = (?), "
