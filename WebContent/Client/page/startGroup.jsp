@@ -17,17 +17,17 @@
 
 	<%
 		//获取产品ID，然后显示信息
-<<<<<<< HEAD
+
 		int goodsID=Integer.parseInt(request.getParameter("goodsId"));
 	
-=======
-		int goodsID = 1;
+
+		goodsID = 1;
 		String str_goodsID = request.getParameter("goodsID");
 		if (str_goodsID != null)
 		{
 			goodsID = Integer.parseInt(str_goodsID);
 		}
->>>>>>> 52871ce9147836c8eafca0bff065eb94192d3cd9
+
 		GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(goodsID);
 	%>
 
