@@ -17,16 +17,34 @@
 
 </head>
 <body>
+	<%
+		int orderIndex = Integer.parseInt(request.getParameter("orderIndex"));
+		System.out.println("detailmessage orderIndex:" + orderIndex);
 
+		List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
+		orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
+
+		GoodsOrder orderToShow = orderList.get(orderIndex);
+		GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
+		int orderstate = orderToShow.getOrderState();
+		
+		int whatToShow = 4;
+		String showtype = request.getParameter("whatToShow");
+		if (showtype != null)
+		{
+			whatToShow = Integer.parseInt(showtype);
+		}
+
+		String productImg = PropertiesUtil.getPath() + goodsinfo.getPackagePath() + "normal.jpg";
+	%>
 
 	<div id="header">
-		<div id="leftButton">
-			<img src="../images/leftArrowBlack.png"
-				onclick="javascript:location.href='orderList.jsp'" />
+		<div id="leftButton" onclick="javascript:location.href='orderList.jsp?whatToShow=<%=whatToShow%>'">
+			<img src="../images/leftArrowBlack.png"/>
 		</div>
 		<!-- 左上角功能键：返回、或是菜单按键-->
 
-		<div id="homeButton">
+		<div id="homeButton" onclick="javascript:location.href='home.jsp'">
 			<img src="../images/home.png">
 		</div>
 		<!-- 右上角功能键，其实就是主页按钮-->
@@ -35,24 +53,7 @@
 
 	<div id="content">
 
-		<%
-			int orderIndex = Integer.parseInt(request.getParameter("orderIndex"));
-			System.out.println("detailmessage orderIndex:" + orderIndex);
-
-			List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
-			orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
-
-			GoodsOrder orderToShow = orderList.get(orderIndex);
-			GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
-			int orderstate = orderToShow.getOrderState();
-			boolean isgroup = false;
-			if (orderToShow.getGroupId() != 0)
-			{
-				isgroup = true;
-			}
-
-			String productImg = PropertiesUtil.getPath() + goodsinfo.getPackagePath() + "normal.jpg";
-		%>
+		
 
 		<div id="product">
 			<div id="productImgDiv">
@@ -74,7 +75,7 @@
 					<div class="tagLeft">商品价格：</div>
 					<div class="blackNormal" id="productPrice">
 						<%
-							if (isgroup)
+							if (orderstate>10)
 							{
 								out.write("(成团价)" + goodsinfo.getGoodsDiscontPrice()+"元");
 							}
@@ -105,29 +106,31 @@
 
 
 			<%
-				if (orderstate == 1 || orderstate == 5)
+				if (orderstate == 1 || orderstate == 11)
 				{
+					//待付款
 			%>
 			<div class="functionButton"
-				onclick="javascript:location.href='payForOrder.jsp?orderIndex=<%=orderIndex%>'">去付款</div>
-
+				onclick="javascript:location.href='payForOrder.jsp?orderIndex=<%=orderIndex%>&whatToShow=<%=whatToShow%>'">去付款</div>
 			<div class="functionButton" onclick="">取消订单</div>
 			<%
 				}
 				else if (orderstate == 2)
 				{
+					//待成团
 			%>
 			<div class="functionButton" onclick="">约好友成团</div>
 			<div class="functionButton" onclick="">取消订单</div>
 			<%
 				}
-				else if (orderstate == 3 || orderstate == 6)
+				else if (orderstate == 3 || orderstate == 12)
 				{
+					//待发货
 			%>
 			<div class="functionButton" onclick="">取消订单</div>
 			<%
 				}
-				else if (orderstate == 4 || orderstate == 7 || orderstate == 8)
+				else if (orderstate == 5 || orderstate == 14)
 				{
 			%>
 			<div class="functionButton" onclick="">我来说两句</div>
