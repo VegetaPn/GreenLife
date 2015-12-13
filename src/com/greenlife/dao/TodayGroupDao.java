@@ -14,6 +14,28 @@ public class TodayGroupDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static List<Integer> getGroupId(){
+		List<Integer> list = new ArrayList<Integer>();
+		String sql = "select group_id from today_group;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				int groupId = rs.getInt("group_id");
+				list.add(groupId);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return list;
+	}
+	
 	public static List<Integer> getGroupIdByStatus(int group_state){
 		List<Integer> list = new ArrayList<Integer>();
 		String sql = "select group_id from today_group where group_state = ?";
