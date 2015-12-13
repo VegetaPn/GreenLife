@@ -1,0 +1,432 @@
+.interval{
+	background-color:#DDDDDD;
+	height:15px;
+}
+
+#product{
+	width:100%;
+	position:relative;
+	text-align:center;
+}
+
+
+#productImg{
+	width:100%;
+}
+
+#productName{
+	position: absolute;
+	background-color:rgba(215,215,215,0.7);
+	width:100%;
+	bottom:0;
+	font-weight:bold;
+	text-align:center;
+	font-size:24px;
+	
+}
+
+#organiser{
+	position:relative;
+	background-color:#FFFFFF;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:10px;
+}
+
+
+#desc{
+	position:absolute;
+	margin-left:15px;
+}
+
+.avatar{
+	border:1px solid #797979;
+	border-radius:100%;
+	
+}
+
+
+
+#organiserName{
+	position:absolute;
+	margin-left:15px;
+}
+
+
+#priceDesc{
+	
+	position:absolute;
+	right:10px;
+	
+}
+	
+
+
+#price{
+	color:#F76F00;
+	
+}
+
+
+#groupState{
+	
+	padding-left:10px;
+	background-color:#FFFFFF;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+#joinGroupDiv{
+	background-color:#FFFFFF;
+	text-align:center;
+	padding-top:30px;
+	padding-bottom:35px;
+}
+
+#joinGroup{
+	color:#FFFFFF;
+	font-weight:bold;
+	background-color:#F76F00;
+	border-radius:5px;
+	padding:15px 35% 15px 35%;
+}
+
+#groupState span{
+	color:#F76F00;
+}
+
+
+#label{
+	width:90%;
+	margin:auto;
+	padding-top:15px;
+	font-weight:bold;
+	
+}
+
+.inGroup{
+	width:90%;
+	margin:auto;
+	position:relative;
+	
+}
+
+.name{
+	margin-left:15px;
+	position:absolute;
+
+}
+
+.time{
+	
+	position:absolute;
+	right:0;
+
+}
+
+
+@media screen and (max-width: 479px) { 
+	#productImg{
+		height:220px;
+	}
+
+	#productName{
+		font-size:24px;
+	}
+
+
+
+
+	.avatar{
+		width:40px;
+		height:40px;
+		
+	}
+
+
+	#desc{
+		font-size:16px;
+	}
+
+	#organiserName{
+		font-size:16px;
+		bottom:10px;
+	}
+	
+	#priceDesc{
+		
+		font-size:16px;
+		bottom:10px;
+		
+	}
+
+
+	#groupState div{
+		font-size:16px;
+	}
+	
+	#joinGroup{
+		font-size:20px;
+	}
+	
+	
+	#label{
+		font-size:20px;
+		
+	}
+
+	
+	.name{
+		font-size:16px;
+		bottom:24px;
+	
+	}
+	
+	.time{
+		font-size:16px;
+		bottom:24px;
+	}
+}
+
+
+@media screen and (min-width:480px) and (max-width:639px) {
+	#productImg{
+		height:300px;
+	}
+
+	#productName{
+		font-size:28px;
+	}
+
+	.avatar{
+		width:64px;
+		height:64px;
+		
+	}
+
+	#organiserName{
+		font-size:20px;
+		bottom:42px;
+	}
+	
+	#desc{
+		font-size:20px;
+	}
+	
+	#priceDesc{
+		
+		font-size:20px;
+		bottom:42px;
+		
+	}
+	
+	#groupState div{
+		font-size:20px;
+	}
+	
+	#joinGroup{
+		font-size:24px;
+	}
+	
+	
+	
+		
+	#label{
+		font-size:24px;
+		
+	}
+
+	
+	.name{
+		font-size:20px;
+		bottom:32px;
+	
+	}
+	
+	.time{
+		font-size:20px;
+		bottom:32px;
+	}
+}
+
+@media screen and (min-width:640px) and (max-width:767px) { 
+	#productImg{
+		height:360px;
+	}
+
+	#productName{
+		font-size:32px;
+	}
+
+	.avatar{
+		width:100px;
+		height:100px;
+		
+	}
+
+	#desc{
+		font-size:24px;
+	}
+
+	#organiserName{
+		font-size:24px;
+		bottom:60px;
+	}
+	
+	#priceDesc{
+		
+		font-size:24px;
+		bottom:60px;
+		
+	}
+	
+	#groupState div{
+		font-size:24px;
+	}
+	
+	#joinGroup{
+		font-size:28px;
+	}
+	
+	
+			
+	#label{
+		font-size:28px;
+		
+	}
+
+	
+	.name{
+		font-size:24px;
+		bottom:50px;
+	
+	}
+	
+	.time{
+		font-size:24px;
+		bottom:50px;
+	}
+}
+
+
+@media screen and (min-width:768px) and (max-width:979px){
+	#productImg{
+		height:420px;
+	}
+
+	#productName{
+		font-size:36px;
+	}
+	
+	.avatar{
+		width:120px;
+		height:120px;
+		
+	}
+
+	#desc{
+		font-size:28px;
+	}
+
+
+	#organiserName{
+		font-size:28px;
+		bottom:70px;
+	}
+	
+	#priceDesc{
+		
+		font-size:28px;
+		bottom:70px;
+		
+	}
+	
+	#groupState div{
+		font-size:28px;
+	}
+	
+	#joinGroup{
+		font-size:32px;
+	}
+	
+	
+	#label{
+		font-size:32px;
+		
+	}
+
+	
+	.name{
+		font-size:28px;
+		bottom:60px;
+	
+	}
+	
+	.time{
+		font-size:28px;
+		bottom:60px;
+	}
+}
+
+@media screen and (min-width:980px){
+	#productImg{
+		height:500px;
+	}
+
+	#productName{
+		font-size:40px;
+	}
+
+	.avatar{
+		width:120px;
+		height:120px;
+		
+	}
+
+	#desc{
+		font-size:32px;
+	}
+
+	#organiserName{
+		font-size:32px;
+		bottom:70px;
+	}
+	
+	#priceDesc{
+		
+		font-size:32px;
+		bottom:70px;
+		
+	}
+	
+	#groupState div{
+		font-size:32px;
+	}
+	
+	#joinGroup{
+		font-size:36px;
+	}
+	
+	
+	#label{
+		font-size:36px;
+		
+	}
+
+	
+	.name{
+		font-size:32px;
+		bottom:60px;
+	
+	}
+	
+	.time{
+		font-size:32px;
+		bottom:60px;
+	}
+}
+
+
+
+
+

@@ -41,7 +41,7 @@
 		<div id="content">
 		
 		
-			<div id="product">
+			<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
 			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
 						
 			<div id="productName">

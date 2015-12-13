@@ -56,10 +56,10 @@
 		
 
 		<div id="product">
-			<div id="productImgDiv">
+			
 
 				<img id="productImg" src=<%=productImg%> />
-			</div>
+	
 
 		</div>
 

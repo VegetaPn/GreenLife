@@ -1,28 +1,16 @@
 #product{
 	width:100%;
 	position:relative;
-	background-color:#E4E4E4;
 	text-align:center;
-	/*padding-top:3vw;
-	padding-bottom:3vw;*/
-	padding-top:15px;
-	padding-bottom:15px;
-}
-
-
-#productImgDiv{
-	width:90%;
-	/*width:90vw;*/
-	margin:auto;
 
 }
+
+
 
 #productImg{
-	/*width:90vw;
-	height:36vw;*/
+
 	width:100%;
-	border:1px solid #333333;
-	border-radius:10px;
+
 }
 
 #productName{
@@ -30,7 +18,6 @@
 	background-color:rgba(215,215,215,0.7);
 	width:100%;
 	bottom:0;
-	/*font-size:6vw;*/
 	font-weight:bold;
 	text-align:center;
 	
@@ -49,7 +36,6 @@
 .arcLabel{
 	background-color:#F76F00;
 	color:#FFFFFF;
-	/*font-size:5vw;*/
 	font-weight:bold;
 	padding:5px 15px 5px 15px;
 	border-top-right-radius:15px;
@@ -75,9 +61,7 @@
 	overflow:hidden;
 	padding-top:20px;
 	padding-bottom:15px;
-	/*
-	padding-top:5vw;
-	padding-bottom:4vw;*/
+
 }
 
 #infoDesc{
@@ -86,24 +70,20 @@
 }
 
 
-/*
-.descFont{
-	font-size:5vw;
-}*/
+
 
 .link{
 	float:right;
 	text-decoration:none;
 	color:#FF6600;
-	/*font-size:7vw;*/
 	font-weight:bold;
 }
 
 
 
 .grayDiv{
-	background-color:#CCCCCC;
-	border:1px solid #CCCCCC;
+	background-color:#DDDDDD;
+	border:1px solid #DDDDDD;
 	
 }
 
@@ -118,7 +98,6 @@
 
 .labelHeader{
 	position:relative;
-	/*height:8vw;*/
 }
 
 .label{
@@ -126,7 +105,6 @@
 	color:#FFFFFF;
 	padding:5px 15px 5px 15px;
 	
-	/*font-size:5vw;*/
 	font-weight:bold;
 	position:absolute;
 	left:10px;
@@ -136,8 +114,7 @@
 	position:absolute;
 	background-color:#FFFFFF;
 	width:100%;
-	/*margin-top:3vw;
-	height:5vw;*/
+
 	border-bottom:1px solid #FFFFFF;
 }
 
@@ -146,7 +123,7 @@
 
 #purchaseNum{
 	color:#FFFF00;
-	/*font-size:7vw;*/
+
 }
 
 #purchaseDetail{
@@ -167,13 +144,12 @@
 .avatar{
 	border:1px solid #797979;
 	border-radius:100%;
-	/*width:14vw;
-	height:14vw;*/
+
 }
 
 #friendLink{
 	float:left;
-	/*margin-top:4vw;*/
+
 }
 
 
@@ -184,18 +160,16 @@
 }
 
 #salesProductImgDiv{
-	padding-top:10px;
+	width:100%;
 	text-align:center;
-	
+	margin:auto;
 	
 }
 
 #salesProductImg{
-	width:80%;
-	/*width:80vw;
-	height:32vw;*/
-	border:1px solid #333333;
-	border-radius:10px;
+	width:90%;
+	
+
 }
 
 #productSalesInfo{
@@ -203,7 +177,6 @@
 	margin:auto;
 	background-color:#ffffff;
 	overflow:hidden;
-	margin-top:10px;
 	padding-bottom:20px;
 	
 }
@@ -213,7 +186,7 @@
 }
 
 .titleFont{
-	/*font-size:5vw;*/
+
 	font-weight:bold;
 }
 
@@ -231,7 +204,7 @@
 }
 
 .salesPrice{
-	/*font-size:7vw;*/
+
 	font-weight:bold;
 	padding:5px;
 	border-top-right-radius:5px;
@@ -254,7 +227,7 @@
 	border-bottom-right-radius:5px;
 	padding:2px;
 	background-color:#F76F00;
-	/*font-size:5vw;*/
+
 	font-weight:bold;
 	color:#ffffff;
 	text-align:center;
@@ -276,12 +249,7 @@
 #qualityLogo{
 	float:left;
 }
-/*
-#qualityLogoImg{
-	width:18vw;
-	height:18vw;
-}
-*/
+
 #qualityInfo{
 	float:left;
 	
@@ -289,19 +257,19 @@
 
 #qualityFont{
 	color:#F76F00;
-	/*font-size:5.5vw;*/
+
 	font-weight:bold;
 }
 
 #qualityLink{
 
 	color:#FFFFFF;
-	/*font-size:5.5vw;*/
+
 	font-weight:bold;
 	
 	background-color:#F76F00;
 	border-radius:13px;
-	/*margin-left:4vw;*/
+
 	padding:5px 15px 5px 15px;
 }
 
@@ -334,25 +302,25 @@
 
 .name{
 	color:#FF6600;
-	/*font-size:7vw;*/
+
 	font-weight:bold;
 	float:left;
-	/*margin-top:3.5vw;*/
+
 	margin-left:10px;
 }
 
 .time{
 	color:#999999;
-	/*font-size:4vw;*/
+
 	float:left;
-	/*margin-top:5vw;*/
+
 	margin-left:10px;
 }
 
 .comment{
 	clear:both;
-	/*margin-left:14vw;
-	font-size:5vw;*/
+
+
 	color:#333333;
 }
 
@@ -371,7 +339,7 @@
 
 #commentLink{
 	color:#FFFFFF;
-	/*font-size:7vw;*/
+
 	font-weight:bold;
 	
 	background-color:#F76F00;
@@ -390,7 +358,7 @@
 @media screen and (max-width: 479px) {  
 	#productImg{
 		
-		height:180px;
+		height:220px;
 	}
 
 	#productName{
@@ -455,7 +423,7 @@
 
 	#salesProductImg{
 		
-		height:160px;
+		height:200px;
 
 	}
 

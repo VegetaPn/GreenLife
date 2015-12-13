@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="refresh" content="0.1;url=<%=refreshUrl%>">
-<title>登录</title>
+<title>自动登录中</title>
 </head>
 <body>
 </body>

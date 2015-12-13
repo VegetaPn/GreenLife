@@ -117,9 +117,9 @@
 
 		<div id="product">
 
-			<div id="productImgDiv">
-				<img id="productImg" src="<%=productImg%>" />
-			</div>
+			
+			<img id="productImg" src="<%=productImg%>" />
+			
 			<span class="arcLabel" id="salesState"><%=salesState%></span> <span
 				class="arcLabel" id="orderNum">订单数：<%=orderNum%></span>
 			<script>var isCollected = false;</script>
