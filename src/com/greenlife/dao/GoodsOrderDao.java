@@ -42,8 +42,11 @@ public class GoodsOrderDao {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, goodsId);
 			rs = ps.executeQuery();
-			rs.next();
-			num = rs.getInt("cnt");
+			if(rs.next()){
+				num = rs.getInt("cnt");
+			}else{
+				return -1;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return -1;
@@ -96,10 +99,14 @@ public class GoodsOrderDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
-			rs.next();
-			order_id = rs.getInt("id");
+			if(rs.next()){
+				order_id = rs.getInt("id");
+			}else{
+				return -1;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return -1;
 		} finally {
 			clearUp(conn);
 		}
@@ -153,7 +160,7 @@ public class GoodsOrderDao {
 		return true;
 	}
 	
-public static List<GoodsOrder> getGoodsOrderListByState(int order_state){
+	public static List<GoodsOrder> getGoodsOrderListByState(int order_state){
 		
 		List<GoodsOrder> orderList = new ArrayList<>();
 
@@ -187,6 +194,7 @@ public static List<GoodsOrder> getGoodsOrderListByState(int order_state){
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}
@@ -229,6 +237,7 @@ public static List<GoodsOrder> getGoodsOrderListByState(int order_state){
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}
@@ -273,6 +282,7 @@ public static List<GoodsOrder> getGoodsOrderListByState(int order_state){
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				return null;
 			} finally {
 				clearUp(conn);
 			}
@@ -315,6 +325,7 @@ public static List<GoodsOrder> getGoodsOrderListByState(int order_state){
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}
@@ -356,6 +367,7 @@ public static List<GoodsOrder> getGoodsOrderListByState(int order_state){
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}
@@ -396,6 +408,7 @@ public static List<GoodsOrder> getGoodsOrderListByState(int order_state){
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}
