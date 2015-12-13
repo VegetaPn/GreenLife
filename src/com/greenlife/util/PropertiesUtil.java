@@ -26,4 +26,63 @@ public class PropertiesUtil {
 			e.printStackTrace();
 		}              
 	}
+	
+	
+	public static String getAppId(){
+		Properties prop = new Properties();
+		try {
+			InputStream is = PropertiesUtil.class.getResourceAsStream("init.properties");
+			prop.load(is);
+			return prop.getProperty("appID");
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}              
+	}
+	
+	public static String getAppsecret(){
+		Properties prop = new Properties();
+		try {
+			InputStream is = PropertiesUtil.class.getResourceAsStream("init.properties");
+			prop.load(is);
+			return prop.getProperty("appsecret");
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}              
+	}
+	
+	
+	public static String getURL(){
+		Properties prop = new Properties();
+		try {
+			InputStream is = PropertiesUtil.class.getResourceAsStream("init.properties");
+			prop.load(is);
+			return prop.getProperty("URL");
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}              
+	}
+	
+	
+	public static String getToken(){
+		Properties prop = new Properties();
+		try {
+			InputStream is = PropertiesUtil.class.getResourceAsStream("init.properties");
+			prop.load(is);
+			return prop.getProperty("token");
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}              
+	}
 }
