@@ -4,6 +4,9 @@ public class TodayGroup {
 	private int groupId;
 	private String startTime;
 	private int groupState;
+	private int goodsId;
+	private String wechatId;
+	
 	public int getGroupId() {
 		return groupId;
 	}
@@ -22,4 +25,17 @@ public class TodayGroup {
 	public void setGroupState(int groupState) {
 		this.groupState = groupState;
 	}
+	public int getGoodsId() {
+		return goodsId;
+	}
+	public void setGoodsId(int goodsId) {
+		this.goodsId = goodsId;
+	}
+	public String getWechatId() {
+		return wechatId;
+	}
+	public void setWechatId(String wechatId) {
+		this.wechatId = wechatId;
+	}
+	
 }
