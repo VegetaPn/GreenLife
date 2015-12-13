@@ -12,7 +12,7 @@ import com.greenlife.dao.ConcernedListDao;
 import com.greenlife.model.ConcernedList;
 
 
-@WebServlet("/CollectServlet")
+//@WebServlet("/CollectServlet")
 public class CollectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
