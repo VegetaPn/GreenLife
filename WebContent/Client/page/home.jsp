@@ -42,11 +42,12 @@
 				for(int i=0;i<goodsList.size();i++){
 				GoodsInfo gi = goodsList.get(i);
 				int id = gi.getGoodsId();
+				
 				String productImg = PropertiesUtil.getPath()+gi.getPackagePath()+"small.jpg";
 		
 			%>
 			<div class="normalProduct" onclick="javascript:location.href='productHome.jsp?goodsId=<%=id%>'">
-				<div class="nPic"><img src=<%=productImg%>/></div>
+				<div class="nPic"><img src="<%=productImg%>"/></div>
 				<div class="nSellInfo">
 					<div class="nName"><%=gi.getGoodsName()%></div>
 					<div class="nCheapprice">￥<%=gi.getGoodsPrice()%><span>/<%=gi.getGoods_unit()%></span>
