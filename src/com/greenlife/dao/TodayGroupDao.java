@@ -14,6 +14,34 @@ public class TodayGroupDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
+	public static TodayGroup getTodayGroup(int groupId){
+		TodayGroup group = new TodayGroup();
+		String sql = "select * from today_group where group_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, groupId);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				group.setGoodsId(rs.getInt("goods_id"));
+				group.setGroupId(rs.getInt("group_id"));
+				group.setGroupState(rs.getInt("group_state"));
+				group.setStartTime(rs.getString("start_time"));
+				group.setWechatId(rs.getString("wechat_id"));
+			}else{
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return group;
+	}
+	
 	public static List<Integer> getGroupId(){
 		List<Integer> list = new ArrayList<Integer>();
 		String sql = "select group_id from today_group;";

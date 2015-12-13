@@ -52,9 +52,7 @@ public class DBUtilTest {
 //		order.setTradeTime("2015/12/30/21:20:00");
 //		order.setWechatId("huangjianqiang");
 //		GoodsOrderDao.addGoodsOrder(order);
-		List<Integer> list = TodayGroupDao.getGroupIdByStatus(0);
-		List<GoodsOrder> l = GoodsOrderDao.getGoodsOrderList(list);
-		System.out.println(l.size());
+		System.out.print(TodayGroupDao.getTodayGroup(1).toString());
 	}
 
 }
