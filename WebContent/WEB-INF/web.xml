@@ -40,12 +40,20 @@
     <servlet-name>CommentServlet</servlet-name>
     <url-pattern>/comment</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>PurchaseServlet</servlet-name>
     <servlet-class>com.greenlife.client.controller.PurchaseServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PurchaseServlet</servlet-name>
     <url-pattern>/purchase</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>ChangeAddressServlet</servlet-name>
+    <servlet-class>com.greenlife.client.controller.ChangeAddressServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeAddressServlet</servlet-name>
+    <url-pattern>/changeAddress</url-pattern>
   </servlet-mapping>
 </web-app>

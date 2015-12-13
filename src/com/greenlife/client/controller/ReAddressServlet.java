@@ -2,7 +2,6 @@ package com.greenlife.client.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -70,6 +69,12 @@ public class ReAddressServlet extends HttpServlet{
        }
        else{
     	   addrId = AdressInfoDao.addAdressInfo(address);
+    	   //如果userInfo无默认地址，则将其改成默认地址
+           UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
+	       if(userInfo.getAddrId()<=0){
+	    	   userInfo.setAddrId(addrId);
+	    	   UserInfoDao.updateUserInfo(userInfo);
+	       }
        }
 
       //int addrid = addressInfoDao.addAdressInfo(address);
@@ -84,6 +89,11 @@ public class ReAddressServlet extends HttpServlet{
            }
        }  
        
-      response.sendRedirect("/GreenLife/Client/page/myAddress.jsp");
+      String group = request.getParameter("group");
+	  String goodsId = request.getParameter("goodsId");
+	  if(group == null)
+           response.sendRedirect("/GreenLife/Client/page/myAddress.jsp");
+	  else
+		   response.sendRedirect("/GreenLife/Client/page/changeAddress.jsp?group="+group+"&goodsId="+goodsId);
 	 }
 }

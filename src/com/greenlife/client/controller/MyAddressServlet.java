@@ -1,12 +1,15 @@
 package com.greenlife.client.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.greenlife.dao.AdressInfoDao;
 import com.greenlife.dao.UserInfoDao;
 import com.greenlife.model.AdressInfo;
@@ -47,15 +50,31 @@ public class MyAddressServlet extends HttpServlet{
        //设置默认值
        if(itype == 0){
            //修改默认地址
-           UserInfoDao userInfoDao = new UserInfoDao();
-           UserInfo userInfo = userInfoDao.getUserInfo(wechatId);
+           UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
 	       userInfo.setAddrId(Integer.valueOf(addressId));
-	       userInfoDao.updateUserInfo(userInfo);
+	       UserInfoDao.updateUserInfo(userInfo);
        }
        //删除  
        else if(itype == 1){
-    	   AdressInfoDao addressInfoDao = new AdressInfoDao();
-    	   addressInfoDao.deleteAdressList(iAddress);
+    	   AdressInfoDao.deleteAdressList(iAddress);
+    	   
+    	   //判断删除的时候是默认地址，如果是默认地址，则修改默认地址
+    	   UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
+    	   if(iAddress == userInfo.getAddrId()){
+    		   List<AdressInfo> addressInfos = AdressInfoDao.getAdressList(wechatId);
+    		   if(addressInfos!=null&&addressInfos.size()>0){
+    			   userInfo.setAddrId(addressInfos.get(0).getAddrId());
+    			   UserInfoDao.updateUserInfo(userInfo);
+    			   
+    			   //向ajax返回数据
+    			   PrintWriter out = response.getWriter();
+    			   out.write("defualt="+addressInfos.get(0).getAddrId()); 
+    		   }
+    		   else{
+    			   userInfo.setAddrId(-1);
+    			   UserInfoDao.updateUserInfo(userInfo);
+    		   }
+    	   }
        }
 	 }
 }
