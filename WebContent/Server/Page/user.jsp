@@ -1,4 +1,5 @@
-<%@page import="java.util.List"%>
+<%@page
+	import="java.util.List,com.greenlife.model.*,com.greenlife.dao.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -37,66 +38,30 @@
 						<th>用户微信号</th>
 						<th>用户微信昵称</th>
 						<th>手机号</th>
-						<th width="110 " class="ac ">好友</th>
+						<th>地址</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td><a href="# ">STRS78998</a></td>
-						<td>小宝</td>
-						<td><a href="# ">132239842395</a></td>
-						<td>a</td>
-					</tr>
-					<tr>
-
-						<td><a href="# ">STRS78998</a></td>
-						<td>小宝</td>
-						<td><a href="# ">132239842395</a></td>
-						<td>a</td>
-
-					</tr>
-					<tr>
-
-						<td><a href="# ">STRS78998</a></td>
-						<td>小宝</td>
-						<td><a href="# ">132239842395</a></td>
-						<td>a</td>
-					</tr>
-					<tr>
-
-						<td><a href="# ">STRS78998</a></td>
-						<td>小宝</td>
-						<td><a href="# ">132239842395</a></td>
-						<td>a</td>
-					</tr>
-					<tr>
-
-						<td><a href="# ">STRS78998</a></td>
-						<td>小宝</td>
-						<td><a href="# ">132239842395</a></td>
-						<td>a</td>
-					</tr>
-					<tr>
-
-						<td><a href="# ">STRS78998</a></td>
-						<td>小宝</td>
-						<td><a href="# ">132239842395</a></td>
-						<td>a</td>
-					</tr>
-					<tr>
-
-						<td><a href="# ">STRS78998</a></td>
-						<td>小宝</td>
-						<td><a href="# ">132239842395</a></td>
-						<td>a</td>
-					</tr>
-					<tr class="odd ">
-
-						<td><a href="# ">STRS78998</a></td>
-						<td>小宝</td>
-						<td><a href="# ">132239842395</a></td>
-						<td>a</td>
-					</tr>
+					<%
+						        List<UserInfo> allUser = UserInfoDao.getUsersList();//用户信息
+								
+								for (int i = 0; i < allUser.size(); i++) {
+									UserInfo oneUser = allUser.get(i);//
+									AdressInfo ad = AdressInfoDao.getAdressInfo(oneUser.getAddrId());
+									
+									
+							%>
+							<tr class="goods">
+								<td><%=oneUser.getWechatId()%></td>
+								<td><%=oneUser.getWechatName()%></td>
+								<td><%=oneUser.getPhone()%></td>
+								<td><%=ad.getAddrDetail()%></td>
+														   
+							</tr>
+							<%
+								}
+							%>
+						
 				</tbody>
 			</table>
 		</div>
