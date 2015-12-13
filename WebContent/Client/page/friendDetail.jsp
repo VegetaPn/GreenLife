@@ -21,7 +21,7 @@
 		<div id="content">
 		
 			<div id="product">
-				<div id="productImgDiv"><img id="productImg" src="../images/product.jpg"/></div>
+				<img id="productImg" src="../images/product.jpg"/>
 				<div id="productName">
 					2015现磨五常稻花香大米
 				</div>

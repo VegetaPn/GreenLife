@@ -25,28 +25,26 @@
 		
 		<div id="content">
 		
-		<div id="pushDiv">
-			<div id="product">
-				<div id="productImgDiv">
-					<img id="productImg" src="../images/product.jpg"/>
-						<div id="productName">来自孔雀河的库尔勒一级香梨</div>
-				</div>
-				<div id="price">
-					<div class="cheapPrice">￥7.90<span>/2个</span></div>
-					
-				</div>
+		
+		<div id="product">
+			<img id="productImg" src="../images/product.jpg"/>
+			<div id="productName">
+				2015现磨五常稻花香大米
 			</div>
 		</div>
+		
+	
 			
 			<% 
 				for(int i=0;i<goodsList.size();i++){
 				GoodsInfo gi = goodsList.get(i);
 				int id = gi.getGoodsId();
+				
 				String productImg = PropertiesUtil.getPath()+gi.getPackagePath()+"small.jpg";
 		
 			%>
-			<div class="normalProduct" onclick="javascript:location.href='productHome.jsp?Id=<%=id%>'">
-				<div class="nPic"><img src=<%=productImg%>/></div>
+			<div class="normalProduct" onclick="javascript:location.href='productHome.jsp?goodsId=<%=id%>'">
+				<div class="nPic"><img src="<%=productImg%>"/></div>
 				<div class="nSellInfo">
 					<div class="nName"><%=gi.getGoodsName()%></div>
 					<div class="nCheapprice">￥<%=gi.getGoodsPrice()%><span>/<%=gi.getGoods_unit()%></span>

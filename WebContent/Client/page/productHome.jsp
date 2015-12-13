@@ -7,7 +7,7 @@
 <%
 	String wechatId = (String) session.getAttribute("wechatId");
 	wechatId = "huangjianqiang";//测试
-	int goodsId = 1;//Integer.parseInt(request.getParameter("goosId"));
+	int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
@@ -50,7 +50,7 @@
 
 <html>
 <head>
-<title>产品主页</title>
+<title>田园生活</title>
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -101,14 +101,14 @@
 
 	<div id="header">
 		<div id="leftButton">
-			<img src="../images/leftArrowBlack.png" />
+			<img src="../images/leftArrowBlack.png"  onclick="history.back(-1);" />
 		</div>
-		<!-- 左上角功能键：返回、或是菜单按键-->
+	
 
 		<div id="homeButton">
-			<img src="../images/home.png">
+			<img src="../images/home.png" onclick="location.href='productDetail.jsp'">
 		</div>
-		<!-- 右上角功能键，其实就是主页按钮-->
+		
 		<div id="title">田园生活</div>
 	</div>
 
@@ -117,9 +117,9 @@
 
 		<div id="product">
 
-			<div id="productImgDiv">
-				<img id="productImg" src="<%=productImg%>" />
-			</div>
+			
+			<img id="productImg" src="<%=productImg%>" />
+			
 			<span class="arcLabel" id="salesState"><%=salesState%></span> <span
 				class="arcLabel" id="orderNum">订单数：<%=orderNum%></span>
 			<script>var isCollected = false;</script>
@@ -188,7 +188,7 @@
 			<span class="descFont">在《舌尖上的中国中播出》的产品</span><br/><br/>
 			<span class="descFont">中国羽毛球队指定唯一产品</span><br/><br/>
 			-->
-				<div href="#" class="link">项目详情 ></div>
+				<div href="#" class="link" onclick="location.href='productDetail.jsp?goodsId=<%=goodsId%>'">项目详情 ></div>
 
 			</div>
 		</div>
@@ -256,14 +256,14 @@
 				</div>
 
 
-				<div id="teamPurchase" onclick="window.location.href='#'">
+				<div id="teamPurchase" onclick="location.href='startGroup.jsp?goodsId=<%=goodsId%>'">
 					<div class="salesPrice" id="teamPrice">
 						<%=goodsInfo.getGoodsDiscontPrice()%>元/份
 					</div>
 					<div class="purchaseLink">2人团></div>
 				</div>
 
-				<div id="personalPurchase" onclick="window.location.href='#'">
+				<div id="personalPurchase" onclick="location.href='purchase.jsp?group=false&goodsId=<%=goodsId%>'">
 					<div class="salesPrice" id="personalPrice">
 						<%=goodsInfo.getGoodsPrice()%>元/份
 					</div>
@@ -283,7 +283,7 @@
 					</div>
 					<div id="qualityInfo">
 						<span id="qualityFont">已通过<%=reportNum%>项田园检测
-						</span><br /> <br /> <span id="qualityLink">查看检测详情></span>
+						</span><br /> <br /> <span id="qualityLink" onclick="location.href='report.jsp?goodsId=<%=goodsId%>'">查看检测详情></span>
 					</div>
 				</div>
 			</div>

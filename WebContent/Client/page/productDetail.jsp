@@ -8,7 +8,7 @@
 <%
 	String wechatId = (String)session.getAttribute("wechatId");
 	wechatId = "huangjianqiang";//测试
-	int goodsId = 1;//Integer.parseInt(request.getParameter("goosId"));
+	int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 	String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"normal.jpg";
 	String detailPath = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"detail.jpg";
@@ -17,7 +17,7 @@
 
 <html>
     <head>
-        <title>产品详情</title>
+        <title>田园生活</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/productDetail.css" type="text/css">
@@ -27,16 +27,21 @@
     <body>
 	
 		 <div id="header">
-			<div id="leftButton"><img src="../images/leftArrowBlack.png"/></div> <!-- 左上角功能键：返回、或是菜单按键-->
-			
-			<div id="homeButton"><img src="../images/home.png"></div>   <!-- 右上角功能键，其实就是主页按钮-->
-			<div id="title">产品详情</div>
+				<div id="leftButton">
+					<img src="../images/leftArrowBlack.png"  onclick="history.back(-1);" />
+				</div>
+	
+
+			<div id="homeButton">
+				<img src="../images/home.png" onclick="location.href='productDetail.jsp'">
+			</div>
+			<div id="title">田园生活</div>
 		</div>
 		
 		<div id="content">
 		
 		
-			<div id="product">
+			<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
 			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
 						
 			<div id="productName">

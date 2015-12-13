@@ -66,6 +66,7 @@ public class ConcernedListDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}
@@ -88,6 +89,7 @@ public class ConcernedListDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}

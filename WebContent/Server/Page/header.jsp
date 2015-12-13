@@ -16,6 +16,12 @@
 <!-- 在这里写下你的自定义头部信息 -->
 </head>
 <body style="background-color: #E1E1E1">
+	<%
+		///登录判断，防止未登录直接修改
+		if (session.getAttribute("login") == null) {//用户没有登录
+			response.sendRedirect("/GreenLife/Server/Page/login.jsp");
+		}
+	%>
 	<div class="container-fluid">
 		<div class="container-fluid block">
 			<div class="navbar navbar-default" style="margin: 0px;">
@@ -47,32 +53,13 @@
 							<li class="list-group-item" style="border: 0px"><a
 								href="product.jsp">商品管理</a></li>
 							<li class="list-group-item" style="border: 0px"><a
-								href="order.jsp">订单管理</a></li>
-							<li class="list-group-item" style="border: 0px"><a
-								href="groupbuy.jsp">团购管理</a></li>
-							<li class="list-group-item" style="border: 0px"><a
-								href="label.jsp">标签管理</a></li>
+								href="togroup.jsp">订单管理</a></li>
 							<li class="list-group-item" style="border: 0px"><a
 								href="user.jsp">用户管理</a></li>
-							<!-- <li class="list-group-item" style="border:0px">
-                            <a href="#ADD" class="nav-header collapsed" data-toggle="collapse">
-                            	添加 <span class="pull-right glyphicon glyphicon-chevron-toggle"></span></a>
-                            <ul id="ADD" class="nav nav-list collapse secondmenu" style="height: 0px;">
-                                <li><a href="../PAGES/Unit.jsp"><i class="glyphicon glyphicon-edit"></i>添加单位</a></li>
-                                <li><a href="../Master/addUnit.jsp"><i class="glyphicon glyphicon-user"></i>添加测评项</a></li>
-                            </ul>
-                        </li> -->
-							<!-- <li class="list-group-item" style="border:0px">
-                            <a href="../PAGES/voting.jsp">投票进程</a>
-                        </li>
-                        <li class="list-group-item" style="border:0px">
-                            <a href="#VIEW" class="nav-header collapsed" data-toggle="collapse">
-                            	查看测评结果<span class="pull-right glyphicon glyphicon-chevron-toggle"></span></a>
-                            <ul id="VIEW" class="nav nav-list collapse secondmenu" style="height: 0px;">
-                                <li><a href="../Master/CMResult.jsp"><i class="glyphicon glyphicon-family"></i>竞争上岗测评</a></li>
-                                <li><a href="../Master/RMResult.jsp"><i class="glyphicon glyphicon-server"></i>等额选举测评</a></li>
-                            </ul>
-                        </li> -->
 						</ol>
 					</div>
 				</div>
+				<div class="col-lg-10" id="content">
+			
+			
+			

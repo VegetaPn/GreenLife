@@ -8,82 +8,33 @@ html{
 	background-color:#E4E4E4;
 }
 
-#pushDiv{
-	width:100%;
-	background-color:#E4E4E4;
-	/*padding-top:3vw;
-	padding-bottom:3vw;*/
-	padding-top:15px;
-	padding-bottom:15px;
-	margin-bottom:-1px;
-}
 
 #product{
-	/*width:90vw;*/
-	width:90%;
-	margin:auto;
-	border:1px solid #333333;
-	border-radius:10px;
-}
-
-#productImgDiv{
+	width:100%;
 	position:relative;
 }
 
+
 #productImg{
 	width:100%;
-	/*width:90vw;
-	height:36vw;*/
-	border-radius:10px 10px 0 0;
+
 }
+
 
 #productName{
 	position: absolute;
 	background-color:rgba(215,215,215,0.7);
 	width:100%;
 	bottom:0;
-	color:#ffffff;
-	/*font-size:6vw;*/
 	font-weight:bold;
-}
-
-
-
-#price{
-	background-color:#fff;
-	width:100%;
 	
-	text-align: left;
-	
-	/*height:5vw;*/
-	
-	border-radius:0 0 10px 10px;
-	position:relative;
-
-}
-
-.cheapPrice{
-	/*height:5vw;*/
-	/*font-size: 5vw;*/
-	color:#FF3366;
-	position:absolute;
-	left:1%;
-	bottom:0;
 	
 }
 
-.cheapPrice span{
-	/*font-size: 4vw;*/
-	color:#000;
-}
 
-.marketPrice{
-	/*font-size: 3.2vw;*/
-	color:#999999;
-	left:25%;
-	position:absolute;
-	bottom:0;
-}
+
+
+
 
 	
 .normalProduct{
@@ -177,25 +128,6 @@ html{
 		font-size:40px;
 	}
 
-	#price{	
-		height:36px;	
-	}
-
-	.cheapPrice{
-		height:36px;
-		font-size: 36px;
-		
-	}
-
-	.cheapPrice span{
-		font-size: 28px;
-	}
-
-	.marketPrice{
-		font-size: 28px;
-		
-	}
-
 	.nPic{
 		width:240px;
 		height:240px;
@@ -254,25 +186,6 @@ html{
 		font-size:36px;
 	}
 
-	#price{	
-		height:36px;	
-	}
-
-	.cheapPrice{
-		height:36px;
-		font-size: 36px;
-		
-	}
-
-	.cheapPrice span{
-		font-size: 28px;
-	}
-
-	.marketPrice{
-		font-size: 28px;
-		
-	}
-
 	.nPic{
 		width:200px;
 		height:200px;
@@ -328,25 +241,6 @@ html{
 
 	#productName{
 		font-size:32px;
-	}
-
-	#price{	
-		height:28px;	
-	}
-
-	.cheapPrice{
-		height:28px;
-		font-size: 28px;
-		
-	}
-
-	.cheapPrice span{
-		font-size: 28px;
-	}
-
-	.marketPrice{
-		font-size: 24px;
-		
 	}
 
 
@@ -408,25 +302,6 @@ html{
 		font-size:28px;
 	}
 
-	#price{	
-		height:24px;	
-	}
-
-	.cheapPrice{
-		height:24px;
-		font-size: 24px;
-		
-	}
-
-	.cheapPrice span{
-		font-size: 16px;
-	}
-
-	.marketPrice{
-		font-size: 16px;
-		
-	}
-
 	
 	
 	
@@ -481,33 +356,13 @@ html{
 
 	#productImg{
 		
-		height:180px;
+		height:220px;
 	}
 
 	#productName{
 		font-size:24px;
 	}
 
-	#price{	
-		height:20px;	
-	}
-
-	.cheapPrice{
-		height:20px;
-		font-size: 20px;
-		
-	}
-
-	.cheapPrice span{
-		font-size: 14px;
-	}
-
-	.marketPrice{
-		font-size: 14px;
-		
-	}
-
-	
 	
 	
 	.nPic{

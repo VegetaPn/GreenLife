@@ -74,6 +74,7 @@ public class SharedListDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}

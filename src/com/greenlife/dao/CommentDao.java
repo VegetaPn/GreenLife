@@ -61,10 +61,14 @@ public class CommentDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
-			rs.next();
-			comment_id = rs.getInt("id");
+			if(rs.next()){
+				comment_id = rs.getInt("id");
+			}else{
+				return -1;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return -1;
 		} finally {
 			clearUp(conn);
 		}
@@ -72,7 +76,6 @@ public class CommentDao {
 	}
 	
 	public static boolean updateCommentt(Comment cmt){
-		int comment_id = -1;
 		
 		String sql = "UPDATE `greenlife`.`comment` SET"
 				+ "comment_content = (?), "

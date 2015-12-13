@@ -16,7 +16,7 @@ import com.greenlife.model.GoodsOrder;
 /**
  * Servlet implementation class PurchaseServlet
  */
-@WebServlet("/PurchaseServlet")
+//@WebServlet("/PurchaseServlet")
 public class PurchaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

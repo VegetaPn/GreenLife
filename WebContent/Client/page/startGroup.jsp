@@ -17,12 +17,17 @@
 
 	<%
 		//获取产品ID，然后显示信息
-		int goodsID = 1;
+
+		int goodsID=Integer.parseInt(request.getParameter("goodsId"));
+	
+
+		goodsID = 1;
 		String str_goodsID = request.getParameter("goodsID");
 		if (str_goodsID != null)
 		{
 			goodsID = Integer.parseInt(str_goodsID);
 		}
+
 		GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(goodsID);
 	%>
 
@@ -43,9 +48,9 @@
 
 
 		<div id="product">
-			<div id="productImgDiv">
-				<img id="productImg" src="../images/product.jpg" />
-			</div>
+			
+			<img id="productImg" src="../images/product.jpg" />
+			
 
 			<div id="productName"><%=goodsinfo.getGoodsName()%></div>
 		</div>

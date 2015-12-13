@@ -16,8 +16,7 @@ html{
 .arcLabel{
 	background-color:#F76F00;
 	color:#FFFFFF;
-	/*font-size:5vw;
-	padding:1vw 5vw 1vw 5vw;*/
+
 	padding:5px 15px 5px 15px;
 	border-top-right-radius:15px;
     border-bottom-right-radius:15px;
@@ -29,8 +28,7 @@ html{
 .sellOutLabel{
 	background-color:#999999;
 	color:#FFFFFF;
-	/*font-size:5vw;
-	padding:1vw 5vw 1vw 5vw;*/
+
 	padding:5px 15px 5px 15px;
 	border-top-right-radius:15px;
     border-bottom-right-radius:15px;
@@ -40,8 +38,7 @@ html{
 }
 
 .link{
-	/*width:5vw;
-	height:5vw;*/
+
 	position:absolute;
 	right:5%;
 	top:50%;
