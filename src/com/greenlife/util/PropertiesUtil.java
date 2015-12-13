@@ -1,26 +1,31 @@
 package com.greenlife.util;
 
-import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertiesUtil {
 	private static String path = null;
+	private static String appId = null;
+	private static String appsecret = null;
+	private static String URL = null;
 	
 	public static String getPath(){
 		if(path == null){
-			loadPath();
+			loadProperties();
 		}
 		return path;
 	}
 
-	private static void loadPath() {
+	private static void loadProperties() {
 		Properties prop = new Properties();
 		try {
 			InputStream is = PropertiesUtil.class.getResourceAsStream("init.properties");
 			prop.load(is);
 			path = prop.getProperty("filePath");
+			appId = prop.getProperty("appId");
+			appsecret = prop.getProperty("appsecret");
+			URL = prop.getProperty("URL");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,46 +34,25 @@ public class PropertiesUtil {
 	
 	
 	public static String getAppId(){
-		Properties prop = new Properties();
-		try {
-			InputStream is = PropertiesUtil.class.getResourceAsStream("init.properties");
-			prop.load(is);
-			return prop.getProperty("appID");
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}              
+		if(appId == null){
+			loadProperties();
+		}
+		return appId;
 	}
 	
 	public static String getAppsecret(){
-		Properties prop = new Properties();
-		try {
-			InputStream is = PropertiesUtil.class.getResourceAsStream("init.properties");
-			prop.load(is);
-			return prop.getProperty("appsecret");
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}              
+		if(appsecret == null){
+			loadProperties();
+		}
+		return appsecret;
 	}
 	
 	
 	public static String getURL(){
-		Properties prop = new Properties();
-		try {
-			InputStream is = PropertiesUtil.class.getResourceAsStream("init.properties");
-			prop.load(is);
-			return prop.getProperty("URL");
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}              
+		if(URL == null){
+			loadProperties();
+		}
+		return URL;
 	}
 	
 	

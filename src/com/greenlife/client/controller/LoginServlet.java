@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import com.greenlife.dao.UserInfoDao;
 import com.greenlife.dao.WechatInfoDao;
 import com.greenlife.model.UserInfo;
+import com.greenlife.util.PropertiesUtil;
 
 import net.sf.json.JSONObject;
 
@@ -30,8 +31,8 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String appid = "wx8882f63ed713f1af";
-		String secret = "d4624c36b6795d1d99dcf0547af5443d";
+		String appid = PropertiesUtil.getAppId();
+		String secret = PropertiesUtil.getAppsecret();
 		
 		
 		String code = request.getParameter("code");
