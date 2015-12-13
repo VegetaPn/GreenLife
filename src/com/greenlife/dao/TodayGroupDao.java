@@ -17,7 +17,11 @@ public class TodayGroupDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
 	
-	public static List<TodayGroup> getOverdueOrder(){
+	
+	/*
+	 * 根据团状态以及据开始日期的天数返回列表
+	 */
+	public static List<TodayGroup> getOverdueOrder(int groupState, int day){
 		List<TodayGroup> list = new ArrayList<TodayGroup>();
 		TodayGroup group = new TodayGroup();
 		String sql = "select * from today_group where group_state = ?;";
@@ -34,8 +38,9 @@ public class TodayGroupDao {
 				Date d2 = sdf.parse(time);
 				long diff = d1.getTime() - d2.getTime();
 				long days = diff / (1000 * 60 * 60 * 24);
-				
-				if(days<2){
+				//long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
+				//long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
+				if(days < day){
 					continue;
 				}
 				
