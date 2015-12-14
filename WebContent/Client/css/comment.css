@@ -194,7 +194,7 @@
 @media screen and (max-width: 479px) {  
 	
 	#productImg{
-		height:180px;
+		height:220px;
 	}
 
 	#productName{
@@ -232,7 +232,7 @@
 	}
 
 	.comment{
-		margin-left:40px;
+		margin-left:50px;
 		font-size:16px;
 	}
 
@@ -278,7 +278,7 @@
 	}
 
 	.comment{
-		margin-left:64px;
+		margin-left:74px;
 		font-size:20px;
 	}
 }
@@ -327,7 +327,7 @@
 	}
 
 	.comment{
-		margin-left:100px;
+		margin-left:110px;
 		font-size:24px;
 	}
 }  
@@ -373,7 +373,7 @@
 	}
 
 	.comment{
-		margin-left:120px;
+		margin-left:130px;
 		font-size:28px;
 	}
 }  
@@ -420,7 +420,7 @@
 	}
 
 	.comment{
-		margin-left:120px;
+		margin-left:130px;
 		font-size:32px;
 	}	
 } 
