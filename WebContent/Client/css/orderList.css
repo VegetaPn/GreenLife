@@ -41,23 +41,24 @@ html,body
 
 .blackBold
 {
-    /*font-size:5.5vw;*/
+    letter-spacing:-1px;
+    font-size:18px;
     font-weight: bold;
     color:#000000;
 }
 
 .orangeText
 {
-    //font-size:5vw;
+    font-size:16px;
     color:#FF3300;
-    //letter-spacing: -0.5vw;
+    letter-spacing:-1px;
 }
 
 .blackNormal
 {
-    //font-size:5vw;
+    font-size:16px;
     color:#333333;
-    //letter-spacing: -0.5vw;
+    letter-spacing: -1px;
 }
 .listTag
 {
@@ -74,8 +75,8 @@ html,body
     
     margin:3% 0% 0% 2%;
     //width:22%;
-    width:88px;
-    height:88px;
+    width:66px;
+    height:66px;
     //height:22vw;
     float:left;
 }

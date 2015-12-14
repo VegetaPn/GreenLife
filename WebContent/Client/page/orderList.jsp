@@ -21,7 +21,7 @@
         <%
             //获取订单列表
                 String wechatId = (String)session.getAttribute("wechatId");
-        		wechatId="tangxingyuan";
+
                 List<GoodsOrder> orderList = GoodsOrderDao.getGoodsOrderList(wechatId);
                 int orderAmount = orderList.size();
                 //用于填充的变量
