@@ -75,13 +75,13 @@ public class CommentDao {
 		return comment_id;
 	}
 	
-	public static boolean updateCommentt(Comment cmt){
+	public static boolean updateComment(Comment cmt){
 		
-		String sql = "UPDATE `greenlife`.`comment` SET"
+		String sql = "UPDATE `greenlife`.`comment` SET "
 				+ "comment_content = (?), "
 				+ "time = (?), "
 				+ "img_path = (?) "
-				+ "WHERE goods_id = (?) AND wechat_id=(?);";
+				+ "WHERE comment_id = (?);";
 		
 		Connection conn = new DBUtil().getConn();
 		try {
@@ -89,8 +89,7 @@ public class CommentDao {
 			ps.setString(1, cmt.getContent());
 			ps.setString(2, cmt.getTime());
 			ps.setString(3, cmt.getImgPath());
-			ps.setInt(4, cmt.getGoodsId());
-			ps.setString(5, cmt.getWechatId());
+			ps.setInt(4, cmt.getCommentId());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

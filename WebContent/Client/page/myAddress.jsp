@@ -67,7 +67,7 @@
 						 }
 					 	 $.ajax({
 							type: "post",//数据提交的类型（post或者get）
-								url: "/GreenLife/myAddress",//数据提交得地址
+								url: "/myAddress",//数据提交得地址
 							data: {addressid:currentid,type:0},//提交的数据(自定义的一些后台程序需要的参数)
 							dataType: "text",//返回的数据类型
 							success: function(data){//请求成功后返执行的方法
@@ -94,7 +94,7 @@
 					 $("#delAddress").click(function(){
 					 	 $.ajax({		 
 							type: "post",//数据提交的类型（post或者get）
-							url: "/GreenLife/myAddress",//数据提交得地址
+							url: "/myAddress",//数据提交得地址
 							data: {addressid:currentid,type:1},//提交的数据(自定义的一些后台程序需要的参数)
 							dataType: "text",//返回的数据类型
 							success: function(data){//请求成功后返执行的方法

@@ -200,7 +200,7 @@ int commentListSize = commentList.size();
 				
 				 $.ajax({
 		 				type: "post",
-		    			url: "/GreenLife/comment",
+		    			url: "/comment",
 		     			data: {goodsId: "<%=goodsId%>",text:$("#postText").val(),img:""},
 						dataType : "text",
 						success : function(data) {
@@ -219,7 +219,7 @@ int commentListSize = commentList.size();
 						   var serverId = res.serverId; // 返回图片的服务器端ID
 						   $.ajax({
 				 				type: "post",
-				    			url: "/GreenLife/comment",
+				    			url: "/comment",
 				     			data: {goodsId: "<%=goodsId%>",text:$("#postText").val(),img:serverId},
 								dataType : "text",
 								success : function(data) {

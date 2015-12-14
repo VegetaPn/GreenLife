@@ -155,7 +155,7 @@ for(int i =0; i<addressInfos.size();i++){
 		 $("#iSubmit").click(function(){
 		 	 $.ajax({		 
 				type: "post",//数据提交的类型（post或者get）
-				url: "/GreenLife/purchase",//数据提交得地址
+				url: "/purchase",//数据提交得地址
 				data: {
 					sCusName:$("#sCusName").text(),
 					sPhoneNum:$("#sPhoneNum").text(),

@@ -61,7 +61,7 @@
 					}); 
 		     </script>
 		    <div class="dDeCusMess" style="display:block" id="<%=defaultAddressInfo!=null?defaultAddressInfo.getAddrId():-1%>" 
-		            onclick="location.href='/GreenLife/changeAddress?addressId=<%=defaultAddressInfo.getAddrId()%>&group=<%=group%>&goodsId=<%=goodsId%>'">
+		            onclick="location.href='/changeAddress?addressId=<%=defaultAddressInfo.getAddrId()%>&group=<%=group%>&goodsId=<%=goodsId%>'">
 				<div class="dCusInfor">
 				    <div class="top">
 						<img src="../images/maleOrange.png"/>
@@ -82,7 +82,7 @@
 		<%for(int i =0; i<addressInfos.size();i++){
 				if(i != index){%>
 				 <div class="dCusMess" id="<%=addressInfos.get(i).getAddrId()%>" 
-				       onclick="location.href='/GreenLife/changeAddress?addressId=<%=addressInfos.get(i).getAddrId()%>&group=<%=group%>&goodsId=<%=goodsId%>'">
+				       onclick="location.href='/changeAddress?addressId=<%=addressInfos.get(i).getAddrId()%>&group=<%=group%>&goodsId=<%=goodsId%>'">
 					<div class="dCusInfor" >
 					    <div class="top">
 							<img src="../images/maleBlack.png"/>

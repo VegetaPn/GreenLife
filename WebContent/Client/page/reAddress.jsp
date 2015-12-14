@@ -49,7 +49,7 @@
 			<!-- 在此加入各自的内容物-->
 			<div class="blank"></div>
 			<form method="post" onsubmit="return validate()"
-			   action="/GreenLife/reAddress<%=iAddress!=-1?"?type=1&addressid="+iAddress:"?type=2"%><%=goodsId!=null?"&goodsId="+goodsId+"&group="+group:""%>" >
+			   action="/reAddress<%=iAddress!=-1?"?type=1&addressid="+iAddress:"?type=2"%><%=goodsId!=null?"&goodsId="+goodsId+"&group="+group:""%>" >
 				<div class="dPanel">
 					<div class="cell">
 					   <span>收货人</span><br/>
