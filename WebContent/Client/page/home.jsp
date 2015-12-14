@@ -72,48 +72,47 @@
 				<div id="bgImage"><img src="../images/bg.jpg"/></div>
 				<div id="icon"><img src="<%=headimgurl%>"/></div>
 				<div id="userName"><%=nickname %></div>
-				<div id="logout">退出</div>
 			</div>
 		
 			
 			<div class="service">
-				<div class="func">
+				<div class="func" onclick="javascript:location.href='home.jsp'">
 					<div class="icon"><img src="../images/home.png"/></div>
 					<div class="myFunc">首页</div>
 				
 				</div>
 				
-				<div class="func">
+				<div class="func" onclick="javascript:location.href='personalCenter.jsp'">
 					<div class="icon"><img src="../images/person.png"/></div>
 					<div class="myFunc">个人中心</div>
 				
 				</div>
 				
-				<div class="func">
+				<div class="func" onclick="javascript:location.href='orderList.jsp?whatToShow=4'">
 					<div class="icon"><img src="../images/order.png"/></div>
 					<div class="myFunc">订单</div>
 				
 				</div>
 				
-				<div class="undetermined">
+				<div class="undetermined" onclick="javascript:location.href='orderList.jsp?whatToShow=0'">
 	
 					<div class="um">待成团</div>
 				
 				</div>
 				
-				<div class="undetermined">
+				<div class="undetermined" onclick="javascript:location.href='orderList.jsp?whatToShow=1'">
 				
 					<div class="um">待付款</div>
 				
 				</div>
 				
-				<div class="undetermined">
+				<div class="undetermined" onclick="javascript:location.href='orderList.jsp?whatToShow=2'">
 				
 					<div class="um">待发货</div>
 				
 				</div>
 				
-				<div class="undetermined">
+				<div class="undetermined" onclick="javascript:location.href='orderList.jsp?whatToShow=3'">
 	
 					<div class="um">待评论</div>
 				
