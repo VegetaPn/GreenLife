@@ -1,5 +1,5 @@
 html{
-	background-color:#D7D7D7;
+	background-color:#dddddd;
 }
 
 body{
@@ -18,14 +18,15 @@ body{
 
 
 .dPanel{
-	width:95%;
-	margin:auto;
+	//width:92%;
+	//margin:auto;
+	margin-left:12px;
+	margin-right:20px;
 	padding-bottom:15px;
 	background-color:#ffffff;
 }
 
 .cell{
-	//font-weight:bold;
 	margin-top:20px;
 	position:relative;
 }
@@ -48,6 +49,14 @@ body{
 	text-align:center;
 	background-color:#F76F00;
 	//font-weight:bold;
+	color:#ffffff;
+}
+
+
+#submit{
+	width:100%;
+	background-color:transparent;
+	border:none;
 	color:#ffffff;
 }
 
@@ -74,6 +83,10 @@ body{
 	width:30%;
 }
 
+.iInput{
+	width:100%;
+}
+
 @media screen and (max-width: 480px){
 	.blank{
 		height:15px;
@@ -91,7 +104,7 @@ body{
 	#iToAddress{
 	    width:25px;
 	    height:25px;
-	    bottom:5px;
+	    bottom:6px;
 	}
 	
 	#iSure{
@@ -99,6 +112,11 @@ body{
 		height:40px;
 	}
 	
+	#submit{
+		font-size:20px;
+		height:40px;
+    }
+
 	.select{
 	    height:35px;
 	    //margin-right:2px;
@@ -132,7 +150,12 @@ body{
 		font-size:24px;
 		height:50px;
 	}
-	
+
+	#submit{
+		font-size:24px;
+		height:50px;
+    }
+    	
 	.select{
 	    height:50px;
 	    //margin-right:2px;
@@ -166,7 +189,12 @@ body{
 		font-size:28px;
 		height:60px;
 	}
-	
+
+	#submit{
+		font-size:28px;
+		height:60px;
+    }
+    		
 	.select{
 		font-size:24px;
 		height:60px;
@@ -198,6 +226,11 @@ body{
 		height:70px;
 	}
 
+	#submit{
+		font-size:32px;
+		height:70px;
+    }
+    
 	.select{
 		font-size:28px;
 		height:70px;
@@ -229,6 +262,11 @@ body{
 		height:80px;
 	}
 
+	#submit{
+		font-size:36px;
+		height:80px;
+    }
+    
 	.select{
 		font-size:32px;
 		height:80px;

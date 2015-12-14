@@ -255,35 +255,41 @@
 				-->
 				</div>
 	
-
+				<div id="purchaseLeft">
 				<div id="teamPurchase" onclick="location.href='startGroup.jsp?goodsId=<%=goodsId%>'">
 					<div class="salesPrice" id="teamPrice">
 						<%=goodsInfo.getGoodsDiscontPrice()%>元/份
 					</div>
 					<div class="purchaseLink">2人团></div>
 				</div>
-
+				</div>
+				<div id="purchaseRight">
 				<div id="personalPurchase" onclick="location.href='purchase.jsp?group=false&goodsId=<%=goodsId%>'">
 					<div class="salesPrice" id="personalPrice">
 						<%=goodsInfo.getGoodsPrice()%>元/份
 					</div>
 					<div class="purchaseLink">单独预定</div>
 				</div>
-
+				</div>
 			</div>
 
 
 
-
+			
 			<div id="productQuality">
 				<div id="qualityContent">
+				
+					<div id="qualityLeft">
 					<div id="qualityLogo">
 						<img id="qualityLogoImg" src="../images/quaLogo.png" />
 
 					</div>
+					</div>
+					<div id="qualityRight">
 					<div id="qualityInfo">
 						<span id="qualityFont">已通过<%=reportNum%>项田园检测
 						</span><br /> <br /> <span id="qualityLink" onclick="location.href='report.jsp?goodsId=<%=goodsId%>'">查看检测详情></span>
+					</div>
 					</div>
 				</div>
 			</div>

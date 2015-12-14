@@ -190,12 +190,22 @@
 	font-weight:bold;
 }
 
+#purchaseLeft{
+	width:50%;
+	float:left;
+}
 
+
+
+#purchaseRight{
+	width:50%;
+	float:right;
+}
 
 #teamPurchase{
 	padding:10px 10px 0 10px;		
-	float:left;
-	margin-left:15%;
+	float:right;
+	
 }
 
 #personalPurchase{
@@ -236,6 +246,16 @@
 	text-align:center;
 }
 
+#qualityLeft{
+	width:30%;
+	float:left;
+}
+
+#qualityRight{
+	width:70%;
+	float:right;
+}
+
 #productQuality{
 	width:90%;
 	margin:auto;
@@ -250,13 +270,12 @@
 }
 
 #qualityLogo{
-	float:left;
-	margin-left:10%;
+	float:right;
+	margin-right:20px;
 }
 
 #qualityInfo{
-	right:15%;
-	position:absolute;
+	float:left;
 	
 }
 
@@ -362,151 +381,9 @@
 
  
 
-@media screen and (max-width:399px) {
-	#qualityLogo{
-		margin-left:3%;
-	}
-	
-	#qualityInfo{
-		right:10%;
-	
-	}
-	
-	#teamPurchase{
-		margin-left:5%;
-	}
-	#productImg{
-		
-		height:220px;
-	}
-
-	#productName{
-		font-size:24px;
-	}
-
-
-	.arcLabel{
-
-		font-size:16px;
-	}
-
-
-
-	.descFont{
-		font-size:16px;
-	}
-
-	.link{
-		font-size:20px;
-	}
-
-	.labelHeader{
-	
-		height:35px;
-	}
-
-	.label{
-
-		
-		font-size:16px;
-		
-	}
-
-	.whiteDiv{
-		margin-top:10px;
-		height:25px;
-	}
-
-
-
-
-	#purchaseNum{
-		font-size:20px;
-	}
-	
-	
-
-	.personalPurchaseDiv{
-		font-size:16px;
-	}
-
-	.avatar{
-		width:40px;
-		height:40px;
-	}
-
-	#friendLink{
-		margin-top:12px;
-	}
-
-
-	#salesProductImg{
-		
-		height:200px;
-
-	}
-
-	.titleFont{
-		font-size:16px;
-	
-	}
-
-
-	.salesPrice{
-		font-size:20px;
-		
-		
-	}
-
-
-	.purchaseLink{
-		font-size:16px;
-	}
-
-
-	#qualityLogoImg{
-		width:60px;
-		height:60px;
-	}
-
-
-	#qualityFont{
-		font-size:18px;
-	}
-
-	#qualityLink{
-		font-size:18px;
-		
-		margin-left:16px;
-		
-	}
-
-	.name{
-		font-size:20px;
-		margin-top:10px;
-		
-	}
-
-	.time{
-		font-size:16px;
-		margin-top:12px;
-		
-	}
-
-	.comment{
-		margin-left:40px;
-		font-size:16px;
-
-	}
-
-	#commentLink{
-		font-size:20px;
-		
-	}
-}
  
 
-@media screen and (min-width:400px) and (max-width: 479px) {   
+@media screen and (max-width: 479px) {   
 	#productImg{
 		
 		height:220px;

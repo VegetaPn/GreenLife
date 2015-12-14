@@ -18,6 +18,7 @@ if(group.equals("false")){
 else{
 	price = goodsInfo.getGoodsDiscontPrice();
 }
+
 //剩余数量
 int remNumber = goodsInfo.getGoodsTotalnum() - goodsInfo.getGoodsSoldnum();
 
@@ -72,8 +73,8 @@ for(int i =0; i<addressInfos.size();i++){
 	
 	
 		<div id="header">
-			<div id="leftButton"><img src="../images/leftArrowBlack.png"/></div> <!-- 左上角功能键：返回、或是菜单按键-->			
-			<div id="homeButton"><img src="../images/home.png"></div>   <!-- 右上角功能键，其实就是主页按钮-->
+			<div id="leftButton"><img src="../images/leftArrowBlack.png" onclick="history.back(-1);" /></div> <!-- 左上角功能键：返回、或是菜单按键-->			
+			<div id="homeButton"><img src="../images/home.png" onclick="location.href='home.jsp'"></div>   <!-- 右上角功能键，其实就是主页按钮-->
 			<div id="title">确认预定</div>
 		</div>
 		
@@ -85,13 +86,13 @@ for(int i =0; i<addressInfos.size();i++){
 				<div id="dCusInfor">
 				    <div class="top">
 						<img src="../images/maleOrange.png"/>
-						<span id="sCusName"><%=defaultAddressInfo.getReceiverName()%></span>
+						<span id="sCusName"><%=defaultAddressInfo!=null?defaultAddressInfo.getReceiverName():""%></span>
 						<img src="../images/phoneOrange.png"/>
-						<span id="sPhoneNum"><%=defaultAddressInfo.getReceiverPhone()%></span>
+						<span id="sPhoneNum"><%=defaultAddressInfo!=null?defaultAddressInfo.getReceiverPhone():""%></span>
 					</div>
 					<div class="bottom">
 						<img id="imgtemp" src="../images/mapMarkerOrange.png"/>
-						<span id="sAddress"><%=defaultAddr%></span>
+						<span id="sAddress"><%=defaultAddressInfo!=null?defaultAddr:""%></span>
 					</div>
 				</div>
 				<div id="dToAddress">
