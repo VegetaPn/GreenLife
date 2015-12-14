@@ -22,7 +22,7 @@ else{
 //剩余数量
 int remNumber = goodsInfo.getGoodsTotalnum() - goodsInfo.getGoodsSoldnum();
 
-String productImg = PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "normal.jpg";
+String productImg = PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "small.jpg";
 
 
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -114,7 +114,7 @@ for(int i =0; i<addressInfos.size();i++){
 			<!--第二层产品信息-->
 			<div id="dProductMess">
 			    <div id="dProductImg">
-				    <img id="iProductImg" src="<%=productImg%>"/>
+				    <img id="iProductImg" src="<%=productImg%>" onclick="location.href='productDetail.jsp?goodsId=<%=goodsId%>'"/>
 				</div>
 				<div id="dProductInfor">
 				    <p id="pProductName"><%=goodsInfo.getGoodsName()%></P>
