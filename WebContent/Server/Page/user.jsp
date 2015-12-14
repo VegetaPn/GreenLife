@@ -7,6 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>示例</title>
 </head>
+<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css">
+<link rel="stylesheet" type="text/css"
+	href="../CSS/bootstrap-responsiv.css">
+<link rel="stylesheet" type="text/css"
+	href="../CSS/jquery.dataTables.min.css">
 <body>
 	<%
 		///登录判断，防止未登录直接修改
@@ -17,7 +23,7 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
 
-	<div class="panel"">
+	<div class="panel">
 		<div class="panel-heading ">
 			信息管理 <span>&gt;</span> 用户列表
 		</div>
@@ -94,16 +100,15 @@
 				</tbody>
 			</table>
 		</div>
+	</div>
+	<jsp:include page="footer.html"></jsp:include>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/head.js"></script>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
+	<script type="text/javascript" src="../js/datatable-zn.js"></script>
 
-		<!-- Main -->
-		<script src="../js/jquery.min.js"></script>
-		<script src="../js/head.js"></script>
-		<script type="text/javascript" src="../js/jquery.js"></script>
-		<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
-		<script type="text/javascript" src=."../js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
-		<script type="text/javascript" src="../js/datatable-zn.js"></script>
-
-		<jsp:include page="footer.html"></jsp:include>
 </body>
 </html>
