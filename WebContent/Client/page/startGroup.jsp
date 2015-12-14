@@ -1,6 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.greenlife.dao.*"
-	import="com.greenlife.model.*"%>
+	pageEncoding="UTF-8" import="com.greenlife.dao.*" import="java.util.*"
+	import="com.greenlife.model.*" import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +29,22 @@
 		}
 
 		GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(goodsID);
+		
+		String time = goodsinfo.getEndTime();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
+		Date date = sdf.parse(time);			
+		Calendar calendar =new GregorianCalendar(); 
+	    calendar.setTime(date); 
+	    calendar.add(Calendar.DATE,1);
+
+	    Date endDate = calendar.getTime();
+	    
+	    SimpleDateFormat showSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	    String endTime = showSdf.format(endDate);
+	    
+		
+		
 	%>
 
 	<div id="header">
@@ -67,7 +83,7 @@
 
 			<h2 class="middleTag">
 				<span class="blackBold">发货时间：</span><span class="blackNormal"
-					id="deliverTime"><%=goodsinfo.getEndTime()%></span>
+					id="deliverTime"><%=endTime%></span>
 			</h2>
 			<hr class="line" />
 
