@@ -16,7 +16,7 @@
 		<div id="header">
 			<div id="leftButton"><img src="../images/leftArrowBlack.png"/></div> <!-- 左上角功能键：返回、或是菜单按键-->	
 			<div id="homeButton"><img id="addAddr" src="../images/add.png"></div>   <!-- 右上角功能键，其实就是主页按钮-->
-			<div id="title">我的地址</div>
+			<div id="title">选择地址</div>
 		</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 		
 		<div id="content">
@@ -24,8 +24,11 @@
 		<!-- 在此加入各自的内容物-->
 		    <div class="blank"></div>
 		    
-		    <% String wechatId = "huangjianqiang";
-		       //String wechatId = (String)session.getAttribute("wechatId");
+		    <% 
+		       String wechatId = (String)session.getAttribute("wechatId");
+		       String goodsId = request.getParameter("goodsId");
+		       String group = request.getParameter("group");
+		       
 		       UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
 		       int addressId = userInfo.getAddrId();
 		       List<AdressInfo> addressInfos = AdressInfoDao.getAdressList(wechatId);
@@ -49,110 +52,16 @@
 		    	   addrList.add(temp.toString());
 		       }
 		     %>
-		   <script>
-		      //def是默认的地址在地址列表中的位置,defAdr是默认的地址id
-		      var def = <%=index%>;
-		      var defAdr = <%=index==-1?-1:addressInfos.get(index).getAddrId()%>;
-
-				$(document).ready(function(){
-				      if(def!=-1){
-				    	  $(".dDeCusMess").show();
-				      }
-					 $("#setDefault").click(function(){
-						 if(currentid == defAdr){
-						  	hiddMask();
-						  	alert("该地址已经是默认地址");
-						   	return;
-						 }
-					 	 $.ajax({
-							type: "post",//数据提交的类型（post或者get）
-								url: "/GreenLife/myAddress",//数据提交得地址
-							data: {addressid:currentid,type:0},//提交的数据(自定义的一些后台程序需要的参数)
-							dataType: "text",//返回的数据类型
-							success: function(data){//请求成功后返执行的方法
-								if(currentid == null){
-									//隐藏mask
-									hiddMask();
-									return;				
-								}
-							
-								var sDeCusName = $("#sCusName"+currentid).text();
-								var sDePhoneNum = $("#sPhoneNum"+currentid).text();
-								var dDeAddress = $("#dAddress"+currentid).text();
-								
-								$("#sCusName"+currentid).text($("#sDeCusName").text());
-								$("#sPhoneNum"+currentid).text(	$("#sDePhoneNum").text());
-								$("#dAddress"+currentid).html("<img class ='iPosition' src='../images/mapMarkerBlack.png'/>"+$("#dDeAddress").text());
-
-								$("#sDeCusName").text(sDeCusName);
-								$("#sDePhoneNum").text(sDePhoneNum);
-								$("#dDeAddress").html("<img class ='iPosition' src='../images/mapMarkerOrange.png'/>"+dDeAddress);
-								
-								//修改Id
-								$("#sCusName"+currentid).attr({id:"sCusName"+defAdr});
-								$("#sPhoneNum"+currentid).attr({id:"sPhoneNum"+defAdr});
-								$("#dAddress"+currentid).attr({id:"dAddress"+defAdr});
-								
-								$("#"+currentid).attr({id:"-100"});
-								$("#"+defAdr).attr({id:currentid});
-								$("#-100").attr({id:defAdr});
-								
-								//判断是否有默认地址，如果替换位置，否则，删除
-								if($(".dDeCusMess").is(':hidden')){
-									$("#"+defAdr).remove();
-								}
-								//现实默认地址								
-								$(".dDeCusMess").show();
-								defAdr = currentid;
-								//隐藏mask
-								hiddMask();
-						 	},
-						 	error: function(){
-						        alert(arguments[1]);
-							}
-						 	});
-						}); 
-					 
-					 $("#modifyAddress").click(function(){
-						 location.href = "reAddress.jsp?addressid="+currentid;
-						}); 					 
-					 
-					 $("#delAddress").click(function(){
-					 	 $.ajax({		 
-							type: "post",//数据提交的类型（post或者get）
-							url: "/GreenLife/myAddress",//数据提交得地址
-							data: {addressid:currentid,type:1},//提交的数据(自定义的一些后台程序需要的参数)
-							dataType: "text",//返回的数据类型
-							success: function(data){//请求成功后返执行的方法
-								if(currentid == null){
-									//隐藏mask
-									hiddMask();
-									return;
-								}
-							   
-							    //如果删除的是默认地址，则将其隐藏
-							    if(currentid == defAdr){
-							    	$("#"+currentid).hide();
-							    }
-							    else{
-								    $("#"+currentid).remove();
-							    }
-								//隐藏mask
-								hiddMask();
-						 	},
-						 	error: function(){
-						        alert(arguments[1]);
-							}
-						 	});
-						}); 
-					 
-					 $("#addAddr").click(function(){
-						 location.href = "reAddress.jsp";
-						}); 	
-					 
-			});
-		   </script>
-		    <div class="dDeCusMess" id="<%=defaultAddressInfo!=null?defaultAddressInfo.getAddrId():-1%>" onclick="displayMask(this)">
+		     
+		     <script>
+		         var group=<%=group%>;
+		         var goodsId=<%=goodsId%>
+				 $("#addAddr").click(function(){
+					 location.href = "reAddress.jsp?group="+group+"&goodsId="+goodsId;
+					}); 
+		     </script>
+		    <div class="dDeCusMess" style="display:block" id="<%=defaultAddressInfo!=null?defaultAddressInfo.getAddrId():-1%>" 
+		            onclick="location.href='/GreenLife/changeAddress?addressId=<%=defaultAddressInfo.getAddrId()%>&group=<%=group%>&goodsId=<%=goodsId%>'">
 				<div class="dCusInfor">
 				    <div class="top">
 						<img src="../images/maleOrange.png"/>
@@ -172,7 +81,8 @@
 				
 		<%for(int i =0; i<addressInfos.size();i++){
 				if(i != index){%>
-				 <div class="dCusMess" id="<%=addressInfos.get(i).getAddrId()%>" onclick="displayMask(this)">
+				 <div class="dCusMess" id="<%=addressInfos.get(i).getAddrId()%>" 
+				       onclick="location.href='/GreenLife/changeAddress?addressId=<%=addressInfos.get(i).getAddrId()%>&group=<%=group%>&goodsId=<%=goodsId%>'">
 					<div class="dCusInfor" >
 					    <div class="top">
 							<img src="../images/maleBlack.png"/>

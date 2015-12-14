@@ -1,6 +1,8 @@
 package com.greenlife.client.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.greenlife.dao.GoodsOrderDao;
 import com.greenlife.model.GoodsOrder;
 
 /**
@@ -28,17 +31,15 @@ public class PurchaseServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		 request.setCharacterEncoding("UTF-8");
 		   
-		 String wechatId = "huangjianqiang";
-		 //HttpSession session = request.getSession();
-		 //String wechatId = session.getAttribute("wechatId");
+		 String wechatId = (String)request.getSession().getAttribute("wechatId");
 		 int goodsId = Integer.valueOf(request.getParameter("goodsId"));
 		 String group = request.getParameter("group");
 		 
 		 int goods_num = Integer.valueOf(request.getParameter("iNumber"));
-		 String trade_time = request.getParameter("sPostTime");
+		 String send_time = request.getParameter("sPostTime");
 		 String comment = request.getParameter("iMessage");
 		 double total_price = Double.valueOf(request.getParameter("sTotalPrice"));	
 		 String address = request.getParameter("sAddress").trim().replaceAll(" ", ";");
@@ -48,11 +49,29 @@ public class PurchaseServlet extends HttpServlet {
 		 GoodsOrder goodsOrder = new GoodsOrder();
 		 goodsOrder.setGoodsId(goodsId);
 		 goodsOrder.setGoodsNum(goods_num);
-		 //goodsOrder.setOrderState(orderState);
+		 goodsOrder.setAddrDetail(address);
+		 goodsOrder.setComment(comment);
+		 goodsOrder.setPhoneNumber(phone);
+		 goodsOrder.setReceiverName(receiver);
+		 goodsOrder.setTotalPrice(total_price);
+		 goodsOrder.setWechatId(wechatId);
+		 goodsOrder.setGroupMinnum(2);
+		 goodsOrder.setSendTime(send_time);
+		 
+		 Date now = new Date(); 
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		 String tradeTime = dateFormat.format( now ); 
+		 goodsOrder.setTradeTime(tradeTime);
+		 goodsOrder.setMailPrice(0);
 		 
 		 if(group.equals("true")){
-			 
+			 goodsOrder.setOrderState(1);
 		 }
+		 else{
+			 goodsOrder.setOrderState(11);
+		 }
+		 
+		 GoodsOrderDao.addGoodsOrder(goodsOrder);
 		 
 	}
 }

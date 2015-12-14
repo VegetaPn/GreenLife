@@ -47,10 +47,10 @@
 	<div id="content">
 
 
-		<div id="product">
-			<div id="productImgDiv">
-				<img id="productImg" src="../images/product.jpg" />
-			</div>
+		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsID%>'">
+			
+			<img id="productImg" src="../images/product.jpg" />
+			
 
 			<div id="productName"><%=goodsinfo.getGoodsName()%></div>
 		</div>

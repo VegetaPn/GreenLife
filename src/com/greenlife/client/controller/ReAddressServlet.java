@@ -2,7 +2,6 @@ package com.greenlife.client.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,12 +26,10 @@ public class ReAddressServlet extends HttpServlet{
 
 	 public void doPost(HttpServletRequest request, HttpServletResponse response)
 	   throws ServletException, IOException {
-	   //设置响应所采用的编码方式
+	   
 	   request.setCharacterEncoding("UTF-8");
 	   
-	   String wechatId = "huangjianqiang";
-	   //HttpSession session = request.getSession();
-	   //String wechatId = session.getAttribute("wechatId");
+	   String wechatId = (String)request.getSession().getAttribute("wechatId");
 	   String type = request.getParameter("type");
 	   int iType = Integer.valueOf(type);
 	   
@@ -64,18 +61,24 @@ public class ReAddressServlet extends HttpServlet{
        if(iType == 1){
     	   addrId = Integer.valueOf(request.getParameter("addressid"));
     	   address.setAddrId(addrId);
-           //更新地址
+     
     	   if(addrId!=-1)
     		   AdressInfoDao.updateAdressInfo(address);
        }
        else{
     	   addrId = AdressInfoDao.addAdressInfo(address);
+    	 
+           UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
+	       if(userInfo.getAddrId()<=0){
+	    	   userInfo.setAddrId(addrId);
+	    	   UserInfoDao.updateUserInfo(userInfo);
+	       }
        }
 
       //int addrid = addressInfoDao.addAdressInfo(address);
        
        if(addrId !=-1){
-           //修改默认地址
+    	   
            if(check!=null){
         	   UserInfoDao userInfoDao = new UserInfoDao();
         	   UserInfo userInfo = userInfoDao.getUserInfo(wechatId);
@@ -84,6 +87,11 @@ public class ReAddressServlet extends HttpServlet{
            }
        }  
        
-      response.sendRedirect("/GreenLife/Client/page/myAddress.jsp");
+      String group = request.getParameter("group");
+	  String goodsId = request.getParameter("goodsId");
+	  if(group == null)
+           response.sendRedirect("/Client/page/myAddress.jsp");
+	  else
+		   response.sendRedirect("/Client/page/changeAddress.jsp?group="+group+"&goodsId="+goodsId);
 	 }
 }

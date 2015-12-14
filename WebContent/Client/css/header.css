@@ -38,8 +38,9 @@ html,body {
 #title{
 	text-align: center;
 	color:#333333;
-	font-size: 32px;
-	height:36px;
+	font-size: 22px;
+	
+	
 }
 
 #content{
@@ -48,6 +49,33 @@ html,body {
 
 
 @media screen and (max-device-width: 479px)
+{
+	#header{
+		height:24px;	
+	}
+
+
+	#leftButton img{
+		width:24px;
+		height:24px;
+	}
+
+	#homeButton img{
+		width:24px;
+		height:24px;
+	}
+
+	#title{
+		font-size: 18px;
+		
+	}
+	
+	#content{
+		padding-top:24px;
+	}
+}
+
+@media screen and (min-width: 480px) and (max-width: 639px)
 {
 	#header{
 		height:28px;	
@@ -65,18 +93,19 @@ html,body {
 	}
 
 	#title{
-		font-size: 24px;
-		height:28px;
+		font-size: 22px;
+	
 	}
 	
 	#content{
 		padding-top:28px;
 	}
+ 
 }
 
-@media screen and (min-width: 480px) and (max-width: 639px)
+@media screen and (min-width: 640px) and (max-width: 767px) 
 {
-	#header{
+   	#header{
 		height:32px;	
 	}
 
@@ -92,19 +121,17 @@ html,body {
 	}
 
 	#title{
-		font-size: 28px;
-		height:32px;
+		font-size: 26px;
+
 	}
 	
 	#content{
 		padding-top:32px;
 	}
- 
 }
-
-@media screen and (min-width: 640px) and (max-width: 767px) 
+@media screen and (min-width: 768px) and (max-width: 979px) 
 {
-   	#header{
+  	#header{
 		height:36px;	
 	}
 
@@ -120,17 +147,18 @@ html,body {
 	}
 
 	#title{
-		font-size: 32px;
-		height:36px;
+		font-size: 30px;
+
 	}
 	
 	#content{
 		padding-top:36px;
 	}
 }
-@media screen and (min-width: 768px) and (max-width: 979px) 
+
+@media screen and (min-width: 980px)/* and (max-width: 1199px)*/
 {
-  	#header{
+    #header{
 		height:40px;	
 	}
 
@@ -146,38 +174,11 @@ html,body {
 	}
 
 	#title{
-		font-size: 36px;
-		height:40px;
+		font-size:34px;
+
 	}
 	
 	#content{
 		padding-top:40px;
-	}
-}
-
-@media screen and (min-width: 980px)/* and (max-width: 1199px)*/
-{
-    #header{
-		height:44px;	
-	}
-
-
-	#leftButton img{
-		width:44px;
-		height:44px;
-	}
-
-	#homeButton img{
-		width:44px;
-		height:44px;
-	}
-
-	#title{
-		font-size:40px;
-		height:44px;
-	}
-	
-	#content{
-		padding-top:44px;
 	}
 }

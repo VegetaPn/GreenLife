@@ -49,6 +49,7 @@ body {
 .dCusInfor .bottom{
 	width:100%;
 	padding-top:8px;
+	overflow: hidden;
 }
 
 .dDefault{
@@ -83,7 +84,7 @@ body {
 	color:black;
 	float:left;
 	margin-top: 8px;
-    width:70%;
+    width:100%;
 	float:left;
 }
 
@@ -101,6 +102,10 @@ body {
 
 #dDeAddress{
 	color:#F76F00;
+	float:left;
+	margin-top: 8px;
+    width:70%;
+	float:left;
 }
 
 

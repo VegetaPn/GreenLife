@@ -8,8 +8,8 @@ import="com.greenlife.util.*"
 
 <% 
 String wechatId = (String)session.getAttribute("wechatId");
-wechatId = "huangjianqiang";//测试
-int goodsId = 1;//Integer.parseInt(request.getParameter("goosId"));
+
+int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"normal.jpg";
 List<Comment> commentList = CommentDao.getCommentList(goodsId);
@@ -37,7 +37,7 @@ int commentListSize = commentList.size();
 	
 
 			<div id="homeButton">
-				<img src="../images/home.png" onclick="location.href='productDetail.jsp'">
+				<img src="../images/home.png" onclick="location.href='home.jsp'">
 			</div>
 			<div id="title">田园生活</div>
 		</div>
@@ -45,8 +45,8 @@ int commentListSize = commentList.size();
 		
 		<div id="content">
 		
-		<div id="product">
-			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
+		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
+			<img id="productImg" src="<%=productImg%>"/>
 						
 			<div id="productName">
 				<%=goodsInfo.getGoodsName()%>
@@ -71,7 +71,7 @@ int commentListSize = commentList.size();
 							String commentTime = comment.getTime();
 							SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
 							Date commentDate = sdf.parse(commentTime);
-							SimpleDateFormat commentSdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+							SimpleDateFormat commentSdf = new SimpleDateFormat("yy-MM-dd HH:mm");
 							String showTime = commentSdf.format(commentDate);
 					%>
 						<div>
@@ -83,7 +83,6 @@ int commentListSize = commentList.size();
 						
 						<div class="comment">
 						<%=comment.getContent()%>
-						
 						
 						<%
 							if(comment.getImgPath() != null){

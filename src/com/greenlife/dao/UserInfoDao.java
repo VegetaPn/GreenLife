@@ -116,6 +116,7 @@ public class UserInfoDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}
@@ -145,6 +146,7 @@ public class UserInfoDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}

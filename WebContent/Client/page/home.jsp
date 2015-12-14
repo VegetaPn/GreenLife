@@ -3,6 +3,10 @@
 <%
 	List<GoodsInfo> goodsList = new ArrayList<GoodsInfo>();
 	goodsList = GoodsInfoDao.getGoodsList();
+	
+	String wechatId = (String)session.getAttribute("wechatId");
+	String nickname = (String)session.getAttribute("nickname");
+	String headimgurl = (String)session.getAttribute("headimgurl");
 %>
 <html>
     <head>
@@ -25,18 +29,15 @@
 		
 		<div id="content">
 		
-		<div id="pushDiv">
-			<div id="product">
-				<div id="productImgDiv">
-					<img id="productImg" src="../images/product.jpg"/>
-						<div id="productName">来自孔雀河的库尔勒一级香梨</div>
-				</div>
-				<div id="price">
-					<div class="cheapPrice">￥7.90<span>/2个</span></div>
-					
-				</div>
+		
+		<div id="product">
+			<img id="productImg" src="../images/product.jpg"/>
+			<div id="productName">
+				2015现磨五常稻花香大米
 			</div>
 		</div>
+		
+	
 			
 			<% 
 				for(int i=0;i<goodsList.size();i++){
@@ -69,50 +70,49 @@
 		<div id="guide">
 			<div id="visitingCard">
 				<div id="bgImage"><img src="../images/bg.jpg"/></div>
-				<div id="icon"><img src="../images/1.png"/></div>
-				<div id="userName">张二狗</div>
-				<div id="logout">退出</div>
+				<div id="icon"><img src="<%=headimgurl%>"/></div>
+				<div id="userName"><%=nickname %></div>
 			</div>
 		
 			
 			<div class="service">
-				<div class="func">
+				<div class="func" onclick="javascript:location.href='home.jsp'">
 					<div class="icon"><img src="../images/home.png"/></div>
 					<div class="myFunc">首页</div>
 				
 				</div>
 				
-				<div class="func">
+				<div class="func" onclick="javascript:location.href='personalCenter.jsp'">
 					<div class="icon"><img src="../images/person.png"/></div>
 					<div class="myFunc">个人中心</div>
 				
 				</div>
 				
-				<div class="func">
+				<div class="func" onclick="javascript:location.href='orderList.jsp?whatToShow=4'">
 					<div class="icon"><img src="../images/order.png"/></div>
 					<div class="myFunc">订单</div>
 				
 				</div>
 				
-				<div class="undetermined">
+				<div class="undetermined" onclick="javascript:location.href='orderList.jsp?whatToShow=0'">
 	
 					<div class="um">待成团</div>
 				
 				</div>
 				
-				<div class="undetermined">
+				<div class="undetermined" onclick="javascript:location.href='orderList.jsp?whatToShow=1'">
 				
 					<div class="um">待付款</div>
 				
 				</div>
 				
-				<div class="undetermined">
+				<div class="undetermined" onclick="javascript:location.href='orderList.jsp?whatToShow=2'">
 				
 					<div class="um">待发货</div>
 				
 				</div>
 				
-				<div class="undetermined">
+				<div class="undetermined" onclick="javascript:location.href='orderList.jsp?whatToShow=3'">
 	
 					<div class="um">待评论</div>
 				

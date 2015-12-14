@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.greenlife.model.TodayGroup;
@@ -13,6 +16,104 @@ import com.greenlife.util.DBUtil;
 public class TodayGroupDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
+	
+	
+	/*
+	 * 根据团状态以及据开始日期的天数返回列表
+	 */
+	public static List<TodayGroup> getOverdueOrder(int groupState, int day){
+		List<TodayGroup> list = new ArrayList<TodayGroup>();
+		TodayGroup group = new TodayGroup();
+		String sql = "select * from today_group where group_state = ?;";
+		String time = null;
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, 0);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				time = rs.getString("start_time");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+				Date d1 = new Date();
+				Date d2 = sdf.parse(time);
+				long diff = d1.getTime() - d2.getTime();
+				long days = diff / (1000 * 60 * 60 * 24);
+				//long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
+				//long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
+				if(days < day){
+					continue;
+				}
+				
+				group.setGoodsId(rs.getInt("goods_id"));
+				group.setGroupId(rs.getInt("group_id"));
+				group.setGroupState(rs.getInt("group_state"));
+				group.setStartTime(time);
+				group.setWechatId(rs.getString("wechat_id"));
+				
+				list.add(group);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+		
+		return list;
+	}
+	
+	public static TodayGroup getTodayGroup(int groupId){
+		TodayGroup group = new TodayGroup();
+		String sql = "select * from today_group where group_id = ?;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, groupId);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				group.setGoodsId(rs.getInt("goods_id"));
+				group.setGroupId(rs.getInt("group_id"));
+				group.setGroupState(rs.getInt("group_state"));
+				group.setStartTime(rs.getString("start_time"));
+				group.setWechatId(rs.getString("wechat_id"));
+			}else{
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return group;
+	}
+	
+	public static List<Integer> getGroupId(){
+		List<Integer> list = new ArrayList<Integer>();
+		String sql = "select group_id from today_group;";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				int groupId = rs.getInt("group_id");
+				list.add(groupId);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return list;
+	}
 	
 	public static List<Integer> getGroupIdByStatus(int group_state){
 		List<Integer> list = new ArrayList<Integer>();

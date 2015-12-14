@@ -30,7 +30,7 @@
 	
 
 		<div id="homeButton">
-			<img src="../images/home.png" onclick="location.href='productDetail.jsp'">
+			<img src="../images/home.png" onclick="location.href='home.jsp'">
 		</div>
 		<div id="title">田园生活</div>
 	</div>

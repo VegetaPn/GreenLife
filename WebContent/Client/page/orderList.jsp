@@ -20,8 +20,8 @@
 
 	<%
 	    //获取订单列表
-		List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
-		orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
+		String wechatId = (String)session.getAttribute("wechatId");
+		List<GoodsOrder> orderList = GoodsOrderDao.getGoodsOrderList(wechatId);
 		int orderAmount = orderList.size();
 		System.out.println(orderAmount);
 		//用于填充的变量
@@ -36,13 +36,13 @@
 		int orderstate = 0;
 	%>
 	<div id="header">
-		<div id="leftButton">
+		<div id="leftButton"  onclick="history.back(-1);">
 			<img src="../images/leftArrowBlack.png" />
 		</div>
 		<!-- 左上角功能键：返回、或是菜单按键-->
 
-		<div id="homeButton">
-			<img src="../images/home.png">
+		<div id="homeButton" onclick="javascript:location.href='home.jsp'">
+			<img src="../images/home.png" >
 		</div>
 		<!-- 右上角功能键，其实就是主页按钮-->
 		<div id="title">
@@ -85,17 +85,17 @@
 						//跳过不是待成团的条目
 						continue;
 					}
-					if (whatToShow == 1 && orderstate != 1 && orderstate != 5)
+					if (whatToShow == 1 && orderstate != 1 && orderstate != 11)
 					{
 						//跳过不是待付款的条目
 						continue;
 					}
-					if (whatToShow == 2 && orderstate != 3 && orderstate != 6)
+					if (whatToShow == 2 && orderstate != 3 && orderstate != 12)
 					{
 						//跳过不是待发货的条目
 						continue;
 					}
-					if (whatToShow == 3 && orderstate != 4 && orderstate != 7)
+					if (whatToShow == 3 && orderstate != 5 && orderstate != 14)
 					{
 						//跳过不是待评论的条目
 						continue;
@@ -125,21 +125,25 @@
 	 				}
 	 				else if (orderstate == 4)
 	 				{
-	 					out.write("待评价");
+	 					out.write("待收货");
 	 				}
 	 				else if (orderstate == 5)
 	 				{
+	 					out.write("已完成");
+	 				}
+	 				else if (orderstate == 11)
+	 				{
 	 					out.write("待付款");
 	 				}
-	 				else if (orderstate == 6)
-	 				{
-	 					out.write("待成团");
-	 				}
-	 				else if (orderstate == 7)
+	 				else if (orderstate == 12)
 	 				{
 	 					out.write("待发货");
 	 				}
-	 				else if (orderstate == 8)
+	 				else if (orderstate == 13)
+	 				{
+	 					out.write("待收货");
+	 				}
+	 				else if (orderstate == 14)
 	 				{
 	 					out.write("已完成");
 	 				}
@@ -163,7 +167,7 @@
 					</div>
 					<!--订单详情-->
 					<div class="detailMessage"
-						onclick="javascript:location.href='detailOrderMessage.jsp?orderIndex=<%=orderIndex%>'">
+						onclick="javascript:location.href='detailOrderMessage.jsp?orderIndex=<%=orderIndex%>&whatToShow=<%=whatToShow%>'">
 
 						<div class="productName">
 							<span class="blackBold"><%=goodsinfo.getGoodsName()%></span>
@@ -206,29 +210,43 @@
 
 
 				<%
-				    if (orderstate == 1 || orderstate == 5)
+				    if (orderstate == 1 || orderstate == 11)
 					{
+				    	//待付款
 				%>
-				<div class="functionButton" id="goToPay"
-					onclick="javascript:location.href='detailOrderMessage.jsp?orderIndex=<%=orderIndex%>'">去付款</div>
+				<div class="functionButton"
+					onclick="javascript:location.href='detailOrderMessage.jsp?orderIndex=<%=orderIndex%>&whatToShow=<%=whatToShow%>'">去付款</div>
+				<div class="functionButton" onclick="">取消订单</div>
 				<%
 				    }
 					else if (orderstate == 2)
 					{
+						//待成团
 				%>
-				<div class="functionButton" id="makeGroup" onclick="">约好友成团</div>
+				<div class="functionButton" onclick="">约好友成团</div>
+				<div class="functionButton" onclick="">取消订单</div>
 				<%
 				    }
-					else if (orderstate == 4 || orderstate == 7)
+					else if (orderstate == 3 || orderstate == 12)
 					{
+						//待发货
 				%>
-				<div class="functionButton" id="giveComment" onclick="">我来说两句</div>
+				<div class="functionButton" onclick="">取消订单</div>
 				<%
 				    }
-					else if (orderstate == 8)
+					else if (orderstate == 4 || orderstate == 13)
 					{
+						//待收货
 				%>
-				<div class="functionButton" id="showToFriends" onclick="">分享给好友</div>
+				
+				<%
+				    }
+					else if (orderstate == 5 || orderstate == 14)
+					{
+						//已完成
+				%>
+				<div class="functionButton" onclick="">我来说两句</div>
+				<div class="functionButton" onclick="">分享给好友</div>
 				<%
 				    }
 				%>

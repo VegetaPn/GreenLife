@@ -9,24 +9,15 @@ html,body
 #product{
 	width:100%;
 	position:relative;
-	background-color:#E4E4E4;
 	text-align:center;
-	padding-top:15px;
-	padding-bottom:15px;
-}
-
-
-#productImgDiv{
-	width:90%;
-	margin:auto;
 
 }
+
+
 
 #productImg{
 	width:100%;
-	border:1px solid #333333;
-	border-radius:10px;
-        height:180px;
+
 }
 
 
@@ -66,7 +57,7 @@ html,body
 .orderMainMessage
 {
     background-color: #FFFFFF;
-    /*margin:0vw 3vw 0vw 3vw;*/
+   
     margin-left:3%;
     width:94%;
     overflow:hidden;
@@ -114,27 +105,7 @@ html,body
     
     overflow:hidden;
 }
-/*
-.productPhoto
-{
-    
-    width:94%;
-    margin-left:3%;
-    padding-bottom: 3%;
-    height:42vw
-    background-color:#CCCCCC;
-    overflow:hidden;
-}*/
-/*
-#productImg
-{
-    width:94%;
-    height:94%;
-    padding-left:3%;
-    padding-top:3%;
-    overflow:hidden;
-}
-*/
+
 
 #productPrice
 {
@@ -175,10 +146,9 @@ html,body
     width:45%;
     padding-left:4%;
     float:left;
-    /*font-size:5vw;*/
+   
     color:#333333;
-   /* letter-spacing: -0.4vw;
-    line-height: 7vw;*/
+
 }
 
 
@@ -225,7 +195,7 @@ html,body
 @media screen and (max-device-width: 479px)
 {
 	#productImg{
-		height:180px;
+		height:220px;
 	}	
 	
     .blackBold
@@ -256,11 +226,7 @@ html,body
         margin-bottom: 12px;
         line-height: 52px;
     }
-	/*
-    .productPhoto
-    {
-        height:180px;
-    }*/
+
     .tagLeft
     {        
         font-size:20px;
@@ -303,11 +269,7 @@ html,body
         margin-bottom: 14px;
         line-height: 56px;
     }
-	/*
-    .productPhoto
-    {
-        height:260px;
-    }*/
+
     .tagLeft
     {        
         font-size:24px;
@@ -350,11 +312,7 @@ html,body
         margin-bottom: 16px;
         line-height: 60px;
     }
-	/*
-    .productPhoto
-    {
-        height:300px;
-    }*/
+
     .tagLeft
     {        
         font-size:26px;
@@ -396,11 +354,7 @@ html,body
         margin-bottom: 16px;
         line-height: 60px;
     }
-	/*
-    .productPhoto
-    {
-        height:330px;
-    }*/
+
     .tagLeft
     {        
         font-size:28px;
@@ -443,11 +397,7 @@ html,body
         margin-bottom: 18px;
         line-height: 65px;
     }
-	/*
-    .productPhoto
-    {
-        height:400px;
-    }*/
+
     .tagLeft
     {        
         font-size:32px;
@@ -455,50 +405,3 @@ html,body
         line-height: 40px;
     }
 }
-/*
-@media screen and (min-width: 1200px) 
-{
-	#productImg{
-		height:560px;
-	}
-
-    .blackBold
-    {
-        font-size:38px;
-        letter-spacing: -4px;  
-        line-height: 44px;
-    }
-    .orangeText
-    {
-        font-size:32px;
-        letter-spacing: -2px;
-        line-height: 44px;
-    }
-    .blackNormal
-    {
-        font-size:32px;
-        letter-spacing: -2px;
-        line-height: 44px;
-    }
-    
-    .functionButton
-    {                   
-        height:75px;
-        font-size: 45px;        
-        margin-top:18px;
-        margin-bottom: 18px;
-        line-height: 65px;
-    }
-	/*
-    .productPhoto
-    {
-        height:470px;
-    }*/
-	/*
-    .tagLeft
-    {        
-        font-size:36px;
-        letter-spacing: -3px;
-        line-height: 44px;
-    }
-}*/

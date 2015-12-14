@@ -33,6 +33,7 @@
 #dCusInfor .bottom{
 	width:100%;
 	overflow:hidden;
+	margin-top: 5px;
 }
 
 #dCusInfor img{
@@ -52,6 +53,7 @@
 
 #sAddress{
 	color:#F78F00;
+	line-height: 20px;
 }
 
 #dToAddress{
@@ -99,7 +101,9 @@
 	//font-weight:bold;
 }
 
-
+#imgtemp{
+	float:left;
+}
 
 
 #dSell{
@@ -235,6 +239,18 @@
 	background-color:#F76F00;
 }
 
+#dMail{
+	//border-bottom: 1px solid #797979;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 14px;	
+}
+
+#sMail{
+	//float:right;
+	margin-left:8px;
+}
+
 @media screen and (max-width: 480px){
 	#sCusName{
         font-size: 20px;
@@ -368,6 +384,14 @@
 	#iSubmit{
 		height:50px;
 		font-size:18px;
+	}
+	
+	.span{
+	    margin-left: 5px;
+    }
+    
+	#dMail{
+		font-size:14px;	
 	}
 }
 
@@ -505,6 +529,14 @@
 		height:55px;
 		font-size:22px;
 	}
+	
+	.span{
+	    margin-left: 10px;
+    }
+    
+	#dMail{
+		font-size:16px;
+	}
 }
 
 @media screen and (min-width: 640px ) and (max-width: 767px){
@@ -639,6 +671,14 @@
 	#iSubmit{
 		height:60px;
 		font-size:26px;
+	}
+	
+	.span{
+	    margin-left: 12px;
+    }
+    
+	#dMail{
+		font-size:22px;
 	}
 }
 
@@ -776,6 +816,14 @@
 		height:65px;
 		font-size:30px;
 	}
+
+	.span{
+	    margin-left: 12px;
+    }
+    
+	#dMail{
+		font-size:26px;
+	}
 }
 
 @media screen and (min-width: 980px){
@@ -912,5 +960,13 @@
 	#iSubmit{
 		height:70px;
 		font-size:34px;
+	}
+	
+	.span{
+	    margin-left: 12px;
+    }
+
+	#dMail{
+		font-size:30px;
 	}
 }

@@ -50,6 +50,7 @@ public class AdressInfoDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}
@@ -75,6 +76,7 @@ public class AdressInfoDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}
@@ -110,10 +112,14 @@ public class AdressInfoDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
-			rs.next();
-			addrId = rs.getInt("id");
+			if(rs.next()){
+				addrId = rs.getInt("id");
+			}else{
+				return -1;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return -1;
 		} finally {
 			clearUp(conn);
 		}

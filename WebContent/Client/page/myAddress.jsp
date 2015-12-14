@@ -25,8 +25,8 @@
 		<!-- 在此加入各自的内容物-->
 		    <div class="blank"></div>
 		    
-		    <% String wechatId = "huangjianqiang";
-		       //String wechatId = (String)session.getAttribute("wechatId");
+		    <% 
+		       String wechatId = (String)session.getAttribute("wechatId");
 		       UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
 		       int addressId = userInfo.getAddrId();
 		       List<AdressInfo> addressInfos = AdressInfoDao.getAdressList(wechatId);
@@ -77,34 +77,7 @@
 									return;				
 								}
 							
-								var sDeCusName = $("#sCusName"+currentid).text();
-								var sDePhoneNum = $("#sPhoneNum"+currentid).text();
-								var dDeAddress = $("#dAddress"+currentid).text();
-								
-								$("#sCusName"+currentid).text($("#sDeCusName").text());
-								$("#sPhoneNum"+currentid).text(	$("#sDePhoneNum").text());
-								$("#dAddress"+currentid).html("<img class ='iPosition' src='../images/mapMarkerBlack.png'/>"+$("#dDeAddress").text());
-
-								$("#sDeCusName").text(sDeCusName);
-								$("#sDePhoneNum").text(sDePhoneNum);
-								$("#dDeAddress").html("<img class ='iPosition' src='../images/mapMarkerOrange.png'/>"+dDeAddress);
-								
-								//修改Id
-								$("#sCusName"+currentid).attr({id:"sCusName"+defAdr});
-								$("#sPhoneNum"+currentid).attr({id:"sPhoneNum"+defAdr});
-								$("#dAddress"+currentid).attr({id:"dAddress"+defAdr});
-								
-								$("#"+currentid).attr({id:"-100"});
-								$("#"+defAdr).attr({id:currentid});
-								$("#-100").attr({id:defAdr});
-								
-								//判断是否有默认地址，如果替换位置，否则，删除
-								if($(".dDeCusMess").is(':hidden')){
-									$("#"+defAdr).remove();
-								}
-								//现实默认地址								
-								$(".dDeCusMess").show();
-								defAdr = currentid;
+								changeDefault();
 								//隐藏mask
 								hiddMask();
 						 	},
@@ -134,6 +107,11 @@
 							    //如果删除的是默认地址，则将其隐藏
 							    if(currentid == defAdr){
 							    	$("#"+currentid).hide();
+							    	if(data.length>0){
+							    		var strs = data.split("defualt=");
+							    		currentid = strs[1];
+							    		changeDefault();
+							    	}
 							    }
 							    else{
 								    $("#"+currentid).remove();
@@ -152,6 +130,37 @@
 						}); 	
 					 
 			});
+				
+				function changeDefault(){
+					var sDeCusName = $("#sCusName"+currentid).text();
+					var sDePhoneNum = $("#sPhoneNum"+currentid).text();
+					var dDeAddress = $("#dAddress"+currentid).text();
+					
+					$("#sCusName"+currentid).text($("#sDeCusName").text());
+					$("#sPhoneNum"+currentid).text(	$("#sDePhoneNum").text());
+					$("#dAddress"+currentid).html("<img class ='iPosition' src='../images/mapMarkerBlack.png'/>"+$("#dDeAddress").text());
+
+					$("#sDeCusName").text(sDeCusName);
+					$("#sDePhoneNum").text(sDePhoneNum);
+					$("#dDeAddress").html("<img class ='iPosition' src='../images/mapMarkerOrange.png'/>"+dDeAddress);
+					
+					//修改Id
+					$("#sCusName"+currentid).attr({id:"sCusName"+defAdr});
+					$("#sPhoneNum"+currentid).attr({id:"sPhoneNum"+defAdr});
+					$("#dAddress"+currentid).attr({id:"dAddress"+defAdr});
+					
+					$("#"+currentid).attr({id:"-100"});
+					$("#"+defAdr).attr({id:currentid});
+					$("#-100").attr({id:defAdr});
+					
+					//判断是否有默认地址，如果是替换位置，否则，删除
+					if($(".dDeCusMess").is(':hidden')){
+						$("#"+defAdr).remove();
+					}
+					//现实默认地址								
+					$(".dDeCusMess").show();
+					defAdr = currentid;
+				}
 		   </script>
 		    <div class="dDeCusMess" id="<%=defaultAddressInfo!=null?defaultAddressInfo.getAddrId():-1%>" onclick="displayMask(this)">
 				<div class="dCusInfor">

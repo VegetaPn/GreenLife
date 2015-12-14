@@ -61,10 +61,14 @@ public class CommentDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
-			rs.next();
-			comment_id = rs.getInt("id");
+			if(rs.next()){
+				comment_id = rs.getInt("id");
+			}else{
+				return -1;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return -1;
 		} finally {
 			clearUp(conn);
 		}

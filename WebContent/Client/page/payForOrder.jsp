@@ -12,15 +12,33 @@
 <link rel="stylesheet" type="text/css" href="../css/payForOrder.css" />
 </head>
 <body>
+	<%
+		int orderIndex = Integer.parseInt(request.getParameter("orderIndex"));
+		System.out.println("orderIndex:" + orderIndex);
+
+		List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
+		orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
+
+		GoodsOrder orderToShow = orderList.get(orderIndex);
+		GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
+		
+		int whatToShow = 4;
+		String showtype = request.getParameter("whatToShow");
+		if (showtype != null)
+		{
+			whatToShow = Integer.parseInt(showtype);
+		}
+
+		int orderstate = orderToShow.getOrderState();
+	%>
 
 	<div id="header">
-		<div id="leftButton">
-			<img src="../images/leftArrowBlack.png"
-				onclick="javascript:location.href='orderList.jsp'" />
+		<div id="leftButton"onclick="javascript:location.href='orderList.jsp?whatToShow=<%=whatToShow%>'">
+			<img src="../images/leftArrowBlack.png"/>
 		</div>
 		<!-- 左上角功能键：返回、或是菜单按键-->
 
-		<div id="homeButton">
+		<div id="homeButton" onclick="javascript:location.href='home.jsp'">
 			<img src="../images/home.png">
 		</div>
 		<!-- 右上角功能键，其实就是主页按钮-->
@@ -28,27 +46,6 @@
 	</div>
 
 	<div id="content">
-
-
-
-
-		<%
-			int orderIndex = Integer.parseInt(request.getParameter("orderIndex"));
-			System.out.println("orderIndex:" + orderIndex);
-
-			List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
-			orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
-
-			GoodsOrder orderToShow = orderList.get(orderIndex);
-			GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
-
-			boolean isgroup = false;
-			if (orderToShow.getOrderState() == 1)
-			{
-				isgroup = true;
-			}
-		%>
-
 
 		<div class="topTag" id="orderMessage">
 
@@ -72,7 +69,7 @@
 				<div class="tagLeft">单价：</div>
 				<div class="blackNormalRight" id="productPrice">
 					<%
-						if (isgroup)
+						if (orderstate>10)
 						{
 							out.write("(成团价)" + goodsinfo.getGoodsDiscontPrice()+"元");
 						}
@@ -130,11 +127,6 @@
 					class="orangeText"><%=orderToShow.getTotalPrice()%></span>
 			</div>
 			<div class="functionButton" id="payButton" onclick="">支付</div>
-
-
-
-
-
 		</div>
 
 

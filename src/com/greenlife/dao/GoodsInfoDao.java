@@ -75,10 +75,14 @@ public class GoodsInfoDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
-			rs.next();
-			goods_id = rs.getInt("id");
+			if(rs.next()){
+				goods_id = rs.getInt("id");
+			}else{
+				return -1;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return -1;
 		} finally {
 			clearUp(conn);
 		}
@@ -147,28 +151,32 @@ public class GoodsInfoDao {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, goodsId);
 			rs = ps.executeQuery();
-			rs.next();
-			// stupid set method......
-			goodsInfo.setGoodsId(rs.getInt("goods_id"));
-			goodsInfo.setGoodsName(rs.getString("goods_name"));
-			goodsInfo.setPackagePath(rs.getString("package_path"));
-			goodsInfo.setGoodsPrice(rs.getDouble("goods_price"));
-			goodsInfo.setGoodsTotalnum(rs.getInt("goods_totalnum"));
-			goodsInfo.setGoodsSoldnum(rs.getInt("goods_soldnum"));
-			goodsInfo.setStartTime(rs.getString("start_time"));
-			goodsInfo.setEndTime(rs.getString("end_time"));
-			goodsInfo.setTagTitle(rs.getString("tag_title"));
-			goodsInfo.setTagText(rs.getString("tag_text"));
-			goodsInfo.setTagImage(rs.getString("tag_image"));
-			goodsInfo.setGoodsDiscontPrice(rs.getDouble("goods_discount_price"));
-			goodsInfo.setGoods_unit(rs.getString("goods_unit"));
-			goodsInfo.setIsDelete(rs.getInt("is_delete"));
-			goodsInfo.setIsAdv(rs.getInt("is_adv"));
-			goodsInfo.setGoodsText1(rs.getString("goods_text1"));
-			goodsInfo.setGoodsText2(rs.getString("goods_text2"));
-			goodsInfo.setReportId(rs.getInt("report_id"));
+			if(rs.next()){
+				// stupid set method......
+				goodsInfo.setGoodsId(rs.getInt("goods_id"));
+				goodsInfo.setGoodsName(rs.getString("goods_name"));
+				goodsInfo.setPackagePath(rs.getString("package_path"));
+				goodsInfo.setGoodsPrice(rs.getDouble("goods_price"));
+				goodsInfo.setGoodsTotalnum(rs.getInt("goods_totalnum"));
+				goodsInfo.setGoodsSoldnum(rs.getInt("goods_soldnum"));
+				goodsInfo.setStartTime(rs.getString("start_time"));
+				goodsInfo.setEndTime(rs.getString("end_time"));
+				goodsInfo.setTagTitle(rs.getString("tag_title"));
+				goodsInfo.setTagText(rs.getString("tag_text"));
+				goodsInfo.setTagImage(rs.getString("tag_image"));
+				goodsInfo.setGoodsDiscontPrice(rs.getDouble("goods_discount_price"));
+				goodsInfo.setGoods_unit(rs.getString("goods_unit"));
+				goodsInfo.setIsDelete(rs.getInt("is_delete"));
+				goodsInfo.setIsAdv(rs.getInt("is_adv"));
+				goodsInfo.setGoodsText1(rs.getString("goods_text1"));
+				goodsInfo.setGoodsText2(rs.getString("goods_text2"));
+				goodsInfo.setReportId(rs.getInt("report_id"));
+			}else{
+				return null;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}
@@ -213,6 +221,7 @@ public class GoodsInfoDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		} finally {
 			clearUp(conn);
 		}

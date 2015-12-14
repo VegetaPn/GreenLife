@@ -40,15 +40,8 @@ public class CommentServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		String wechatId = null;
-
-		// 测试
-		wechatId = "huangjianqiang";
-
-		/*
-		 * HttpSession session = request.getSession(); wechatId =
-		 * (String)session.getAttribute("wechatId");
-		 */
+		String wechatId = (String)request.getSession().getAttribute("wechatId");;	
+		 
 		Integer goodsId = Integer.parseInt(request.getParameter("goodsId"));
 		String text = request.getParameter("text");
 		String img = request.getParameter("img");
@@ -70,7 +63,7 @@ public class CommentServlet extends HttpServlet {
 			String accessToken = (String) request.getSession().getAttribute("accessToken");
 
 			String path = "comment/" + commentId + "/";
-			String savePath = PropertiesUtil.getPath() + path;
+			String savePath = PropertiesUtil.getSavePath() + path;
 			String filename = downloadMedia(accessToken, img, savePath);
 			if (filename != null) {
 				comment.setImgPath(path + filename);
