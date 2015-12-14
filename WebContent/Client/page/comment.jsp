@@ -82,7 +82,7 @@ int commentListSize = commentList.size();
 						</div>
 						
 						<div class="comment">
-						<div><%=comment.getContent()%></div>
+						<%=comment.getContent()%>
 						
 						<%
 							if(comment.getImgPath() != null){

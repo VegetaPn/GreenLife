@@ -325,10 +325,11 @@
 .comment{
 	
 	clear:both;
-
-
 	color:#333333;
+	word-wrap: break-word; 
 }
+
+
 
 
 .commentImg{
@@ -367,7 +368,7 @@
 	}
 	
 	#qualityInfo{
-		right:3%;
+		right:10%;
 	
 	}
 	
