@@ -1,6 +1,7 @@
 package com.greenlife.client.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -71,7 +72,9 @@ public class PurchaseServlet extends HttpServlet {
 			 goodsOrder.setOrderState(11);
 		 }
 		 
-		 GoodsOrderDao.addGoodsOrder(goodsOrder);
+		 int orderId = GoodsOrderDao.addGoodsOrder(goodsOrder);
+		 PrintWriter out = response.getWriter();
+		 out.write("orderId="+orderId);
 		 
 	}
 }

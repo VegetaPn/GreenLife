@@ -181,7 +181,7 @@ for(int i =0; i<addressInfos.size();i++){
 				},//提交的数据(自定义的一些后台程序需要的参数)
 				dataType: "text",//返回的数据类型
 				success: function(data){
-					location.href = "home.jsp";
+					location.href = "payForOrder.jsp?"+data;
 				},
 			 	error: function(){
 			        alert(arguments[1]);
