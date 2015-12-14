@@ -3,8 +3,6 @@ package com.greenlife.client.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -69,7 +67,7 @@ public class MyAddressServlet extends HttpServlet{
     			   out.write("defualt="+addressInfos.get(0).getAddrId()); 
     		   }
     		   else{
-    			   userInfo.setAddrId(-1);
+    			   userInfo.setAddrId(0);
     			   UserInfoDao.updateUserInfo(userInfo);
     		   }
     	   }
