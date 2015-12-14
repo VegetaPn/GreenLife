@@ -15,11 +15,6 @@
 	href="../CSS/bootstrap-responsiv.css">
 <link rel="stylesheet" type="text/css"
 	href="../CSS/jquery.dataTables.min.css">
-<style>
-.goods>tbody>tr {
-	background-color: green;
-}
-</style>
 </head>
 
 <body>
@@ -66,7 +61,7 @@
 								for (int i = 0; i < allGoods.size(); i++) {
 									GoodsInfo oneGoods = allGoods.get(i);//被遍历到的商品
 							%>
-							<tr class="goods">
+							<tr class="goods" onclick="showInfo(<%=oneGoods.getGoodsId()%>>)">
 								<td><%=oneGoods.getGoodsId()%></td>
 								<td><%=oneGoods.getGoodsName()%></td>
 								<td><%=oneGoods.getGoodsId()%></td>

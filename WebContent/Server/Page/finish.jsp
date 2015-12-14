@@ -1,4 +1,5 @@
-<%@page import="java.util.List"%>
+<%@page
+	import="java.util.List,com.greenlife.model.*,com.greenlife.dao.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -41,7 +42,7 @@
 		<!-- Main -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				订单 <span>&gt;</span> <big><strong>以完成</strong></big>
+				订单 <span>&gt;</span> <big><strong>已完成</strong></big>
 			</div>
 			<!-- Content -->
 			<div class="panel-body">
@@ -52,38 +53,50 @@
 					id="group">
 					<thead>
 						<tr>
-							<th width="13"><input type="checkbox" class="checkbox" /></th>
+							
 							<th>订单号</th>
 							<th>微信号</th>
 							<th>产品ID</th>
-							<th>地址ID</th>
+							<th>地址</th>
 							<th>数量</th>
 							<th>发货时间</th>
 							<th>总价</th>
+							<th>订单类型</th>
 
 						</tr>
 					</thead>
 					<tbody>
-						<tr role="row" class="gradeU event">
-							<td><input type="checkbox" class="checkbox" /></td>
-							<td>232423593</td>
-							<td>MXDJ890</td>
-							<td>gdsgd</td>
-							<td>fiweg</td>
-							<td>1</td>
-							<td>15.11.30</td>
-							<td>300</td>
-						</tr>
-						<tr role="row" class="gradeU odd">
-							<td><input type="checkbox" class="checkbox" /></td>
-							<td>232423593</td>
-							<td>MXDJ890</td>
-							<td>gdsgd</td>
-							<td>fiweg</td>
-							<td>1</td>
-							<td>15.11.30</td>
-							<td>300</td>
-						</tr>
+						<%
+						        List<GoodsOrder> GoodsOrderByPerson = GoodsOrderDao.getGoodsOrderListByState(5);//团购订单待收货
+								List<GoodsOrder> GoodsOrderByGroup = GoodsOrderDao.getGoodsOrderListByState(14);//个人订单待收货
+								String type = "";
+								GoodsOrderByGroup.addAll(GoodsOrderByPerson);
+								for (int i = 0; i < GoodsOrderByGroup.size(); i++) {
+									GoodsOrder oneGoodsOrder = GoodsOrderByGroup.get(i);//被遍历到的商品
+									if(oneGoodsOrder.getOrderState()==5)
+									{
+									    type = "团购";
+									}
+									else
+										type = "个人";
+									
+									
+							%>
+							<tr class="goods">
+								<td><%=oneGoodsOrder.getOrderId()%></td>
+								<td><%=oneGoodsOrder.getWechatId()%></td>
+								<td><%=oneGoodsOrder.getGoodsId()%></td>
+								<td><%=oneGoodsOrder.getAddrDetail()%></td>
+								<td><%=oneGoodsOrder.getGoodsNum()%></td>
+								<td><%=oneGoodsOrder.getSendTime()%></td>
+								<td><%=oneGoodsOrder.getTotalPrice()%></td>
+								<td><%=type%></td>
+							   
+							</tr>
+							<%
+								}
+							%>
+						
 				</table>
 
 			</div>

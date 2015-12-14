@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -39,25 +38,24 @@
 						}
 					%>
 					<div class="panel-body">
-						<form action="/GreenLife/ServerLoginServlet" method="post">
+						<form action="/GreenLife/ServerLoginServlet" method="post" onsubmit="return checkLogin()">
 							<fieldset>
 								<div class="form-group">
 									<div class="input-group">
-										<span class="input-group-addon">账户</span> 
-										<input	class="form-control"  name="userId" 
-											value="<%=userId%>" autofocus />
+										<span class="input-group-addon">账户</span> <input
+											class="form-control" name="userId" id="userId" value="<%=userId%>"
+											autofocus />
 									</div>
 								</div>
 
 								<div class="form-group">
 									<div class="input-group">
-										<span class="input-group-addon">密码</span> 
-										<input	class="form-control"  name="password"
-											value="" type="password">
+										<span class="input-group-addon">密码</span> <input
+											class="form-control" name="password" id="password" value="" type="password">
 									</div>
 								</div>
 								<div class="form-group">
-									<label style="color: red"><%=error%></label>
+									<label style="color: red" id="content"><%=error%></label>
 								</div>
 
 								<input type="submit" class="btn btn-lg btn-success btn-block"
@@ -71,6 +69,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="../js/login.js" type="text/javascript"></script>
 </body>
 
 </html>
