@@ -23,7 +23,6 @@
 		String wechatId = (String)session.getAttribute("wechatId");
 		List<GoodsOrder> orderList = GoodsOrderDao.getGoodsOrderList(wechatId);
 		int orderAmount = orderList.size();
-		System.out.println(orderAmount);
 		//用于填充的变量
 		int whatToShow = 4;
 		String showtype = request.getParameter("whatToShow");
@@ -215,7 +214,7 @@
 				    	//待付款
 				%>
 				<div class="functionButton"
-					onclick="javascript:location.href='detailOrderMessage.jsp?<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
+					onclick="javascript:location.href='detailOrderMessage.jsp?orderId?=<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
 				<div class="functionButton" onclick="">取消订单</div>
 				<%
 				    }
