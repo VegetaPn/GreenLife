@@ -13,8 +13,8 @@
     <body>
 	
 		<div id="header">
-			<div id="leftButton"><img src="../images/leftArrowBlack.png"/></div> <!-- 左上角功能键：返回、或是菜单按键-->
-			<div id="homeButton"><img src="../images/home.png"></div>   <!-- 右上角功能键，其实就是主页按钮-->
+			<div id="leftButton" onClick="javascript:history.back(-1);"><img src="../images/leftArrowBlack.png"/></div> <!-- 左上角功能键：返回、或是菜单按键-->
+			<div id="homeButton" onClick="javascript:location.href='home.jsp'"><img src="../images/home.png"></div>   <!-- 右上角功能键，其实就是主页按钮-->
 			<div id="title">个人中心</div>
 
 		
@@ -32,7 +32,7 @@
 			</div>
 			
 			<div class="service">
-				<div class="func" onclick="javascript:location.href='orderList.jsp'">
+				<div class="func" onclick="javascript:location.href='orderList.jsp?whatToShow=4'">
 					<div class="icon"><img src="../images/shoppingCart.png"/></div>
 					<div class="myFunc">我的订单</div>
 					<div class="arrowHead"><img src="../images/rightArrowOrange.png"/></div>
@@ -45,10 +45,10 @@
 				</div>
 				
 				<div class="undetermined">
-					<div class="um" onclick="javascript:location.href='orderList.jsp?state=1'"><img src="../images/profileGroup.png"/><span>待成团</span></div>
-					<div class="um" onclick="javascript:location.href='orderList.jsp?state=2'"><img src="../images/bankCards.png"/><span>待付款</span></div>
-					<div class="um" onclick="javascript:location.href='orderList.jsp?state=3'"><img src="../images/truck.png"/><span>待发货</span></div>
-					<div class="um" onclick="javascript:location.href='orderList.jsp?state=4'"><img src="../images/comment.png"/><span>待评论</span></div>
+					<div class="um" onclick="javascript:location.href='orderList.jsp?whatToShow=0'"><img src="../images/profileGroup.png"/><span>待成团</span></div>
+					<div class="um" onclick="javascript:location.href='orderList.jsp?whatToShow=1'"><img src="../images/bankCards.png"/><span>待付款</span></div>
+					<div class="um" onclick="javascript:location.href='orderList.jsp?whatToShow=2'"><img src="../images/truck.png"/><span>待发货</span></div>
+					<div class="um" onclick="javascript:location.href='orderList.jsp?whatToShow=3'"><img src="../images/comment.png"/><span>待评论</span></div>
 				</div>
 				
 				
@@ -57,11 +57,11 @@
 					<div class="myFunc">收货地址</div>
 					<div class="arrowHead"><img src="../images/rightArrowOrange.png"/></div>
 				</div>
-				
+				<!-- 
 				<div id="quit" onclick="javascript:location.href='login.jsp'">
 					<div id="logout">退出登录</div>
 				</div>
-			
+			    -->
 			</div>
 		</div>
        
