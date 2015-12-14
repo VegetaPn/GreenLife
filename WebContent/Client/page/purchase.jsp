@@ -82,6 +82,7 @@ for(int i =0; i<addressInfos.size();i++){
 		    <div class="blank"></div>
 		    
 			<!--第一层用户信息-->
+			<%if(defaultAddressInfo!=null){%>
 		    <div id="dCusMess">
 				<div id="dCusInfor">
 				    <div class="top">
@@ -99,7 +100,17 @@ for(int i =0; i<addressInfos.size();i++){
 					<a href="changeAddress.jsp?group=<%=group%>&goodsId=<%=goodsId%>"><img id="iToAddress" src="../images/rightArrowCircle3.png" ></a>
 				</div>
 			</div>
-			
+			<% }else{%>
+				<div id="dCusMess">
+				   <div id="dHint">
+				      <span id="sHint"> 请前往地址中心添加收货地址</span>
+				   </div>
+				   <div id="dToAddress">
+					  <a href="changeAddress.jsp?group=<%=group%>&goodsId=<%=goodsId%>"><img id="iToAddress" src="../images/rightArrowCircle3.png" ></a>
+				   </div>
+				</div>
+			<% }%>
+
 			<!--第二层产品信息-->
 			<div id="dProductMess">
 			    <div id="dProductImg">
@@ -139,7 +150,7 @@ for(int i =0; i<addressInfos.size();i++){
 			
 			<!--第七层留言-->
 			<div id="dMessage">
-			    <input type="text" id="iMessage" name="iMessage" value="给田园生活留个言"/>
+			    <input type="text" id="iMessage" name="iMessage" placeholder="给田园生活留个言"/>
 				<span>请在24小时内付款否则订单将取消</span>
 			</div>
 		</div>
