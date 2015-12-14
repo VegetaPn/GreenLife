@@ -15,7 +15,7 @@
 	
 		<div id="header">
 			<div id="leftButton"><img src="../images/leftArrowBlack.png" onclick="history.back(-1);" /></div> <!-- 左上角功能键：返回、或是菜单按键-->
-			<div id="homeButton"><img src="../images/home.png" onclick="location.href='home.jsp'"></div>   <!-- 右上角功能键，其实就是主页按钮-->
+			<div id="homeButton"><img id="addAddr" src="../images/add.png"></div>   <!-- 右上角功能键，其实就是主页按钮-->
 			<div id="title">选择地址</div>
 		</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 		
@@ -60,6 +60,8 @@
 					 location.href = "reAddress.jsp?group="+group+"&goodsId="+goodsId;
 					}); 
 		     </script>
+		     
+		     <%if(defaultAddressInfo!=null){ %>
 		    <div class="dDeCusMess" style="display:block" id="<%=defaultAddressInfo!=null?defaultAddressInfo.getAddrId():-1%>" 
 		            onclick="location.href='/changeAddress?addressId=<%=defaultAddressInfo.getAddrId()%>&group=<%=group%>&goodsId=<%=goodsId%>'">
 				<div class="dCusInfor">
@@ -78,6 +80,7 @@
 					</div>
 				</div>
 			</div>
+				<% }%>
 				
 		<%for(int i =0; i<addressInfos.size();i++){
 				if(i != index){%>

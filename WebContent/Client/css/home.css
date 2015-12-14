@@ -27,7 +27,7 @@ html{
 	width:100%;
 	bottom:0;
 	font-weight:bold;
-	
+	padding-left:15px;
 	
 }
 
@@ -102,7 +102,7 @@ html{
 
 }
 
-.nMarketprice{
+.nOrderTime{
 	
 	font-family: "黑体";
 	color:#999999;
@@ -161,7 +161,7 @@ html{
 
 	}
 	
-	.nMarketprice{
+	.nOrderTime{
 		margin-bottom:5px;
 		font-size: 28px;
 	}
@@ -219,7 +219,7 @@ html{
 
 	}
 	
-	.nMarketprice{
+	.nOrderTime{
 		margin-bottom:3px;
 		font-size: 28px;
 	}
@@ -277,7 +277,7 @@ html{
 
 	}
 	
-	.nMarketprice{
+	.nOrderTime{
 		margin-bottom:3px;
 		font-size: 24px;
 	}
@@ -338,7 +338,7 @@ html{
 
 	}
 	
-	.nMarketprice{
+	.nOrderTime{
 		margin-bottom:3px;
 		font-size: 16px;
 	}
@@ -397,7 +397,7 @@ html{
 
 	}
 	
-	.nMarketprice{
+	.nOrderTime{
 		
 		font-size: 14px;
 	}

@@ -1,4 +1,13 @@
-﻿<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.greenlife.dao.*" import="com.greenlife.model.*" import="java.util.*" import="com.greenlife.util.*"%>
+﻿<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
+import="com.greenlife.dao.*" 
+import="com.greenlife.model.*" 
+import="java.util.*" 
+import="com.greenlife.util.*"
+import="java.text.ParseException" 
+import="java.text.SimpleDateFormat" 
+import="java.util.Calendar" 
+import="java.util.Date"
+%>
 <!DOCTYPE html>
 <%
 	List<GoodsInfo> goodsList = new ArrayList<GoodsInfo>();
@@ -28,34 +37,48 @@
 		</div>
 		
 		<div id="content">
-		
-		
-		<div id="product">
-			<img id="productImg" src="../images/product.jpg"/>
-			<div id="productName">
-				2015现磨五常稻花香大米
-			</div>
-		</div>
-		
-	
 			
 			<% 
 				for(int i=0;i<goodsList.size();i++){
-				GoodsInfo gi = goodsList.get(i);
-				int id = gi.getGoodsId();
-				
-				String productImg = PropertiesUtil.getPath()+gi.getPackagePath()+"small.jpg";
-		
+				if(goodsList.get(i).getIsAdv() == 1){
+					GoodsInfo giIsAdv = goodsList.get(i);
+					int idIsAdv = giIsAdv.getGoodsId();
+					String ImgIsAdv = PropertiesUtil.getPath()+giIsAdv.getPackagePath()+"normal.jpg";	
 			%>
+			
+		<div id="product" onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'">
+			<img id="productImg" src="<%=ImgIsAdv%>"/>
+			<div id="productName">
+				<%=giIsAdv.getGoodsName()%>
+			</div>
+		</div>
+		<%}}%>
+		<%
+		for(int i=0;i<goodsList.size();i++){
+			GoodsInfo gi = goodsList.get(i);
+			int id = gi.getGoodsId();
+			String productImg = PropertiesUtil.getPath()+gi.getPackagePath()+"small.jpg";
+		%>
 			<div class="normalProduct" onclick="javascript:location.href='productHome.jsp?goodsId=<%=id%>'">
 				<div class="nPic"><img src="<%=productImg%>"/></div>
 				<div class="nSellInfo">
 					<div class="nName"><%=gi.getGoodsName()%></div>
+					<div class="nIntro">这是描述这是描述这是描述</div>
 					<div class="nCheapprice">￥<%=gi.getGoodsPrice()%><span>/<%=gi.getGoods_unit()%></span>
 						</div>
-					<div class="nMarketprice">团购价：￥<%=gi.getGoodsDiscontPrice()%></div>	
-					<div class="nOrderTime">预定时间：<%=gi.getStartTime()%>-<%=gi.getEndTime()%></div>
-					<div class="nFriendorder">你有100位好友订购此产品</div>
+					
+					<% 
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");					
+						Calendar cal = Calendar.getInstance();    
+				        cal.setTime(sdf.parse(gi.getStartTime()));    
+				        long time1 = cal.getTimeInMillis();                 
+				        cal.setTime(sdf.parse(gi.getEndTime()));    
+				        long time2 = cal.getTimeInMillis();         
+				        long between_days=(time2-time1)/(1000*3600*24);  
+
+					%>
+					<div class="nOrderTime">剩余时间：<%=between_days%>天</div>
+					
 				</div>
 			</div>
 			

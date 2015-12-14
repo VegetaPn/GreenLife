@@ -188,12 +188,14 @@
 			<span class="descFont">在《舌尖上的中国中播出》的产品</span><br/><br/>
 			<span class="descFont">中国羽毛球队指定唯一产品</span><br/><br/>
 			-->
-				<div href="#" class="link" onclick="location.href='productDetail.jsp?goodsId=<%=goodsId%>'">项目详情 ></div>
+				<div class="link" onclick="location.href='productDetail.jsp?goodsId=<%=goodsId%>'">项目详情 ></div>
 
 			</div>
 		</div>
 
 		<div class="grayDiv">
+		
+			<!--  
 			<div id="friendPurchase">
 				<div class="labelHeader">
 					<div class="whiteDiv"></div>
@@ -222,7 +224,7 @@
 				</div>
 
 			</div>
-
+-->
 			<div class="labelHeader" id="productSalesPrice">
 
 				<div class="whiteDiv"></div>
