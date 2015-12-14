@@ -7,18 +7,36 @@
 	
 <%
 	String wechatId = (String)session.getAttribute("wechatId");
-	wechatId = "huangjianqiang";//测试
-	
-	//int groupId =  Integer.parseInt(request.getParameter("groupId"));
+	int groupId = Integer.parseInt(request.getParameter("groupId"));
 
-	int groupId = 1;
+	TodayGroup group = TodayGroupDao.getTodayGroup(groupId);
+
+	String time = group.getStartTime();
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
+	Date date = sdf.parse(time);
 	
 	
-	int goodsId = 1;
-	String organiserWechatId = "huangjianqiang";
+	
+	Calendar calendar =new GregorianCalendar(); 
+    calendar.setTime(date); 
+    calendar.add(Calendar.DATE,1);
+	
+    Date endDate = calendar.getTime();
+    
+    SimpleDateFormat showSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    String endTime = showSdf.format(endDate);
+    
+	int goodsId = group.getGoodsId();
+	String organiserWechatId = group.getWechatId();
 	
 	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 	String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"normal.jpg";
+	
+	UserInfo organiser = UserInfoDao.getUserInfo(wechatId);
+	
+	List<GoodsOrder> orderList = GoodsOrderDao.getGoodsOrderListByGroupId(groupId);
+	int listSize = orderList.size();
 %>
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -102,10 +120,10 @@
 	
 		<div id="organiser">
 			
-			<img class="avatar" src="../images/1.png"/>
+			<img class="avatar" src="<%=organiser.getPhotoPath()%>"/>
 			<span id="desc">发起人：</span>	
-			<span id="organiserName">张二狗</span>
-			<span id="priceDesc">成团价：<span id="price">1.00</span>元</span> 
+			<span id="organiserName"><%=organiser.getWechatName()%></span>
+			<span id="priceDesc">成团价：<span id="price"><%=goodsInfo.getGoodsDiscontPrice()%></span>元</span> 
 			
 				
 		</div >	
@@ -115,9 +133,8 @@
 			
 		<div id="groupState">
 			<div>成团最少人数:<span>2</span></div>
-			<div>已参团<span>5</span>人</div>
-			<div>报名截止：2015-12-12 8:00</div><br/>
-			<div>发货时间：2015-11-10</div>
+			<div>已参团<span><%=listSize %></span>人</div>
+			<div>报名截止：<%=endTime%></div><br/>
 			<div>如果报名截止时未成团，将自动退款</div>
 			
 		</div>
@@ -131,33 +148,32 @@
 		
 		<div id="label">已参团<hr/></div>
 			
-		<div class="inGroup">
+		<%
+			for(int i=0;i<listSize;i++){
+				GoodsOrder order = orderList.get(i);
+				UserInfo user = UserInfoDao.getUserInfo(order.getWechatId());
 				
-			<img class="avatar" src="../images/1.png"/>
-			<span class="name">张二狗</span>
-			<span class="time">2015-11-06 16:22</span>  
+				Date tradeDate = sdf.parse(order.getTradeTime());
+				String tradeTime = showSdf.format(tradeDate);
+			
+		%>
+			
+			<div class="inGroup">
+				
+			<img class="avatar" src="<%=user.getPhotoPath()%>"/>
+			<span class="name"><%=user.getWechatName()%></span>
+			<span class="time"><%=tradeTime%></span>  
 			<hr/>
 				
-		</div>
+			</div>
+				
+		<%
+			}
+		%>
 		
 		
-		<div class="inGroup">
-				
-			<img class="avatar" src="../images/1.png"/>
-			<span class="name">张二狗</span>
-			<span class="time">2015-11-06 16:22</span>  
-			<hr/>
-				
-		</div>
 		
-		<div class="inGroup">
-				
-			<img class="avatar" src="../images/1.png"/>
-			<span class="name">张二狗</span>
-			<span class="time">2015-11-06 16:22</span>  
-			<hr/>
-				
-		</div>
+	
 		
 	</div>
 	

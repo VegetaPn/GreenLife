@@ -31,12 +31,10 @@ public class PurchaseServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		 request.setCharacterEncoding("UTF-8");
 		   
-		 String wechatId = "huangjianqiang";
-		 //HttpSession session = request.getSession();
-		 //String wechatId = session.getAttribute("wechatId");
+		 String wechatId = (String)request.getSession().getAttribute("wechatId");
 		 int goodsId = Integer.valueOf(request.getParameter("goodsId"));
 		 String group = request.getParameter("group");
 		 
@@ -61,7 +59,7 @@ public class PurchaseServlet extends HttpServlet {
 		 goodsOrder.setSendTime(send_time);
 		 
 		 Date now = new Date(); 
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//可以方便地修改日期格式
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		 String tradeTime = dateFormat.format( now ); 
 		 goodsOrder.setTradeTime(tradeTime);
 		 goodsOrder.setMailPrice(0);

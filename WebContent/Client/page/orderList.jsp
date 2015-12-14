@@ -20,8 +20,8 @@
 
 	<%
 	    //获取订单列表
-		List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
-		orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
+		String wechatId = (String)session.getAttribute("wechatId");
+		List<GoodsOrder> orderList = GoodsOrderDao.getGoodsOrderList(wechatId);
 		int orderAmount = orderList.size();
 		System.out.println(orderAmount);
 		//用于填充的变量
@@ -36,7 +36,7 @@
 		int orderstate = 0;
 	%>
 	<div id="header">
-		<div id="leftButton" onclick="javascript:location.href='personalCenter.jsp'">
+		<div id="leftButton"  onclick="history.back(-1);">
 			<img src="../images/leftArrowBlack.png" />
 		</div>
 		<!-- 左上角功能键：返回、或是菜单按键-->

@@ -6,4 +6,5 @@ encoding//WebContent/Client/page/productHome.jsp=UTF-8
 encoding//WebContent/Client/page/report.jsp=UTF-8
 encoding//src/com/greenlife/client/controller/CommentServlet.java=UTF-8
 encoding//src/com/greenlife/client/controller/LoginServlet.java=UTF-8
+encoding//src/com/greenlife/client/controller/MyAddressServlet.java=UTF-8
 encoding//test/com/greenlife/util/DBUtilTest.java=UTF-8

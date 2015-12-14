@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 
 <%
-//String wechatId = (String)session.getAttribute("wechatId");
-String wechatId = "huangjianqiang";
-//int goodsId = Integer.parseInt(request.getParameter("goodsId"));
-int goodsId =1;
+String wechatId = (String)session.getAttribute("wechatId");
+
+int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+
 GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
-//String group = request.getParameter("group");
-String group = "true";
+String group = request.getParameter("group");
+
 double price = 0;
 if(group.equals("false")){
 	price = goodsInfo.getGoodsPrice();

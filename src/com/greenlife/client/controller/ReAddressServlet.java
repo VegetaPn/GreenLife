@@ -26,12 +26,10 @@ public class ReAddressServlet extends HttpServlet{
 
 	 public void doPost(HttpServletRequest request, HttpServletResponse response)
 	   throws ServletException, IOException {
-	   //设置响应所采用的编码方式
+	   
 	   request.setCharacterEncoding("UTF-8");
 	   
-	   String wechatId = "huangjianqiang";
-	   //HttpSession session = request.getSession();
-	   //String wechatId = session.getAttribute("wechatId");
+	   String wechatId = (String)request.getSession().getAttribute("wechatId");
 	   String type = request.getParameter("type");
 	   int iType = Integer.valueOf(type);
 	   
@@ -63,13 +61,13 @@ public class ReAddressServlet extends HttpServlet{
        if(iType == 1){
     	   addrId = Integer.valueOf(request.getParameter("addressid"));
     	   address.setAddrId(addrId);
-           //更新地址
+     
     	   if(addrId!=-1)
     		   AdressInfoDao.updateAdressInfo(address);
        }
        else{
     	   addrId = AdressInfoDao.addAdressInfo(address);
-    	   //如果userInfo无默认地址，则将其改成默认地址
+    	 
            UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
 	       if(userInfo.getAddrId()<=0){
 	    	   userInfo.setAddrId(addrId);
@@ -80,7 +78,7 @@ public class ReAddressServlet extends HttpServlet{
       //int addrid = addressInfoDao.addAdressInfo(address);
        
        if(addrId !=-1){
-           //修改默认地址
+    	   
            if(check!=null){
         	   UserInfoDao userInfoDao = new UserInfoDao();
         	   UserInfo userInfo = userInfoDao.getUserInfo(wechatId);
@@ -92,8 +90,8 @@ public class ReAddressServlet extends HttpServlet{
       String group = request.getParameter("group");
 	  String goodsId = request.getParameter("goodsId");
 	  if(group == null)
-           response.sendRedirect("/GreenLife/Client/page/myAddress.jsp");
+           response.sendRedirect("/Client/page/myAddress.jsp");
 	  else
-		   response.sendRedirect("/GreenLife/Client/page/changeAddress.jsp?group="+group+"&goodsId="+goodsId);
+		   response.sendRedirect("/Client/page/changeAddress.jsp?group="+group+"&goodsId="+goodsId);
 	 }
 }

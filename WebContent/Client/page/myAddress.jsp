@@ -25,8 +25,8 @@
 		<!-- 在此加入各自的内容物-->
 		    <div class="blank"></div>
 		    
-		    <% String wechatId = "huangjianqiang";
-		       //String wechatId = (String)session.getAttribute("wechatId");
+		    <% 
+		       String wechatId = (String)session.getAttribute("wechatId");
 		       UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
 		       int addressId = userInfo.getAddrId();
 		       List<AdressInfo> addressInfos = AdressInfoDao.getAdressList(wechatId);

@@ -2,12 +2,13 @@ package com.greenlife.client.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import com.greenlife.dao.UserInfoDao;
 import com.greenlife.model.UserInfo;
@@ -41,9 +42,8 @@ public class ChangeAddressServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		 String wechatId = "huangjianqiang";
-		 //HttpSession session = request.getSession();
-		 //String wechatId = session.getAttribute("wechatId");
+		
+		 String wechatId = (String)request.getSession().getAttribute("wechatId");
 		 int goodsId = Integer.valueOf(request.getParameter("goodsId"));
 		 String group = request.getParameter("group");
 		 int addressId = Integer.valueOf(request.getParameter("addressId"));
@@ -52,7 +52,7 @@ public class ChangeAddressServlet extends HttpServlet {
 		 userInfo.setAddrId(addressId);
 		 UserInfoDao.updateUserInfo(userInfo);
 		 
-		 response.sendRedirect("/GreenLife/Client/page/purchase.jsp?goodsId="+goodsId+"&group="+group);
+		 response.sendRedirect("/Client/page/purchase.jsp?goodsId="+goodsId+"&group="+group);
 	}
 
 }

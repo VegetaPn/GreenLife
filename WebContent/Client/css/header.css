@@ -38,8 +38,9 @@ html,body {
 #title{
 	text-align: center;
 	color:#333333;
-	font-size: 32px;
-	height:36px;
+	font-size: 22px;
+	
+	
 }
 
 #content{
@@ -65,8 +66,8 @@ html,body {
 	}
 
 	#title{
-		font-size: 20px;
-		height:24px;
+		font-size: 18px;
+		
 	}
 	
 	#content{
@@ -92,8 +93,8 @@ html,body {
 	}
 
 	#title{
-		font-size: 24px;
-		height:28px;
+		font-size: 22px;
+	
 	}
 	
 	#content{
@@ -120,8 +121,8 @@ html,body {
 	}
 
 	#title{
-		font-size: 28px;
-		height:32px;
+		font-size: 26px;
+
 	}
 	
 	#content{
@@ -146,8 +147,8 @@ html,body {
 	}
 
 	#title{
-		font-size: 32px;
-		height:36px;
+		font-size: 30px;
+
 	}
 	
 	#content{
@@ -173,8 +174,8 @@ html,body {
 	}
 
 	#title{
-		font-size:36px;
-		height:40px;
+		font-size:34px;
+
 	}
 	
 	#content{

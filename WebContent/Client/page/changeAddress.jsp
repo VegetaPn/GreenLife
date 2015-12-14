@@ -24,8 +24,8 @@
 		<!-- 在此加入各自的内容物-->
 		    <div class="blank"></div>
 		    
-		    <% String wechatId = "huangjianqiang";
-		       //String wechatId = (String)session.getAttribute("wechatId");
+		    <% 
+		       String wechatId = (String)session.getAttribute("wechatId");
 		       String goodsId = request.getParameter("goodsId");
 		       String group = request.getParameter("group");
 		       
