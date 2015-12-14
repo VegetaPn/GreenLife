@@ -57,7 +57,7 @@
 			<img src="../images/home.png">
 		</div>
 		<!-- 右上角功能键，其实就是主页按钮-->
-		<div id="title">我要开团</div>
+		<div id="title">田园生活</div>
 	</div>
 
 	<div id="content">
