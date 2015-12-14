@@ -8,8 +8,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.greenlife.dao.CommentDao;
 import com.greenlife.dao.GoodsOrderDao;
 import com.greenlife.dao.TodayGroupDao;
+import com.greenlife.model.Comment;
 import com.greenlife.model.GoodsOrder;
 
 public class DBUtilTest {
@@ -55,4 +57,15 @@ public class DBUtilTest {
 		System.out.print(TodayGroupDao.getTodayGroup(1).toString());
 	}
 
+	@Test
+	public void testComment(){
+		Comment comment = new Comment();
+		comment.setCommentId(1);
+		comment.setContent("aa");
+		comment.setImgPath("img");
+		comment.setGoodsId(1);
+		comment.setTime("a");
+		comment.setWechatId("a");
+		CommentDao.updateComment(comment);
+	}
 }

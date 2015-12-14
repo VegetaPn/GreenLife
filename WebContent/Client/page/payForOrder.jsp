@@ -13,13 +13,11 @@
 </head>
 <body>
 	<%
-		int orderIndex = Integer.parseInt(request.getParameter("orderIndex"));
-		System.out.println("orderIndex:" + orderIndex);
+		int orderId = Integer.parseInt(request.getParameter("orderId"));
+		
+		GoodsOrder orderToShow = GoodsOrderDao.getGoodsOrderById(orderId);		
 
-		List<GoodsOrder> orderList = new ArrayList<GoodsOrder>();
-		orderList = GoodsOrderDao.getGoodsOrderList("huangjianqiang");
-
-		GoodsOrder orderToShow = orderList.get(orderIndex);
+		
 		GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
 		
 		int whatToShow = 4;

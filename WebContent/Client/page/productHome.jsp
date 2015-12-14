@@ -152,7 +152,7 @@
  				 $("#heart").click(function(){
 	   			 	 $.ajax({
 	    				type: "post",//数据提交的类型（post或者get）
-	       				url: "/GreenLife/collect",//数据提交得地址
+	       				url: "/collect",//数据提交得地址
 	        			data: {goodsId: "<%=goodsId%>",isCollected : isCollected},//提交的数据(自定义的一些后台程序需要的参数)
 						dataType : "text",//返回的数据类型
 						success : function(

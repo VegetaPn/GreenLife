@@ -67,7 +67,7 @@ public class CommentServlet extends HttpServlet {
 			String filename = downloadMedia(accessToken, img, savePath);
 			if (filename != null) {
 				comment.setImgPath(path + filename);
-				CommentDao.updateCommentt(comment);
+				CommentDao.updateComment(comment);
 			}
 
 		}

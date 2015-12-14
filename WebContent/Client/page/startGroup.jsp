@@ -85,7 +85,7 @@
 			onclick="javascript:location.href='purchase.jsp?group=true&goodsId=<%=goodsID%>'">我要开团</div>
 
 
-		<img src="../images/howToStartGroup.bmp" class="startGroupIMG" />
+		<img src="../images/howToStartGroup.png" class="startGroupIMG" />
 
 
 		<div class="detail">

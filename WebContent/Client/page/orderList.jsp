@@ -167,7 +167,7 @@
 					</div>
 					<!--订单详情-->
 					<div class="detailMessage"
-						onclick="javascript:location.href='detailOrderMessage.jsp?orderIndex=<%=orderIndex%>&whatToShow=<%=whatToShow%>'">
+						onclick="javascript:location.href='detailOrderMessage.jsp?orderId=<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">
 
 						<div class="productName">
 							<span class="blackBold"><%=goodsinfo.getGoodsName()%></span>
@@ -215,7 +215,7 @@
 				    	//待付款
 				%>
 				<div class="functionButton"
-					onclick="javascript:location.href='detailOrderMessage.jsp?orderIndex=<%=orderIndex%>&whatToShow=<%=whatToShow%>'">去付款</div>
+					onclick="javascript:location.href='detailOrderMessage.jsp?<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
 				<div class="functionButton" onclick="">取消订单</div>
 				<%
 				    }
