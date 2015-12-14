@@ -21,6 +21,7 @@
 	<%
 	    //获取订单列表
 		String wechatId = (String)session.getAttribute("wechatId");
+		//wechatId="huangjianqiang";
 		List<GoodsOrder> orderList = GoodsOrderDao.getGoodsOrderList(wechatId);
 		int orderAmount = orderList.size();
 		//用于填充的变量
@@ -191,16 +192,17 @@
 								class="blackNormal" id="originPrice">件</span>
 						</div>
 
+						<!-- 
 						<div class="orderTime">
 							<span class="blackNormal">预订时间：</span><span class="blackNormal"
 								id="timeOrdered"><%=orderToShow.getTradeTime()%></span>
 						</div>
-
 						<div class="deliverTime">
 							<span class="blackNormal">发货时间：</span><span class="blackNormal"
 								id="timeToDeliver"><%=orderToShow.getSendTime()%></span>
 						</div>
-
+ 						-->
+ 						
 					</div>
 
 				</div>
@@ -214,7 +216,7 @@
 				    	//待付款
 				%>
 				<div class="functionButton"
-					onclick="javascript:location.href='detailOrderMessage.jsp?orderId?=<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
+					onclick="javascript:location.href='detailOrderMessage.jsp?orderId=<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
 				<div class="functionButton" onclick="">取消订单</div>
 				<%
 				    }

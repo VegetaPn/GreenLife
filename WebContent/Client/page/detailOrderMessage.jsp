@@ -107,7 +107,7 @@
 					//待付款
 			%>
 			<div class="functionButton"
-				onclick="javascript:location.href='payForOrder.jsp?<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
+				onclick="javascript:location.href='payForOrder.jsp?orderId=<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
 			<div class="functionButton" onclick="">取消订单</div>
 			<%
 				} else if (orderstate == 2) {
