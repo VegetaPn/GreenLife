@@ -1,4 +1,53 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="com.greenlife.dao.*"
+	import="com.greenlife.model.*" import="java.util.*"
+	import="java.text.SimpleDateFormat" import="com.greenlife.util.*"%>
+
+
+<%
+	String wechatId = (String) session.getAttribute("wechatId");
+	
+
+	
+	int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
+
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
+	Date startTime = sdf.parse(goodsInfo.getStartTime());
+	Date endTime = sdf.parse(goodsInfo.getStartTime());
+	Date date = new Date();
+	String salesState = null;
+	if (date.getTime() < startTime.getTime()) {
+		salesState = "预售中";
+	} else if (date.getTime() > endTime.getTime()) {
+		salesState = "已售完";
+	} else {
+		salesState = "进行中";
+	}
+
+	if (goodsInfo.getGoodsSoldnum() >= goodsInfo.getGoodsTotalnum()) {
+		salesState = "已售完";
+	}
+
+	String productImg = PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "normal.jpg";
+
+	int orderNum = GoodsOrderDao.getGoodsOrderNum(goodsId);
+
+	ReportList reportList = ReportListDao.getReportList(goodsInfo.getReportId());
+
+	int reportNum = 0;
+
+	if (reportList == null) {
+		reportNum = 0;
+	} else {
+		reportNum = reportList.getReportNum();
+	}
+
+	List<Comment> commentList = CommentDao.getCommentList(goodsId);
+
+	int commentListSize = commentList.size();
+%>
+
 <!DOCTYPE html>
 
 <html>
