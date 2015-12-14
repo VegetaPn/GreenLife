@@ -7,7 +7,6 @@
 
 <%
 	String wechatId = (String)session.getAttribute("wechatId");
-	wechatId = "huangjianqiang";//测试
 	int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 	String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"normal.jpg";
@@ -33,7 +32,7 @@
 	
 
 			<div id="homeButton">
-				<img src="../images/home.png" onclick="location.href='productDetail.jsp'">
+				<img src="../images/home.png" onclick="location.href='home.jsp'">
 			</div>
 			<div id="title">田园生活</div>
 		</div>

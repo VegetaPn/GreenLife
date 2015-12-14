@@ -9,6 +9,14 @@ public class PropertiesUtil {
 	private static String appId = null;
 	private static String appsecret = null;
 	private static String URL = null;
+	private static String savePath = null;
+	
+	public static String getSavePath(){
+		if(savePath == null){
+			loadProperties();
+		}
+		return savePath;
+	}
 	
 	public static String getPath(){
 		if(path == null){
@@ -22,10 +30,12 @@ public class PropertiesUtil {
 		try {
 			InputStream is = PropertiesUtil.class.getResourceAsStream("init.properties");
 			prop.load(is);
-			path = prop.getProperty("filePath");
+			savePath = prop.getProperty("savePath");
+			path = prop.getProperty("path");
 			appId = prop.getProperty("appId");
 			appsecret = prop.getProperty("appsecret");
 			URL = prop.getProperty("URL");
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -26,6 +26,7 @@
 
 		GoodsOrder orderToShow = orderList.get(orderIndex);
 		GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
+		int goodsId = goodsinfo.getGoodsId();
 		int orderstate = orderToShow.getOrderState();
 		
 		int whatToShow = 4;
@@ -55,7 +56,7 @@
 
 		
 
-		<div id="product">
+		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
 			
 
 				<img id="productImg" src=<%=productImg%> />

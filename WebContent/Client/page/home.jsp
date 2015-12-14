@@ -3,6 +3,10 @@
 <%
 	List<GoodsInfo> goodsList = new ArrayList<GoodsInfo>();
 	goodsList = GoodsInfoDao.getGoodsList();
+	
+	String wechatId = (String)session.getAttribute("wechatId");
+	String nickname = (String)session.getAttribute("nickname");
+	String headimgurl = (String)session.getAttribute("headimgurl");
 %>
 <html>
     <head>
@@ -66,8 +70,8 @@
 		<div id="guide">
 			<div id="visitingCard">
 				<div id="bgImage"><img src="../images/bg.jpg"/></div>
-				<div id="icon"><img src="../images/1.png"/></div>
-				<div id="userName">张二狗</div>
+				<div id="icon"><img src="<%=headimgurl%>"/></div>
+				<div id="userName"><%=nickname %></div>
 				<div id="logout">退出</div>
 			</div>
 		

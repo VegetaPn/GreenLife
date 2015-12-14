@@ -191,9 +191,11 @@
 }
 
 
+
 #teamPurchase{
 	padding:10px 10px 0 10px;		
 	float:left;
+	margin-left:15%;
 }
 
 #personalPurchase{
@@ -201,6 +203,7 @@
 	padding-left:10px;
 	
 	float:left;
+	
 }
 
 .salesPrice{
@@ -248,10 +251,12 @@
 
 #qualityLogo{
 	float:left;
+	margin-left:10%;
 }
 
 #qualityInfo{
-	float:left;
+	right:15%;
+	position:absolute;
 	
 }
 
@@ -318,6 +323,7 @@
 }
 
 .comment{
+	
 	clear:both;
 
 
@@ -354,8 +360,152 @@
 
 
  
-/*如果使用者视图宽度 < 480px，將会载入这里的 CSS。*/  
-@media screen and (max-width: 479px) {  
+
+@media screen and (max-width:399px) {
+	#qualityLogo{
+		margin-left:3%;
+	}
+	
+	#qualityInfo{
+		right:3%;
+	
+	}
+	
+	#teamPurchase{
+		margin-left:5%;
+	}
+	#productImg{
+		
+		height:180px;
+	}
+
+	#productName{
+		font-size:24px;
+	}
+
+
+	.arcLabel{
+
+		font-size:16px;
+	}
+
+
+
+	.descFont{
+		font-size:16px;
+	}
+
+	.link{
+		font-size:20px;
+	}
+
+	.labelHeader{
+	
+		height:35px;
+	}
+
+	.label{
+
+		
+		font-size:16px;
+		
+	}
+
+	.whiteDiv{
+		margin-top:10px;
+		height:25px;
+	}
+
+
+
+
+	#purchaseNum{
+		font-size:20px;
+	}
+	
+	
+
+	.personalPurchaseDiv{
+		font-size:16px;
+	}
+
+	.avatar{
+		width:40px;
+		height:40px;
+	}
+
+	#friendLink{
+		margin-top:12px;
+	}
+
+
+	#salesProductImg{
+		
+		height:160px;
+
+	}
+
+	.titleFont{
+		font-size:16px;
+	
+	}
+
+
+	.salesPrice{
+		font-size:20px;
+		
+		
+	}
+
+
+	.purchaseLink{
+		font-size:16px;
+	}
+
+
+	#qualityLogoImg{
+		width:60px;
+		height:60px;
+	}
+
+
+	#qualityFont{
+		font-size:18px;
+	}
+
+	#qualityLink{
+		font-size:18px;
+		
+		margin-left:16px;
+		
+	}
+
+	.name{
+		font-size:20px;
+		margin-top:10px;
+		
+	}
+
+	.time{
+		font-size:16px;
+		margin-top:12px;
+		
+	}
+
+	.comment{
+		margin-left:40px;
+		font-size:16px;
+
+	}
+
+	#commentLink{
+		font-size:20px;
+		
+	}
+}
+ 
+
+@media screen and (min-width:400px) and (max-width: 479px) {   
 	#productImg{
 		
 		height:220px;

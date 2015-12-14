@@ -1,26 +1,16 @@
 #product{
 	width:100%;
 	position:relative;
-	background-color:#E4E4E4;
 	text-align:center;
 
-	padding-top:15px;
-	padding-bottom:15px;
 }
 
-#productImgDiv{
-	width:90%;
 
-	margin:auto;
-	
-	
-}
 
 #productImg{
 	width:100%;
 
-	border:1px solid #333333;
-	border-radius:10px;
+
 }
 
 #productName{

@@ -6,7 +6,7 @@
 
 <%
 	String wechatId = (String) session.getAttribute("wechatId");
-	wechatId = "huangjianqiang";//测试
+	
 	int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 
@@ -106,7 +106,7 @@
 	
 
 		<div id="homeButton">
-			<img src="../images/home.png" onclick="location.href='productDetail.jsp'">
+			<img src="../images/home.png" onclick="location.href='home.jsp'">
 		</div>
 		
 		<div id="title">田园生活</div>
@@ -254,7 +254,7 @@
 				<span class="titleFont">发货地点：</span><span class="descFont">五常</span><br/>
 				-->
 				</div>
-
+	
 
 				<div id="teamPurchase" onclick="location.href='startGroup.jsp?goodsId=<%=goodsId%>'">
 					<div class="salesPrice" id="teamPrice">
@@ -307,7 +307,7 @@
 								
 								String commentTime = comment.getTime();
 								Date commentDate = sdf.parse(commentTime);
-								SimpleDateFormat commentSdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+								SimpleDateFormat commentSdf = new SimpleDateFormat("yy-MM-dd HH:mm");
 								String showTime = commentSdf.format(commentDate);
 								
 						%>
@@ -346,7 +346,7 @@
 
 					<div id="commentLinkDiv">
 
-						<a id="commentLink">我来说两句</a>
+						<span id="commentLink"  onclick="location.href='comment.jsp?goodsId=<%=goodsId%>'">我来说两句</span>
 
 					</div>
 				</div>
