@@ -15,7 +15,7 @@
     <body>
 	
 		<div id="header">
-			<div id="leftButton"><img src="../images/leftArrowBlack.png"/></div> <!-- 左上角功能键：返回、或是菜单按键-->	
+			<div id="leftButton"><img src="../images/leftArrowBlack.png" onclick="history.back(-1);" /></div> <!-- 左上角功能键：返回、或是菜单按键-->
 			<div id="homeButton"><img id="addAddr" src="../images/add.png"></div>   <!-- 右上角功能键，其实就是主页按钮-->
 			<div id="title">我的地址</div>
 		</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

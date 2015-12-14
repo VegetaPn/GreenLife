@@ -229,14 +229,16 @@
 
 #dSubmit .right{
 	float:right;
+	background-color:#F76F00;
+	border-radius: 5px;
 }
 
 #iSubmit{
 	width:100%;
 	color:white;
-	border-radius: 5px;
-	//font-weight:bold;
-	background-color:#F76F00;
+	background-color:transparent;
+	//border-radius: 5px;
+	border:none;
 }
 
 #dMail{

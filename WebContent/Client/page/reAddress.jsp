@@ -14,8 +14,8 @@
     <body>
 	
 		<div id="header">
-			<div id="leftButton"><img src="../images/leftArrowBlack.png"/></div> <!-- 左上角功能键：返回、或是菜单按键-->
-			<div id="homeButton"><img src="../images/home.png"></div>   <!-- 右上角功能键，其实就是主页按钮-->
+			<div id="leftButton"><img src="../images/leftArrowBlack.png" onclick="history.back(-1);" /></div> <!-- 左上角功能键：返回、或是菜单按键-->
+			<div id="homeButton"><img src="../images/home.png" onclick="location.href='home.jsp'"></div>   <!-- 右上角功能键，其实就是主页按钮-->
 			<div id="title">收货地址</div>
 		</div>
 		<%  
@@ -53,14 +53,14 @@
 				<div class="dPanel">
 					<div class="cell">
 					   <span>收货人</span><br/>
-					   <input type="text" id="iConsignee" name="iConsignee" class="input" value="<%=iAddress!=-1?addressInfo.getReceiverName():""%>"/>
+					   <input type="text" id="iConsignee" name="iConsignee"  class="input" value="<%=iAddress!=-1?addressInfo.getReceiverName():""%>"/>
 					</div>
 					<div class="cell">
 					   <span>手机号码</span><br/>
-					   <input type="text" id="iPhnoe" name="iPhnoe" class="input" value="<%=iAddress!=-1?addressInfo.getReceiverPhone():""%>"/>
+					   <input type="tel" id="iPhnoe" name="iPhnoe" class="input" value="<%=iAddress!=-1?addressInfo.getReceiverPhone():""%>"/>
 					</div>
 					<div class="cell">
-					   <span>地区信息</span><br/>
+					   <span>地区信息</span><br/>				
 					   <input type="text" id="iRegione" name="iRegione" class="input" value="<%=iAddress!=-1?region.toString():""%>" readonly="readonly"></input>
 					   <img id="iToAddress" src="../images/rightArrowGray.png"/>
 					</div>
@@ -86,7 +86,9 @@
 					<div class="cell">
 					   <input type="checkbox" id="iCheck" name="iCheck"/>
 					   <span>默认地址</span><br/>
-					   <input type="submit" id="iSure" class="input" value="确认"/>
+					   <div id="iSure" class="input">
+					      <input type="submit" id="submit" value="确认"/>
+					   </div>
 					</div>						
 				</div>
 			</form>

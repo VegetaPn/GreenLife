@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-<<<<<<< HEAD
-  <welcome-file-list>
-    <welcome-file>Client/page/login.jsp</welcome-file>
-  </welcome-file-list>
-=======
->>>>>>> origin/master
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.greenlife.client.controller.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
-<<<<<<< HEAD
     <url-pattern>/login</url-pattern>
-=======
-    <url-pattern>/GreenLife/login</url-pattern>
->>>>>>> origin/master
   </servlet-mapping>
   <servlet>
     <servlet-name>CollectServlet</servlet-name>
@@ -24,11 +14,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CollectServlet</servlet-name>
-<<<<<<< HEAD
     <url-pattern>/collect</url-pattern>
-=======
-    <url-pattern>/GreenLife/collect</url-pattern>
->>>>>>> origin/master
   </servlet-mapping>
   <servlet>
     <servlet-name>ReAddressServlet</servlet-name>
@@ -36,11 +22,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ReAddressServlet</servlet-name>
-<<<<<<< HEAD
     <url-pattern>/reAddress</url-pattern>
-=======
-    <url-pattern>/GreenLife/reAddress</url-pattern>
->>>>>>> origin/master
   </servlet-mapping>
   <servlet>
     <servlet-name>MyAddressServlet</servlet-name>
@@ -48,11 +30,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>MyAddressServlet</servlet-name>
-<<<<<<< HEAD
     <url-pattern>/myAddress</url-pattern>
-=======
-    <url-pattern>/GreenLife/myAddress</url-pattern>
->>>>>>> origin/master
   </servlet-mapping>
   <servlet>
     <servlet-name>CommentServlet</servlet-name>
@@ -60,11 +38,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CommentServlet</servlet-name>
-<<<<<<< HEAD
     <url-pattern>/comment</url-pattern>
-=======
-    <url-pattern>/GreenLife/comment</url-pattern>
->>>>>>> origin/master
   </servlet-mapping>
   <servlet>
     <servlet-name>PurchaseServlet</servlet-name>
@@ -72,32 +46,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>PurchaseServlet</servlet-name>
-<<<<<<< HEAD
     <url-pattern>/purchase</url-pattern>
-  </servlet-mapping>
-  
-  <!-- 管理端servlet -->
-  <servlet>
-    <servlet-name>ServerLoginServlet</servlet-name>
-    <servlet-class>com.greenlife.server.controller.ServerLoginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServerLoginServlet</servlet-name>
-    <url-pattern>/ServerLoginServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>AddGoodServlet</servlet-name>
-    <servlet-class>com.greenlife.server.controller.AddGoodServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddGoodServlet</servlet-name>
-    <url-pattern>/AddGoodServlet</url-pattern>
-  </servlet-mapping>
-  <listener>
-    <listener-class>com.greenlife.util.MyTimerListener</listener-class>
-  </listener>
-=======
-    <url-pattern>/GreenLife/purchase</url-pattern>
   </servlet-mapping>
     <servlet>
     <servlet-name>ChangeAddressServlet</servlet-name>
@@ -105,7 +54,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ChangeAddressServlet</servlet-name>
-    <url-pattern>/GreenLife/changeAddress</url-pattern>
+    <url-pattern>/changeAddress</url-pattern>
   </servlet-mapping>
 
 	<welcome-file-list>
@@ -127,5 +76,4 @@
 		<listener-class>com.greenlife.util.MyTimerListener</listener-class>
 	</listener>
 
->>>>>>> origin/master
 </web-app>
