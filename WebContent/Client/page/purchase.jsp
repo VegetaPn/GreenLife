@@ -22,7 +22,7 @@ else{
 //剩余数量
 int remNumber = goodsInfo.getGoodsTotalnum() - goodsInfo.getGoodsSoldnum();
 
-String productImg = PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "normal.jpg";
+String productImg = PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "small.jpg";
 
 
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -61,7 +61,7 @@ for(int i =0; i<addressInfos.size();i++){
 
 <html>
     <head>
-        <title>确认预定</title>
+        <title>田园生活</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <link rel="stylesheet" href="../css/header.css" type="text/css">
@@ -75,7 +75,7 @@ for(int i =0; i<addressInfos.size();i++){
 		<div id="header">
 			<div id="leftButton"><img src="../images/leftArrowBlack.png" onclick="history.back(-1);" /></div> <!-- 左上角功能键：返回、或是菜单按键-->			
 			<div id="homeButton"><img src="../images/home.png" onclick="location.href='home.jsp'"></div>   <!-- 右上角功能键，其实就是主页按钮-->
-			<div id="title">确认预定</div>
+			<div id="title">田园生活</div>
 		</div>
 		
 		<div id="content">
@@ -114,7 +114,7 @@ for(int i =0; i<addressInfos.size();i++){
 			<!--第二层产品信息-->
 			<div id="dProductMess">
 			    <div id="dProductImg">
-				    <img id="iProductImg" src="<%=productImg%>"/>
+				    <img id="iProductImg" src="<%=productImg%>" onclick="location.href='productDetail.jsp?goodsId=<%=goodsId%>'"/>
 				</div>
 				<div id="dProductInfor">
 				    <p id="pProductName"><%=goodsInfo.getGoodsName()%></P>
@@ -181,7 +181,7 @@ for(int i =0; i<addressInfos.size();i++){
 				},//提交的数据(自定义的一些后台程序需要的参数)
 				dataType: "text",//返回的数据类型
 				success: function(data){
-					location.href = "home.jsp";
+					location.href = "payForOrder.jsp?"+data;
 				},
 			 	error: function(){
 			        alert(arguments[1]);

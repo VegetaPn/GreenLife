@@ -47,7 +47,7 @@
 			<img src="../images/home.png">
 		</div>
 		<!-- 右上角功能键，其实就是主页按钮-->
-		<div id="title">订单详情</div>
+		<div id="title">田园生活</div>
 	</div>
 
 	<div id="content">
@@ -107,7 +107,7 @@
 					//待付款
 			%>
 			<div class="functionButton"
-				onclick="javascript:location.href='payForOrder.jsp?<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
+				onclick="javascript:location.href='payForOrder.jsp?orderId=<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
 			<div class="functionButton" onclick="">取消订单</div>
 			<%
 				} else if (orderstate == 2) {

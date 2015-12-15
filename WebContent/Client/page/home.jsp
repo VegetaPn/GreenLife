@@ -63,7 +63,7 @@ import="java.util.Date"
 				<div class="nPic"><img src="<%=productImg%>"/></div>
 				<div class="nSellInfo">
 					<div class="nName"><%=gi.getGoodsName()%></div>
-					<div class="nIntro">这是描述这是描述这是描述</div>
+					<div class="nIntro"><%=gi.getTagText()%></div>
 					<div class="nCheapprice">￥<%=gi.getGoodsPrice()%><span>/<%=gi.getGoods_unit()%></span>
 						</div>
 					
