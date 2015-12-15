@@ -147,6 +147,7 @@ import="java.util.Date"
 		<div id="gray" onclick="slideOut()"></div>
 		
 		<script>
+	
 		function slide(){
 			var x = document.body.clientHeight ;
 			document.getElementById("guide").style.left="0";
