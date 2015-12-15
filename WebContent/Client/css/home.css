@@ -5,7 +5,7 @@ body{
 
 
 html{
-	background-color:#E4E4E4;
+	background-color:#DDDDDD;
 }
 
 
@@ -39,7 +39,7 @@ html{
 	
 .normalProduct{
 	
-	border-top:15px solid #E4E4E4;
+	border-top:15px solid #DDDDDD;
 	border-bottom:1px solid #999999;
 	width:100%;
 	overflow:hidden;
@@ -69,7 +69,7 @@ html{
 }
 
 .nName{
-	font-family: "黑体";
+	
 	font-weight:bold;
 
 	margin-bottom:2px;
@@ -78,7 +78,7 @@ html{
 
 .nIntro{
 
-	font-family: "黑体";
+
 	color:#999999;
 	
 	margin-bottom:2px;
@@ -87,7 +87,7 @@ html{
 
 .nCheapprice{
 	
-	font-family: "黑体";
+	
 	color:#FF3366;
 	margin-bottom:2px;
 	
@@ -96,7 +96,7 @@ html{
 
 .nCheapprice span{
 	
-	font-family: "黑体";
+	
 	color:#000;
 	margin-bottom:2px;
 
@@ -104,7 +104,7 @@ html{
 
 .nOrderTime{
 	
-	font-family: "黑体";
+	
 	color:#999999;
 	margin-bottom:2px;
 	
@@ -113,7 +113,7 @@ html{
 
 .nFriendorder{
 	
-	font-family: "黑体";
+	
 }
 
 	

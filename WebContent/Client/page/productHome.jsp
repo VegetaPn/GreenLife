@@ -12,7 +12,7 @@
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
 	Date startTime = sdf.parse(goodsInfo.getStartTime());
-	Date endTime = sdf.parse(goodsInfo.getStartTime());
+	Date endTime = sdf.parse(goodsInfo.getEndTime());
 	Date date = new Date();
 	String salesState = null;
 	if (date.getTime() < startTime.getTime()) {
