@@ -33,7 +33,7 @@ public class GoodsInfoDao {
 		return true;
 	}
 	
-	public static int getNextGoodsId(GoodsInfo info){
+	public static int getNextGoodsId(){
 		int goods_id = -1;
 		String sql = "select max(goods_id) as id from goods_info;";
 		Connection conn = new DBUtil().getConn();

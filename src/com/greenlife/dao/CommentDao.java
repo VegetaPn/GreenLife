@@ -34,6 +34,29 @@ public class CommentDao {
 		return true;
 	}
 	
+	
+	public static int getNextCommentListId(){
+		int comment_id = -1;
+		String sql = "select max(comment_id) as id from comment";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				comment_id = rs.getInt("id");
+			}else{
+				return -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			clearUp(conn);
+		}
+		return comment_id;
+	}
+	
+	
 	public static int addCommentList(Comment cmt){
 		int comment_id = -1;
 		
