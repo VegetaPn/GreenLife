@@ -15,6 +15,7 @@
 	href="../CSS/bootstrap-responsiv.css">
 <link rel="stylesheet" type="text/css"
 	href="../CSS/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="../CSS/table.css">
 </head>
 
 <body>
@@ -26,13 +27,13 @@
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="row">
-					<div class="col-sm-6">
-						<form>
-							<button type="submit" class="btn btn-primary"
-								formaction="addproduct.jsp">新增</button>
-						</form>
-					</div>
-				</div>
+		<div class="col-sm-6">
+			<form>
+				<button type="submit" class="btn btn-primary"
+					formaction="addproduct.jsp">新增</button>
+			</form>
+		</div>
+	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">商品管理</div>
 		<!-- /.panel-heading -->
@@ -61,7 +62,7 @@
 								for (int i = 0; i < allGoods.size(); i++) {
 									GoodsInfo oneGoods = allGoods.get(i);//被遍历到的商品
 							%>
-							<tr class="goods" onclick="showInfo(<%=oneGoods.getGoodsId()%>>)">
+							<tr class="goods" onclick="showInfo(<%=oneGoods.getGoodsId()%>)">
 								<td><%=oneGoods.getGoodsId()%></td>
 								<td><%=oneGoods.getGoodsName()%></td>
 								<td><%=oneGoods.getGoodsId()%></td>
@@ -75,14 +76,17 @@
 						<!-- 每条商品信息 -->
 					</table>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
+	
+	
 	<jsp:include page="footer.html"></jsp:include>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/head.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/product.js"></script>
 	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>

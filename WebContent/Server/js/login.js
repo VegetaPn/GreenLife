@@ -4,7 +4,6 @@ function checkLogin(){
 	var password=document.getElementById("password").value;
 	
 	if(userId==""){
-		alert("hello");
 		document.getElementById("content").innerHTML="请输入用户名";
 			return false;
 	}
