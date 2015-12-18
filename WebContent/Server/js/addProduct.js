@@ -47,6 +47,7 @@ function checkAddProduct() {
 	 * 商品总量
 	 */
 	var total_num = document.getElementById("total_num").value;
+	var report_num=document.getElementById("report_num").value;
 
 	/*
 	 * 售卖时间
@@ -119,6 +120,17 @@ function checkAddProduct() {
 		var pattern = new RegExp("^[0-9]{1,11}$");// /价格正则表达式
 		if (!pattern.test(total_num)) {// 价格格式
 			alert("商品总量填写错误");
+			return false;
+		}
+	}
+	
+	if (total_num == "") {
+		alert("请填写通过检测总量");
+		return false;
+	} else {
+		var pattern = new RegExp("^[0-9]{1,11}$");// /价格正则表达式
+		if (!pattern.test(total_num)) {// 价格格式
+			alert("通过检测总量总量填写错误");
 			return false;
 		}
 	}

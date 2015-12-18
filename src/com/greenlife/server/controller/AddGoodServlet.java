@@ -60,8 +60,8 @@ public class AddGoodServlet extends HttpServlet {
 		 * 商品名称
 		 */
 		String goodName = null;
-		String packagePath ="goods/"+GoodsInfoDao.getNextGoodsId()+"/";
-	
+		String packagePath = "goods/" + GoodsInfoDao.getNextGoodsId();
+
 		/*
 		 * 售卖价格
 		 */
@@ -88,8 +88,6 @@ public class AddGoodServlet extends HttpServlet {
 		// 微信标签
 		String tagTitle = null;
 		String tagText = null;
-
-
 
 		// Create a factory for disk-based file items
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -157,7 +155,7 @@ public class AddGoodServlet extends HttpServlet {
 				String filename = "";
 				System.out.println(item.getFieldName());
 				if (item.getFieldName().equals("normal_img")) {
-					
+
 					filename = "normal.jpg";
 				} else if (item.getFieldName().equals("small_img")) {
 					filename = "small.jpg";
@@ -170,8 +168,15 @@ public class AddGoodServlet extends HttpServlet {
 				if (!item.getName().equals("")) {
 					System.out.println(item.getName());
 					InputStream in = item.getInputStream();
-					String path1 = PropertiesUtil.getPath()+packagePath + filename;
-					FileOutputStream fos = new FileOutputStream(new File(path1));
+					// String path1 = PropertiesUtil.getSavePath()+packagePath +
+					// filename;
+					String path1 = "D://" + packagePath;
+					File file = new File(path1);
+					// 文件不存在，也不是文件夹
+					if (!file.exists() && !file.isDirectory()) {
+						file.mkdir();
+					}
+					FileOutputStream fos = new FileOutputStream(new File(path1 + "/" + filename));
 					byte[] b = new byte[1024];
 					int size = 0;
 					while ((size = in.read(b)) > 0) {
@@ -201,8 +206,10 @@ public class AddGoodServlet extends HttpServlet {
 		newGood.setGoodsText1(goodText1);
 		newGood.setGoodsText2(goodText2);
 		newGood.setReportId(reportNum);
-		
+
+		//GoodsInfoDao.addGoodsInfo(newGood);
+		response.sendRedirect("/GreenLife/Server/Page/product.jsp");
+
 	}
-	
 
 }
