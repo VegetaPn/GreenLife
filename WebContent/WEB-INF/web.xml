@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	version="2.5">
-
-	<servlet>
-		<servlet-name>ServerLoginServlet</servlet-name>
-		<servlet-class>com.greenlife.server.controller.ServerLoginServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ServerLoginServlet</servlet-name>
-		<url-pattern>/ServerLoginServlet</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>AddGoodServlet</servlet-name>
-		<servlet-class>com.greenlife.server.controller.AddGoodServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AddGoodServlet</servlet-name>
-		<url-pattern>/AddGoodServlet</url-pattern>
-	</servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <servlet>
+    <servlet-name>ServerLoginServlet</servlet-name>
+    <servlet-class>com.greenlife.server.controller.ServerLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServerLoginServlet</servlet-name>
+    <url-pattern>/ServerLoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AddGoodServlet</servlet-name>
+    <servlet-class>com.greenlife.server.controller.AddGoodServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddGoodServlet</servlet-name>
+    <url-pattern>/AddGoodServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SendGoodOrderServlet</servlet-name>
+    <servlet-class>com.greenlife.server.controller.SendGoodOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SendGoodOrderServlet</servlet-name>
+    <url-pattern>/SendGoodOrderServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
