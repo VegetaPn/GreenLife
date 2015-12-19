@@ -16,7 +16,6 @@
     <servlet-name>AddGoodServlet</servlet-name>
     <url-pattern>/AddGoodServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>SendGoodOrderServlet</servlet-name>
     <servlet-class>com.greenlife.server.controller.SendGoodOrderServlet</servlet-class>
