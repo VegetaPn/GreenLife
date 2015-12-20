@@ -160,21 +160,21 @@ public class GoodsOrderDao {
 	
 	public static boolean updateGoodsOrder(GoodsOrder order){
 		String sql = "UPDATE `greenlife`.`goods_order` SET "
-				+ "goods_id = (?), "
-				+ "wechat_id = (?), "
-				+ "goods_num = (?), "
-				+ "trade_time = (?), "
-				+ "comment = (?), "
-				+ "mail_price = (?), "
-				+ "total_price = (?), "
-				+ "group_id = (?), "
-				+ "send_time = (?), "
-				+ "group_minnum = (?), "
-				+ "order_state = (?), "
-				+ "addr_detail = (?), "
-				+ "receiver_name = (?), "
-				+ "phone_number = (?), "
-				+ "WHERE order_id = (?);";
+				+ "goods_id = ?, "
+				+ "wechat_id = ?, "
+				+ "goods_num = ?, "
+				+ "trade_time = ?, "
+				+ "comment = ?, "
+				+ "mail_price = ?, "
+				+ "total_price = ?, "
+				+ "group_id = ?, "
+				+ "send_time = ?, "
+				+ "group_minnum = ?, "
+				+ "order_state = ?, "
+				+ "addr_detail = ?, "
+				+ "receiver_name = ?, "
+				+ "phone_number = ? "
+				+ "WHERE order_id = ?;";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);

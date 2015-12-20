@@ -1,77 +1,27 @@
-function reduction(type) {
-	if (type == "goods_unit") {
-		var goods_unit = document.getElementById("goods_unit").value;
-
-		if (goods_unit != 0) {
-			document.getElementById("goods_unit").value = parseInt(goods_unit) - 1;
-		}
-	} else if (type == "goods_count") {
-		var goods_count = document.getElementById("goods_count").value;
-
-		if (goods_count != 0) {
-			document.getElementById("goods_count").value = parseInt(goods_count) - 1;
+function showInfo(value) {
+	alert(value);
+	var xmlhttp = getXMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var con=document.getElementById("myDiv");
+		    con.setAttribute("z-index","-1");
+		    con.innerHTML=xmlhttp.responseText;
 		}
 	}
-
+	xmlhttp.open("GET", "showInfo.jsp?id=" + value, false);
+	xmlhttp.send();
+	
 }
 
-function add(type) {
-	if (type == "goods_unit") {
-		var goods_unit = document.getElementById("goods_unit").value;
-		document.getElementById("goods_unit").value = parseInt(goods_unit) + 1;
+function getXMLHttpRequest() {
 
-	} else if (type == "goods_count") {
-		var goods_count = document.getElementById("goods_count").value;
-		document.getElementById("goods_count").value = parseInt(goods_count) + 1;
+	var xhr;
+	if (window.ActiveXObject) {
+		xhr = new ActiveXObject("Microsoft.XMLHTTP");
+	} else if (window.XMLHttpRequest) {
+		xhr = new XMLHttpRequest();
+	} else {
+		xhr = null;
 	}
-
+	return xhr;
 }
-/*
- * 
- * 提交前判断填写信息是否完整
- */
-function checkAddProduct() {
-
-	if (document.getElementById("good_name").value =="") {
-		alert("请填写商品名称");
-		return false;
-	} 
-	
-	if (document.getElementById("good_name").value =="") {
-		alert("请填写商品名称");
-		return false;
-	} 
-	
-	if (document.getElementById("good_name").value =="") {
-		alert("请填写商品名称");
-		return false;
-	} 
-	
-	if (document.getElementById("good_name").value =="") {
-		alert("请填写商品名称");
-		return false;
-	} 
-	if (document.getElementById("good_name").value =="") {
-		alert("请填写商品名称");
-		return false;
-	} 
-	
-	if (document.getElementById("good_name").value =="") {
-		alert("请填写商品名称");
-		return false;
-	} 
-	if (document.getElementById("good_name").value =="") {
-		alert("请填写商品名称");
-		return false;
-	} 
-	
-	if (document.getElementById("good_name").value =="") {
-		alert("请填写商品名称");
-		return false;
-	} 
-	return true;
-	
-}
-
-
-

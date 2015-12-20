@@ -162,6 +162,15 @@
 					defAdr = currentid;
 				}
 		   </script>
+		   
+		   <% if(addressInfos == null||addressInfos.size() == 0){%>
+		        <div class="dCusMess">
+					<div class="dCusInfor" id="dHint">
+					    <div id="hint" onclick="location.href='reAddress.jsp'">添加地址</div>
+					</div>
+				</div>
+		   <%}
+		   else{%>
 		    <div class="dDeCusMess" id="<%=defaultAddressInfo!=null?defaultAddressInfo.getAddrId():-1%>" onclick="displayMask(this)">
 				<div class="dCusInfor">
 				    <div class="top">
@@ -203,6 +212,7 @@
 			}%>
 		</div>
 		
+		<%}%>
 		<div id="dMask">
 		    <div id="setDefault" class="dSuspension">
 			    <img src="../images/mapMarkerGreen.png"></img>

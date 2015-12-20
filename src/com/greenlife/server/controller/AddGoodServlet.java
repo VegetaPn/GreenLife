@@ -1,15 +1,30 @@
 package com.greenlife.server.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import com.greenlife.dao.GoodsInfoDao;
+import com.greenlife.model.GoodsInfo;
+import com.greenlife.util.PropertiesUtil;
 
 /**
  * Servlet implementation class AddProductServlet
@@ -41,58 +56,160 @@ public class AddGoodServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
-		// TODO Auto-generated method stub
-		/*
-		 * 商品ID
-		 */
-		int goodId = 00000;
-
 		/*
 		 * 商品名称
 		 */
-		String goodName = request.getParameter("good_name");
+		String goodName = null;
+		String packagePath = "goods/" + GoodsInfoDao.getNextGoodsId();
 
 		/*
-		 * 商品图片路径
+		 * 售卖价格
 		 */
-		String packagePath = "goods/" + goodId;
+		double goodPrice = 0;
+		double groupPrice = 0;
+		int totalNum = 0;
+
+		String goodUnit = null;
+
+		int reportNum = 0;
 
 		/*
-		 * 商品价格，普通和团购
+		 * 售卖时间
 		 */
-		double goodPrice = Double.parseDouble(request.getParameter("good_price"));
-		double groupPrice = Double.parseDouble(request.getParameter("group_price"));
-
-		/*
-		 * 商品总量 销售总量
-		 */
-		int totalNum = Integer.parseInt(request.getParameter("total_num"));
-		int soldNum = 0;
-
-		/*
-		 * 开始日期和结束日期
-		 */
-		String startTime = request.getParameter("start_time");
-		String endTime = request.getParameter("end_time");
-
-		/*
-		 * 微信标签内容
-		 */
-		String tagTitle = request.getParameter("tag_title");
-		String tagText = request.getParameter("tag_text");
-		String tagImage = request.getParameter("tag_image");/// 文件路径
+		String startTime = null;
+		String endTime = null;
 
 		/*
 		 * 商品描述
 		 */
+		String goodText1 = null;
+		String goodText2 = null;
 
-		String goodText1 = request.getParameter("good_text1");
-		String goodText2 = request.getParameter("good_text2");
+		// 微信标签
+		String tagTitle = null;
+		String tagText = null;
 
-		System.out.println(goodId + " " + goodName + " " + packagePath + " " + goodPrice + " " + groupPrice + " "
-				+ totalNum + " " + startTime + " " + endTime + " " + tagTitle + " " + tagText + " " + tagImage + " "
-				+ goodText1 + " " + goodText2 + " ");
+		// Create a factory for disk-based file items
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+
+		// Create a new file upload handler //不设置大小默认为无限大
+		ServletFileUpload upload = new ServletFileUpload(factory);
+
+		// Parse the request
+		List<FileItem> items = null;
+		try {
+			items = upload.parseRequest(request);/// 获取表单内容的列表
+		} catch (FileUploadException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Iterator<FileItem> iter = items.iterator();
+		// 依次读取表单中的内容
+		while (iter.hasNext()) {
+			FileItem item = (FileItem) iter.next(); // 从表单提交的一条数据，文件或者表单内容
+
+			// TODO Auto-generated method stub
+			/*
+			 * 商品ID
+			 */
+
+			if (item.isFormField()) {
+				// 如果是普通表单字段
+				String name = item.getFieldName();
+				String value = new String(item.getString("UTF-8"));
+
+				/*
+				 * 商品名称
+				 */
+
+				if (name.equals("good_name")) {
+					goodName = value;
+				} else if (name.equals("good_price")) {
+					goodPrice = Double.parseDouble(value);
+				} else if (name.equals("group_price")) {
+					groupPrice = Double.parseDouble(value);
+				} else if (name.equals("total_num")) {
+					totalNum = Integer.parseInt(value);
+				} else if (name.equals("good_unit")) {
+					goodUnit = value;
+				} else if (name.equals("report_num")) {
+					reportNum = Integer.parseInt(value);
+				} else if (name.equals("start_time")) {
+					startTime = value;
+				} else if (name.equals("end_time")) {
+					endTime = value;
+				} else if (name.equals("tag_title")) {
+					tagTitle = value;
+				} else if (name.equals("tag_text")) {
+					tagText = value;
+				} else if (name.equals("good_text1")) {
+					goodText1 = value;
+				} else if (name.equals("good_text2")) {
+					goodText2 = value;
+				} else {
+				}
+				System.out.println(value);
+			} else {
+				// 如果内容
+				String filename = "";
+				System.out.println(item.getFieldName());
+				if (item.getFieldName().equals("normal_img")) {
+
+					filename = "normal.jpg";
+				} else if (item.getFieldName().equals("small_img")) {
+					filename = "small.jpg";
+				} else if (item.getFieldName().equals("detail_img")) {
+
+					filename = "detail.jpg";
+				} else if (item.getFieldName().equals("report_img")) {
+					filename = "report.jpg";
+				}
+				if (!item.getName().equals("")) {
+					System.out.println(item.getName());
+					InputStream in = item.getInputStream();
+					// String path1 = PropertiesUtil.getSavePath()+packagePath +
+					// filename;
+					String path1 = "D://" + packagePath;
+					File file = new File(path1);
+					// 文件不存在，也不是文件夹
+					if (!file.exists() && !file.isDirectory()) {
+						file.mkdir();
+					}
+					FileOutputStream fos = new FileOutputStream(new File(path1 + "/" + filename));
+					byte[] b = new byte[1024];
+					int size = 0;
+					while ((size = in.read(b)) > 0) {
+						fos.write(b, 0, size);
+					}
+					in.close();
+					fos.close();
+				}
+			}
+		}
+		// 添加商品
+		GoodsInfo newGood = new GoodsInfo();
+		newGood.setGoodsName(goodName);
+		newGood.setGoodsId(0);
+		newGood.setPackagePath(packagePath);
+		newGood.setGoodsPrice(goodPrice);
+		newGood.setGoodsTotalnum(totalNum);
+		newGood.setGoodsSoldnum(0);
+		newGood.setStartTime(startTime);
+		newGood.setEndTime(endTime);
+		newGood.setTagTitle(tagTitle);
+		newGood.setTagText(tagText);
+		newGood.setTagImage("no");
+		newGood.setGoods_unit(goodUnit);
+		newGood.setIsDelete(0);
+		newGood.setIsAdv(0);
+		newGood.setGoodsText1(goodText1);
+		newGood.setGoodsText2(goodText2);
+		newGood.setReportId(reportNum);
+
+		//GoodsInfoDao.addGoodsInfo(newGood);
+		response.sendRedirect("/GreenLife/Server/Page/product.jsp");
+
 	}
 
 }

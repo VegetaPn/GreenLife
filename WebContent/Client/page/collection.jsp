@@ -6,46 +6,9 @@
 
 <%
 	String wechatId = (String) session.getAttribute("wechatId");
-	
 
-	
-	int goodsId = Integer.parseInt(request.getParameter("goodsId"));
-	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
+	List<Integer> goodsIdList = ConcernedListDao.getGoodsList(wechatId);
 
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
-	Date startTime = sdf.parse(goodsInfo.getStartTime());
-	Date endTime = sdf.parse(goodsInfo.getStartTime());
-	Date date = new Date();
-	String salesState = null;
-	if (date.getTime() < startTime.getTime()) {
-		salesState = "预售中";
-	} else if (date.getTime() > endTime.getTime()) {
-		salesState = "已售完";
-	} else {
-		salesState = "进行中";
-	}
-
-	if (goodsInfo.getGoodsSoldnum() >= goodsInfo.getGoodsTotalnum()) {
-		salesState = "已售完";
-	}
-
-	String productImg = PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "normal.jpg";
-
-	int orderNum = GoodsOrderDao.getGoodsOrderNum(goodsId);
-
-	ReportList reportList = ReportListDao.getReportList(goodsInfo.getReportId());
-
-	int reportNum = 0;
-
-	if (reportList == null) {
-		reportNum = 0;
-	} else {
-		reportNum = reportList.getReportNum();
-	}
-
-	List<Comment> commentList = CommentDao.getCommentList(goodsId);
-
-	int commentListSize = commentList.size();
 %>
 
 <!DOCTYPE html>
@@ -69,56 +32,90 @@
 		
 		<div id="content">
 		
+		
+			<%
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
+				int size = goodsIdList.size();
+				
+				GoodsInfo goodsInfo = null;
+				for(int i=0;i<size;i++){
+					int goodsId = goodsIdList.get(i);
+					goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
+		
+					
+					Date startTime = sdf.parse(goodsInfo.getStartTime());
+					Date endTime = sdf.parse(goodsInfo.getEndTime());
+					Date date = new Date();
+					String salesState = null;
+					if (date.getTime() < startTime.getTime()) {
+						salesState = "预售中";
+					} else if (date.getTime() > endTime.getTime()) {
+						salesState = "已售完";
+					} else {
+						salesState = "进行中";
+					}
+		
+					if (goodsInfo.getGoodsSoldnum() >= goodsInfo.getGoodsTotalnum()) {
+						salesState = "已售完";
+					}
+
+					String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"small.jpg";
+					
+					    
+			        long time1 = startTime.getTime();                 
+			        long time2 = endTime.getTime();        
+			        long between_days=(time2-time1)/(1000*3600*24);
+					
+			%>		
 			<div id="collectProduct">
 				
-				<div class="normalProduct">
-					<div class="nPic"><img src="../images/product.jpg"/></div>
+				<div class="normalProduct" onclick="javascript:location.href='productHome.jsp?goodsId=<%=goodsInfo.getGoodsId()%>'">
+					<div class="nPic"><img src="<%=productImg%>"/></div>
 					<div class="nSellInfo">
-						<div class="nName">来自孔雀河的库尔勒一级香梨</div>
-						<div class="nIntro">单果100克以上才叫1级香梨</div>
-						<div class="nCheapprice">￥7.90<span>/5个</span></div>
-						<div class="nMarketprice">超市：￥11.90</div>	
-						<div class="nFriendorder">你有100位好友订购此产品120份</div>
+						<div class="nName"><%=goodsInfo.getGoodsName()%></div>
+						<div class="nIntro"><%=goodsInfo.getTagText()%></div>
+						<div class="nCheapprice">￥<%=goodsInfo.getGoodsPrice()%><span>/<%=goodsInfo.getGoods_unit()%></span>
+							</div>
+						
+						<% 
+												
+							if(salesState.equals("进行中")){
+	
+						%>
+						
+								<div class="nOrderTime">剩余时间：<%=between_days%>天</div>
+						
+						<%
+							}
+						%>
 					</div>
 				</div>
-				
-				<span class="arcLabel" id="salesState">进行中</span>
-				<img class="link" src="../images/rightArrowCircle2.png"></img>
-			</div>
+					<%
+						if(salesState.equals("进行中")){
+					%>
+						<span class="arcLabel" id="salesState">进行中</span>
+						
+					<%
+						}else if(salesState.equals("预售中")){
+					%>
+						<span class="arcLabel">预售中</span>
+					
+					<%
+						}else{
+							
+						
+					%>
+						<span class="sellOutLabel">已售完</span>
+					
+					<% 
+						}
+					%>
+						<img class="link" src="../images/rightArrowCircle2.png"></img>
+			</div>	
 			
-			<div id="collectProduct">
-				
-				<div class="normalProduct">
-					<div class="nPic"><img src="../images/product.jpg"/></div>
-					<div class="nSellInfo">
-						<div class="nName">来自孔雀河的库尔勒一级香梨</div>
-						<div class="nIntro">单果100克以上才叫1级香梨</div>
-						<div class="nCheapprice">￥7.90<span>/5个</span></div>
-						<div class="nMarketprice">超市：￥11.90</div>	
-						<div class="nFriendorder">你有100位好友订购此产品120份</div>
-					</div>
-				</div>
-				
-				<span class="arcLabel">预售中</span>
-				<img class="link" src="../images/rightArrowCircle2.png"></img>
-			</div>
-			
-			<div id="collectProduct">
-				
-				<div class="normalProduct">
-					<div class="nPic"><img src="../images/product.jpg"/></div>
-					<div class="nSellInfo">
-						<div class="nName">来自孔雀河的库尔勒一级香梨</div>
-						<div class="nIntro">单果100克以上才叫1级香梨</div>
-						<div class="nCheapprice">￥7.90<span>/5个</span></div>
-						<div class="nMarketprice">超市：￥11.90</div>	
-						<div class="nFriendorder">你有100位好友订购此产品120份</div>
-					</div>
-				</div>
-				
-				<span class="sellOutLabel">已售完</span>
-				<img class="link" src="../images/rightArrowCircle2.png"></img>
-			</div>
+			<%
+				}		
+			%>
 		
 		</div>
        
