@@ -8,8 +8,9 @@ import="java.text.SimpleDateFormat"
 import="java.util.Calendar" 
 import="java.util.Date"
 %>
+
 <!DOCTYPE html>
-<%
+<%	
 	List<GoodsInfo> goodsList = new ArrayList<GoodsInfo>();
 	goodsList = GoodsInfoDao.getGoodsList();
 	
@@ -25,7 +26,9 @@ import="java.util.Date"
 		<link rel="stylesheet" href="../css/header.css" type="text/css">
         <link rel="stylesheet" href="../css/home.css" type="text/css">
 		<link rel="stylesheet" href="../css/guide.css" type="text/css">
-		
+		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
+
+		  
     </head>
     <body>
 	
@@ -37,22 +40,22 @@ import="java.util.Date"
 		</div>
 		
 		<div id="content">
-			
+		<div id="sildeAd">
 			<% 
 				for(int i=0;i<goodsList.size();i++){
-				if(goodsList.get(i).getIsAdv() == 1){
+				//if(goodsList.get(i).getIsAdv() == 0 || goodsList.get(i).getIsAdv() == 1){
 					GoodsInfo giIsAdv = goodsList.get(i);
 					int idIsAdv = giIsAdv.getGoodsId();
 					String ImgIsAdv = PropertiesUtil.getPath()+giIsAdv.getPackagePath()+"normal.jpg";	
+					//<%=ImgIsAdv
 			%>
-			
-		<div id="product" onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'">
-			<img id="productImg" src="<%=ImgIsAdv%>"/>
-			<div id="productName">
-				<%=giIsAdv.getGoodsName()%>
+			<div class="product" >
+			<img id="productImg<%=idIsAdv%>" src="C:\Users\shyameimaru\Desktop\ceshi.png" onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'"/>
+			<div class="productName"><%=giIsAdv.getGoodsName()%></div>
 			</div>
+		
+		<%} %>
 		</div>
-		<%}}%>
 		<%
 		for(int i=0;i<goodsList.size();i++){
 			GoodsInfo gi = goodsList.get(i);
@@ -148,6 +151,51 @@ import="java.util.Date"
 		
 		<script>
 	
+		$(document).ready(function()
+				  {
+					var y = document.body.clientWidth;
+					var ads = $("#sildeAd").children("div.product");
+					//alert(ads.length);
+					$.each(ads,function(n,value){
+						$(value).width("100%");
+						$(value).css("left",y*n + "px");
+					
+					});
+					
+					setInterval(function(){
+						$.each(ads,function(n,value){
+							if(n == (ads.length - 1) && $(value).position().left == 0){								
+								$.each(ads,function(n,value){								
+									$(value).css("left", n*y + "px");
+								});
+								//alert(n*y);				
+							}
+							else{	
+								$.each(ads,function(n,value){								
+									//$(value).css("display","block");
+									var l = $(value).position().left;
+									$(value).css("left", l-y + "px");
+		
+								});
+						
+							}
+						});	
+					},5000);
+				  });		
+					/*
+					$("slideAd").on("swipe",function(){
+							  //$("span").text("Swipe detected!");
+						 $.each(ads,function(n,value){
+						$(value).css("display","block");
+						var right = $(value).css("right");
+						$(value).css("right", right + "px");
+						alert(n);
+						});
+						*/
+					
+					
+		
+	
 		function slide(){
 			var x = document.body.clientHeight ;
 			document.getElementById("guide").style.left="0";
@@ -165,10 +213,11 @@ import="java.util.Date"
 		function adjust(){ 
 		
 			//if(window.orientation==90||window.orientation==-90){ 
-			var x = document.body.clientHeight ;
+			var x = document.body.clientHeight;
+			
 			document.getElementById("guide").style.height=x+"px";
 			document.getElementById("gray").style.height=x+"px";
-			//alert("aaaaaaaaaaaaaa");
+			
 			//} 
 			} 
  
