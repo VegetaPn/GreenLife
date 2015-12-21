@@ -10,6 +10,8 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <script src="../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/addProduct.js"></script>
+
+
 </head>
 
 <body>
@@ -19,7 +21,6 @@
 			response.sendRedirect("/GreenLife/Server/Page/login.jsp");
 		}
 	%>
-
 	<jsp:include page="header.jsp"></jsp:include>
 	<div id="page-wrapper"
 		style="min-height: 616px; min-width: 700px; float: left">
@@ -29,7 +30,6 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">新增商品</div>
 					<div class="panel-body ">
-
 						<form role="form" enctype="multipart/form-data"
 							onsubmit="return checkAddProduct()"
 							action="/GreenLife/AddGoodServlet" method="post">
@@ -39,7 +39,6 @@
 										<label>商品名称</label> <input id="name" type="text"
 											name="good_name" class="form-control">
 									</div>
-
 
 									<div class="form-group">
 										<label class="">商品单价</label>
@@ -94,7 +93,6 @@
 											</span>
 										</div>
 									</div>
-
 
 									<div class="form-group">
 										<label>开始时间</label> <input class=" laydate-icon form-control"
@@ -165,10 +163,9 @@
 										<label>检测报告长图(400*?,只会预览图片一小部分)</label> <input type="file"
 											accept="image/jpeg" name="report_img"
 											onchange="previewImage(this)" id="report_img">
-										<div id="pre_report"
-											style="width: 400px; height: 200px; border: 1px solid #f00;">
-											<img id="report_head"
-												style="position: absolute; clip: rect(0px, 400px, 200px, 0px)" />
+										<div id="pre_report" 
+											style="width: 400px; height: 200px; border: 1px solid #f00; overflow-y: auto;">
+											<img id="report_head" />
 										</div>
 									</div>
 									<div class="form-group">
@@ -176,9 +173,8 @@
 											accept="image/jpeg" name="detail_img"
 											onchange="previewImage(this)" id="detail_img">
 										<div id="pre_detail"
-											style="width: 400px; height: 200px; border: 1px solid #f00;">
-											<img id="detail_head"
-												style="position: absolute; clip: rect(0px, 400px, 200px, 0px)" />
+											style="width: 400px; height: 200px; border: 1px solid #f00; overflow-y: auto;">
+											<img id="detail_head" />
 										</div>
 									</div>
 									<input type="submit" class="btn btn-primary" value="提交" />

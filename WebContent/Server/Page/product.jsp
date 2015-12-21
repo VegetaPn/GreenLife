@@ -20,68 +20,71 @@
 
 <body>
 	<%
-	    ///登录判断，防止未登录直接修改
+		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
 			response.sendRedirect("/GreenLife/Server/Page/login.jsp");
-		}
+		} else {
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
-	<div class="row">
-		<div class="col-sm-6">
-			<form>
-				<button type="submit" class="btn btn-primary"
-					formaction="addproduct.jsp">新增</button>
-			</form>
+	<div class="content">
+		<div class="row">
+			<div class="col-sm-6">
+				<form>
+					<button type="submit" class="btn btn-primary"
+						formaction="addproduct.jsp">新增</button>
+				</form>
+			</div>
 		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">商品管理</div>
-		<!-- /.panel-heading -->
+		<div class="panel panel-default">
+			<div class="panel-heading">商品管理</div>
+			<!-- /.panel-heading -->
 
-		<div class="panel-body">
-			<!-- 商品列表 -->
-			<div class="col-sm-12">
-				<div class="row-fluid">
-					<table
-						class="table table-striped table-bordered table-hover datatable"
-						id="product">
-						<thead>
-							<tr>
-								<th>编号</th>
-								<th>名称</th>
-								<th>价格</th>
-								<th>总量</th>
-								<th>卖出</th>
+			<div class="panel-body">
+				<!-- 商品列表 -->
+				<div class="col-sm-12">
+					<div class="row-fluid">
+						<table
+							class="table table-striped table-bordered table-hover datatable"
+							id="product">
+							<thead>
+								<tr>
+									<th>编号</th>
+									<th>名称</th>
+									<th>价格</th>
+									<th>总量</th>
+									<th>卖出</th>
 
-							</tr>
-						</thead>
-						<!-- 每条商品信息 -->
-						<tbody>
-							<%
-								List<GoodsInfo> allGoods = GoodsInfoDao.getGoodsList();//获得所有商品列表
-								for (int i = 0; i < allGoods.size(); i++) {
-									GoodsInfo oneGoods = allGoods.get(i);//被遍历到的商品
-							%>
-							<tr class="goods" onclick="showInfo(<%=oneGoods.getGoodsId()%>)">
-								<td><%=oneGoods.getGoodsId()%></td>
-								<td><%=oneGoods.getGoodsName()%></td>
-								<td><%=oneGoods.getGoodsId()%></td>
-								<td class="center"><%=oneGoods.getGoodsPrice()%></td>
-								<td class="center"><%=oneGoods.getGoodsTotalnum()%></td>
-							</tr>
-							<%
-								}
-							%>
-						</tbody>
-						<!-- 每条商品信息 -->
-					</table>
+								</tr>
+							</thead>
+							<!-- 每条商品信息 -->
+							<tbody>
+								<%
+									List<GoodsInfo> allGoods = GoodsInfoDao.getGoodsList();//获得所有商品列表
+										for (int i = 0; i < allGoods.size(); i++) {
+											GoodsInfo oneGoods = allGoods.get(i);//被遍历到的商品
+								%>
+								<tr class="goods" onclick="showInfo(<%=oneGoods.getGoodsId()%>)">
+									<td><%=oneGoods.getGoodsId()%></td>
+									<td><%=oneGoods.getGoodsName()%></td>
+									<td><%=oneGoods.getGoodsId()%></td>
+									<td class="center"><%=oneGoods.getGoodsPrice()%></td>
+									<td class="center"><%=oneGoods.getGoodsTotalnum()%></td>
+								</tr>
+								<%
+									}
+								%>
+							</tbody>
+							<!-- 每条商品信息 -->
+						</table>
+					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
-	
-	
+	<%
+		}
+	%>
+
 	<jsp:include page="footer.html"></jsp:include>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/head.js"></script>
