@@ -1,16 +1,5 @@
 function showInfo(value) {
-	alert(value);
-	var xmlhttp = getXMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			var con=document.getElementById("myDiv");
-		    con.setAttribute("z-index","-1");
-		    con.innerHTML=xmlhttp.responseText;
-		}
-	}
-	xmlhttp.open("GET", "showInfo.jsp?id=" + value, false);
-	xmlhttp.send();
-	
+	window.location.href="showAndChange.jsp?id="+value;
 }
 
 function getXMLHttpRequest() {
