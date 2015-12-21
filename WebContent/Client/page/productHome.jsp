@@ -260,7 +260,7 @@
 				<div id="purchaseLeft">
 				<div id="teamPurchase" onclick="location.href='startGroup.jsp?goodsId=<%=goodsId%>'">
 					<div class="salesPrice" id="teamPrice">
-						<%=goodsInfo.getGoodsDiscontPrice()%>元/份
+						<span><%=goodsInfo.getGoodsDiscontPrice()%></span>元/份
 					</div>
 					<div class="purchaseLink">2人团></div>
 				</div>
@@ -268,7 +268,7 @@
 				<div id="purchaseRight">
 				<div id="personalPurchase" onclick="location.href='purchase.jsp?group=false&goodsId=<%=goodsId%>'">
 					<div class="salesPrice" id="personalPrice">
-						<%=goodsInfo.getGoodsPrice()%>元/份
+						<span><%=goodsInfo.getGoodsPrice()%></span>元/份
 					</div>
 					<div class="purchaseLink">单独预定</div>
 				</div>

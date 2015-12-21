@@ -127,11 +127,12 @@ public class CommentDao {
 	public static List<Comment> getCommentList(int goodsId){
 		List<Comment> list = new ArrayList<Comment>();
 		
-		String sql = "select * from comment";
+		String sql = "select * from comment where goods_id = ?;";
 		
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, goodsId);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Comment cmt = new Comment();
