@@ -18,7 +18,6 @@
 	background-color:rgba(215,215,215,0.7);
 	width:100%;
 	bottom:0;
-	font-weight:bold;
 	text-align:center;
 	
 }
@@ -371,7 +370,7 @@
 	background-color:#F76F00;
 	border-radius:5px;
 	
-	padding:15px 25px 15px 25px;
+	padding:10px 20px 10px 20px;
 }
 
 #LastGrayDiv{
@@ -462,14 +461,18 @@
 
 
 	.salesPrice{
-		font-size:20px;
+		font-size:24px;
 		
 		
+	}
+	
+	.salesPrice span{
+		font-size:30px;
 	}
 
 
 	.purchaseLink{
-		font-size:16px;
+		font-size:20px;
 	}
 
 
@@ -509,7 +512,7 @@
 	}
 
 	#commentLink{
-		font-size:20px;
+		font-size:18px;
 		
 	}
 
@@ -591,13 +594,16 @@
 
 
 	.salesPrice{
-		font-size:24px;
+		font-size:28px;
 		
 	}
 
+	.salesPrice span{
+		font-size:34px;
+	}
 
 	.purchaseLink{
-		font-size:20px;
+		font-size:24px;
 	}
 
 
@@ -642,7 +648,7 @@
 	}
 
 	#commentLink{
-		font-size:24px;
+		font-size:22px;
 		
 	}
 }
@@ -726,13 +732,17 @@
 
 
 	.salesPrice{
-		font-size:28px;
+		font-size:32px;
 		
 	}
 
 
+	.salesPrice span{
+		font-size:38px;
+	}
+
 	.purchaseLink{
-		font-size:24px;
+		font-size:28px;
 	}
 
 
@@ -776,7 +786,7 @@
 	}
 
 	#commentLink{
-		font-size:28px;
+		font-size:26px;
 		
 	}
 }  
@@ -858,13 +868,17 @@
 
 
 	.salesPrice{
-		font-size:32px;
+		font-size:36px;
 		
 	}
 
 
+	.salesPrice span{
+		font-size:42px;
+	}
+
 	.purchaseLink{
-		font-size:28px;
+		font-size:32px;
 	}
 
 
@@ -908,7 +922,7 @@
 	}
 
 	#commentLink{
-		font-size:32px;
+		font-size:30px;
 		
 	}    
 }  
@@ -990,13 +1004,18 @@
 
 
 	.salesPrice{
-		font-size:36px;
+		font-size:40px;
 		
+	}
+	
+	
+	.salesPrice span{
+		font-size:44px;
 	}
 
 
 	.purchaseLink{
-		font-size:32px;
+		font-size:36px;
 	}
 
 
@@ -1040,7 +1059,7 @@
 	}
 
 	#commentLink{
-		font-size:36px;
+		font-size:34px;
 		
 	}         
 } 

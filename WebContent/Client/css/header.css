@@ -38,10 +38,12 @@ html,body {
 #title{
 	text-align: center;
 	color:#333333;
-	font-size: 22px;
-	
+	font-size:22px;
+	margin-top:5px;
 	
 }
+
+
 
 #content{
 	padding-top:36px;
