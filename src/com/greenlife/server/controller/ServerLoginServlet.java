@@ -30,7 +30,7 @@ public class ServerLoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
-
+		System.out.println(userId+password);
 		if (AdminListDao.loginCheck(userId, password)) {// 登录成功
 			session.setAttribute("login", true);/// 保存session。确保登录
 

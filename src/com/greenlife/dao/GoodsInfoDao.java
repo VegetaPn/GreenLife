@@ -33,6 +33,27 @@ public class GoodsInfoDao {
 		return true;
 	}
 	
+	public static int getNextGoodsId(){
+		int goods_id = -1;
+		String sql = "select max(goods_id) as id from goods_info;";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				goods_id = rs.getInt("id") + 1;
+			}else{
+				return -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			clearUp(conn);
+		}
+		return goods_id;
+	}
+	
 	public static int addGoodsInfo(GoodsInfo info){
 		String sql = "INSERT INTO `greenlife`.`goods_info` "
 				+ "(`goods_name`, `package_path`, `goods_price`, "

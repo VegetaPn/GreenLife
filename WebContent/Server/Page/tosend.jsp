@@ -89,7 +89,9 @@
 								<td><%=oneGoodsOrder.getSendTime()%></td>
 								<td><%=oneGoodsOrder.getTotalPrice()%></td>
 								<td><%=type%></td>
-								<td><button type="button" class="btn btn-info">发货</button></td>
+								<td><a href="/GreenLife/SendGoodOrderServlet?orderId=<%=oneGoodsOrder.getOrderId()%>" class="btn btn-info btn-sm">
+          <span class="glyphicon glyphicon-refresh"></span> 发货
+        </a></td>
 							    
 							</tr>
 							<%

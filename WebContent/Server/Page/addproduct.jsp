@@ -9,11 +9,16 @@
 <title>商品添加</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <script src="../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/addProduct.js" ></script>
+<script type="text/javascript" src="../js/addProduct.js"></script>
 </head>
 
 <body>
-
+	<%
+		///登录判断，防止未登录直接修改
+		if (session.getAttribute("login") == null) {//用户没有登录
+			response.sendRedirect("/GreenLife/Server/Page/login.jsp");
+		}
+	%>
 
 	<jsp:include page="header.jsp"></jsp:include>
 	<div id="page-wrapper"
@@ -24,48 +29,50 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">新增商品</div>
 					<div class="panel-body ">
-						<div class="row">
-							<div class="col-lg-8">
-								<form role="form" onsubmit="return checkAddProduct()" 
-									action="/GreenLife/AddGoodServlet" method="post">
+
+						<form role="form" enctype="multipart/form-data"
+							onsubmit="return checkAddProduct()"
+							action="/GreenLife/AddGoodServlet" method="post">
+							<div class="row">
+								<div class="col-lg-6">
 									<div class="form-group">
-										<label>商品名称</label> <input id="name" type="text" name="good_name"
-											class="form-control" placeholder="商品名称">
+										<label>商品名称</label> <input id="name" type="text"
+											name="good_name" class="form-control">
 									</div>
 
 
 									<div class="form-group">
 										<label class="">商品单价</label>
 										<div class="input-group">
-											<input id="price" type="text" class="form-control" name="good_price"
-												placeholder="商品价格"> <span class="input-group-addon">￥</span>
+											<input id="price" type="text" class="form-control"
+												name="good_price"> <span class="input-group-addon">￥</span>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="">团购价</label>
 										<div class="input-group">
-											<input id="group_price" type="text" class="form-control" name="group_price"
-												placeholder="团购价格"> <span class="input-group-addon">￥</span>
+											<input id="group_price" type="text" class="form-control"
+												name="group_price"> <span class="input-group-addon">￥</span>
 										</div>
 									</div>
-									
+
 									<div class="form-group">
 										<label class="">商品总量</label>
 										<div class="input-group">
 											<span class="input-group-btn">
-												<button class="btn btn-default"
-													onclick="reduction()" type="button">-</button>
-											</span> <input id="total_num" type="text" class="form-control" name="total_num"
-												value="0" /> <span class="input-group-btn">
+												<button class="btn btn-default" onclick="reduction()"
+													type="button">-</button>
+											</span> <input id="total_num" type="text" class="form-control"
+												name="total_num" value="0" /> <span class="input-group-btn">
 												<button class="btn btn-default" onclick="add()"
 													type="button">+</button>
-											</span> <span class="input-group-addon">份</span>
+											</span>
 										</div>
 									</div>
-									
 
 									<div class="form-group">
-										<label>计量单位</label> <select class="form-control" id="unit">
+										<label>计量单位</label> <select class="form-control"
+											name="good_unit" id="good_unit">
 											<option>斤</option>
 											<option>袋</option>
 											<option>包</option>
@@ -74,30 +81,47 @@
 										</select>
 									</div>
 
-									
 									<div class="form-group">
-										<label>开始时间</label> <input placeholder="开始时间"
-											class=" laydate-icon form-control" id="start_time" name="start_time">
+										<label class="">通过检测数量</label>
+										<div class="input-group">
+											<span class="input-group-btn">
+												<button class="btn btn-default" onclick="reduction1()"
+													type="button">-</button>
+											</span> <input id="report_num" type="text" class="form-control"
+												name="total_num" value="0" /> <span class="input-group-btn">
+												<button class="btn btn-default" onclick="add1()"
+													type="button">+</button>
+											</span>
+										</div>
 									</div>
 
 
 									<div class="form-group">
-										<label>结束时间</label> <input placeholder="结束时间"
-											class=" laydate-icon form-control" id="end_time" name="end_time">
+										<label>开始时间</label> <input class=" laydate-icon form-control"
+											id="start_time" name="start_time">
+									</div>
+
+
+									<div class="form-group">
+										<label>结束时间</label> <input class=" laydate-icon form-control"
+											id="end_time" name="end_time">
 									</div>
 
 
 									<div class="form-group">
 										<div class="form-group-lg">
 											<label>商品描述1</label>
-											<textarea id="good_text1" name="good_text1"class="form-control" rows="3"></textarea>
+											<textarea id="good_text1" name="good_text1"
+												class="form-control" rows="3"></textarea>
 										</div>
 									</div>
+
 
 									<div class="form-group ">
 										<div class="form-group-lg ">
 											<label>商品描述2</label>
-											<textarea id="good_text2" name="good_text2" class="form-control" rows="3"></textarea>
+											<textarea id="good_text2" name="good_text2"
+												class="form-control" rows="3"></textarea>
 										</div>
 									</div>
 
@@ -106,27 +130,64 @@
 									<div class="form-group">
 										<div style="margin-top: 2em;">
 											<div clas="form-group">
-												<label>微信标签标题</label> <input type="text" id="tag_title" name="tag_title"
-													class="form-control" placeholder="商品名称">
+												<label>微信标签标题</label> <input type="text" id="tag_title"
+													name="tag_title" class="form-control">
 											</div>
 
 											<div class="form-group">
 												<label>微信标签描述</label>
-												<textarea id="tag_text" name="tag_text" class="form-control" rows="3"></textarea>
-											</div>
-
-											<div class="form-group">
-												<label>微信标签图片</label> <input type="file" accept="image/*" name="tag_image"
-													id="tag_image">
+												<textarea id="tag_text" name="tag_text" class="form-control"
+													rows="3"></textarea>
 											</div>
 										</div>
 									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label>主页大图片(400*200)</label> <input type="file"
+											accept="image/jpeg" name="normal_img"
+											onchange="previewImage(this)" id="normal_img">
+										<div id="pre_normal">
+											<img id="normal_head" width=420 height=210 />
+										</div>
+									</div>
 
+									<div class="form-group">
+										<label>列表小图片(100*100)</label> <input type="file"
+											accept="image/jpeg" name="small_img"
+											onchange="previewImage(this)" id="small_img">
+										<div id="pre_small">
+											<img id="small_head" width=100 height=100 />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label>检测报告长图(400*?,只会预览图片一小部分)</label> <input type="file"
+											accept="image/jpeg" name="report_img"
+											onchange="previewImage(this)" id="report_img">
+										<div id="pre_report"
+											style="width: 400px; height: 200px; border: 1px solid #f00;">
+											<img id="report_head"
+												style="position: absolute; clip: rect(0px, 400px, 200px, 0px)" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label>详细信息长图(400*?,只会预览图片一小部分)</label> <input type="file"
+											accept="image/jpeg" name="detail_img"
+											onchange="previewImage(this)" id="detail_img">
+										<div id="pre_detail"
+											style="width: 400px; height: 200px; border: 1px solid #f00;">
+											<img id="detail_head"
+												style="position: absolute; clip: rect(0px, 400px, 200px, 0px)" />
+										</div>
+									</div>
 									<input type="submit" class="btn btn-primary" value="提交" />
 									<button type="reset" class="btn btn-primary">重置</button>
-								</form>
+								</div>
+
 							</div>
-						</div>
+
+						</form>
 					</div>
 				</div>
 			</div>

@@ -16,7 +16,17 @@ body {
 	height:15px;
 }
 
-
+#hint{
+	width:50%;
+	margin:auto;
+	background-color:#F76F00;
+	text-align:center;
+	height:30px;
+	border:1px solid gray;
+	font-size:16px;
+	padding-top: 12px;
+	color:#ffffff;
+}
 
 .dDeCusMess{
 	 width:100%;
