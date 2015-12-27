@@ -55,15 +55,13 @@
 					id="group">
 					<thead>
 						<tr>
-
-							<th>订单号</th>
 							<th>微信号</th>
-							<th>产品ID+产品名</th>
-							<th>地址</th>
+							<th>微信昵称</th>
+							<th>产品名</th>
 							<th>数量</th>
-							<th>发货时间</th>
-							<th>总价</th>
-							<th>购买类型</th>
+							<th>收货人</th>
+							<th>收货地址</th>
+							<th>电话</th>
 							<th>发货</th>
 							<th>取消订单</th>
 						</tr>
@@ -82,14 +80,18 @@
 										type = "个人";
 						%>
 						<tr class="goods">
-							<td><%=oneGoodsOrder.getOrderId()%></td>
 							<td><%=oneGoodsOrder.getWechatId()%></td>
-							<% GoodsInfo g=GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());%>
-							<td><%=oneGoodsOrder.getGoodsId()+" "+g.getGoodsName() %></td>
-							<td><%=oneGoodsOrder.getAddrDetail()%></td>
+							<%
+								//订单对应的用户信息和商品信息
+										UserInfo user = UserInfoDao.getUserInfo(oneGoodsOrder.getWechatId());
+										GoodsInfo g = GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());
+							%>
+							<td><%=user.getWechatName()%></td>
+							<td><%=g.getGoodsName()%></td>
 							<td><%=oneGoodsOrder.getGoodsNum()%></td>
-							<td><%=oneGoodsOrder.getSendTime()%></td>
-							<td><%=oneGoodsOrder.getTotalPrice()%></td>
+							<td><%=oneGoodsOrder.getReceiverName()%></td>
+							<td><%=oneGoodsOrder.getAddrDetail()%></td>
+							<td><%=oneGoodsOrder.getPhoneNumber()%></td>
 							<td><%=type%></td>
 							<td><a
 								href="/SendGoodOrderServlet?orderId=<%=oneGoodsOrder.getOrderId()%>"
