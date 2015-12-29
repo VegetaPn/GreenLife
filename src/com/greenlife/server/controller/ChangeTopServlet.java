@@ -28,9 +28,13 @@ public class ChangeTopServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		if (request.getSession().getAttribute("login") == null) {// 用户没有登录
+			response.sendRedirect("/Server/Page/login.jsp");
+		} else {
 		String goodId=request.getParameter("id");
 		GoodsInfoDao.topGoods(Integer.parseInt(goodId));
 		response.sendRedirect("/Server/Page/product.jsp");
+		}
 	}
 
 	/**

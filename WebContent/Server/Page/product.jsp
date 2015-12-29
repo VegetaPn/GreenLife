@@ -45,10 +45,11 @@
 					<div class="row-fluid">
 						<table
 							class="table table-striped table-bordered table-hover datatable"
-							id="product">
+							id="product" style="ordering:false;">
 							<thead>
 								<tr>
-									<th>编号</th>
+								    <th>序号</th>
+									<th>产品编号</th>
 									<th>名称</th>
 									<th>价格</th>
 									<th>团价格</th>
@@ -67,6 +68,7 @@
 											GoodsInfo oneGoods = allGoods.get(i);//被遍历到的商品
 								%>
 								<tr class="goods">
+								    <td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"><%=i+1 %></td>
 									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
 										class="center"><%=oneGoods.getGoodsId()%></td>
 									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
