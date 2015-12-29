@@ -20,7 +20,7 @@
 	<%
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
-			response.sendRedirect("/GreenLife/Server/Page/login.jsp");
+			response.sendRedirect("/Server/Page/login.jsp");
 		}
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -89,7 +89,7 @@
 								<td><%=oneGoodsOrder.getSendTime()%></td>
 								<td><%=oneGoodsOrder.getTotalPrice()%></td>
 								<td><%=type%></td>
-								<td><a href="/GreenLife/SendGoodOrderServlet?orderId=<%=oneGoodsOrder.getOrderId()%>" class="btn btn-info btn-sm">
+								<td><a href="/SendGoodOrderServlet?orderId=<%=oneGoodsOrder.getOrderId()%>" class="btn btn-info btn-sm">
           <span class="glyphicon glyphicon-refresh"></span> 发货
         </a></td>
 							    

@@ -18,7 +18,7 @@
 	<%
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
-			response.sendRedirect("/GreenLife/Server/Page/login.jsp");
+			response.sendRedirect("/Server/Page/login.jsp");
 		}
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -32,7 +32,7 @@
 					<div class="panel-body ">
 						<form role="form" enctype="multipart/form-data"
 							onsubmit="return checkAddProduct()"
-							action="/GreenLife/AddGoodServlet" method="post">
+							action="/AddGoodServlet" method="post">
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="form-group">
@@ -87,7 +87,7 @@
 												<button class="btn btn-default" onclick="reduction1()"
 													type="button">-</button>
 											</span> <input id="report_num" type="text" class="form-control"
-												name="total_num" value="0" /> <span class="input-group-btn">
+												name="report_num" value="0" /> <span class="input-group-btn">
 												<button class="btn btn-default" onclick="add1()"
 													type="button">+</button>
 											</span>

@@ -4,6 +4,7 @@ encoding//WebContent/Client/css/report.css=UTF-8
 encoding//WebContent/Client/page/group.jsp=UTF-8
 encoding//WebContent/Client/page/productHome.jsp=UTF-8
 encoding//WebContent/Client/page/report.jsp=UTF-8
+encoding//WebContent/Server/Page/footer.html=UTF-8
 encoding//src/com/greenlife/client/controller/CommentServlet.java=UTF-8
 encoding//src/com/greenlife/client/controller/LoginServlet.java=UTF-8
 encoding//src/com/greenlife/client/controller/MyAddressServlet.java=UTF-8

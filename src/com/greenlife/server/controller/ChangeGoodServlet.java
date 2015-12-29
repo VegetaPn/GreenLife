@@ -4,10 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,26 +23,18 @@ import com.greenlife.model.GoodsInfo;
 import com.greenlife.util.PropertiesUtil;
 
 /**
- * Servlet implementation class AddProductServlet
+ * Servlet implementation class ChangeProduct
  */
 
-public class AddGoodServlet extends HttpServlet {
+public class ChangeGoodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AddGoodServlet() {
-
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	public ChangeGoodServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -59,9 +47,10 @@ public class AddGoodServlet extends HttpServlet {
 		/*
 		 * ��Ʒ����
 		 */
+
+		GoodsInfo changedGood = null;
 		String goodName = null;
-		int goodId=GoodsInfoDao.getNextGoodsId();
-		String packagePath = "goods/" +goodId+"/";
+		String packagePath = null;
 
 		/*
 		 * �����۸�
@@ -123,8 +112,11 @@ public class AddGoodServlet extends HttpServlet {
 				/*
 				 * ��Ʒ����
 				 */
-
-				if (name.equals("good_name")) {
+				System.out.println(name);
+				if (name.equals("good_id")) {
+					changedGood = GoodsInfoDao.getGoodsInfo(Integer.parseInt(value));
+					packagePath = changedGood.getPackagePath();
+				} else if (name.equals("good_name")) {
 					goodName = value;
 				} else if (name.equals("good_price")) {
 					goodPrice = Double.parseDouble(value);
@@ -150,12 +142,12 @@ public class AddGoodServlet extends HttpServlet {
 					goodText2 = value;
 				} else {
 				}
+				System.out.println(value);
 			} else {
 				// �������
 				String filename = "";
+				System.out.println(item.getFieldName());
 				if (item.getFieldName().equals("normal_img")) {
-					
-					
 
 					filename = "normal.jpg";
 				} else if (item.getFieldName().equals("small_img")) {
@@ -167,17 +159,17 @@ public class AddGoodServlet extends HttpServlet {
 					filename = "report.jpg";
 				}
 				if (!item.getName().equals("")) {
+					System.out.println(item.getName());
 					InputStream in = item.getInputStream();
 					// String path1 = PropertiesUtil.getSavePath()+packagePath +
 					// filename;
-					String path1 =PropertiesUtil.getSavePath() + packagePath;
+					String path1 = PropertiesUtil.getSavePath()+ packagePath;
 					File file = new File(path1);
 					// �ļ������ڣ�Ҳ�����ļ���
 					if (!file.exists() && !file.isDirectory()) {
-						file.mkdirs();
+						file.mkdir();
 					}
-					
-					FileOutputStream fos = new FileOutputStream(new File(path1 + filename));
+					FileOutputStream fos = new FileOutputStream(new File(path1 + "/" + filename));
 					byte[] b = new byte[1024];
 					int size = 0;
 					while ((size = in.read(b)) > 0) {
@@ -189,30 +181,26 @@ public class AddGoodServlet extends HttpServlet {
 			}
 		}
 		// �����Ʒ
-		GoodsInfo newGood = new GoodsInfo();
-		newGood.setGoodsName(goodName);
-		newGood.setGoodsId(goodId);
-		newGood.setPackagePath(packagePath);
-		newGood.setGoodsPrice(goodPrice);
-		newGood.setGoodsTotalnum(totalNum);
-		newGood.setGoodsDiscontPrice(groupPrice);
-		newGood.setGoodsSoldnum(0);
-		newGood.setStartTime(startTime);
-		newGood.setEndTime(endTime);
-		newGood.setTagTitle(tagTitle);
-		newGood.setTagText(tagText);
-		newGood.setTagImage("no");
-		newGood.setGoods_unit(goodUnit);
-		newGood.setIsDelete(0);
-		newGood.setIsAdv(0);
-		newGood.setGoodsText1(goodText1);
-		newGood.setGoodsText2(goodText2);
-		newGood.setReportId(reportNum);
+		System.out.println("teci chakan" + goodName);
+		changedGood.setGoodsName(goodName);
+		changedGood.setGoodsPrice(goodPrice);
+		changedGood.setGoodsTotalnum(totalNum);
+		changedGood.setGoodsSoldnum(0);
+		changedGood.setGoodsDiscontPrice(groupPrice);
+		changedGood.setStartTime(startTime);
+		changedGood.setEndTime(endTime);
+		changedGood.setTagTitle(tagTitle);
+		changedGood.setTagText(tagText);
+		changedGood.setTagImage("no");
+		changedGood.setGoods_unit(goodUnit);
+		changedGood.setIsDelete(0);
+		changedGood.setIsAdv(0);
+		changedGood.setGoodsText1(goodText1);
+		changedGood.setGoodsText2(goodText2);
+		changedGood.setReportId(reportNum);
 
-		int i=GoodsInfoDao.addGoodsInfo(newGood);
+		GoodsInfoDao.updateGoodsInfo(changedGood);
 		response.sendRedirect("/Server/Page/product.jsp");
-
 	}
+
 }
-
-

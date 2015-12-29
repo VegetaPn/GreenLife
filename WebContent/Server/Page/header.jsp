@@ -19,7 +19,7 @@
 	<%
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
-			response.sendRedirect("/GreenLife/Server/Page/login.jsp");
+			response.sendRedirect("/Server/Page/login.jsp");
 		}
 	%>
 	<div class="container-fluid">

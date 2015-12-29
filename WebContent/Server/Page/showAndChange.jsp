@@ -19,10 +19,10 @@
 		GoodsInfo showedGood = null;
 		String id = request.getParameter("id");
 		if (id == null) {
-			response.sendRedirect("/GreenLife/Server/Page/product.jsp");
+			response.sendRedirect("/Server/Page/product.jsp");
 		} else {
 			if (session.getAttribute("login") == null) {
-				response.sendRedirect("/GreenLife/Server/Page/login.jsp");
+				response.sendRedirect("/Server/Page/login.jsp");
 			} else {
 				showedGood = GoodsInfoDao.getGoodsInfo(Integer.parseInt(id));
 	%>
@@ -49,7 +49,7 @@
 					<div class="panel-body ">
 
 						<form role="form" enctype="multipart/form-data"
-							action="/GreenLife/ChangeGoodServlet"
+							action="/ChangeGoodServlet"
 							onsubmit="return checkChangeProduct()" method="post">
 							<div class="row">
 								<div class="col-lg-6">
@@ -124,7 +124,7 @@
 													type="button">-</button>
 											</span> <input id="report_num" type="text" class="form-control"
 												value="<%=showedGood.getReportId()%>" disabled="true"
-												name="total_num" value="0" /> <span class="input-group-btn">
+												name="report_num" value="0" /> <span class="input-group-btn">
 												<button class="btn btn-default" onclick="add1()"
 													type="button">+</button>
 											</span>
@@ -187,7 +187,7 @@
 											onchange="previewImage(this)" id="normal_img">
 										<div id="pre_normal">
 											<img id="normal_head"
-												src="PropertiesUtil.getSavePath()%><%=showedGood.getPackagePath()%>normal.jpg"
+												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>normal.jpg"
 												width=420 height=210 />
 										</div>
 									</div>
@@ -198,7 +198,7 @@
 											onchange="previewImage(this)" id="small_img">
 										<div id="pre_small">
 											<img id="small_head"
-												src="<%=PropertiesUtil.getSavePath()%><%=showedGood.getPackagePath()%>small.jpg"
+												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>small.jpg"
 												width=100 height=100 />
 										</div>
 									</div>
@@ -211,7 +211,7 @@
 											overflow-y:auto;
 											style="width: 400px; height: 200px; border: 1px solid #f00; overflow-y: auto;">
 											<img id="report_head"
-												src="PropertiesUtil.getSavePath()%><%=showedGood.getPackagePath()%>report.jpg" />
+												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>report.jpg" />
 										</div>
 									</div>
 									<div class="form-group">
@@ -221,7 +221,7 @@
 										<div id="pre_detail"
 											style="width: 400px; height: 200px; border: 1px solid #f00; overflow-y: auto;">
 											<img id="detail_head"
-												src="PropertiesUtil.getSavePath()%><%=showedGood.getPackagePath()%>detail.jpg" />
+												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>detail.jpg" />
 										</div>
 									</div>
 									<div id="control" class="form-group">

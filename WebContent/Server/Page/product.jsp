@@ -22,7 +22,7 @@
 	<%
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
-			response.sendRedirect("/GreenLife/Server/Page/login.jsp");
+			response.sendRedirect("/Server/Page/login.jsp");
 		} else {
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -66,9 +66,9 @@
 								<tr class="goods" onclick="showInfo(<%=oneGoods.getGoodsId()%>)">
 									<td><%=oneGoods.getGoodsId()%></td>
 									<td><%=oneGoods.getGoodsName()%></td>
-									<td><%=oneGoods.getGoodsId()%></td>
-									<td class="center"><%=oneGoods.getGoodsPrice()%></td>
+									<td><%=oneGoods.getGoodsPrice()%></td>
 									<td class="center"><%=oneGoods.getGoodsTotalnum()%></td>
+									<td class="center"><%=oneGoods.getGoodsSoldnum()%></td>
 								</tr>
 								<%
 									}

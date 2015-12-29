@@ -23,7 +23,7 @@ public class ServerLoginServlet extends HttpServlet {
 	}
 
 	/*
-	 * ½ÓÊÜµÇÂ¼±íµ¥ÖĞµÄÕË»§ºÍÃÜÂë
+	 * ï¿½ï¿½ï¿½Üµï¿½Â¼ï¿½ï¿½ï¿½Ğµï¿½ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -31,14 +31,14 @@ public class ServerLoginServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 		System.out.println(userId+password);
-		if (AdminListDao.loginCheck(userId, password)) {// µÇÂ¼³É¹¦
-			session.setAttribute("login", true);/// ±£´æsession¡£È·±£µÇÂ¼
+		if (AdminListDao.loginCheck(userId, password)) {// ï¿½ï¿½Â¼ï¿½É¹ï¿½
+			session.setAttribute("login", true);/// ï¿½ï¿½ï¿½ï¿½sessionï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½Â¼
 
-			response.sendRedirect("/GreenLife/Server/Page/product.jsp");
+			response.sendRedirect("/Server/Page/product.jsp");
 		} else {
 			session.setAttribute("userId", userId);
-			session.setAttribute("error", "ÓÃ»§Ãû»òÃÜÂë´íÎó");
-			response.sendRedirect("/GreenLife/Server/Page/login.jsp");
+			session.setAttribute("error", "ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯");
+			response.sendRedirect("/Server/Page/login.jsp");
 		}
 
 	}

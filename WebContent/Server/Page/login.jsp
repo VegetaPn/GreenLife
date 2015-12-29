@@ -38,7 +38,7 @@
 						}
 					%>
 					<div class="panel-body">
-						<form action="/GreenLife/ServerLoginServlet" method="post" onsubmit="return checkLogin()">
+						<form action="/ServerLoginServlet" method="post" onsubmit="return checkLogin()">
 							<fieldset>
 								<div class="form-group">
 									<div class="input-group">

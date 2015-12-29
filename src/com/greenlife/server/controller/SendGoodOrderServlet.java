@@ -30,7 +30,7 @@ public class SendGoodOrderServlet extends HttpServlet {
 		//System.out.println("now order_state:" + order.getOrderState());
 		dao.updateGoodsOrder(order);
 
-		response.sendRedirect("/GreenLife/Server/Page/tosend.jsp");
+		response.sendRedirect("/Server/Page/tosend.jsp");
 
 	}
 
