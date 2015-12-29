@@ -19,6 +19,14 @@ public class GoodsInfo {
 	private String goodsText1;
 	private String goodsText2;
 	private int reportId;
+	private String subTitle;
+	
+	public String getSubTitle() {
+		return subTitle;
+	}
+	public void setSubTitle(String subTitle) {
+		this.subTitle = subTitle;
+	}
 	public int getGoodsId() {
 		return goodsId;
 	}

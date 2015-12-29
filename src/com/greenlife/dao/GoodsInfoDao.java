@@ -60,8 +60,8 @@ public class GoodsInfoDao {
 				+ "`goods_totalnum`, `goods_soldnum`, `start_time`, "
 				+ "`end_time`, `tag_title`, `tag_text`, `tag_image`, "
 				+ "`goods_discount_price`, `goods_unit`, `is_delete`, "
-				+ "`is_adv`, `goods_text1`, `goods_text2`, `report_id`) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "`is_adv`, `goods_text1`, `goods_text2`, `report_id`, `sub_title`) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
@@ -83,6 +83,7 @@ public class GoodsInfoDao {
 			ps.setString(15, info.getGoodsText1());
 			ps.setString(16, info.getGoodsText2());
 			ps.setInt(17, info.getReportId());
+			ps.setString(18, info.getSubTitle());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -128,7 +129,8 @@ public class GoodsInfoDao {
 				+ "is_adv = (?), "
 				+ "goods_text1 = (?), "
 				+ "goods_text2 = (?), "
-				+ "report_id = (?) "
+				+ "report_id = (?), "
+				+ "sub_title = (?) "
 				+ "WHERE goods_id = (?);";
 		Connection conn = new DBUtil().getConn();
 		try {
@@ -150,7 +152,8 @@ public class GoodsInfoDao {
 			ps.setString(15, info.getGoodsText1());
 			ps.setString(16, info.getGoodsText2());
 			ps.setInt(17, info.getReportId());
-			ps.setInt(18, info.getGoodsId());
+			ps.setString(18, info.getSubTitle());
+			ps.setInt(19, info.getGoodsId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -192,6 +195,7 @@ public class GoodsInfoDao {
 				goodsInfo.setGoodsText1(rs.getString("goods_text1"));
 				goodsInfo.setGoodsText2(rs.getString("goods_text2"));
 				goodsInfo.setReportId(rs.getInt("report_id"));
+				goodsInfo.setSubTitle(rs.getString("sub_title"));
 			}else{
 				return null;
 			}
@@ -237,7 +241,7 @@ public class GoodsInfoDao {
 				goodsInfo.setGoodsText1(rs.getString("goods_text1"));
 				goodsInfo.setGoodsText2(rs.getString("goods_text2"));
 				goodsInfo.setReportId(rs.getInt("report_id"));
-				
+				goodsInfo.setSubTitle(rs.getString("sub_title"));
 				goodsList.add(goodsInfo);
 			}
 		} catch (SQLException e) {
