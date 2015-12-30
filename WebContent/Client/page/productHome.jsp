@@ -1,13 +1,15 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.greenlife.dao.*"
 	import="com.greenlife.model.*" import="java.util.*"
-	import="java.text.SimpleDateFormat" import="com.greenlife.util.*"%>
+	import="java.text.SimpleDateFormat" import="com.greenlife.util.*"
+	import="com.greenlife.wechatservice.*"%>
 
 
 <%
 	String wechatId = (String) session.getAttribute("wechatId");
 	
 	int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+	
 	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
@@ -28,7 +30,8 @@
 	}
 
 	String productImg = PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "normal.jpg";
-
+	String smallProductImg = PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "small.jpg";
+	
 	int orderNum = GoodsOrderDao.getGoodsOrderNum(goodsId);
 
 	ReportList reportList = ReportListDao.getReportList(goodsInfo.getReportId());
@@ -71,32 +74,11 @@
 	 		url = url + "?" + request.getQueryString();
 	 	}
 
-		String signature = WeixinJssdkUtil.buildSignature(noncestr, jsapi_ticket, timestamp, url);
+		String signature = WechatService.buildSignature(noncestr, jsapi_ticket, timestamp, url);
 
-		String appId = (String) session.getAttribute("appid");
+		String appId = PropertiesUtil.getAppId();
 	%>
 
-	<script>
-		wx.config({
-		    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-		    appId: '<%=appId%>', 
-		    timestamp: '<%=timestamp%>',
-		    nonceStr: '<%=noncestr%>', 
-		    signature: '<%=signature%>',
-		    jsApiList: [
-		                'onMenuShareTimeline',
-		                'onMenuShareAppMessage',
-		                'onMenuShareQQ',
-		                'onMenuShareQZone',
-		                'chooseImage',
-		                'previewImage',
-		                'uploadImage',
-		                'downloadImage',
-		                'chooseWXPay'
-		                ]
-		});
-		
-	</script>
 
 
 	<div id="header">
@@ -148,6 +130,8 @@
 			%>
 
 			<script>
+			
+			
 			$(document).ready(function(){
  				 $("#heart").click(function(){
 	   			 	 $.ajax({
@@ -169,7 +153,7 @@
 							alert(arguments[1]);
 						}
 					});
-				});
+					});
 				});
 			</script>
 
@@ -177,6 +161,62 @@
 				<%=goodsInfo.getGoodsName()%>
 			</div>
 		</div>
+		
+		<script>
+		
+			wx.config({
+			    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+			    appId: '<%=appId%>', 
+			    timestamp: '<%=timestamp%>',
+			    nonceStr: '<%=noncestr%>', 
+			    signature: '<%=signature%>',
+			    jsApiList: [
+			                'onMenuShareTimeline',
+			                'onMenuShareAppMessage',
+			                'chooseImage',
+			                'previewImage',
+			                'uploadImage',
+			                'downloadImage',
+			                'chooseWXPay'
+			                ]
+			});
+			
+			
+			wx.ready(function(){
+				wx.onMenuShareTimeline({
+				    title: '源来生活-<%=goodsInfo.getGoodsName()%>', // 分享标题
+				    link: '<%=url%>', // 分享链接
+				    imgUrl: '<%=smallProductImg%>', // 分享图标
+				    success: function () { 
+				        // 用户确认分享后执行的回调函数
+				    },
+				    cancel: function () { 
+				        // 用户取消分享后执行的回调函数
+				    }
+				});
+				
+			
+				wx.onMenuShareAppMessage({
+				    title: '源来生活-<%=goodsInfo.getGoodsName()%>', // 分享标题
+				    desc: '<%=goodsInfo.getGoodsText1()%>', // 分享描述
+				    link: '<%=url%>', // 分享链接
+				    imgUrl: '<%=smallProductImg%>', // 分享图标
+				    success: function () { 
+				        // 用户确认分享后执行的回调函数
+				    },
+				    cancel: function () { 
+				        // 用户取消分享后执行的回调函数
+				    }
+				});
+			});
+		
+		
+	
+		</script>
+		
+		
+		
+		
 		<div id="productInfo">
 			<div id="infoDesc">
 

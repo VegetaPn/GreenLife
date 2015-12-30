@@ -1,17 +1,31 @@
-package com.greenlife.model;
+package com.greenlife.wechatservice;
 
 public class WechatInfo {
 	
 	private String wechatId;
 	private String nickname;
-	private String sex;
+	private Integer sex;
 	private String province;
 	private String city;
 	private String country;
 	private String headimgurl;
-	private String privilege;
 	private String unionId;
+	private String ticket;
+	private String accessToken;
 	
+	public String getTicket() {
+		return ticket;
+	}
+	public void setTicket(String ticket) {
+		this.ticket = ticket;
+	}
+
+	public String getAccessToken() {
+		return accessToken;
+	}
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}
 	public String getWechatId() {
 		return wechatId;
 	}
@@ -24,12 +38,7 @@ public class WechatInfo {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
+
 	public String getProvince() {
 		return province;
 	}
@@ -54,17 +63,17 @@ public class WechatInfo {
 	public void setHeadimgurl(String headimgurl) {
 		this.headimgurl = headimgurl;
 	}
-	public String getPrivilege() {
-		return privilege;
-	}
-	public void setPrivilege(String privilege) {
-		this.privilege = privilege;
-	}
 	public String getUnionId() {
 		return unionId;
 	}
 	public void setUnionId(String unionId) {
 		this.unionId = unionId;
+	}
+	public Integer getSex() {
+		return sex;
+	}
+	public void setSex(Integer sex) {
+		this.sex = sex;
 	}
 	
 }

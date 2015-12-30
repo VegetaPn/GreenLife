@@ -10,6 +10,7 @@ public class PropertiesUtil {
 	private static String appsecret = null;
 	private static String URL = null;
 	private static String savePath = null;
+	private static String mchId = null;
 	
 	public static String getSavePath(){
 		if(savePath == null){
@@ -23,23 +24,6 @@ public class PropertiesUtil {
 			loadProperties();
 		}
 		return path;
-	}
-
-	private static void loadProperties() {
-		Properties prop = new Properties();
-		try {
-			InputStream is = PropertiesUtil.class.getResourceAsStream("init.properties");
-			prop.load(is);
-			savePath = prop.getProperty("savePath");
-			path = prop.getProperty("path");
-			appId = prop.getProperty("appId");
-			appsecret = prop.getProperty("appsecret");
-			URL = prop.getProperty("URL");
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}              
 	}
 	
 	
@@ -64,19 +48,32 @@ public class PropertiesUtil {
 		}
 		return URL;
 	}
+	              
 	
-	
-	public static String getToken(){
+	public static String getMchId(){
+		if(mchId == null){
+			loadProperties();
+		}
+		return mchId;
+	}
+
+	private static void loadProperties() {
 		Properties prop = new Properties();
 		try {
 			InputStream is = PropertiesUtil.class.getResourceAsStream("init.properties");
 			prop.load(is);
-			return prop.getProperty("token");
-			
+			savePath = prop.getProperty("savePath");
+			path = prop.getProperty("path");
+			appId = prop.getProperty("appId");
+			appsecret = prop.getProperty("appsecret");
+			URL = prop.getProperty("URL");
+			mchId = prop.getProperty("mchId");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
 		}              
 	}
+	
+	
+
 }

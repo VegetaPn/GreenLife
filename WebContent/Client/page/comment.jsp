@@ -3,6 +3,7 @@ import="com.greenlife.dao.*" import="com.greenlife.model.*"
 import="java.util.*" 
 import="java.text.SimpleDateFormat"
 import="com.greenlife.util.*"
+import="com.greenlife.wechatservice.*"
 %>
 <!DOCTYPE html>
 
@@ -118,9 +119,9 @@ int commentListSize = commentList.size();
 	 		url = url + "?" + request.getQueryString();
 	 	}
 
-		String signature = WeixinJssdkUtil.buildSignature(noncestr, jsapi_ticket, timestamp, url);
+		String signature = WechatService.buildSignature(noncestr, jsapi_ticket, timestamp, url);
 
-		String appId = (String) session.getAttribute("appid");
+		String appId = PropertiesUtil.getAppId();
 	%>
 
 	<script>
