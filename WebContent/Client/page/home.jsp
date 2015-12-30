@@ -66,7 +66,7 @@ import="java.util.Date"
 				<div class="nPic"><img src="<%=productImg%>"/></div>
 				<div class="nSellInfo">
 					<div class="nName"><%=gi.getGoodsName()%></div>
-					<div class="nIntro"><%=gi.getTagText()%></div>
+					<div class="nIntro"><%=gi.getSubTitle()%></div>
 					<div class="nCheapprice">￥<%=gi.getGoodsPrice()%><span>/<%=gi.getGoods_unit()%></span>
 						</div>
 					
