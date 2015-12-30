@@ -164,6 +164,7 @@
 		
 		<script>
 		
+			
 			wx.config({
 			    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
 			    appId: '<%=appId%>', 
@@ -183,6 +184,7 @@
 			
 			
 			wx.ready(function(){
+				
 				wx.onMenuShareTimeline({
 				    title: '源来生活-<%=goodsInfo.getGoodsName()%>', // 分享标题
 				    link: '<%=url%>', // 分享链接
@@ -198,7 +200,7 @@
 			
 				wx.onMenuShareAppMessage({
 				    title: '源来生活-<%=goodsInfo.getGoodsName()%>', // 分享标题
-				    desc: '<%=goodsInfo.getGoodsText1()%>', // 分享描述
+				    desc: '<%=goodsInfo.getSubTitle()%>', // 分享描述
 				    link: '<%=url%>', // 分享链接
 				    imgUrl: '<%=smallProductImg%>', // 分享图标
 				    success: function () { 
