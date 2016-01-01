@@ -346,8 +346,10 @@
 					</div>
 					<div id="qualityRight">
 					<div id="qualityInfo">
-						<span id="qualityFont">已通过<%=reportNum%>项田园检测
-						</span><br /> <br /> <span id="qualityLink" onclick="location.href='report.jsp?goodsId=<%=goodsId%>'">查看检测详情></span>
+						<span id="qualityFont">已通过<%=reportNum%>项田园检测</span>
+						<br /> 
+						<br /> 
+						<span id="qualityLink" onclick="location.href='report.jsp?goodsId=<%=goodsId%>'">查看检测详情></span>
 					</div>
 					</div>
 				</div>

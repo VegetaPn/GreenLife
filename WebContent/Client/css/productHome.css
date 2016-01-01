@@ -252,15 +252,6 @@
 	text-align:center;
 }
 
-#qualityLeft{
-	width:30%;
-	float:left;
-}
-
-#qualityRight{
-	width:70%;
-	float:right;
-}
 
 #productQuality{
 	width:90%;
@@ -271,18 +262,30 @@
 	padding-bottom:15px;
 }
 
+#qualityLeft{
+	width:30%;
+	float:left;
+	text-align:center;
+}
+
+#qualityRight{
+	width:70%;
+	float:right;
+	text-align:center;
+}
+
+
 #qualityContent{
 	margin:20px 20px 20px 10px;
 }
 
 #qualityLogo{
 	float:right;
-	margin-right:20px;
+	
 }
 
 #qualityInfo{
-	float:left;
-	
+	text-align:center;
 }
 
 #qualityFont{
