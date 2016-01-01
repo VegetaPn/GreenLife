@@ -59,9 +59,7 @@
 				 $("#addAddr").click(function(){
 					 location.href = "reAddress.jsp?group="+group+"&goodsId="+goodsId;
 					}); 
-				 $("#hint").click(function(){
-					 location.href = "reAddress.jsp?group="+group+"&goodsId="+goodsId;
-					}); 
+
 		     </script>
 		     
 		   <% if(addressInfos == null||addressInfos.size() == 0){%>
@@ -70,6 +68,11 @@
 					    <div id="hint">添加地址</div>
 					</div>
 				</div>
+				<script>
+				   $("#hint").click(function(){
+					 location.href = "reAddress.jsp?group="+group+"&goodsId="+goodsId;
+					}); 
+				</script>
 		   <%}
 		   else{%>
 			     <%if(defaultAddressInfo!=null){ %>

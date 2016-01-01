@@ -16,6 +16,11 @@ body {
 	height:15px;
 }
 
+#dHint{
+	padding-top:8px;
+	padding-bottom:8px;
+}
+
 #hint{
 	width:100%;
 	//margin:auto;
@@ -26,8 +31,7 @@ body {
 	font-size:16px;
 	padding-top: 12px;
 	color:#ffffff;
-	padding-top:8px;
-	padding-bottom:8px;
+
 }
 
 .dDeCusMess{
