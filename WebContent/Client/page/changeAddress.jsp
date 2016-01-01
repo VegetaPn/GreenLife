@@ -59,51 +59,63 @@
 				 $("#addAddr").click(function(){
 					 location.href = "reAddress.jsp?group="+group+"&goodsId="+goodsId;
 					}); 
+				 $("#hint").click(function(){
+					 location.href = "reAddress.jsp?group="+group+"&goodsId="+goodsId;
+					}); 
 		     </script>
 		     
-		     <%if(defaultAddressInfo!=null){ %>
-		    <div class="dDeCusMess" style="display:block" id="<%=defaultAddressInfo!=null?defaultAddressInfo.getAddrId():-1%>" 
-		            onclick="location.href='/changeAddress?addressId=<%=defaultAddressInfo.getAddrId()%>&group=<%=group%>&goodsId=<%=goodsId%>'">
-				<div class="dCusInfor">
-				    <div class="top">
-						<img src="../images/maleOrange.png"/>
-						<span id="sDeCusName" class="sCusName"><%=defaultAddressInfo!=null?defaultAddressInfo.getReceiverName():-1%></span>
-						<img src="../images/phoneOrange.png"/>
-						<span id="sDePhoneNum" class="sPhoneNum"><%=defaultAddressInfo!=null?defaultAddressInfo.getReceiverPhone():-1%></span>
-					</div>
-					<div class="bottom">
-					    <div class="dDefault">默认</div>
-						<div id="dDeAddress" class="dAddress">
-						    <img class ="iPosition" src="../images/mapMarkerOrange.png"/>
-							<%=defaultAddressInfo!=null?addrList.get(index):-1%>
-						</div>
+		   <% if(addressInfos == null||addressInfos.size() == 0){%>
+		        <div class="dCusMess">
+					<div id="dHint">
+					    <div id="hint">添加地址</div>
 					</div>
 				</div>
-			</div>
-				<% }%>
-				
-		<%for(int i =0; i<addressInfos.size();i++){
-				if(i != index){%>
-				 <div class="dCusMess" id="<%=addressInfos.get(i).getAddrId()%>" 
-				       onclick="location.href='/changeAddress?addressId=<%=addressInfos.get(i).getAddrId()%>&group=<%=group%>&goodsId=<%=goodsId%>'">
-					<div class="dCusInfor" >
-					    <div class="top">
-							<img src="../images/maleBlack.png"/>
-							<span id="sCusName<%=addressInfos.get(i).getAddrId()%>" class="sCusName"><%=addressInfos.get(i).getReceiverName()%></span>
-							<img src="../images/phoneBlack.png"/>
-							<span id="sPhoneNum<%=addressInfos.get(i).getAddrId()%>" class="sPhoneNum"><%=addressInfos.get(i).getReceiverPhone()%></span>
-						</div>
-						<div class="bottom">
-						    <div id="dAddress<%=addressInfos.get(i).getAddrId()%>" class="dAddress">
-							    <img class ="iPosition" src="../images/mapMarkerBlack.png"/>
-								<%=addrList.get(i)%>
+		   <%}
+		   else{%>
+			     <%if(defaultAddressInfo!=null){ %>
+				    <div class="dDeCusMess" style="display:block" id="<%=defaultAddressInfo!=null?defaultAddressInfo.getAddrId():-1%>" 
+				            onclick="location.href='/changeAddress?addressId=<%=defaultAddressInfo.getAddrId()%>&group=<%=group%>&goodsId=<%=goodsId%>'">
+						<div class="dCusInfor">
+						    <div class="top">
+								<img src="../images/maleOrange.png"/>
+								<span id="sDeCusName" class="sCusName"><%=defaultAddressInfo!=null?defaultAddressInfo.getReceiverName():-1%></span>
+								<img src="../images/phoneOrange.png"/>
+								<span id="sDePhoneNum" class="sPhoneNum"><%=defaultAddressInfo!=null?defaultAddressInfo.getReceiverPhone():-1%></span>
+							</div>
+							<div class="bottom">
+							    <div class="dDefault">默认</div>
+								<div id="dDeAddress" class="dAddress">
+								    <img class ="iPosition" src="../images/mapMarkerOrange.png"/>
+									<%=defaultAddressInfo!=null?addrList.get(index):-1%>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<%
-				}
-			}%>
+					<% }%>
+					
+			<%for(int i =0; i<addressInfos.size();i++){
+					if(i != index){%>
+					 <div class="dCusMess" id="<%=addressInfos.get(i).getAddrId()%>" 
+					       onclick="location.href='/changeAddress?addressId=<%=addressInfos.get(i).getAddrId()%>&group=<%=group%>&goodsId=<%=goodsId%>'">
+						<div class="dCusInfor" >
+						    <div class="top">
+								<img src="../images/maleBlack.png"/>
+								<span id="sCusName<%=addressInfos.get(i).getAddrId()%>" class="sCusName"><%=addressInfos.get(i).getReceiverName()%></span>
+								<img src="../images/phoneBlack.png"/>
+								<span id="sPhoneNum<%=addressInfos.get(i).getAddrId()%>" class="sPhoneNum"><%=addressInfos.get(i).getReceiverPhone()%></span>
+							</div>
+							<div class="bottom">
+							    <div id="dAddress<%=addressInfos.get(i).getAddrId()%>" class="dAddress">
+								    <img class ="iPosition" src="../images/mapMarkerBlack.png"/>
+									<%=addrList.get(i)%>
+								</div>
+							</div>
+						</div>
+					</div>
+					<%
+					}
+				}%>
+			<%}%>
 		</div>
     </body>
 </html>
