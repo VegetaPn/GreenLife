@@ -43,10 +43,10 @@
 .blackBold
 {
     
-    font-weight: bold;
+    font-weight: normal;
     color:#000000;
 
-    font-size:22px;
+    font-size:18px;
     letter-spacing: -2px;
 }
 
@@ -55,7 +55,7 @@
     
     color:#FF3300;
 
-    font-size:20px;
+    font-size:16px;
     letter-spacing: -2px;
 }
 
@@ -64,7 +64,7 @@
     
     color:#333333;
 
-    font-size:20px;
+    font-size:16px;
     letter-spacing: -2px;
 }
 
@@ -81,7 +81,7 @@
     margin:2% 0% 3% 2%;
     
     height:20px;
-    font-size:14px;
+    font-size:12px;
     letter-spacing: 1px;
 }
 
@@ -97,7 +97,7 @@
     text-align:center;
 
     height:50px;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 50px;
     
 }
@@ -118,7 +118,7 @@
 .detail h2
 {
     color:#000000;
-    font-weight: bold;
+    font-weight: normal;
     
 }
 
@@ -143,6 +143,61 @@
 	}
 
 	#productName{
+		font-size:18px;
+	}
+	
+    .blackBold
+    {
+        font-size:18px;
+        letter-spacing: -2px;    
+    }
+    .orangeText
+    {
+        font-size:16px;
+        letter-spacing: -2px;
+    }
+    .blackNormal
+    {
+        font-size:16px;
+        letter-spacing: -2px;
+    }
+    
+    
+    .smallTag
+    {
+        height:20px;
+        font-size:12px;
+        letter-spacing: 1px;
+        
+    }
+    .functionButton
+    {   
+        height:50px;
+        font-size: 20px;
+        line-height: 50px;
+    }
+    .startGroupIMG
+    {
+        height:220px;
+    }
+    .detail h2
+    {
+        font-size:12px;
+        margin:21px 0px 21px 0px;
+    }
+    .detail p
+    {        
+        font-size:12px;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 639px)
+{
+	#productImg{
+		height:300px;
+	}
+
+	#productName{
 		font-size:22px;
 	}
 	
@@ -158,73 +213,18 @@
     }
     .blackNormal
     {
-        font-size:20px;
-        letter-spacing: -2px;
-    }
-    
-    
-    .smallTag
-    {
-        height:20px;
-        font-size:14px;
-        letter-spacing: 1px;
-        
-    }
-    .functionButton
-    {   
-        height:50px;
-        font-size: 25px;
-        line-height: 50px;
-    }
-    .startGroupIMG
-    {
-        height:220px;
-    }
-    .detail h2
-    {
-        font-size:14px;
-        margin:21px 0px 21px 0px;
-    }
-    .detail p
-    {        
-        font-size:14px;
-    }
-}
-
-@media screen and (min-width: 480px) and (max-width: 639px)
-{
-	#productImg{
-		height:300px;
-	}
-
-	#productName{
-		font-size:26px;
-	}
-	
-    .blackBold
-    {
-        font-size:26px;
-        letter-spacing: -2px;    
-    }
-    .orangeText
-    {
-        font-size:24px;
-        letter-spacing: -2px;
-    }
-    .blackNormal
-    {
-        font-size:26px;
+        font-size:22px;
         letter-spacing: -2px;
     }
     .smallTag
     {
-        font-size:18px;
+        font-size:15px;
         letter-spacing: 1px;
     }
     .functionButton
     {   
         height:60px;
-        font-size: 30px;
+        font-size: 25px;
         line-height: 60px;
     }
     .startGroupIMG
@@ -233,12 +233,12 @@
     }
     .detail h2
     {
-        font-size:18px;
+        font-size:15px;
         margin:24px 0px 24px 0px;
     }
     .detail p
     {        
-        font-size:18px;
+        font-size:15px;
     }
 }
 
@@ -249,33 +249,33 @@
 	}
 
 	#productName{
-		font-size:30px;
+		font-size:26px;
 	}
 
     .blackBold
     {
-        font-size:28px;
+        font-size:24px;
         letter-spacing: -3px;    
     }
     .orangeText
     {
-        font-size:28px;
+        font-size:24px;
         letter-spacing: -3px;
     }
     .blackNormal
     {
-        font-size:28px;
+        font-size:24px;
         letter-spacing: -2px;
     }
     .smallTag
     {
-        font-size:20px;
+        font-size:16px;
         letter-spacing: 1px;
     }
     .functionButton
     {   
         height:65px;
-        font-size: 35px;
+        font-size: 30px;
         line-height: 65px;
     }
     .startGroupIMG
@@ -284,12 +284,12 @@
     }
     .detail h2
     {
-        font-size:20px;
+        font-size:18px;
         margin:26px 0px 26px 0px;
     }
     .detail p
     {        
-        font-size:20px;
+        font-size:18px;
     }
 }
 @media screen and (min-width: 768px) and (max-width: 979px) 
@@ -299,33 +299,33 @@
 	}
 
 	#productName{
-		font-size:34px;
+		font-size:30px;
 	}
 
     .blackBold
     {
-        font-size:30px;
+        font-size:26px;
         letter-spacing: -3px;    
     }
     .orangeText
     {
-        font-size:30px;
+        font-size:26px;
         letter-spacing: -3px;
     }
     .blackNormal
     {
-        font-size:30px;
+        font-size:26px;
         letter-spacing: -2px;
     }
     .smallTag
     {
-        font-size:22px;
+        font-size:20px;
         letter-spacing: 2px;
     }
     .functionButton
     {   
         height:70px;
-        font-size: 40px;
+        font-size: 35px;
         line-height: 70px;
     }
     .startGroupIMG
@@ -334,12 +334,12 @@
     }
     .detail h2
     {
-        font-size:22px;
+        font-size:20px;
         margin:28px 0px 28px 0px;
     }
     .detail p
     {        
-        font-size:22px;
+        font-size:20px;
     }
 }
 
@@ -350,33 +350,33 @@
 	}
 
 	#productName{
-		font-size:38px;
+		font-size:34px;
 	}
 
     .blackBold
     {
-        font-size:34px;
+        font-size:30px;
         letter-spacing: -4px;    
     }
     .orangeText
     {
-        font-size:34px;
+        font-size:30px;
         letter-spacing: -4px;
     }
     .blackNormal
     {
-        font-size:30px;
+        font-size:26px;
         letter-spacing: -3px;
     }
     .smallTag
     {
-        font-size:26px;
+        font-size:22px;
         letter-spacing: 3px;
     }
     .functionButton
     {   
         height:80px;
-        font-size: 40px;
+        font-size: 35px;
         line-height: 80px;
     }
     .startGroupIMG
@@ -385,11 +385,11 @@
     }
     .detail h2
     {
-        font-size:26px;
+        font-size:22px;
         margin:30px 0px 30px 0px;
     }
     .detail p
     {        
-        font-size:26px;
+        font-size:22px;
     }
 }

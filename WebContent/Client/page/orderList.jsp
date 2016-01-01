@@ -216,7 +216,7 @@
                                 %>
                                 <div class="functionButton"
                                         onclick="javascript:location.href='detailOrderMessage.jsp?orderId=<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
-                                <div class="functionButton" onclick="">取消订单</div>
+                    
                                 <%
                                     }
                                         else if (orderstate == 2)
@@ -231,7 +231,7 @@
                                         {
                                                 //待发货
                                 %>
-                                <div class="functionButton" onclick="">取消订单</div>
+                                
                                 <%
                                     }
                                         else if (orderstate == 4 || orderstate == 13)
