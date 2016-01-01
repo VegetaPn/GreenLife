@@ -108,7 +108,7 @@
 			<h2>详细说明：</h2>
 			<p id="detailInfo">
 				<%
-					out.println(goodsinfo.getGoodsText1() + "<br/>" + goodsinfo.getGoodsText2());
+					out.println(goodsinfo.getGoodsText2());
 				%>
 			</p>
 

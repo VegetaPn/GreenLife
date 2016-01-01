@@ -100,20 +100,20 @@ html,body
 
 .functionButton
 {   
-    width:70%;
+    width:60%;
     background-color:#F76F00;
     color:#ffffff;
     font-weight: bold;
     font-family: SimHei;
-    margin-left:15%;
+    margin-left:20%;
     margin-top:5px;
     border-radius:10px;
     clear:both;
     text-align:center;
     
-    height:60px;
+    height:45px;
     font-size: 28px;        
-    line-height: 60px;
+    line-height: 45px;
 }
 
 
@@ -237,9 +237,9 @@ html,body
     }
     .functionButton
     {   
-        height:60px;
+        height:45px;
         font-size: 28px;        
-        line-height: 60px;
+        line-height: 45px;
         margin-top:5px;
     }
     .seeMore
@@ -293,9 +293,9 @@ html,body
     }
     .functionButton
     {   
-        height:65px;
+        height:50px;
         font-size: 33px;        
-        line-height: 65px;
+        line-height: 50px;
         margin-top:10px;
     }
     .seeMore
@@ -352,9 +352,9 @@ html,body
     }
     .functionButton
     {   
-        height:70px;
+        height:55px;
         font-size: 38px;        
-        line-height: 70px;
+        line-height: 55px;
         margin-top:15px;
     }
     .seeMore
@@ -407,9 +407,9 @@ html,body
     }
     .functionButton
     {   
-        height:70px;
+        height:55px;
         font-size: 40px;        
-        line-height: 70px;
+        line-height: 55px;
         margin-top:20px;
     }
     .seeMore
@@ -464,9 +464,9 @@ html,body
     }
     .functionButton
     {   
-        height:75px;
+        height:60px;
         font-size: 44px;        
-        line-height: 75px;
+        line-height: 60px;
         margin-top:25px;
     }
     .seeMore

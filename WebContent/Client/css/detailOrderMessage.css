@@ -61,7 +61,7 @@ html,body
     margin-left:3%;
     width:94%;
     overflow:hidden;
-    border:1px solid;
+    border:1px #E4E4E4;
 }
 
 .productName
@@ -76,21 +76,21 @@ html,body
 
 .functionButton
 {   
-    width:70%;
+    width:60%;
     background-color:#F76F00;
     color:#ffffff;
     font-weight: bold;
     font-family: SimHei;
-    margin-left:15%;
+    margin-left:20%;
     border-radius:10px;
     clear:both;
     text-align:center;    
     
-    height:52px;
+    height:40px;
     font-size: 28px;        
     margin-top:12px;
     margin-bottom: 12px;
-    line-height: 52px;
+    line-height: 40px;
     
 }
 
@@ -162,7 +162,7 @@ html,body
     padding-top:16px;
     padding-bottom: 8px;
     margin-bottom:12px;
-    border:1px solid;
+    border:1px #E4E4E4;
 }
 
 
@@ -220,11 +220,11 @@ html,body
     .functionButton
     {   
                 
-        height:52px;
+        height:40px;
         font-size: 28px;        
         margin-top:12px;
         margin-bottom: 12px;
-        line-height: 52px;
+        line-height: 40px;
     }
 
     .tagLeft
@@ -263,11 +263,11 @@ html,body
     
     .functionButton
     {                   
-        height:60px;
+        height:45px;
         font-size: 30px;        
         margin-top:14px;
         margin-bottom: 14px;
-        line-height: 56px;
+        line-height: 45px;
     }
 
     .tagLeft
@@ -306,11 +306,11 @@ html,body
     
     .functionButton
     {                   
-        height:65px;
+        height:50px;
         font-size: 34px;        
         margin-top:16px;
         margin-bottom: 16px;
-        line-height: 60px;
+        line-height: 50px;
     }
 
     .tagLeft
@@ -348,11 +348,11 @@ html,body
     
     .functionButton
     {                   
-        height:65px;
+        height:50px;
         font-size: 40px;        
         margin-top:16px;
         margin-bottom: 16px;
-        line-height: 60px;
+        line-height: 50px;
     }
 
     .tagLeft
@@ -391,11 +391,11 @@ html,body
     
     .functionButton
     {                   
-        height:70px;
+        height:55px;
         font-size: 42px;        
         margin-top:18px;
         margin-bottom: 18px;
-        line-height: 65px;
+        line-height: 55px;
     }
 
     .tagLeft
