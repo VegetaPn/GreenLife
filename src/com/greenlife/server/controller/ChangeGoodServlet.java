@@ -22,39 +22,28 @@ import com.greenlife.dao.GoodsInfoDao;
 import com.greenlife.model.GoodsInfo;
 import com.greenlife.util.PropertiesUtil;
 
-/**
- * Servlet implementation class ChangeProduct
- */
+
 
 public class ChangeGoodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+
 	public ChangeGoodServlet() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		/*
-		 * ��Ʒ����
-		 */
+	
 
 		GoodsInfo changedGood = null;
 		String goodName = null;
 		String packagePath = null;
 
-		/*
-		 * �����۸�
-		 */
+	
 		double goodPrice = 0;
 		double groupPrice = 0;
 		int totalNum = 0;
@@ -63,55 +52,42 @@ public class ChangeGoodServlet extends HttpServlet {
 
 		int reportNum = 0;
 
-		/*
-		 * ����ʱ��
-		 */
+		
 		String startTime = null;
 		String endTime = null;
 
-		/*
-		 * ��Ʒ����
-		 */
+		
 		String goodText1 = null;
 		String goodText2 = null;
 
-		// ΢�ű�ǩ
-		String tagTitle = null;
-		String tagText = null;
-
-		// Create a factory for disk-based file items
+		String subTitle = null;
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 
-		// Create a new file upload handler //�����ô�СĬ��Ϊ���޴�
+		
 		ServletFileUpload upload = new ServletFileUpload(factory);
 
-		// Parse the request
+	
 		List<FileItem> items = null;
 		try {
-			items = upload.parseRequest(request);/// ��ȡ�����ݵ��б�
+			items = upload.parseRequest(request);
 		} catch (FileUploadException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
 		Iterator<FileItem> iter = items.iterator();
-		// ���ζ�ȡ���е�����
+	
 		while (iter.hasNext()) {
-			FileItem item = (FileItem) iter.next(); // �ӱ��ύ��һ�����ݣ��ļ����߱�����
+			FileItem item = (FileItem) iter.next();
 
-			// TODO Auto-generated method stub
-			/*
-			 * ��ƷID
-			 */
+		
 
 			if (item.isFormField()) {
-				// �������ͨ���ֶ�
+			
 				String name = item.getFieldName();
 				String value = new String(item.getString("UTF-8"));
 
-				/*
-				 * ��Ʒ����
-				 */
+			
 				System.out.println(name);
 				if (name.equals("good_id")) {
 					changedGood = GoodsInfoDao.getGoodsInfo(Integer.parseInt(value));
@@ -132,19 +108,16 @@ public class ChangeGoodServlet extends HttpServlet {
 					startTime = value;
 				} else if (name.equals("end_time")) {
 					endTime = value;
-				} else if (name.equals("tag_title")) {
-					tagTitle = value;
-				} else if (name.equals("tag_text")) {
-					tagText = value;
 				} else if (name.equals("good_text1")) {
 					goodText1 = value;
 				} else if (name.equals("good_text2")) {
 					goodText2 = value;
-				} else {
+				} else if(name.equals("sub_title")){
+					subTitle = value;
 				}
 				System.out.println(value);
 			} else {
-				// �������
+			
 				String filename = "";
 				System.out.println(item.getFieldName());
 				if (item.getFieldName().equals("normal_img")) {
@@ -161,11 +134,10 @@ public class ChangeGoodServlet extends HttpServlet {
 				if (!item.getName().equals("")) {
 					System.out.println(item.getName());
 					InputStream in = item.getInputStream();
-					// String path1 = PropertiesUtil.getSavePath()+packagePath +
-					// filename;
+					
 					String path1 = PropertiesUtil.getSavePath()+ packagePath;
 					File file = new File(path1);
-					// �ļ������ڣ�Ҳ�����ļ���
+					
 					if (!file.exists() && !file.isDirectory()) {
 						file.mkdir();
 					}
@@ -180,7 +152,7 @@ public class ChangeGoodServlet extends HttpServlet {
 				}
 			}
 		}
-		// �����Ʒ
+	
 		System.out.println("teci chakan" + goodName);
 		changedGood.setGoodsName(goodName);
 		changedGood.setGoodsPrice(goodPrice);
@@ -189,16 +161,14 @@ public class ChangeGoodServlet extends HttpServlet {
 		changedGood.setGoodsDiscontPrice(groupPrice);
 		changedGood.setStartTime(startTime);
 		changedGood.setEndTime(endTime);
-		changedGood.setTagTitle(tagTitle);
-		changedGood.setTagText(tagText);
-		changedGood.setTagImage("no");
+	
 		changedGood.setGoods_unit(goodUnit);
 		changedGood.setIsDelete(0);
 		changedGood.setIsAdv(0);
 		changedGood.setGoodsText1(goodText1);
 		changedGood.setGoodsText2(goodText2);
-		changedGood.setReportId(reportNum);
-
+		changedGood.setReportNum(reportNum);
+		changedGood.setSubTitle(subTitle);
 		GoodsInfoDao.updateGoodsInfo(changedGood);
 		response.sendRedirect("/Server/Page/product.jsp");
 	}

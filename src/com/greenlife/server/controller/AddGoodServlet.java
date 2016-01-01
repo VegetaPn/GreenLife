@@ -56,16 +56,12 @@ public class AddGoodServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		/*
-		 * ��Ʒ����
-		 */
+	
 		String goodName = null;
 		int goodId=GoodsInfoDao.getNextGoodsId();
 		String packagePath = "goods/" +goodId+"/";
 
-		/*
-		 * �����۸�
-		 */
+	
 		double goodPrice = 0;
 		double groupPrice = 0;
 		int totalNum = 0;
@@ -74,55 +70,40 @@ public class AddGoodServlet extends HttpServlet {
 
 		int reportNum = 0;
 
-		/*
-		 * ����ʱ��
-		 */
+		
 		String startTime = null;
 		String endTime = null;
 
-		/*
-		 * ��Ʒ����
-		 */
 		String goodText1 = null;
 		String goodText2 = null;
 
-		// ΢�ű�ǩ
-		String tagTitle = null;
-		String tagText = null;
+		String subTitle = null;
 
-		// Create a factory for disk-based file items
+
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 
-		// Create a new file upload handler //�����ô�СĬ��Ϊ���޴�
+	
 		ServletFileUpload upload = new ServletFileUpload(factory);
 
-		// Parse the request
 		List<FileItem> items = null;
 		try {
-			items = upload.parseRequest(request);/// ��ȡ�����ݵ��б�
+			items = upload.parseRequest(request);
 		} catch (FileUploadException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
 		Iterator<FileItem> iter = items.iterator();
-		// ���ζ�ȡ���е�����
+	
 		while (iter.hasNext()) {
-			FileItem item = (FileItem) iter.next(); // �ӱ��ύ��һ�����ݣ��ļ����߱�����
+			FileItem item = (FileItem) iter.next(); 
 
-			// TODO Auto-generated method stub
-			/*
-			 * ��ƷID
-			 */
-
+			
 			if (item.isFormField()) {
-				// �������ͨ���ֶ�
+			
 				String name = item.getFieldName();
 				String value = new String(item.getString("UTF-8"));
 
-				/*
-				 * ��Ʒ����
-				 */
 
 				if (name.equals("good_name")) {
 					goodName = value;
@@ -140,18 +121,15 @@ public class AddGoodServlet extends HttpServlet {
 					startTime = value;
 				} else if (name.equals("end_time")) {
 					endTime = value;
-				} else if (name.equals("tag_title")) {
-					tagTitle = value;
-				} else if (name.equals("tag_text")) {
-					tagText = value;
 				} else if (name.equals("good_text1")) {
 					goodText1 = value;
 				} else if (name.equals("good_text2")) {
 					goodText2 = value;
-				} else {
+				} else if(name.equals("sub_title")){
+					subTitle = value;
 				}
 			} else {
-				// �������
+				
 				String filename = "";
 				if (item.getFieldName().equals("normal_img")) {
 					
@@ -168,11 +146,10 @@ public class AddGoodServlet extends HttpServlet {
 				}
 				if (!item.getName().equals("")) {
 					InputStream in = item.getInputStream();
-					// String path1 = PropertiesUtil.getSavePath()+packagePath +
-					// filename;
+					
 					String path1 =PropertiesUtil.getSavePath() + packagePath;
 					File file = new File(path1);
-					// �ļ������ڣ�Ҳ�����ļ���
+					
 					if (!file.exists() && !file.isDirectory()) {
 						file.mkdirs();
 					}
@@ -188,7 +165,7 @@ public class AddGoodServlet extends HttpServlet {
 				}
 			}
 		}
-		// �����Ʒ
+	
 		GoodsInfo newGood = new GoodsInfo();
 		newGood.setGoodsName(goodName);
 		newGood.setGoodsId(goodId);
@@ -199,16 +176,13 @@ public class AddGoodServlet extends HttpServlet {
 		newGood.setGoodsSoldnum(0);
 		newGood.setStartTime(startTime);
 		newGood.setEndTime(endTime);
-		newGood.setTagTitle(tagTitle);
-		newGood.setTagText(tagText);
-		newGood.setTagImage("no");
 		newGood.setGoods_unit(goodUnit);
 		newGood.setIsDelete(0);
 		newGood.setIsAdv(0);
 		newGood.setGoodsText1(goodText1);
 		newGood.setGoodsText2(goodText2);
-		newGood.setReportId(reportNum);
-
+		newGood.setReportNum(reportNum);
+		newGood.setSubTitle(subTitle);
 		int i=GoodsInfoDao.addGoodsInfo(newGood);
 		response.sendRedirect("/Server/Page/product.jsp");
 
