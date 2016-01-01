@@ -37,6 +37,7 @@ function validate(){
 		return false;
 	}
 	
+	document.getElementById("submit").disabled = true;
 	return true;
 }
 

@@ -87,7 +87,7 @@
 					   <input type="checkbox" id="iCheck" name="iCheck"/>
 					   <span>默认地址</span><br/>
 					   <div id="iSure" class="input">
-					      <input type="submit" id="submit" value="确认"/>
+					      <input type="submit" id="submit" value="确认" onclick="disable()"/>
 					   </div>
 					</div>						
 				</div>

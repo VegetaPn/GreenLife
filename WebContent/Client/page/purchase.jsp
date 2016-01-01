@@ -67,7 +67,6 @@ for(int i =0; i<addressInfos.size();i++){
         <link rel="stylesheet" href="../css/header.css" type="text/css">
 		<link rel="stylesheet" href="../css/purchase.css" type="text/css">
 		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
-		<script type="text/javascript" src="../js/purchase.js"></script>
 		<script>
 		   var reminder = <%=remNumber%>;
 		</script>
@@ -167,8 +166,15 @@ for(int i =0; i<addressInfos.size();i++){
 			<div class="left">实付款：<span><span id="sTotalPrice"><%=price%></span>元</span></div>
 		</div>
 		
+		<div id="prompt"></div>
 		<script>
 		 $("#iSubmit").click(function(){
+			if(<%=defaultAddressInfo%>==null){
+				$("#prompt").html("<span>请添加地址</span>");
+				$("#prompt").show();
+				setTimeout("$('#prompt').hide()",2000);
+				return;
+			}
 			$("#iSubmit").attr("disabled", "disabled"); 
 		 	 $.ajax({		 
 				type: "post",//数据提交的类型（post或者get）
@@ -196,61 +202,66 @@ for(int i =0; i<addressInfos.size();i++){
 		 
 
 		 function decrease(){
-		 	var number = document.getElementById("iNumber").value;
+		 	var number = $("#iNumber").val();
 		 	if(number>1){
 		 		number = parseInt(number) - 1;
-		 		document.getElementById("iNumber").value = number;
-		 		document.getElementById("sNumber").innerText = number;
-		 		var price = document.getElementById("sProductPrice").innerText;
-		 		document.getElementById("stPrice").innerText = parseInt(number)*parseFloat(price);
-		 		document.getElementById("sTotalPrice").innerText = parseInt(number)*parseFloat(price);
+		 		$("#iNumber").val(number);
+		 		$("#sNumber").text(number);
+		 		var price = $("#sProductPrice").text();
+		 		$("#stPrice").text(parseInt(number)*parseFloat(price));
+		 		$("#sTotalPrice").text(parseInt(number)*parseFloat(price));
 		 	}
 		 } 
 
 		 function increase(){
-		 	var number = document.getElementById("iNumber").value;
+		 	var number = $("#iNumber").val();
 		 	number = parseInt(number) + 1;
 		 	if(number>reminder){
-		 		alert("供货不足！");
+				$("#prompt").html("<span>供货不足!</span>");
+				$("#prompt").show();
+				setTimeout("$('#prompt').hide()",2000);
 		 		return;
 		 	}
-		 	document.getElementById("iNumber").value = number;
-		 	document.getElementById("sNumber").innerText = number;
-		 	var price = document.getElementById("sProductPrice").innerText;
+		 	$("#iNumber").val(number);
+		 	$("#sNumber").text(number);
+		 	var price = $("#sProductPrice").text();
 		 	var total = (parseInt(number)*parseFloat(price)).toFixed(2);
-		 	document.getElementById("stPrice").innerText = total;
+		 	$("#stPrice").text(total);
 		 	
-		 	document.getElementById("sTotalPrice").innerText = total;
+		 	$("#sTotalPrice").text(total);
 		 }
 
 		 function calculate(){
-		 	var number = document.getElementById("iNumber").value;
+		 	var number = $("#iNumber").val();
 		 	var re = /^[1-9]+[0-9]*]*$/;
 		     if(!re.test(number)){
-		     	document.getElementById("iNumber").value = 1;
+		     	$("#iNumber").val(1);
 		     	number = 1;
-		     	alert("请输入正整数");
-		         // return;  
+		     	$("#prompt").html("<span>请输入正整数</span>");
+				$("#prompt").show();
+				setTimeout("$('#prompt').hide()",2000);
 		     }
 		     if(number>reminder){
-		     	document.getElementById("iNumber").value = 1;
+		     	$("#iNumber").val(1);
 		     	number = 1;
-		     	alert("供货不足！");
+		     	$("#prompt").html("<span>供货不足！</span>");
+				$("#prompt").show();
+				setTimeout("$('#prompt').hide()",2000);
 		     }
-		 	document.getElementById("sNumber").innerText = number;
-		 	var price = document.getElementById("sProductPrice").innerText;
+		 	$("#sNumber").text(number);
+		 	var price = $("#sProductPrice").text();
 		 	var total = (parseInt(number)*parseFloat(price)).toFixed(2);
-		 	document.getElementById("stPrice").innerText = total;
+		 	$("#stPrice").text(total);
 		 	
 		 	document.getElementById("sTotalPrice").innerText = total;	
 		 }
 
 		 function mousedown(){
-		 	document.getElementById("iToAddress").src = "../images/rightArrowCircle2.png"
+		 	$("#iToAddress").attr("src","../images/rightArrowCircle2.png");
 		 }
 
 		 function mouseup(){
-		 	document.getElementById("iToAddress").src = "../images/rightArrowCircle3.png"
+		 	$("#iToAddress").attr("src","../images/rightArrowCircle3.png");
 		 }
 		</script>
     </body>
