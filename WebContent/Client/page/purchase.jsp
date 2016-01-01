@@ -160,8 +160,7 @@ for(int i =0; i<addressInfos.size();i++){
 		<!--最底层-->
 		<div id="dSubmit">
 			<div class="right">
-				<div id="iSubmit" 
-				  <%=GoodsInfoService.getGoodsStatus(goodsInfo)!=1?"disabled='disabled' style='background-color:gray'":"" %>>确认支付</div>
+				<div id="iSubmit" <%=GoodsInfoService.getGoodsStatus(goodsInfo)!=1?"disabled='disabled' style='background-color:gray'":"" %>>确认支付</div>
 			</div>
 			<div class="left">实付款：<span><span id="sTotalPrice"><%=price%></span>元</span></div>
 		</div>
@@ -169,13 +168,13 @@ for(int i =0; i<addressInfos.size();i++){
 		<div id="prompt"></div>
 		<script>
 		 $("#iSubmit").click(function(){
-			if(<%=defaultAddressInfo%>==null){
+			 $("#iSubmit").attr("disabled", "disabled"); 
+			 if(<%=defaultAddressInfo==null?1:0%>){
 				$("#prompt").html("<span>请添加地址</span>");
 				$("#prompt").show();
 				setTimeout("$('#prompt').hide()",2000);
 				return;
-			}
-			$("#iSubmit").attr("disabled", "disabled"); 
+			 }
 		 	 $.ajax({		 
 				type: "post",//数据提交的类型（post或者get）
 				url: "/purchase",//数据提交得地址

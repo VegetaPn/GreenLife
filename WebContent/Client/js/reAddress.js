@@ -39,6 +39,7 @@ function validate(){
 	
 	//document.getElementById("submit").disabled = disabled;
 	$("#submit").attr("disabled", "disabled"); 
+	
 	return true;
 }
 
