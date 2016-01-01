@@ -61,7 +61,7 @@ import="java.util.Date"
 		for(int i=0;i<goodsList.size();i++){		
 		
 			GoodsInfo gi = goodsList.get(i);
-			if(GoodsInfoService.getGoodsStatus(gi) != 4){
+			if(GoodsInfoService.getGoodsStatus(gi) != 3){
 			int id = gi.getGoodsId();
 			String productImg = PropertiesUtil.getPath()+gi.getPackagePath()+"small.jpg";
 
@@ -83,7 +83,7 @@ import="java.util.Date"
 						long time2 = 0;
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");	
 						Calendar cal = Calendar.getInstance();  
-						//System.out.println(state);
+						System.out.println(state);
 						switch (state){
 						case 0: {
 							gState = "未开始";	
@@ -113,8 +113,9 @@ import="java.util.Date"
 
 					%>
 					<div class="nOrderTime"><%=gState %></div>
+					<%if(!gState.equals("已售完")){ %>
 					<div class="nOrderTime"><%=gTime%>：<%=between_days%>天</div>
-					
+					<%} %>
 				</div>
 			</div>
 			
