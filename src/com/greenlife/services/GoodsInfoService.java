@@ -18,7 +18,7 @@ public class GoodsInfoService {
 			Date start = sdf.parse(start_time);
 			Date end = sdf.parse(end_time);
 			Date now = new Date();
-			if(start.before(now)){
+			if(now.before(start)){
 				return 0;
 			} else if(now.after(start) && now.before(end)){
 				if(soldNum < totalNum){
