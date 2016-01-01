@@ -8,7 +8,7 @@ String wechatId = (String)session.getAttribute("wechatId");
 
 int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 //String wechatId = "ofK5Fw6xtWJlI53RDFP_37szP7WA";
-//int goodsId = 2;
+//int goodsId = 1;
 //String group = "false"; 
 GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 String group = request.getParameter("group");
@@ -169,6 +169,7 @@ for(int i =0; i<addressInfos.size();i++){
 		
 		<script>
 		 $("#iSubmit").click(function(){
+			$("#iSubmit").attr("disabled", "disabled"); 
 		 	 $.ajax({		 
 				type: "post",//数据提交的类型（post或者get）
 				url: "/purchase",//数据提交得地址
