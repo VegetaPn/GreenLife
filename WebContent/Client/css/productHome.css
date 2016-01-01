@@ -24,11 +24,19 @@
 
 
 #prompt{
-	position: absolute;
-	bottom:12%;
-	right:7%;
+	position: fixed;
+	bottom:50%;
 	z-index:99;
+	width:100%;
+	text-align:center;
 	display:none;
+}
+
+#prompt span{
+	background-color:gray;
+	color:#ffffff;
+	padding:10px;
+	font-size:16px;
 }
 
 #heart{
@@ -487,8 +495,8 @@
 
 
 	#qualityLogoImg{
-		width:60px;
-		height:60px;
+		width:80px;
+		height:80px;
 	}
 
 
@@ -618,8 +626,8 @@
 
 
 	#qualityLogoImg{
-		width:80px;
-		height:80px;
+		width:128px;
+		height:128px;
 	}
 
 	#qualityInfo{
@@ -757,8 +765,8 @@
 
 
 	#qualityLogoImg{
-		width:128px;
-		height:128px;
+		width:150px;
+		height:150px;
 	}
 
 	#qualityInfo{

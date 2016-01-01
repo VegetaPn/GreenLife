@@ -95,7 +95,7 @@
 
 	<div id="content">
 
-
+		<div id="prompt"><span>关注成功</span></div>
 		<div id="product">
 
 			
@@ -105,7 +105,7 @@
 				class="arcLabel" id="orderNum">订单数：<%=orderNum%></span>
 			<script>var isCollected = false;</script>
 
-			<span id="prompt"></span>
+			
 			<%
 				boolean isConcerned = false;
 
@@ -152,7 +152,7 @@
 								isCollected = false;
 								$("#prompt").html("取消关注");
 								$("#prompt").show();
-								setTimeout("$('#prompt').hide()",2000);
+								setTimeout("$('#prompt').hide()",1000);
 								$("#heart").attr('src',"../images/collect.png");
 							}
 						},
@@ -306,6 +306,8 @@
 				-->
 				</div>
 	
+				
+	
 				<div id="purchaseLeft">
 				<div id="teamPurchase" onclick="location.href='startGroup.jsp?goodsId=<%=goodsId%>'">
 					<div class="salesPrice" id="teamPrice">
@@ -324,7 +326,20 @@
 				</div>
 			</div>
 
-
+			<%
+				if(status != 1){
+			%>
+				<script>
+					$(function(){
+						$("#teamPurchase").hide();
+						$("#personalPurchase").hide();
+						
+					});
+					
+				</script>
+			<%	
+				}
+			%>
 
 			
 			<div id="productQuality">
