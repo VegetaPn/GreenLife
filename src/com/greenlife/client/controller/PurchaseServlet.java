@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.greenlife.dao.GoodsOrderDao;
 import com.greenlife.model.GoodsOrder;
+import com.greenlife.wechatservice.WechatService;
 
 /**
  * Servlet implementation class PurchaseServlet
@@ -72,6 +73,13 @@ public class PurchaseServlet extends HttpServlet {
 		 }
 		 else{
 			 goodsOrder.setOrderState(11);
+		 }
+		 
+		 
+		 if(WechatService.placeOrder(goodsOrder, getIpAddr(request))){
+			 
+		 }else{
+			 
 		 }
 		 
 		 int orderId = GoodsOrderDao.addGoodsOrder(goodsOrder);

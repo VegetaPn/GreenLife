@@ -1,6 +1,8 @@
 package com.greenlife.wechatservice;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -8,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -15,6 +18,17 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import javax.net.ssl.SSLContext;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLContexts;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 
 import com.greenlife.dao.GoodsInfoDao;
 import com.greenlife.dao.UserInfoDao;
@@ -111,7 +125,7 @@ public class WechatService {
 		return wechatInfo;
 	}
 
-	public static boolean placeOrder(GoodsOrder goodsOrder, String userIp, String wechatId) {
+	public static boolean placeOrder(GoodsOrder goodsOrder, String userIp) {
 		GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsOrder.getGoodsId());
 
 		PlaceOrderInfo placeOrderInfo = new PlaceOrderInfo();
@@ -124,10 +138,9 @@ public class WechatService {
 		placeOrderInfo.setOut_trade_no(Long.toString(new Date().getTime()));
 		placeOrderInfo.setTotal_fee(((int) (goodsOrder.getTotalPrice() * 100)));
 		placeOrderInfo.setSpbill_create_ip(userIp);
-		placeOrderInfo.setNotify_url("http://" + PropertiesUtil.getURL() + "/notify");
+		placeOrderInfo.setNotify_url("http://" + PropertiesUtil.getURL() + "/payNotify");
 		placeOrderInfo.setTrade_type("JSAPI");
-		placeOrderInfo.setOpenid(wechatId);
-		placeOrderInfo.setKey("");
+		placeOrderInfo.setOpenid(goodsOrder.getWechatId());
 
 		List<String> strs = new ArrayList<String>();
 		strs.add("appid=" + placeOrderInfo.getAppid());
@@ -141,13 +154,10 @@ public class WechatService {
 		strs.add("notify_url=" + placeOrderInfo.getNotify_url());
 		strs.add("trade_type=" + placeOrderInfo.getTrade_type());
 		strs.add("openid=" + placeOrderInfo.getOpenid());
-		Collections.sort(strs);
-		strs.add("key=" + placeOrderInfo.getKey());
 
-		String sign = MD5Signature((String[]) strs.toArray());
+		String sign = MD5Signature(strs);
 		placeOrderInfo.setSign(sign);
-		
-		
+
 		XStream xs = new XStream(new DomDriver("UTF-8", new XmlFriendlyNameCoder("-_", "_")));
 		xs.alias("xml", PlaceOrderInfo.class);
 		String xml = xs.toXML(placeOrderInfo);
@@ -155,34 +165,357 @@ public class WechatService {
 		String url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
 
 		String returnXml = postXML(url, xml);
+		
+		if(returnXml == null){
+			return false;
+		}
+		
 		PlaceOrderReturnInfo reInfo = new PlaceOrderReturnInfo();
 		XStream xs1 = new XStream(new DomDriver());
 		xs1.alias("xml", PlaceOrderReturnInfo.class);
 		reInfo = (PlaceOrderReturnInfo) xs1.fromXML(returnXml);
 
 		String return_code = reInfo.getReturn_code();
-		
-		if(return_code == "FAIL"){ 
-			return false; 
+		String return_msg = reInfo.getReturn_msg();
+		if (return_code.equals("FAIL")) {
+
+			System.out.println("下单失败（错误描述：" + return_msg + "）");
+			return false;
 		}
-		
-	
-		 String result_code = reInfo.getResult_code();
-		
-		 if(result_code == "FAIL"){ 
-			 String err_code_des = reInfo.getErr_code_des();
-	
-			 System.out.println("下单失败(错误描述："+err_code_des+")"); 
-			 return false; 
-		 }
-		 
-		 
-		 
+
+		String result_code = reInfo.getResult_code();
+
+		if (result_code.equals("FAIL")) {
+			String err_code_des = reInfo.getErr_code_des();
+
+			System.out.println("下单失败（错误描述：" + err_code_des + "）");
+			return false;
+		}
+
 		// 存入数据库操作 out_trade_no prepay_id
 
 		return true;
 	}
 
+	public static QueryOrderReturnInfo queryOrder(GoodsOrder goodsOrder) {
+		QueryOrderInfo queryOrderInfo = new QueryOrderInfo();
+
+		queryOrderInfo.setAppid(PropertiesUtil.getAppId());
+		queryOrderInfo.setMch_id(PropertiesUtil.getMchId());
+		queryOrderInfo.setNonce_str("abcdefg");
+		queryOrderInfo.setOut_trade_no("");
+		queryOrderInfo.setTransaction_id("");
+
+		List<String> strs = new ArrayList<String>();
+		strs.add("appid=" + queryOrderInfo.getAppid());
+		strs.add("mch_id=" + queryOrderInfo.getMch_id());
+		strs.add("nonce_str=" + queryOrderInfo.getNonce_str());
+
+		if (queryOrderInfo.getTransaction_id() != null) {
+			strs.add("transaction_id=" + queryOrderInfo.getTransaction_id());
+		}
+
+		strs.add("out_trade_no=" + queryOrderInfo.getOut_trade_no());
+
+		String sign = MD5Signature(strs);
+
+		queryOrderInfo.setSign(sign);
+
+		XStream xs = new XStream(new DomDriver("UTF-8", new XmlFriendlyNameCoder("-_", "_")));
+		xs.alias("xml", QueryOrderInfo.class);
+		String xml = xs.toXML(queryOrderInfo);
+
+		String url = "https://api.mch.weixin.qq.com/pay/orderquery";
+
+		String returnXml = postXML(url, xml);
+
+		if(returnXml == null){
+			return null;
+		}
+		
+		
+		QueryOrderReturnInfo reInfo = new QueryOrderReturnInfo();
+		XStream xs1 = new XStream(new DomDriver());
+		xs1.alias("xml", QueryOrderReturnInfo.class);
+		reInfo = (QueryOrderReturnInfo) xs1.fromXML(returnXml);
+
+		return reInfo;
+	}
+
+	public static boolean closeOrder(GoodsOrder goodsOrder) {
+		CloseOrderInfo closeOrderInfo = new CloseOrderInfo();
+
+		closeOrderInfo.setAppid(PropertiesUtil.getAppId());
+		closeOrderInfo.setMch_id(PropertiesUtil.getMchId());
+		closeOrderInfo.setNonce_str("abcdefg");
+		closeOrderInfo.setOut_trade_no("");
+
+		List<String> strs = new ArrayList<String>();
+		strs.add("appid=" + closeOrderInfo.getAppid());
+		strs.add("mch_id=" + closeOrderInfo.getMch_id());
+		strs.add("nonce_str=" + closeOrderInfo.getNonce_str());
+		strs.add("out_trade_no=" + closeOrderInfo.getOut_trade_no());
+
+		String sign = MD5Signature(strs);
+
+		closeOrderInfo.setSign(sign);
+
+		XStream xs = new XStream(new DomDriver("UTF-8", new XmlFriendlyNameCoder("-_", "_")));
+		xs.alias("xml", CloseOrderInfo.class);
+		String xml = xs.toXML(closeOrderInfo);
+
+		String url = "https://api.mch.weixin.qq.com/pay/closeorder";
+
+		String returnXml = postXML(url, xml);
+
+		if(returnXml == null){
+			return false;
+		}
+		
+		CloseOrderReturnInfo reInfo = new CloseOrderReturnInfo();
+		XStream xs1 = new XStream(new DomDriver());
+		xs1.alias("xml", CloseOrderReturnInfo.class);
+		reInfo = (CloseOrderReturnInfo) xs1.fromXML(returnXml);
+
+		if (reInfo.getReturn_code().equals("FAIL")) {
+			System.out.println("关闭订单失败（错误描述：" + reInfo.getReturn_msg() + "）");
+			return false;
+		}
+
+		if (reInfo.getErr_code() != null) {
+			System.out.println("关闭订单失败（错误描述" + reInfo.getErr_code_des() + "）");
+			return false;
+		}
+
+		return true;
+	}
+
+	public static boolean refund(GoodsOrder goodsOrder) {
+
+		RefundInfo refundInfo = new RefundInfo();
+
+		refundInfo.setAppid(PropertiesUtil.getAppId());
+		refundInfo.setMch_id(PropertiesUtil.getMchId());
+		refundInfo.setNonce_str("abcdefg");
+
+		refundInfo.setTransaction_id("");
+		refundInfo.setOut_trade_no("");
+
+		refundInfo.setOut_refund_no(Long.toString(new Date().getTime()));
+		refundInfo.setTotal_fee(((int) (goodsOrder.getTotalPrice() * 100)));
+		refundInfo.setRefund_fee(((int) (goodsOrder.getTotalPrice() * 100)));
+		refundInfo.setOp_user_id(PropertiesUtil.getMchId());
+
+		List<String> strs = new ArrayList<String>();
+		strs.add("appid=" + refundInfo.getAppid());
+		strs.add("mch_id=" + refundInfo.getMch_id());
+		strs.add("nonce_str=" + refundInfo.getNonce_str());
+
+		if (refundInfo.getTransaction_id() != null) {
+			strs.add("transaction_id=" + refundInfo.getTransaction_id());
+		}
+
+		strs.add("out_trade_no=" + refundInfo.getOut_trade_no());
+
+		strs.add("out_refund_no=" + refundInfo.getOut_refund_no());
+		strs.add("total_fee=" + refundInfo.getTotal_fee());
+		strs.add("refund_fee=" + refundInfo.getRefund_fee());
+		strs.add("op_user_id=" + refundInfo.getOp_user_id());
+
+		XStream xs = new XStream(new DomDriver("UTF-8", new XmlFriendlyNameCoder("-_", "_")));
+		xs.alias("xml", RefundInfo.class);
+		String xml = xs.toXML(refundInfo);
+
+		String url = "https://api.mch.weixin.qq.com/secapi/pay/refund";
+
+		String returnXml = useCertToHttpPost(url, xml);
+
+		if(returnXml == null){
+			return false;
+		}
+		
+		
+		RefundReturnInfo reInfo = new RefundReturnInfo();
+		XStream xs1 = new XStream(new DomDriver());
+		xs1.alias("xml", RefundReturnInfo.class);
+		reInfo = (RefundReturnInfo) xs1.fromXML(returnXml);
+
+		if (reInfo.getReturn_code().equals("FAIL")) {
+			System.out.println("退款失败（错误描述：" + reInfo.getReturn_msg() + "）");
+			return false;
+		}
+
+		if (reInfo.getResult_code().equals("FAIL")) {
+			System.out.println("退款失败（错误描述：" + reInfo.getErr_code_des() + "）");
+			return false;
+		}
+
+		return true;
+
+	}
+
+
+
+	public static boolean finishPay(String notifyXML) {
+
+		PayNotifyInfo notifyInfo = new PayNotifyInfo();
+		XStream xs = new XStream(new DomDriver());
+		xs.alias("xml", PayNotifyInfo.class);
+		notifyInfo = (PayNotifyInfo) xs.fromXML(notifyXML);
+
+		if (notifyInfo.getReturn_code().equals("FAIL")) {
+			return false;
+		}
+
+		List<String> strs = new ArrayList<String>();
+		if (notifyInfo.getReturn_code() != null) {
+			strs.add("return_code=" + notifyInfo.getResult_code());
+		}
+		if (notifyInfo.getReturn_msg() != null) {
+			strs.add("return_msg=" + notifyInfo.getReturn_msg());
+		}
+		if (notifyInfo.getAppid() != null) {
+			strs.add("appid=" + notifyInfo.getAppid());
+		}
+		if (notifyInfo.getMch_id() != null) {
+			strs.add("mch_id=" + notifyInfo.getMch_id());
+		}
+		if (notifyInfo.getDevice_info() != null) {
+			strs.add("device_info=" + notifyInfo.getDevice_info());
+		}
+		if (notifyInfo.getNonce_str() != null) {
+			strs.add("nonce_str=" + notifyInfo.getNonce_str());
+		}
+		if (notifyInfo.getResult_code() != null) {
+			strs.add("result_code=" + notifyInfo.getResult_code());
+		}
+		if (notifyInfo.getErr_code() != null) {
+			strs.add("err_code=" + notifyInfo.getErr_code());
+		}
+		if (notifyInfo.getErr_code_des() != null) {
+			strs.add("err_code_des=" + notifyInfo.getErr_code_des());
+		}
+		if (notifyInfo.getOpenid() != null) {
+			strs.add("openid=" + notifyInfo.getOpenid());
+		}
+		if (notifyInfo.getIs_subscribe() != null) {
+			strs.add("is_subscribe=" + notifyInfo.getIs_subscribe());
+		}
+		if (notifyInfo.getTrade_type() != null) {
+			strs.add("trade_type=" + notifyInfo.getTrade_type());
+		}
+		if (notifyInfo.getBank_type() != null) {
+			strs.add("bank_type=" + notifyInfo.getBank_type());
+		}
+		if (notifyInfo.getTotal_fee() != null) {
+			strs.add("total_fee=" + notifyInfo.getTotal_fee());
+		}
+		if (notifyInfo.getFee_type() != null) {
+			strs.add("fee_type=" + notifyInfo.getFee_type());
+		}
+		if (notifyInfo.getCash_fee() != null) {
+			strs.add("cash_fee=" + notifyInfo.getCash_fee());
+		}
+		if (notifyInfo.getCash_fee_type() != null) {
+			strs.add("cash_fee_type=" + notifyInfo.getCash_fee_type());
+		}
+		if (notifyInfo.getCoupon_fee() != null) {
+			strs.add("coupon_fee=" + notifyInfo.getCoupon_fee());
+		}
+		if (notifyInfo.getCoupon_count() != null) {
+			strs.add("coupon_count=" + notifyInfo.getCoupon_count());
+		}
+		if (notifyInfo.getCoupon_id_$n() != null) {
+			strs.add("coupon_id_$n=" + notifyInfo.getCoupon_id_$n());
+		}
+		if (notifyInfo.getCoupon_fee_$n() != null) {
+			strs.add("coupon_fee_$n=" + notifyInfo.getCoupon_fee_$n());
+		}
+		if (notifyInfo.getTransaction_id() != null) {
+			strs.add("transaction_id=" + notifyInfo.getTransaction_id());
+		}
+		if (notifyInfo.getOut_trade_no() != null) {
+			strs.add("out_trade_no=" + notifyInfo.getOut_trade_no());
+		}
+		if (notifyInfo.getAttach() != null) {
+			strs.add("attach=" + notifyInfo.getAttach());
+		}
+		if (notifyInfo.getTime_end() != null) {
+			strs.add("time_end=" + notifyInfo.getTime_end());
+		}
+
+		String sign = MD5Signature(strs);
+
+		if (!notifyInfo.getSign().equals(sign)) {
+			return false;
+		}
+
+		if (notifyInfo.getResult_code().equals("FAIL")) {
+			System.out.println("支付失败（错误描述：" + notifyInfo.getErr_code_des() + "）");
+			return true;
+		}
+
+		String transaction_id = notifyInfo.getTransaction_id();
+		String out_trade_no = notifyInfo.getOut_trade_no();
+
+		// 根据out_trade_no从数据库中得到goodsOrder，填入transaction_id并修改状态
+
+		return true;
+	}
+
+	
+	private static String useCertToHttpPost(String url, String xmlInfo) {
+		FileInputStream instream = null;
+		CloseableHttpClient httpclient = null;
+		try {
+			KeyStore keyStore = KeyStore.getInstance("PKCS12");
+			instream = new FileInputStream(new File(PropertiesUtil.getCertPath()));
+
+			keyStore.load(instream, PropertiesUtil.getMchId().toCharArray());
+
+			SSLContext sslcontext = SSLContexts.custom()
+					.loadKeyMaterial(keyStore, PropertiesUtil.getMchId().toCharArray()).build();
+
+			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext, new String[] { "TLSv1" },
+					null, SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
+			httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
+
+			HttpPost post = new HttpPost(url);
+			StringEntity sendEntity = new StringEntity(xmlInfo);
+			post.setEntity(sendEntity);
+			post.setHeader("Content-Type", "text/xml;charset=UTF-8");
+			HttpResponse response = httpclient.execute(post);
+			HttpEntity entity = response.getEntity();
+			BufferedReader in = new BufferedReader(new InputStreamReader(entity.getContent(), "UTF-8"));
+			String str = "";
+			char[] buf = new char[1024];
+
+			int length = 0;
+			while ((length = in.read(buf)) != -1) {
+				str += new String(buf, 0, length);
+			}
+			return str;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (instream != null) {
+
+					instream.close();
+				}
+				if (httpclient != null) {
+					httpclient.close();
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+
+		}
+
+	}
+	
 	public static String postXML(String urlStr, String xmlInfo) {
 		OutputStreamWriter out = null;
 		BufferedReader in = null;
@@ -193,7 +526,7 @@ public class WechatService {
 			URLConnection con = url.openConnection();
 			con.setDoOutput(true);
 			con.setDoInput(true);
-			con.setRequestProperty("Pragma:", "no-cache");
+
 			con.setRequestProperty("Cache-Control", "no-cache");
 			con.setRequestProperty("Content-Type", "text/xml");
 			out = new OutputStreamWriter(con.getOutputStream());
@@ -230,20 +563,19 @@ public class WechatService {
 
 	}
 
-	public static String MD5Signature(String[] strs) {
-
-		int length = strs.length;
-
-		if (length == 0) {
-			return null;
-		}
+	public static String MD5Signature(List<String> strs) {
+		Collections.sort(strs);
+		// strs.add("key=" + PropertiesUtil.getSignKey());
+		strs.add("key=abcdefghijklmnopqrstuvwxyzzzzzzz");
 
 		String str = "";
-		for (int i = 0; i < length - 1; i++) {
-			str += strs[i] + "&";
+
+		int size = strs.size();
+		for (int i = 0; i < size - 1; i++) {
+			str += strs.get(i) + "&";
 		}
 
-		str += strs[length - 1];
+		str += strs.get(size - 1);
 
 		MessageDigest md = null;
 		String signature = null;
@@ -257,7 +589,7 @@ public class WechatService {
 			e.printStackTrace();
 		}
 
-		return signature;
+		return signature.toUpperCase();
 
 	}
 

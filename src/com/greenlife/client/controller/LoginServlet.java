@@ -49,36 +49,4 @@ public class LoginServlet extends HttpServlet {
 	}
 	
 	
-	private String getStrFromURL(String url){
-		StringBuilder sb = new StringBuilder();
-		try {
-			URL realUrl = new URL(url);
-			HttpURLConnection conn = (HttpURLConnection) realUrl.openConnection();
-		
-			conn.setRequestMethod("GET");
-			conn.setDoOutput(true);
-			conn.setDoInput(true);
-			conn.setUseCaches(false);
-			conn.connect();
-
-			InputStream in = conn.getInputStream();
-			BufferedReader read = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-			String valueString = null;
-			while ((valueString = read.readLine()) != null) {
-				sb.append(valueString);
-			}
-			read.close();
-			in.close();
-			in = null;
-			if (conn != null) {
-				
-				conn.disconnect();
-			}
-			
-			return sb.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 }

@@ -2,19 +2,78 @@ package com.greenlife.wechatservice;
 
 
 public class PlaceOrderInfo {
-	String appid;
-	String mch_id;
-	String device_info;
-	String nonce_str;
-	String sign;
-	String body;
-	String out_trade_no;
-	Integer total_fee;
-	String spbill_create_ip;
-	String notify_url;
-	String trade_type;
-	String openid;
-	String key;
+	private String appid;
+	private String mch_id;
+	private String device_info;
+	private String nonce_str;
+	private String sign;
+	private String body;
+	private String out_trade_no;
+	private Integer total_fee;
+	private String spbill_create_ip;
+	private String notify_url;
+	private String trade_type;
+	private String openid;
+	
+	private String detail;
+	private String attach;
+	private String fee_type;
+	private String time_start;
+	private String time_expire;
+	
+	private String goods_tag;
+	private String product_id;
+	private String limit_pay;
+
+	
+	public String getDetail() {
+		return detail;
+	}
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+	public String getAttach() {
+		return attach;
+	}
+	public void setAttach(String attach) {
+		this.attach = attach;
+	}
+	public String getFee_type() {
+		return fee_type;
+	}
+	public void setFee_type(String fee_type) {
+		this.fee_type = fee_type;
+	}
+	public String getTime_start() {
+		return time_start;
+	}
+	public void setTime_start(String time_start) {
+		this.time_start = time_start;
+	}
+	public String getTime_expire() {
+		return time_expire;
+	}
+	public void setTime_expire(String time_expire) {
+		this.time_expire = time_expire;
+	}
+	public String getGoods_tag() {
+		return goods_tag;
+	}
+	public void setGoods_tag(String goods_tag) {
+		this.goods_tag = goods_tag;
+	}
+	public String getProduct_id() {
+		return product_id;
+	}
+	public void setProduct_id(String product_id) {
+		this.product_id = product_id;
+	}
+	public String getLimit_pay() {
+		return limit_pay;
+	}
+	public void setLimit_pay(String limit_pay) {
+		this.limit_pay = limit_pay;
+	}
 	public String getAppid() {
 		return appid;
 	}
@@ -86,12 +145,6 @@ public class PlaceOrderInfo {
 	}
 	public void setOpenid(String openid) {
 		this.openid = openid;
-	}
-	public String getKey() {
-		return key;
-	}
-	public void setKey(String key) {
-		this.key = key;
 	}
 	
 	

@@ -11,12 +11,20 @@ public class PropertiesUtil {
 	private static String URL = null;
 	private static String savePath = null;
 	private static String mchId = null;
-	
+	private static String signKey = null;
+	private static String certPath  = null;
 	public static String getSavePath(){
 		if(savePath == null){
 			loadProperties();
 		}
 		return savePath;
+	}
+	
+	public static String getCertPath(){
+		if(certPath == null){
+			loadProperties();
+		}
+		return certPath;
 	}
 	
 	public static String getPath(){
@@ -26,6 +34,12 @@ public class PropertiesUtil {
 		return path;
 	}
 	
+	public static String getSignKey(){
+		if(signKey == null){
+			loadProperties();
+		}
+		return signKey;
+	}
 	
 	public static String getAppId(){
 		if(appId == null){
@@ -68,6 +82,7 @@ public class PropertiesUtil {
 			appsecret = prop.getProperty("appsecret");
 			URL = prop.getProperty("URL");
 			mchId = prop.getProperty("mchId");
+			certPath = prop.getProperty("certPath");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

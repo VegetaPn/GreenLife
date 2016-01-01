@@ -30,7 +30,7 @@
 	}
 
 	String productImg = PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "normal.jpg";
-	String smallProductImg = PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "small.jpg";
+	String smallProductImg = "http://"+PropertiesUtil.getURL()+PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "small.jpg";
 	
 	int orderNum = GoodsOrderDao.getGoodsOrderNum(goodsId);
 
