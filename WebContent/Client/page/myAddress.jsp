@@ -164,10 +164,8 @@
 		   </script>
 		   
 		   <% if(addressInfos == null||addressInfos.size() == 0){%>
-		        <div class="dCusMess">
-					<div id="dHint">
-					    <div id="hint" onclick="location.href='reAddress.jsp'">添加地址</div>
-					</div>
+				<div id="dHint">
+				    <div id="hint" onclick="location.href='reAddress.jsp'">添加地址</div>
 				</div>
 		   <%}
 		   else{%>

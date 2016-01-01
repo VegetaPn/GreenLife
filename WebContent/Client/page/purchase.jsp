@@ -8,8 +8,8 @@ String wechatId = (String)session.getAttribute("wechatId");
 
 int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 //String wechatId = "ofK5Fw6xtWJlI53RDFP_37szP7WA";
-//int goodsId = 3;
-//String group = null; 
+//int goodsId = 2;
+//String group = "false"; 
 GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 String group = request.getParameter("group");
 
@@ -57,9 +57,7 @@ for(int i =0; i<addressInfos.size();i++){
 }
 %>
 
-<script>
-   var reminder = <%=remNumber%>;
-</script>
+
 
 <html>
     <head>
@@ -70,6 +68,9 @@ for(int i =0; i<addressInfos.size();i++){
 		<link rel="stylesheet" href="../css/purchase.css" type="text/css">
 		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
 		<script type="text/javascript" src="../js/purchase.js"></script>
+		<script>
+		   var reminder = <%=remNumber%>;
+		</script>
     </head>
     <body>
 	
@@ -130,7 +131,7 @@ for(int i =0; i<addressInfos.size();i++){
 			    <div class="left"><span>数量:</span></div>
 				<div class="middle">
 				    <img id="iDecrease" src="../images/minusCommodity.png" onclick="decrease()"/>
-					<input type="number" id="iNumber" name="iNumber" value="1" onchange ="calculate()"/>
+					<input type="number" id="iNumber" name="iNumber" value="1"  onchange ="calculate()"/>
 					<img id="iIncrease" src="../images/addCommodity.png" onclick="increase()"/>
 				</div>
 				<div class="right">
@@ -160,8 +161,8 @@ for(int i =0; i<addressInfos.size();i++){
 		<!--最底层-->
 		<div id="dSubmit">
 			<div class="right">
-				<input id="iSubmit" type="submit" value="确认支付" 
-				  <%=GoodsInfoService.getGoodsStatus(goodsInfo)!=1?"disabled='disabled' style='background-color:gray'":"" %>/>
+				<div id="iSubmit" 
+				  <%=GoodsInfoService.getGoodsStatus(goodsInfo)!=1?"disabled='disabled' style='background-color:gray'":"" %>>确认支付</div>
 			</div>
 			<div class="left">实付款：<span><span id="sTotalPrice"><%=price%></span>元</span></div>
 		</div>
@@ -192,6 +193,64 @@ for(int i =0; i<addressInfos.size();i++){
 			 	});
 			}); 
 		 
+
+		 function decrease(){
+		 	var number = document.getElementById("iNumber").value;
+		 	if(number>1){
+		 		number = parseInt(number) - 1;
+		 		document.getElementById("iNumber").value = number;
+		 		document.getElementById("sNumber").innerText = number;
+		 		var price = document.getElementById("sProductPrice").innerText;
+		 		document.getElementById("stPrice").innerText = parseInt(number)*parseFloat(price);
+		 		document.getElementById("sTotalPrice").innerText = parseInt(number)*parseFloat(price);
+		 	}
+		 } 
+
+		 function increase(){
+		 	var number = document.getElementById("iNumber").value;
+		 	number = parseInt(number) + 1;
+		 	if(number>reminder){
+		 		alert("供货不足！");
+		 		return;
+		 	}
+		 	document.getElementById("iNumber").value = number;
+		 	document.getElementById("sNumber").innerText = number;
+		 	var price = document.getElementById("sProductPrice").innerText;
+		 	var total = (parseInt(number)*parseFloat(price)).toFixed(2);
+		 	document.getElementById("stPrice").innerText = total;
+		 	
+		 	document.getElementById("sTotalPrice").innerText = total;
+		 }
+
+		 function calculate(){
+		 	var number = document.getElementById("iNumber").value;
+		 	var re = /^[1-9]+[0-9]*]*$/;
+		     if(!re.test(number)){
+		     	document.getElementById("iNumber").value = 1;
+		     	number = 1;
+		     	alert("请输入正整数");
+		         // return;  
+		     }
+		     if(number>reminder){
+		     	document.getElementById("iNumber").value = 1;
+		     	number = 1;
+		     	alert("供货不足！");
+		     }
+		 	document.getElementById("sNumber").innerText = number;
+		 	var price = document.getElementById("sProductPrice").innerText;
+		 	var total = (parseInt(number)*parseFloat(price)).toFixed(2);
+		 	document.getElementById("stPrice").innerText = total;
+		 	
+		 	document.getElementById("sTotalPrice").innerText = total;	
+		 }
+
+		 function mousedown(){
+		 	document.getElementById("iToAddress").src = "../images/rightArrowCircle2.png"
+		 }
+
+		 function mouseup(){
+		 	document.getElementById("iToAddress").src = "../images/rightArrowCircle3.png"
+		 }
 		</script>
     </body>
 </html>

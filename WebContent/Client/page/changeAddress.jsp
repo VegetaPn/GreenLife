@@ -63,10 +63,8 @@
 		     </script>
 		     
 		   <% if(addressInfos == null||addressInfos.size() == 0){%>
-		        <div class="dCusMess">
-					<div id="dHint">
-					    <div id="hint">添加地址</div>
-					</div>
+				<div id="dHint">
+				    <div id="hint">添加地址</div>
 				</div>
 				<script>
 				   $("#hint").click(function(){
