@@ -1,6 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
    import="com.greenlife.model.*"  import="com.greenlife.dao.*" import ="java.util.*"
-   import="java.text.*" import="com.greenlife.util.*"%>
+   import="java.text.*" import="com.greenlife.util.*" import="com.greenlife.services.*"%>
 <!DOCTYPE html>
 
 <%
@@ -158,7 +158,7 @@ for(int i =0; i<addressInfos.size();i++){
 		<!--最底层-->
 		<div id="dSubmit">
 			<div class="right">
-				<input id="iSubmit" type="submit" value="确认支付"/>
+				<input id="iSubmit" type="submit" value="确认支付" <%=GoodsInfoService.getGoodsStatus(goodsInfo)!=1?"disabled='disabled'":"" %>/>
 			</div>
 			<div class="left">实付款：<span><span id="sTotalPrice"><%=price%></span>元</span></div>
 		</div>
