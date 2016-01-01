@@ -14,7 +14,7 @@ public class GoodsInfoService {
 			String end_time = info.getEndTime();
 			int totalNum = info.getGoodsTotalnum();
 			int soldNum = info.getGoodsSoldnum();
-			SimpleDateFormat sdf = new SimpleDateFormat("YY/MM/dd/HH:mm");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
 			Date start = sdf.parse(start_time);
 			Date end = sdf.parse(end_time);
 			Date now = new Date();
