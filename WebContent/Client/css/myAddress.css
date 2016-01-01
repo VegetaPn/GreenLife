@@ -17,8 +17,11 @@ body {
 }
 
 #dHint{
-	padding-top:8px;
-	padding-bottom:8px;
+	 width:100%;
+	 overflow:hidden;
+	 //border-top:1px solid gray; 
+	 //border-bottom:1px solid #333333;
+	 color:black;
 }
 
 #hint{
