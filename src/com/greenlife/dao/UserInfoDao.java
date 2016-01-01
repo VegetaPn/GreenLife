@@ -54,16 +54,15 @@ public class UserInfoDao {
 	
 	public static boolean addUserInfo(UserInfo info){
 		String sql = "INSERT INTO `greenlife`.`user_info` "
-				+ "(`wechat_id`, `wechat_name`, `phone`, `address_id`, `photo_path`) "
-				+ "VALUES (?, ?, ?, ?, ?);";
+				+ "(`wechat_id`, `wechat_name`, `address_id`, `photo_path`) "
+				+ "VALUES (?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, info.getWechatId());
 			ps.setString(2, info.getWechatName());
-			ps.setString(3, info.getPhone());
-			ps.setInt(4, info.getAddrId());
-			ps.setString(5, info.getPhotoPath());
+			ps.setInt(3, info.getAddrId());
+			ps.setString(4, info.getPhotoPath());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -77,7 +76,6 @@ public class UserInfoDao {
 	public static boolean updateUserInfo(UserInfo info){
 		String sql = "UPDATE `greenlife`.`user_info` SET "
 				+"wechat_name = (?), "
-				+"phone = (?),"
 				+"address_id = (?),"
 				+"photo_path = (?)"
 				+"WHERE wechat_id = (?);";
@@ -85,10 +83,9 @@ public class UserInfoDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, info.getWechatName());
-			ps.setString(2, info.getPhone());
-			ps.setInt(3, info.getAddrId());
-			ps.setString(4, info.getPhotoPath());
-			ps.setString(5, info.getWechatId());
+			ps.setInt(2, info.getAddrId());
+			ps.setString(3, info.getPhotoPath());
+			ps.setString(4, info.getWechatId());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -110,7 +107,6 @@ public class UserInfoDao {
 			while (rs.next()) {
 				userInfo.setWechatId(rs.getString("wechat_id"));
 				userInfo.setWechatName(rs.getString("wechat_name"));
-				userInfo.setPhone(rs.getString("phone"));
 				userInfo.setAddrId(rs.getInt("address_id"));
 				userInfo.setPhotoPath(rs.getString("photo_path"));
 			}
@@ -138,7 +134,6 @@ public class UserInfoDao {
 				
 				userInfo.setWechatId(rs.getString("wechat_id"));
 				userInfo.setWechatName(rs.getString("wechat_name"));
-				userInfo.setPhone(rs.getString("phone"));
 				userInfo.setAddrId(rs.getInt("address_id"));
 				userInfo.setPhotoPath("photo_path");
 				

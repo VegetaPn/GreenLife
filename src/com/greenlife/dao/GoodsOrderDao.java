@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.greenlife.model.GoodsInfo;
 import com.greenlife.model.GoodsOrder;
 import com.greenlife.util.DBUtil;
 
@@ -42,6 +41,9 @@ public class GoodsOrderDao {
 				goodsOrder.setReceiverName(rs.getString("addr_detail"));
 				goodsOrder.setReceiverName(rs.getString("receiver_name"));
 				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
+				goodsOrder.setPrepayId(rs.getString("prepay_id"));
+				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+				goodsOrder.setTransactionId(rs.getString("transaction_id"));
 				
 			}else{
 				return null;
@@ -108,10 +110,11 @@ public class GoodsOrderDao {
 				+ "`goods_num`, `trade_time`, `comment`, "
 				+ "`mail_price`, `total_price`, `group_id`, "
 				+ "`send_time`, `group_minnum`, `order_state`, "
-				+ "`addr_detail`, `receiver_name`, `phone_number`) "
+				+ "`addr_detail`, `receiver_name`, `phone_number`"
+				+ ", `prepay_id`, `out_trade_no`, `transaction_id`) "
 				+ "VALUES (?, ?, ?, ?, "
 				+ "?, ?, ?, ?, ?,"
-				+ " ?, ?, ?, ?, ?);";
+				+ " ?, ?, ?, ?, ?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
@@ -130,6 +133,9 @@ public class GoodsOrderDao {
 			ps.setString(12, order.getAddrDetail());
 			ps.setString(13, order.getReceiverName());
 			ps.setString(14, order.getPhoneNumber());
+			ps.setString(15, order.getPrepayId());
+			ps.setString(16, order.getOutTradeNo());
+			ps.setString(17, order.getTransactionId());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -173,7 +179,10 @@ public class GoodsOrderDao {
 				+ "order_state = ?, "
 				+ "addr_detail = ?, "
 				+ "receiver_name = ?, "
-				+ "phone_number = ? "
+				+ "phone_number = ?, "
+				+ "prepay_id = ?, "
+				+ "out_trade_no = ?, "
+				+ "transaction_id = ? "
 				+ "WHERE order_id = ?;";
 		Connection conn = new DBUtil().getConn();
 		try {
@@ -192,7 +201,10 @@ public class GoodsOrderDao {
 			ps.setString(12, order.getAddrDetail());
 			ps.setString(13, order.getReceiverName());
 			ps.setString(14, order.getPhoneNumber());
-			ps.setInt(15, order.getOrderId());
+			ps.setString(15, order.getPrepayId());
+			ps.setString(16, order.getOutTradeNo());
+			ps.setString(17, order.getTransactionId());
+			ps.setInt(18, order.getOrderId());
 			
 			ps.execute();
 		} catch (SQLException e) {
@@ -233,7 +245,9 @@ public class GoodsOrderDao {
 				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
 				goodsOrder.setReceiverName(rs.getString("receiver_name"));
 				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
-				
+				goodsOrder.setPrepayId(rs.getString("prepay_id"));
+				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+				goodsOrder.setTransactionId(rs.getString("transaction_id"));
 				orderList.add(goodsOrder);
 			}
 		} catch (SQLException e) {
@@ -277,6 +291,9 @@ public class GoodsOrderDao {
 				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
 				goodsOrder.setReceiverName(rs.getString("receiver_name"));
 				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
+				goodsOrder.setPrepayId(rs.getString("prepay_id"));
+				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+				goodsOrder.setTransactionId(rs.getString("transaction_id"));
 				
 				orderList.add(goodsOrder);
 			}
@@ -320,6 +337,9 @@ public class GoodsOrderDao {
 				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
 				goodsOrder.setReceiverName(rs.getString("receiver_name"));
 				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
+				goodsOrder.setPrepayId(rs.getString("prepay_id"));
+				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+				goodsOrder.setTransactionId(rs.getString("transaction_id"));
 				
 				orderList.add(goodsOrder);
 			}
@@ -365,6 +385,9 @@ public class GoodsOrderDao {
 					goodsOrder.setAddrDetail(rs.getString("addr_detail"));
 					goodsOrder.setReceiverName(rs.getString("receiver_name"));
 					goodsOrder.setPhoneNumber(rs.getString("phone_number"));
+					goodsOrder.setPrepayId(rs.getString("prepay_id"));
+					goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+					goodsOrder.setTransactionId(rs.getString("transaction_id"));
 					
 					orderList.add(goodsOrder);
 				}
@@ -408,6 +431,9 @@ public class GoodsOrderDao {
 				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
 				goodsOrder.setReceiverName(rs.getString("receiver_name"));
 				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
+				goodsOrder.setPrepayId(rs.getString("prepay_id"));
+				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+				goodsOrder.setTransactionId(rs.getString("transaction_id"));
 				
 				orderList.add(goodsOrder);
 			}
@@ -450,6 +476,9 @@ public class GoodsOrderDao {
 				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
 				goodsOrder.setReceiverName(rs.getString("receiver_name"));
 				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
+				goodsOrder.setPrepayId(rs.getString("prepay_id"));
+				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+				goodsOrder.setTransactionId(rs.getString("transaction_id"));
 				
 				orderList.add(goodsOrder);
 			}
@@ -491,6 +520,9 @@ public class GoodsOrderDao {
 				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
 				goodsOrder.setReceiverName(rs.getString("receiver_name"));
 				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
+				goodsOrder.setPrepayId(rs.getString("prepay_id"));
+				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+				goodsOrder.setTransactionId(rs.getString("transaction_id"));
 				
 				orderList.add(goodsOrder);
 			}
