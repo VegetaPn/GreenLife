@@ -16,6 +16,28 @@ public class GoodsOrder {
 	private String addrDetail;
 	private String receiverName;
 	private String phoneNumber;
+	private String prepayId;
+	private String outTradeNo;
+	
+	public String getPrepayId() {
+		return prepayId;
+	}
+	public void setPrepayId(String prepayId) {
+		this.prepayId = prepayId;
+	}
+	public String getOutTradeNo() {
+		return outTradeNo;
+	}
+	public void setOutTradeNo(String outTradeNo) {
+		this.outTradeNo = outTradeNo;
+	}
+	public String getTransactionId() {
+		return transactionId;
+	}
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
+	}
+	private String transactionId;
 	
 	
 	public int getOrderId() {

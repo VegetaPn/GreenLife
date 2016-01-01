@@ -3,7 +3,6 @@ package com.greenlife.model;
 public class UserInfo {
 	private String wechatId;
 	private String wechatName;
-	private String phone;
 	private int addrId;
 	private String photoPath;
 	public String getWechatId() {
@@ -17,12 +16,6 @@ public class UserInfo {
 	}
 	public void setWechatName(String wechatName) {
 		this.wechatName = wechatName;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 	public int getAddrId() {
 		return addrId;
