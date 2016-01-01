@@ -60,7 +60,7 @@ public class GoodsInfoDao {
 				+ "`goods_price`, `goods_totalnum`, `goods_soldnum`, "
 				+ "`start_time`, `end_time`, `goods_discount_price`, "
 				+ "`goods_unit`, `is_delete`, `is_adv`, `goods_text1`, "
-				+ "`goods_text2`, `report_id`, `sub_title`, `report_num`) "
+				+ "`goods_text2`, `sub_title`, `report_num`) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, "
 				+ "?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
@@ -80,9 +80,8 @@ public class GoodsInfoDao {
 			ps.setInt(11, info.getIsAdv());
 			ps.setString(12, info.getGoodsText1());
 			ps.setString(13, info.getGoodsText2());
-			ps.setInt(14, info.getReportId());
-			ps.setString(15, info.getSubTitle());
-			ps.setInt(16, info.getReportNum());
+			ps.setString(14, info.getSubTitle());
+			ps.setInt(15, info.getReportNum());
 			
 			ps.execute();
 		} catch (SQLException e) {
@@ -126,7 +125,6 @@ public class GoodsInfoDao {
 				+ "`is_adv`=? , "
 				+ "`goods_text1`=? , "
 				+ "`goods_text2`=? , "
-				+ "`report_id`=? , "
 				+ "`sub_title`=? , "
 				+ "`report_num`=?  "
 				+ "WHERE (`goods_id`= ?);";
@@ -146,10 +144,9 @@ public class GoodsInfoDao {
 			ps.setInt(11, info.getIsAdv());
 			ps.setString(12, info.getGoodsText1());
 			ps.setString(13, info.getGoodsText2());
-			ps.setInt(14, info.getReportId());
-			ps.setString(15, info.getSubTitle());
-			ps.setInt(16, info.getReportNum());
-			ps.setInt(17, info.getGoodsId());
+			ps.setString(14, info.getSubTitle());
+			ps.setInt(15, info.getReportNum());
+			ps.setInt(16, info.getGoodsId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -187,7 +184,6 @@ public class GoodsInfoDao {
 				goodsInfo.setIsAdv(rs.getInt("is_adv"));
 				goodsInfo.setGoodsText1(rs.getString("goods_text1"));
 				goodsInfo.setGoodsText2(rs.getString("goods_text2"));
-				goodsInfo.setReportId(rs.getInt("report_id"));
 				goodsInfo.setSubTitle(rs.getString("sub_title"));
 				goodsInfo.setReportNum(rs.getInt("report_num"));
 			}else{
@@ -231,7 +227,6 @@ public class GoodsInfoDao {
 				goodsInfo.setIsAdv(rs.getInt("is_adv"));
 				goodsInfo.setGoodsText1(rs.getString("goods_text1"));
 				goodsInfo.setGoodsText2(rs.getString("goods_text2"));
-				goodsInfo.setReportId(rs.getInt("report_id"));
 				goodsInfo.setSubTitle(rs.getString("sub_title"));
 				goodsInfo.setReportNum(rs.getInt("report_num"));
 				goodsList.add(goodsInfo);

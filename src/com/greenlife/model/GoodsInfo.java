@@ -15,7 +15,6 @@ public class GoodsInfo {
 	private int isAdv;
 	private String goodsText1;
 	private String goodsText2;
-	private int reportId;
 	private String subTitle;
 	private int reportNum;
 	
@@ -114,12 +113,6 @@ public class GoodsInfo {
 	}
 	public void setGoodsText2(String goodsText2) {
 		this.goodsText2 = goodsText2;
-	}
-	public int getReportId() {
-		return reportId;
-	}
-	public void setReportId(int reportId) {
-		this.reportId = reportId;
 	}
 
 }
