@@ -9,18 +9,21 @@ public class GoodsInfo {
 	private int goodsSoldnum;
 	private String startTime;
 	private String endTime;
-	private String tagTitle;
-	private String tagText;
-	private String tagImage;
 	private double goodsDiscontPrice;
 	private String goods_unit;
 	private int isDelete;
 	private int isAdv;
 	private String goodsText1;
 	private String goodsText2;
-	private int reportId;
 	private String subTitle;
+	private int reportNum;
 	
+	public int getReportNum() {
+		return reportNum;
+	}
+	public void setReportNum(int reportNum) {
+		this.reportNum = reportNum;
+	}
 	public String getSubTitle() {
 		return subTitle;
 	}
@@ -75,24 +78,6 @@ public class GoodsInfo {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-	public String getTagTitle() {
-		return tagTitle;
-	}
-	public void setTagTitle(String tagTitle) {
-		this.tagTitle = tagTitle;
-	}
-	public String getTagText() {
-		return tagText;
-	}
-	public void setTagText(String tagText) {
-		this.tagText = tagText;
-	}
-	public String getTagImage() {
-		return tagImage;
-	}
-	public void setTagImage(String tagImage) {
-		this.tagImage = tagImage;
-	}
 	public double getGoodsDiscontPrice() {
 		return goodsDiscontPrice;
 	}
@@ -128,12 +113,6 @@ public class GoodsInfo {
 	}
 	public void setGoodsText2(String goodsText2) {
 		this.goodsText2 = goodsText2;
-	}
-	public int getReportId() {
-		return reportId;
-	}
-	public void setReportId(int reportId) {
-		this.reportId = reportId;
 	}
 
 }

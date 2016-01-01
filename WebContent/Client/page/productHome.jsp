@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8" import="com.greenlife.dao.*"
 	import="com.greenlife.model.*" import="java.util.*"
 	import="java.text.SimpleDateFormat" import="com.greenlife.util.*"
-	import="com.greenlife.wechatservice.*"%>
+	import="com.greenlife.wechatservice.*"
+	import="com.greenlife.services.*"%>
 
 
 <%
@@ -17,18 +18,24 @@
 	Date endTime = sdf.parse(goodsInfo.getEndTime());
 	Date date = new Date();
 	String salesState = null;
-	if (date.getTime() < startTime.getTime()) {
-		salesState = "预售中";
-	} else if (date.getTime() > endTime.getTime()) {
+
+	int status = GoodsInfoService.getGoodsStatus(goodsInfo);
+	
+	
+	if(status == 0){
+		salesState = "未开始";
+	}
+	if(status == 1){
+		salesState = "预定中";
+	}
+	if(status == 2){
 		salesState = "已售完";
-	} else {
-		salesState = "进行中";
+	}
+	if(status == 3){
+		salesState = "已下架";
 	}
 
-	if (goodsInfo.getGoodsSoldnum() >= goodsInfo.getGoodsTotalnum()) {
-		salesState = "已售完";
-	}
-
+	
 	String productImg = PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "normal.jpg";
 	String smallProductImg = "http://"+PropertiesUtil.getURL()+PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "small.jpg";
 	
@@ -106,7 +113,7 @@
 				class="arcLabel" id="orderNum">订单数：<%=orderNum%></span>
 			<script>var isCollected = false;</script>
 
-
+			<span id="prompt"></span>
 			<%
 				boolean isConcerned = false;
 
@@ -123,6 +130,7 @@
 			<%
 				} else {
 			%>
+			
 			<img id="heart" src="../images/noCollect.png" />
 			<script>isCollected = true;</script>
 			<%
@@ -130,6 +138,7 @@
 			%>
 
 			<script>
+			
 			
 			
 			$(document).ready(function(){
@@ -143,9 +152,15 @@
 								data) {//请求成功后返执行的方法
 							if (!isCollected) {
 								isCollected = true;
+								$("#prompt").html("关注成功");
+								$("#prompt").show();
+								setTimeout("$('#prompt').hide()",2000);
 								$("#heart").attr('src',"../images/noCollect.png");
 							} else {
 								isCollected = false;
+								$("#prompt").html("取消关注");
+								$("#prompt").show();
+								setTimeout("$('#prompt').hide()",2000);
 								$("#heart").attr('src',"../images/collect.png");
 							}
 						},
@@ -325,14 +340,16 @@
 				
 					<div id="qualityLeft">
 					<div id="qualityLogo">
-						<img id="qualityLogoImg" src="../images/quaLogo.png" />
+						<img id="qualityLogoImg" src="../images/yuanlai.jpg" />
 
 					</div>
 					</div>
 					<div id="qualityRight">
 					<div id="qualityInfo">
-						<span id="qualityFont">已通过<%=reportNum%>项田园检测
-						</span><br /> <br /> <span id="qualityLink" onclick="location.href='report.jsp?goodsId=<%=goodsId%>'">查看检测详情></span>
+						<span id="qualityFont">已通过<%=reportNum%>项田园检测</span>
+						<br /> 
+						<br /> 
+						<span id="qualityLink" onclick="location.href='report.jsp?goodsId=<%=goodsId%>'">查看检测详情></span>
 					</div>
 					</div>
 				</div>
