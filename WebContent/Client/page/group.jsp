@@ -47,7 +47,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UFT-8">
-<title>田园生活</title>
+<title>源来生活</title>
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -96,18 +96,7 @@
 	
 	
 	
-		<div id="header">
-		<div id="leftButton">
-			<img src="../images/leftArrowBlack.png"  onclick="history.back(-1);" />
-		</div>
-	
-
-		<div id="homeButton">
-			<img src="../images/home.png" onclick="location.href='home.jsp'">
-		</div>
-		
-		<div id="title">田园生活</div>
-	</div>
+		<jsp:include page="header.jsp" />
 
 	<div id="content">
 		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">

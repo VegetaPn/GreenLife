@@ -20,7 +20,7 @@ int commentListSize = commentList.size();
 
 <html>
     <head>
-        <title>田园生活</title>
+        <title>源来生活</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <link rel="stylesheet" href="../css/header.css" type="text/css">
@@ -31,17 +31,7 @@ int commentListSize = commentList.size();
     </head>
     <body>
 	
-		<div id="header">
-			<div id="leftButton">
-				<img src="../images/leftArrowBlack.png"  onclick="history.back(-1);" />
-			</div>
-	
-
-			<div id="homeButton">
-				<img src="../images/home.png" onclick="location.href='home.jsp'">
-			</div>
-			<div id="title">田园生活</div>
-		</div>
+		<jsp:include page="header.jsp" />
 		
 		
 		<div id="content">
