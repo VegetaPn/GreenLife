@@ -91,7 +91,7 @@
     background-color:#F76F00;
     color:#ffffff;
     font-weight: bold;
-    font-family: SimHei;
+    
     margin-left:10%;
     border-radius:10px;    
     text-align:center;
@@ -125,7 +125,7 @@
 .detail p
 {
     color:#333333;
-    //font-size:3.5vw;
+    
     
     
 }
@@ -143,7 +143,7 @@
 	}
 
 	#productName{
-		font-size:18px;
+		font-size:22px;
 	}
 	
     .blackBold
@@ -198,7 +198,7 @@
 	}
 
 	#productName{
-		font-size:22px;
+		font-size:26px;
 	}
 	
     .blackBold
@@ -249,7 +249,7 @@
 	}
 
 	#productName{
-		font-size:26px;
+		font-size:30px;
 	}
 
     .blackBold
@@ -299,7 +299,7 @@
 	}
 
 	#productName{
-		font-size:30px;
+		font-size:34px;
 	}
 
     .blackBold
@@ -350,7 +350,7 @@
 	}
 
 	#productName{
-		font-size:34px;
+		font-size:38px;
 	}
 
     .blackBold

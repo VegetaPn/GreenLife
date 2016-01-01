@@ -36,15 +36,7 @@
 		String productImg = PropertiesUtil.getPath() + goodsinfo.getPackagePath() + "normal.jpg";
 
 		String time = orderToShow.getSendTime();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
-		Date date = sdf.parse(time);
-		Calendar calendar = new GregorianCalendar();
-		calendar.setTime(date);
-
-		Date sendDate = calendar.getTime();
-
-		SimpleDateFormat showSdf = new SimpleDateFormat("yyyy-MM-dd");
-		String sendTime = showSdf.format(sendDate);
+	
 	%>
 
 	<div id="header">
@@ -112,7 +104,7 @@
 
 				<div class="middleTag">
 					<div class="tagLeft">预计发货时间：</div>
-					<div class="blackNormal" id="timeToDeliver"><%=sendTime%></div>
+					<div class="blackNormal" id="timeToDeliver"><%=time%></div>
 				</div>
 			</div>
 

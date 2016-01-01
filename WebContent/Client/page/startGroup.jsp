@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.greenlife.dao.*" import="java.util.*"
-	import="com.greenlife.model.*" import="java.text.SimpleDateFormat"%>
+	import="com.greenlife.model.*" import="java.text.SimpleDateFormat"
+	import="com.greenlife.util.PropertiesUtil"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,10 +41,10 @@
 
 	    Date endDate = calendar.getTime();
 	    
-	    SimpleDateFormat showSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	    SimpleDateFormat showSdf = new SimpleDateFormat("yyyy/MM/dd");
 	    String endTime = showSdf.format(endDate);
 	    
-		
+	    String productImg = PropertiesUtil.getPath()+goodsinfo.getPackagePath()+"normal.jpg";
 		
 	%>
 
@@ -63,14 +64,14 @@
 	<div id="content">
 
 
+		
 		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsID%>'">
-			
-			<img id="productImg" src="../images/product.jpg" />
-			
-
-			<div id="productName"><%=goodsinfo.getGoodsName()%></div>
-		</div>
-
+			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
+						
+			<div id="productName">
+				<%=goodsinfo.getGoodsName()%>
+			</div>
+			</div>
 
 		<div class="mainMessage">
 			<h2 class="middleTag">
@@ -93,7 +94,7 @@
 			</h2>
 			<hr class="line" />
 
-			<h2 class="smallTag">*支付开团120小时内，未满2人自动退款</h2>
+			<h2 class="smallTag">*支付开团24小时内，未满2人自动退款</h2>
 		</div>
 
 

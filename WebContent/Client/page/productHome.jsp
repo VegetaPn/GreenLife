@@ -117,13 +117,13 @@
 				}
 				if (!isConcerned) {
 			%>
-			<img id="heart" src="../images/collect.png" />
+			<img id="heart" src="../images/noCollect.png" />
 
 			<%
 				} else {
 			%>
 			
-			<img id="heart" src="../images/noCollect.png" />
+			<img id="heart" src="../images/collect.png" />
 			<script>isCollected = true;</script>
 			<%
 				}
@@ -144,16 +144,16 @@
 								data) {//请求成功后返执行的方法
 							if (!isCollected) {
 								isCollected = true;
-								$("#prompt").html("关注成功");
-								$("#prompt").show();
-								setTimeout("$('#prompt').hide()",2000);
-								$("#heart").attr('src',"../images/noCollect.png");
-							} else {
-								isCollected = false;
-								$("#prompt").html("取消关注");
+								$("#prompt").html("<span>关注成功</span>");
 								$("#prompt").show();
 								setTimeout("$('#prompt').hide()",1000);
 								$("#heart").attr('src',"../images/collect.png");
+							} else {
+								isCollected = false;
+								$("#prompt").html("<span>取消关注</span>");
+								$("#prompt").show();
+								setTimeout("$('#prompt').hide()",1000);
+								$("#heart").attr('src',"../images/noCollect.png");
 							}
 						},
 						error : function() {

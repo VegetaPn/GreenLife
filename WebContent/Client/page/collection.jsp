@@ -1,7 +1,8 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.greenlife.dao.*"
 	import="com.greenlife.model.*" import="java.util.*"
-	import="java.text.SimpleDateFormat" import="com.greenlife.util.*"%>
+	import="java.text.SimpleDateFormat" import="com.greenlife.util.*"
+	import="com.greenlife.services.*"%>
 
 
 <%
@@ -34,7 +35,7 @@
 		
 		
 			<%
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
+				
 				int size = goodsIdList.size();
 				
 				GoodsInfo goodsInfo = null;
@@ -42,29 +43,29 @@
 					int goodsId = goodsIdList.get(i);
 					goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 		
-					
-					Date startTime = sdf.parse(goodsInfo.getStartTime());
-					Date endTime = sdf.parse(goodsInfo.getEndTime());
 					Date date = new Date();
 					String salesState = null;
-					if (date.getTime() < startTime.getTime()) {
-						salesState = "预售中";
-					} else if (date.getTime() > endTime.getTime()) {
-						salesState = "已售完";
-					} else {
-						salesState = "进行中";
+					
+					int status = GoodsInfoService.getGoodsStatus(goodsInfo);
+					
+					
+					if(status == 0){
+						salesState = "未开始";
 					}
-		
-					if (goodsInfo.getGoodsSoldnum() >= goodsInfo.getGoodsTotalnum()) {
+					if(status == 1){
+						salesState = "预定中";
+					}
+					if(status == 2){
 						salesState = "已售完";
+					}
+					if(status == 3){
+						salesState = "已下架";
 					}
 
 					String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"small.jpg";
 					
 					    
-			        long time1 = startTime.getTime();                 
-			        long time2 = endTime.getTime();        
-			        long between_days=(time2-time1)/(1000*3600*24);
+			   
 					
 			%>		
 			<div id="collectProduct">
@@ -77,37 +78,72 @@
 						<div class="nCheapprice">￥<%=goodsInfo.getGoodsPrice()%><span>/<%=goodsInfo.getGoods_unit()%></span>
 							</div>
 						
-						<% 
-												
-							if(salesState.equals("进行中")){
-	
-						%>
-						
-								<div class="nOrderTime">剩余时间：<%=between_days%>天</div>
-						
-						<%
+						<% 	
+						int state = GoodsInfoService.getGoodsStatus(goodsInfo);
+						String gState = "";
+						String gTime = "";
+						long time1 = 0;
+						long time2 = 0;
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");	
+						Calendar cal = Calendar.getInstance();  
+						switch (state){
+						case 0: {
+							gState = "未开始";	
+							gTime = "距开始";
+							cal.setTime(sdf.parse(sdf.format(new Date())));
+							time1 = cal.getTimeInMillis();        
+							cal.setTime(sdf.parse(goodsInfo.getEndTime()));    
+							time2 = cal.getTimeInMillis();
+							break;
+						}
+						case 1: {
+							gState = "预定中";
+							gTime = "剩余时间";
+							cal.setTime(sdf.parse(goodsInfo.getStartTime()));  
+							time1 = cal.getTimeInMillis();    
+							cal.setTime(sdf.parse(goodsInfo.getEndTime()));
+							time2 = cal.getTimeInMillis();    
+							break;
+						}
+						case 2: {
+							gState = "已售完";
+							break;
 							}
-						%>
+					}
+				      	       
+				        long between_days=(time2-time1)/(1000*3600*24);  
+
+					%>
+					
+					<%if(!gState.equals("已售完")){ %>
+					<div class="nOrderTime"><%=gTime%>：<%=between_days%>天</div>
+					<%} %>
 					</div>
 				</div>
 					<%
-						if(salesState.equals("进行中")){
+						if(salesState.equals("未开始")){
 					%>
-						<span class="arcLabel" id="salesState">进行中</span>
+						<span class="arcLabel" id="salesState">未开始</span>
 						
 					<%
-						}else if(salesState.equals("预售中")){
+						}else if(salesState.equals("预定中")){
 					%>
-						<span class="arcLabel">预售中</span>
+						<span class="arcLabel">预定中</span>
 					
 					<%
-						}else{
+						}else if(salesState.equals("已售完")){
 							
 						
 					%>
 						<span class="sellOutLabel">已售完</span>
 					
 					<% 
+						}else{
+							
+						
+					%>
+						<span class="sellOutLabel">已下架</span>
+					<%
 						}
 					%>
 						<img class="link" src="../images/rightArrowCircle2.png"></img>
