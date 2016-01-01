@@ -83,7 +83,6 @@ import="java.util.Date"
 						long time2 = 0;
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");	
 						Calendar cal = Calendar.getInstance();  
-						System.out.println(state);
 						switch (state){
 						case 0: {
 							gState = "未开始";	
