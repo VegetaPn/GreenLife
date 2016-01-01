@@ -23,6 +23,14 @@
 }
 
 
+#prompt{
+	position: absolute;
+	bottom:12%;
+	right:7%;
+	z-index:99;
+	display:none;
+}
+
 #heart{
 	position: absolute;
 	width:15%;
@@ -55,8 +63,7 @@
 }
 
 #productInfo{
-	border-top:1px solid #000000;
-	border-bottom:1px solid #000000;
+
 	overflow:hidden;
 	padding-top:20px;
 	padding-bottom:15px;
@@ -525,7 +532,7 @@
 	}
 
 	#productName{
-		font-size:28px;
+		font-size:26px;
 	}
 
 
@@ -663,7 +670,7 @@
 	}
 
 	#productName{
-		font-size:32px;
+		font-size:30px;
 	}
 
 
@@ -799,7 +806,7 @@
 	}
 
 	#productName{
-		font-size:36px;
+		font-size:34px;
 	}
 
 
@@ -935,7 +942,7 @@
 	}
 
 	#productName{
-		font-size:40px;
+		font-size:38px;
 	}
 
 

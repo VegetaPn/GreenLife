@@ -98,15 +98,19 @@ public class WechatService {
 		jsonObject = JSONObject.fromObject(jsonStr);
 		String ticket = (String) jsonObject.get("ticket");
 
-		UserInfo userInfo = new UserInfo();
-		userInfo.setWechatId(openid);
-		userInfo.setWechatName(nickname);
-		userInfo.setPhotoPath(headimgurl);
+		
 
 		if (!UserInfoDao.isExist(openid)) {
-
+			UserInfo userInfo = new UserInfo();
+			userInfo.setWechatId(openid);
+			userInfo.setWechatName(nickname);
+			userInfo.setPhotoPath(headimgurl);
 			UserInfoDao.addUserInfo(userInfo);
 		} else {
+			UserInfo userInfo = UserInfoDao.getUserInfo(openid);
+			userInfo.setWechatId(openid);
+			userInfo.setWechatName(nickname);
+			userInfo.setPhotoPath(headimgurl);
 			UserInfoDao.updateUserInfo(userInfo);
 		}
 
