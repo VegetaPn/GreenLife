@@ -9,9 +9,9 @@ String wechatId = (String)session.getAttribute("wechatId");
 int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 //String wechatId = "ofK5Fw6xtWJlI53RDFP_37szP7WA";
 //int goodsId = 2;
-String group = "false"; 
+//String group = "false"; 
 GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
-//String group = request.getParameter("group");
+String group = request.getParameter("group");
 
 double price = 0;
 if(group.equals("false")){
