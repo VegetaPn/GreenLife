@@ -123,7 +123,7 @@
 												<button class="btn btn-default" onclick="reduction1()"
 													type="button">-</button>
 											</span> <input id="report_num" type="text" class="form-control"
-												value="<%=showedGood.getReportId()%>" disabled="true"
+												value="<%=showedGood.getReportNum()%>" disabled="true"
 												name="report_num" value="0" /> <span class="input-group-btn">
 												<button class="btn btn-default" onclick="add1()"
 													type="button">+</button>
@@ -162,23 +162,8 @@
 										</div>
 									</div>
 
-
-									<!-- 微信内容输入 -->
-									<div class="form-group">
-										<div style="margin-top: 2em;">
-											<div clas="form-group">
-												<label>微信标签标题</label> <input type="text" id="tag_title"
-													value="<%=showedGood.getTagTitle()%> " disabled="true"
-													name="tag_title" class="form-control">
-											</div>
-
-											<div class="form-group">
-												<label>微信标签描述</label>
-												<textarea id="tag_text" name="tag_text" class="form-control"
-													disabled="true" rows="3"><%=showedGood.getTagText()%></textarea>
-											</div>
-										</div>
-									</div>
+										
+								
 								</div>
 								<div class="col-lg-6">
 									<div class="form-group">

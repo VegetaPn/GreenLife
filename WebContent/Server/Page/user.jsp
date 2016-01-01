@@ -54,7 +54,7 @@
 							<tr class="goods">
 								<td><%=oneUser.getWechatId()%></td>
 								<td><%=oneUser.getWechatName()%></td>
-								<td><%=oneUser.getPhone()%></td>
+			
 								<td><%=ad.getAddrDetail()%></td>
 														   
 							</tr>

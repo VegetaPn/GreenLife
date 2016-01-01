@@ -73,7 +73,7 @@
 					<div class="nPic"><img src="<%=productImg%>"/></div>
 					<div class="nSellInfo">
 						<div class="nName"><%=goodsInfo.getGoodsName()%></div>
-						<div class="nIntro"><%=goodsInfo.getTagText()%></div>
+						<div class="nIntro"><%=goodsInfo.getSubTitle()%></div>
 						<div class="nCheapprice">￥<%=goodsInfo.getGoodsPrice()%><span>/<%=goodsInfo.getGoods_unit()%></span>
 							</div>
 						

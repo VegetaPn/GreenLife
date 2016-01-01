@@ -41,15 +41,7 @@
 	
 	int orderNum = GoodsOrderDao.getGoodsOrderNum(goodsId);
 
-	ReportList reportList = ReportListDao.getReportList(goodsInfo.getReportId());
-
-	int reportNum = 0;
-
-	if (reportList == null) {
-		reportNum = 0;
-	} else {
-		reportNum = reportList.getReportNum();
-	}
+	int reportNum = goodsInfo.getReportNum();
 
 	List<Comment> commentList = CommentDao.getCommentList(goodsId);
 
