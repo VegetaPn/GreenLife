@@ -37,7 +37,8 @@ function validate(){
 		return false;
 	}
 	
-	document.getElementById("submit").disabled = true;
+	//document.getElementById("submit").disabled = disabled;
+	$("#submit").attr("disabled", "disabled"); 
 	return true;
 }
 
