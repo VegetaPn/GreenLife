@@ -72,11 +72,12 @@
 					<%
 						if (orderstate>10)
 						{
-							out.write("(成团价)" + goodsinfo.getGoodsDiscontPrice()+"元");
+							out.write(goodsinfo.getGoodsPrice()+"元");
 						}
 						else
 						{
-							out.write(goodsinfo.getGoodsPrice()+"元");
+							out.write("(成团价)" + goodsinfo.getGoodsDiscontPrice()+"元");
+							
 						}
 					%>
 				</div>
