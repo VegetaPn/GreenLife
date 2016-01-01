@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.greenlife.dao.*"
 	import="com.greenlife.model.*" import="java.util.*"
-	import="java.util.Properties" import="com.greenlife.util.*"%>
+	import="java.util.Properties" import="com.greenlife.util.*" import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,18 +22,29 @@
 
 		GoodsOrder orderToShow = GoodsOrderDao.getGoodsOrderById(orderId);
 
-
 		GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
 		int goodsId = goodsinfo.getGoodsId();
 		int orderstate = orderToShow.getOrderState();
 
 		int whatToShow = 4;
 		String showtype = request.getParameter("whatToShow");
-		if (showtype != null) {
+		if (showtype != null)
+		{
 			whatToShow = Integer.parseInt(showtype);
 		}
 
 		String productImg = PropertiesUtil.getPath() + goodsinfo.getPackagePath() + "normal.jpg";
+
+		String time = orderToShow.getSendTime();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
+		Date date = sdf.parse(time);
+		Calendar calendar = new GregorianCalendar();
+		calendar.setTime(date);
+
+		Date sendDate = calendar.getTime();
+
+		SimpleDateFormat showSdf = new SimpleDateFormat("yyyy-MM-dd");
+		String sendTime = showSdf.format(sendDate);
 	%>
 
 	<div id="header">
@@ -75,9 +86,12 @@
 					<div class="tagLeft">商品价格：</div>
 					<div class="blackNormal" id="productPrice">
 						<%
-							if (orderstate > 10) {
+							if (orderstate > 10)
+							{
 								out.write("(成团价)" + goodsinfo.getGoodsDiscontPrice() + "元");
-							} else {
+							}
+							else
+							{
 								out.write(goodsinfo.getGoodsPrice() + "元");
 							}
 						%>
@@ -97,31 +111,38 @@
 
 				<div class="middleTag">
 					<div class="tagLeft">预计发货时间：</div>
-					<div class="blackNormal" id="timeToDeliver"><%=orderToShow.getSendTime()%></div>
+					<div class="blackNormal" id="timeToDeliver"><%=sendTime%></div>
 				</div>
 			</div>
 
 
 			<%
-				if (orderstate == 1 || orderstate == 11) {
+				if (orderstate == 1 || orderstate == 11)
+				{
 					//待付款
 			%>
 			<div class="functionButton"
 				onclick="javascript:location.href='payForOrder.jsp?orderId=<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
 			<div class="functionButton" onclick="">取消订单</div>
 			<%
-				} else if (orderstate == 2) {
+				}
+				else if (orderstate == 2)
+				{
 					//待成团
 			%>
 			<div class="functionButton" onclick="">约好友成团</div>
 			<div class="functionButton" onclick="">取消订单</div>
 			<%
-				} else if (orderstate == 3 || orderstate == 12) {
+				}
+				else if (orderstate == 3 || orderstate == 12)
+				{
 					//待发货
 			%>
-			
+
 			<%
-				} else if (orderstate == 5 || orderstate == 14) {
+				}
+				else if (orderstate == 5 || orderstate == 14)
+				{
 			%>
 			<div class="functionButton" onclick="">我来说两句</div>
 			<div class="functionButton" onclick="">分享给好友</div>
