@@ -236,7 +236,7 @@
 #dSubmit .right{
 	float:right;
 	background-color:#F76F00;
-	border-radius: 5px;
+	//border-radius: 5px;
 }
 
 #iSubmit{
@@ -397,7 +397,7 @@
 	#iSubmit{
 		height:50px;
 		font-size:18px;
-		padding-top:15px;
+		line-height:50px;
 	}
 	
 	.span{
@@ -547,7 +547,7 @@
 	#iSubmit{
 		height:55px;
 		font-size:22px;
-		padding-top:17px;
+		line-height:55px;
 	}
 	
 	.span{
@@ -696,7 +696,7 @@
 	#iSubmit{
 		height:60px;
 		font-size:26px;
-		padding-top:17px;
+		line-height:60px;
 	}
 	
 	.span{
@@ -846,7 +846,7 @@
 	#iSubmit{
 		height:65px;
 		font-size:30px;
-		padding-top:18px;
+		line-height:65px;
 	}
 
 	.span{
@@ -997,7 +997,7 @@
 	#iSubmit{
 		height:70px;
 		font-size:34px;
-		padding-top:18px;
+		line-height:70px;
 	}
 	
 	.span{
