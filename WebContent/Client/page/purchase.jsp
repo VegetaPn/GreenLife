@@ -1,13 +1,15 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
    import="com.greenlife.model.*"  import="com.greenlife.dao.*" import ="java.util.*"
-   import="java.text.*" import="com.greenlife.util.*" import="com.greenlife.services.*"%>
+   import="java.text.*" import="com.greenlife.util.*" import="com.greenlife.services.*" %>
 <!DOCTYPE html>
 
 <%
 String wechatId = (String)session.getAttribute("wechatId");
 
 int goodsId = Integer.parseInt(request.getParameter("goodsId"));
-
+//String wechatId = "ofK5Fw6xtWJlI53RDFP_37szP7WA";
+//int goodsId = 3;
+//String group = null; 
 GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 String group = request.getParameter("group");
 
@@ -158,7 +160,8 @@ for(int i =0; i<addressInfos.size();i++){
 		<!--最底层-->
 		<div id="dSubmit">
 			<div class="right">
-				<input id="iSubmit" type="submit" value="确认支付" <%=GoodsInfoService.getGoodsStatus(goodsInfo)!=1?"disabled='disabled'":"" %>/>
+				<input id="iSubmit" type="submit" value="确认支付" 
+				  <%=GoodsInfoService.getGoodsStatus(goodsInfo)!=1?"disabled='disabled' style='background-color:gray'":"" %>/>
 			</div>
 			<div class="left">实付款：<span><span id="sTotalPrice"><%=price%></span>元</span></div>
 		</div>

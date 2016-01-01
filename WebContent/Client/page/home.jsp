@@ -1,6 +1,7 @@
 ﻿<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
 import="com.greenlife.dao.*" 
-import="com.greenlife.model.*" 
+import="com.greenlife.model.*"
+import="com.greenlife.services.*" 
 import="java.util.*" 
 import="com.greenlife.util.*"
 import="java.text.ParseException" 
@@ -50,17 +51,21 @@ import="java.util.Date"
 					//<%=ImgIsAdv
 			%>
 			<div class="product" >
-			<img id="productImg<%=idIsAdv%>" src="C:\Users\shyameimaru\Desktop\ceshi.png" onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'"/>
+			<img id="productImg<%=idIsAdv%>" src=<%=ImgIsAdv%> onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'"/>
 			<div class="productName"><%=giIsAdv.getGoodsName()%></div>
 			</div>
 		
 		<%} %>
 		</div>
 		<%
-		for(int i=0;i<goodsList.size();i++){
+		for(int i=0;i<goodsList.size();i++){		
+		
 			GoodsInfo gi = goodsList.get(i);
+			if(GoodsInfoService.getGoodsStatus(gi) != 4){
 			int id = gi.getGoodsId();
 			String productImg = PropertiesUtil.getPath()+gi.getPackagePath()+"small.jpg";
+
+	
 		%>
 			<div class="normalProduct" onclick="javascript:location.href='productHome.jsp?goodsId=<%=id%>'">
 				<div class="nPic"><img src="<%=productImg%>"/></div>
@@ -70,23 +75,51 @@ import="java.util.Date"
 					<div class="nCheapprice">￥<%=gi.getGoodsPrice()%><span>/<%=gi.getGoods_unit()%></span>
 						</div>
 					
-					<% 
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");					
-						Calendar cal = Calendar.getInstance();    
-				        cal.setTime(sdf.parse(gi.getStartTime()));    
-				        long time1 = cal.getTimeInMillis();                 
-				        cal.setTime(sdf.parse(gi.getEndTime()));    
-				        long time2 = cal.getTimeInMillis();         
+					<% 	
+						int state = GoodsInfoService.getGoodsStatus(gi);
+						String gState = "";
+						String gTime = "";
+						long time1 = 0;
+						long time2 = 0;
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");	
+						Calendar cal = Calendar.getInstance();  
+						//System.out.println(state);
+						switch (state){
+						case 0: {
+							gState = "未开始";	
+							gTime = "距开始";
+							cal.setTime(sdf.parse(sdf.format(new Date())));
+							time1 = cal.getTimeInMillis();        
+							cal.setTime(sdf.parse(gi.getEndTime()));    
+							time2 = cal.getTimeInMillis();
+							break;
+						}
+						case 1: {
+							gState = "预定中";
+							gTime = "剩余时间";
+							cal.setTime(sdf.parse(gi.getStartTime()));  
+							time1 = cal.getTimeInMillis();    
+							cal.setTime(sdf.parse(gi.getEndTime()));
+							time2 = cal.getTimeInMillis();    
+							break;
+						}
+						case 2: {
+							gState = "已售完";
+							break;
+							}
+					}
+				      	       
 				        long between_days=(time2-time1)/(1000*3600*24);  
 
 					%>
-					<div class="nOrderTime">剩余时间：<%=between_days%>天</div>
+					<div class="nOrderTime"><%=gState %></div>
+					<div class="nOrderTime"><%=gTime%>：<%=between_days%>天</div>
 					
 				</div>
 			</div>
 			
 			<%
-			}
+			}}
 			%>
 			
 			

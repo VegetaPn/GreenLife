@@ -119,7 +119,7 @@
 				} else if (orderstate == 3 || orderstate == 12) {
 					//待发货
 			%>
-			<div class="functionButton" onclick="">取消订单</div>
+			
 			<%
 				} else if (orderstate == 5 || orderstate == 14) {
 			%>

@@ -33,11 +33,13 @@ function calculate(){
     if(!re.test(number)){
         alert("请输入整数");
     	document.getElementById("iNumber").value = 1;
+    	number = 1;
         // return;  
     }
     if(number>reminder){
     	alert("供货不足！");
-    	document.getElementById("iNumber").value = reminder;
+    	document.getElementById("iNumber").value = 1;
+    	number = 1;
     }
 	document.getElementById("sNumber").innerText = number;
 	var price = document.getElementById("sProductPrice").innerText;
