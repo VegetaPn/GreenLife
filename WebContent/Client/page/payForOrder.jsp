@@ -111,7 +111,9 @@
 				<span class="blackBold" id="totalSym">合计：￥</span><span
 					class="orangeText"><%=orderToShow.getTotalPrice()%></span>
 			</div>
+			<%if(orderstate==1 || orderstate==11){ %>
 			<div class="functionButton" id="payButton">支付</div>
+			<%} %>
 		</div>
 
 	
@@ -185,15 +187,17 @@
 							}else{
 								 WeixinJSBridge.invoke(
 								       'getBrandWCPayRequest', {
-								           "appId" : data.appId,     
-								           "timeStamp":data.timestamp,         
-								           "nonceStr" : data.noncestr,
-								           "package" : data.myPackage,     
-								           "signType" : data.signType,            
-								           "paySign" : data.paySign 
+								           "appId":data.appId,     
+								           "timeStamp":data.timeStamp,         
+								           "nonceStr":data.nonceStr,
+								           "package":data.myPackage,     
+								           "signType":data.signType,            
+								           "paySign":data.paySign 
 								       },
-								       function(res){     
-								           if(res.err_msg == "get_brand_wcpay_request：ok" ) {
+								       function(res){   
+								    	
+								           if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+								        	  
 								        	   $.ajax({
 								        			type: "post",
 													url: "/payFinish",
@@ -202,7 +206,9 @@
 													},
 													dataType : "json",
 													success : function(data) {
+													
 														if(data){
+															
 															window.location.href="detailOrderMessage.jsp?orderId=<%=orderId%>";
 														}else{
 															alert("付款失败，请重新付款");

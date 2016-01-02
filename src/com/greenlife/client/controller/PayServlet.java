@@ -57,6 +57,6 @@ public class PayServlet extends HttpServlet {
 		if (ip != null && ip.indexOf(",") != -1) {
 			ip = ip.substring(ip.lastIndexOf(",") + 1, ip.length()).trim();
 		}
-		return ip;
+		return ip.equals("0:0:0:0:0:0:0:1")?"127.0.0.1":ip;
 	}
 }

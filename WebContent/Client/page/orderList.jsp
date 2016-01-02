@@ -167,7 +167,7 @@
                                         </div>
                                         <!--订单详情-->
                                         <div class="detailMessage"
-                                                onclick="javascript:location.href='detailOrderMessage.jsp?orderId=<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">
+                                                onclick="javascript:location.href='detailOrderMessage.jsp?orderId=<%=orderToShow.getOrderId()%>'">
 
                                                 <div class="productName">
                                                         <span class="blackBold"><%=goodsinfo.getGoodsName()%></span>
@@ -215,7 +215,7 @@
                                         //待付款
                                 %>
                                 <div class="functionButton"
-                                        onclick="javascript:location.href='detailOrderMessage.jsp?orderId=<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
+                                        onclick="javascript:location.href='payForOrder.jsp?orderId=<%=orderToShow.getOrderId()%>'">去付款</div>
                     
                                 <%
                                     }
@@ -223,8 +223,8 @@
                                         {
                                                 //待成团
                                 %>
-                                <div class="functionButton" onclick="">约好友成团</div>
-                                <div class="functionButton" onclick="">取消订单</div>
+                                <div class="functionButton" onclick="location.href='payForOrder.jsp?gourpId=<%=orderToShow.getGroupId()%>">约好友成团</div>
+                              
                                 <%
                                     }
                                         else if (orderstate == 3 || orderstate == 12)
@@ -245,8 +245,8 @@
                                         {
                                                 //已完成
                                 %>
-                                <div class="functionButton" onclick="">我来说两句</div>
-                                <div class="functionButton" onclick="">分享给好友</div>
+                                <div class="functionButton" onclick="location.href='comment.jsp?orderId=<%=orderToShow.getOrderId()%>">我来说两句</div>
+                                <div class="functionButton" onclick="location.href='productHome.jsp?orderId=<%=orderToShow.getOrderId()%>">分享给好友</div>
                                 <%
                                     }
                                 %>

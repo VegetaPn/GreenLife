@@ -1,6 +1,5 @@
 html,body
 {
-    background-color:#DDDDDD;
     
     padding:0px;
     margin:0px;
@@ -9,7 +8,7 @@ html,body
 .blackBold
 {
     
-    font-weight: bold;
+   
     color:#000000;
     
     
@@ -30,7 +29,7 @@ html,body
 
 .blackNormal
 {
-    //font-size:5vw;
+  
     color:#333333;
     font-size:20px;
     letter-spacing: -1px;
@@ -91,10 +90,8 @@ html,body
 
     background-color:#FFFFFF;
     overflow:hidden;
-    border-bottom: 1px solid;
-    border-top: 1px solid;
-    //padding-top:3vw;
-    //padding-bottom: 3vw;
+   //border-bottom: 1px solid #CCCCC;
+   //border-top: 1px solid;
     
 }
 
@@ -129,7 +126,7 @@ html,body
 .line
 {
     width:90%;
-    color: #797979;
+    color: #DDDDDD;
     
     margin-top:12px;
 }
@@ -140,7 +137,7 @@ html,body
     background-color:#F76F00;
     color:#ffffff;
     font-weight: bold;
-    font-family: SimHei;
+    
     margin-left:2%;
     border-radius:10px;
     text-align:center;

@@ -70,29 +70,64 @@
 		String signature = WechatService.buildSignature(noncestr, jsapi_ticket, timestamp, url);
 
 		String appId = (String) session.getAttribute("appid");
-	%>
-
-	<script>
-		wx.config({
-		    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-		    appId: '<%=appId%>', 
-		    timestamp: '<%=timestamp%>',
-		    nonceStr: '<%=noncestr%>', 
-		    signature: '<%=signature%>',
-		    jsApiList: [
-		                'onMenuShareTimeline',
-		                'onMenuShareAppMessage',
-		                'onMenuShareQQ',
-		                'onMenuShareQZone',
-		                'chooseImage',
-		                'previewImage',
-		                'uploadImage',
-		                'downloadImage',
-		                'chooseWXPay'
-		                ]
-		});
 		
-	</script>
+		String smallProductImg = "http://"+PropertiesUtil.getURL()+PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "small.jpg";
+	%>
+	
+		<script>
+		
+			
+			wx.config({
+			    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+			    appId: '<%=appId%>', 
+			    timestamp: '<%=timestamp%>',
+			    nonceStr: '<%=noncestr%>', 
+			    signature: '<%=signature%>',
+			    jsApiList: [
+			                'onMenuShareTimeline',
+			                'onMenuShareAppMessage',
+			                'chooseImage',
+			                'previewImage',
+			                'uploadImage',
+			                'downloadImage',
+			                'chooseWXPay'
+			                ]
+			});
+			
+			
+			wx.ready(function(){
+				
+				wx.onMenuShareTimeline({
+				    title: '源来生活-<%=goodsInfo.getGoodsName()%>', // 分享标题
+				    link: '<%=url%>', // 分享链接
+				    imgUrl: '<%=smallProductImg%>', // 分享图标
+				    success: function () { 
+				        // 用户确认分享后执行的回调函数
+				    },
+				    cancel: function () { 
+				        // 用户取消分享后执行的回调函数
+				    }
+				});
+				
+			
+				wx.onMenuShareAppMessage({
+				    title: '源来生活-<%=goodsInfo.getGoodsName()%>', // 分享标题
+				    desc: '<%=goodsInfo.getSubTitle()%>', // 分享描述
+				    link: '<%=url%>', // 分享链接
+				    imgUrl: '<%=smallProductImg%>', // 分享图标
+				    success: function () { 
+				        // 用户确认分享后执行的回调函数
+				    },
+				    cancel: function () { 
+				        // 用户取消分享后执行的回调函数
+				    }
+				});
+			});
+		
+		
+	
+		</script>
+	
 	
 	
 	

@@ -76,13 +76,16 @@ public class PropertiesUtil {
 		try {
 			InputStream is = PropertiesUtil.class.getResourceAsStream("init.properties");
 			prop.load(is);
-			savePath = prop.getProperty("savePath");
 			path = prop.getProperty("path");
+			savePath = prop.getProperty("savePath");
+			certPath = prop.getProperty("certPath");
+			
+			URL = prop.getProperty("URL");
 			appId = prop.getProperty("appId");
 			appsecret = prop.getProperty("appsecret");
-			URL = prop.getProperty("URL");
 			mchId = prop.getProperty("mchId");
-			certPath = prop.getProperty("certPath");
+			signKey = prop.getProperty("signKey");
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

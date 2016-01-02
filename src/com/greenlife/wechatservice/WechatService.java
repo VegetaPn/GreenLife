@@ -355,8 +355,8 @@ public class WechatService {
 
 		refundInfo.setAppid(PropertiesUtil.getAppId());
 		refundInfo.setMch_id(PropertiesUtil.getMchId());
+		refundInfo.setDevice_info("WEB");
 		refundInfo.setNonce_str("abcdefg");
-
 		refundInfo.setTransaction_id(goodsOrder.getTransactionId());
 		refundInfo.setOut_trade_no(goodsOrder.getOutTradeNo());
 
@@ -364,10 +364,12 @@ public class WechatService {
 		refundInfo.setTotal_fee(((int) (goodsOrder.getTotalPrice() * 100)));
 		refundInfo.setRefund_fee(((int) (goodsOrder.getTotalPrice() * 100)));
 		refundInfo.setOp_user_id(PropertiesUtil.getMchId());
-
+		
+		
 		List<String> strs = new ArrayList<String>();
 		strs.add("appid=" + refundInfo.getAppid());
 		strs.add("mch_id=" + refundInfo.getMch_id());
+		strs.add("device_info=" + refundInfo.getDevice_info());
 		strs.add("nonce_str=" + refundInfo.getNonce_str());
 
 		if (refundInfo.getTransaction_id() != null) {
@@ -381,6 +383,10 @@ public class WechatService {
 		strs.add("refund_fee=" + refundInfo.getRefund_fee());
 		strs.add("op_user_id=" + refundInfo.getOp_user_id());
 
+		String sign = MD5Signature(strs);
+
+		refundInfo.setSign(sign);
+		
 		XStream xs = new XStream(new DomDriver("UTF-8", new XmlFriendlyNameCoder("-_", "_")));
 		xs.alias("xml", RefundInfo.class);
 		String xml = xs.toXML(refundInfo);

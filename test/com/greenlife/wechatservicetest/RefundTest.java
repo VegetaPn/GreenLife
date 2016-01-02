@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.greenlife.dao.GoodsOrderDao;
 import com.greenlife.model.GoodsOrder;
 import com.greenlife.wechatservice.WechatService;
 
@@ -29,20 +30,7 @@ public class RefundTest {
 	
 	@Test
 	public void testRefund(){
-		GoodsOrder goodsOrder = new GoodsOrder();
-		
-		goodsOrder.setAddrDetail("地址");
-		goodsOrder.setGoodsId(1);
-		goodsOrder.setGoodsNum(2);
-		goodsOrder.setGroupMinnum(2);
-		goodsOrder.setMailPrice(0);
-		goodsOrder.setOrderState(1);
-		goodsOrder.setPhoneNumber("1888");
-		goodsOrder.setReceiverName("afsa");
-		goodsOrder.setSendTime("aa");
-		goodsOrder.setTotalPrice(0.01);
-		goodsOrder.setWechatId("ofK5FwyPHRh9EaEJRj9cgMK4uJrg");
-		
+		GoodsOrder goodsOrder = GoodsOrderDao.getGoodsOrderById(47);
 	
 		WechatService.refund(goodsOrder);
 		

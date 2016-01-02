@@ -146,7 +146,7 @@
 							}
 						},
 						error : function() {
-							alert(arguments[1]);
+							alert("网路异常");
 						}
 					});
 					});

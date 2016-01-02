@@ -104,8 +104,8 @@
 				{
 					//待成团
 			%>
-			<div class="functionButton" onclick="">约好友成团</div>
-			<div class="functionButton" onclick="">取消订单</div>
+			<div class="functionButton" onclick="location.href='payForOrder.jsp?gourpId=<%=orderToShow.getGroupId()%>">约好友成团</div>
+			
 			<%
 				}
 				else if (orderstate == 3 || orderstate == 12)
