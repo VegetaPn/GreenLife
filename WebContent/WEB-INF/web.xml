@@ -80,7 +80,24 @@
     <servlet-name>ChangeAddressServlet</servlet-name>
     <url-pattern>/changeAddress</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
+    <servlet-name>PayServlet</servlet-name>
+    <servlet-class>com.greenlife.client.controller.PayServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PayServlet</servlet-name>
+    <url-pattern>/pay</url-pattern>
+  </servlet-mapping>
+
+ <servlet>
+    <servlet-name>PayFinishServlet</servlet-name>
+    <servlet-class>com.greenlife.client.controller.PayFinishServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PayFinishServlet</servlet-name>
+    <url-pattern>/payFinish</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>PayNotifyServlet</servlet-name>
     <servlet-class>com.greenlife.client.controller.PayNotifyServlet</servlet-class>
   </servlet>
@@ -88,7 +105,6 @@
     <servlet-name>PayNotifyServlet</servlet-name>
     <url-pattern>/payNotify</url-pattern>
   </servlet-mapping>
-  
   <welcome-file-list>
     <welcome-file>Client/page/login.jsp</welcome-file>
   </welcome-file-list>

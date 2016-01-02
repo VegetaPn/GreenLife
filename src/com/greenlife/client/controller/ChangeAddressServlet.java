@@ -13,10 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.greenlife.dao.UserInfoDao;
 import com.greenlife.model.UserInfo;
 
-/**
- * Servlet implementation class ChangeAddressServlet
- */
-@WebServlet("/ChangeAddressServlet")
+
 public class ChangeAddressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

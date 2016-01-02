@@ -24,10 +24,7 @@ import com.greenlife.model.Comment;
 import com.greenlife.model.ConcernedList;
 import com.greenlife.util.PropertiesUtil;
 
-/**
- * Servlet implementation class CommentServlet
- */
-//@WebServlet("/CommentServlet")
+
 public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.greenlife.wechatservice.WechatService;
 
 
-//@WebServlet("/PayNotifyServlet")
+
 public class PayNotifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

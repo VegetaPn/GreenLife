@@ -26,13 +26,6 @@
 		int goodsId = goodsinfo.getGoodsId();
 		int orderstate = orderToShow.getOrderState();
 
-		int whatToShow = 4;
-		String showtype = request.getParameter("whatToShow");
-		if (showtype != null)
-		{
-			whatToShow = Integer.parseInt(showtype);
-		}
-
 		String productImg = PropertiesUtil.getPath() + goodsinfo.getPackagePath() + "normal.jpg";
 
 		String time = orderToShow.getSendTime();
@@ -103,7 +96,7 @@
 					//待付款
 			%>
 			<div class="functionButton"
-				onclick="javascript:location.href='payForOrder.jsp?orderId=<%=orderToShow.getOrderId()%>&whatToShow=<%=whatToShow%>'">去付款</div>
+				onclick="javascript:location.href='payForOrder.jsp?orderId=<%=orderToShow.getOrderId()%>'">去付款</div>
 			<div class="functionButton" onclick="">取消订单</div>
 			<%
 				}

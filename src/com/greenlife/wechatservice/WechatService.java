@@ -30,6 +30,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
 import com.greenlife.dao.GoodsInfoDao;
+import com.greenlife.dao.GoodsOrderDao;
 import com.greenlife.dao.UserInfoDao;
 import com.greenlife.model.GoodsInfo;
 import com.greenlife.model.GoodsOrder;
@@ -128,9 +129,15 @@ public class WechatService {
 		return wechatInfo;
 	}
 
-	public static boolean placeOrder(GoodsOrder goodsOrder, String userIp) {
+	public static PayInfo placeOrder(int orderId, String userIp) {
+		GoodsOrder goodsOrder = GoodsOrderDao.getGoodsOrderById(orderId);
 		GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsOrder.getGoodsId());
 
+		
+		if(goodsOrder.getOrderState() != 1 && goodsOrder.getOrderState() != 11){
+			return null;
+		}
+		
 		PlaceOrderInfo placeOrderInfo = new PlaceOrderInfo();
 
 		placeOrderInfo.setAppid(PropertiesUtil.getAppId());
@@ -170,7 +177,7 @@ public class WechatService {
 		String returnXml = postXML(url, xml);
 		
 		if(returnXml == null){
-			return false;
+			return null;
 		}
 		
 		PlaceOrderReturnInfo reInfo = new PlaceOrderReturnInfo();
@@ -183,7 +190,7 @@ public class WechatService {
 		if (return_code.equals("FAIL")) {
 
 			System.out.println("下单失败（错误描述：" + return_msg + "）");
-			return false;
+			return null;
 		}
 
 		String result_code = reInfo.getResult_code();
@@ -192,22 +199,62 @@ public class WechatService {
 			String err_code_des = reInfo.getErr_code_des();
 
 			System.out.println("下单失败（错误描述：" + err_code_des + "）");
-			return false;
+			return null;
 		}
 
-		// 存入数据库操作 out_trade_no prepay_id
-
-		return true;
+		
+		goodsOrder.setOutTradeNo(placeOrderInfo.getOut_trade_no());
+		goodsOrder.setPrepayId(reInfo.getPrepay_id());
+		if(!GoodsOrderDao.updateGoodsOrder(goodsOrder)){
+			return null;
+		}
+		
+		PayInfo payInfo = new PayInfo();
+		payInfo.setAppId(placeOrderInfo.getAppid());
+		payInfo.setTimeStamp(Long.toString((new Date()).getTime()));
+		payInfo.setNonceStr("abcdefg");
+		payInfo.setMyPackage("prepay_id="+reInfo.getPrepay_id());
+		payInfo.setSignType("MD5");
+		
+		List<String> strs1 = new ArrayList<String>();
+		
+		strs1.add("appId=" + payInfo.getAppId());
+		strs1.add("timeStamp=" + payInfo.getTimeStamp());
+		strs1.add("nonceStr=" + payInfo.getNonceStr());
+		strs1.add("package=" + payInfo.getMyPackage());
+		strs1.add("signType=" + payInfo.getSignType());
+		
+		String paySign = WechatService.MD5Signature(strs1);
+		payInfo.setPaySign(paySign);
+		
+		
+		return payInfo;
 	}
 
+	public static boolean QueryPaySuccess(int orderId){
+		GoodsOrder goodsOrder = GoodsOrderDao.getGoodsOrderById(orderId);
+		
+		QueryOrderReturnInfo reInfo = queryOrder(goodsOrder);
+		
+		if(reInfo == null){
+			return true;
+		}
+		
+		if(!reInfo.getTrade_state().equals("SUCCESS")){
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public static QueryOrderReturnInfo queryOrder(GoodsOrder goodsOrder) {
 		QueryOrderInfo queryOrderInfo = new QueryOrderInfo();
 
 		queryOrderInfo.setAppid(PropertiesUtil.getAppId());
 		queryOrderInfo.setMch_id(PropertiesUtil.getMchId());
 		queryOrderInfo.setNonce_str("abcdefg");
-		queryOrderInfo.setOut_trade_no("");
-		queryOrderInfo.setTransaction_id("");
+		queryOrderInfo.setOut_trade_no(goodsOrder.getOutTradeNo());
+		queryOrderInfo.setTransaction_id(goodsOrder.getTransactionId());
 
 		List<String> strs = new ArrayList<String>();
 		strs.add("appid=" + queryOrderInfo.getAppid());
@@ -242,6 +289,15 @@ public class WechatService {
 		xs1.alias("xml", QueryOrderReturnInfo.class);
 		reInfo = (QueryOrderReturnInfo) xs1.fromXML(returnXml);
 
+		if(reInfo.getReturn_code().equals("FAIL")){
+			return null;
+		}
+		
+		if(reInfo.getResult_code().equals("FAIL")){
+			return null;
+		}
+		
+		
 		return reInfo;
 	}
 
@@ -301,8 +357,8 @@ public class WechatService {
 		refundInfo.setMch_id(PropertiesUtil.getMchId());
 		refundInfo.setNonce_str("abcdefg");
 
-		refundInfo.setTransaction_id("");
-		refundInfo.setOut_trade_no("");
+		refundInfo.setTransaction_id(goodsOrder.getTransactionId());
+		refundInfo.setOut_trade_no(goodsOrder.getOutTradeNo());
 
 		refundInfo.setOut_refund_no(Long.toString(new Date().getTime()));
 		refundInfo.setTotal_fee(((int) (goodsOrder.getTotalPrice() * 100)));
@@ -369,7 +425,9 @@ public class WechatService {
 		if (notifyInfo.getReturn_code().equals("FAIL")) {
 			return false;
 		}
-
+		
+		
+		
 		List<String> strs = new ArrayList<String>();
 		if (notifyInfo.getReturn_code() != null) {
 			strs.add("return_code=" + notifyInfo.getResult_code());
@@ -453,16 +511,30 @@ public class WechatService {
 			return false;
 		}
 
+		
+		String out_trade_no = notifyInfo.getOut_trade_no();
+		GoodsOrder goodsOrder = GoodsOrderDao.getGoodsOrderByOutTradeNo(out_trade_no);
+		
+		if(goodsOrder.getOrderState() == 2 || goodsOrder.getOrderState() == 12){
+			return true;
+		}
+		
 		if (notifyInfo.getResult_code().equals("FAIL")) {
 			System.out.println("支付失败（错误描述：" + notifyInfo.getErr_code_des() + "）");
 			return true;
 		}
 
 		String transaction_id = notifyInfo.getTransaction_id();
-		String out_trade_no = notifyInfo.getOut_trade_no();
+		
 
-		// 根据out_trade_no从数据库中得到goodsOrder，填入transaction_id并修改状态
-
+		
+		goodsOrder.setTransactionId(transaction_id);
+		goodsOrder.setOrderState(goodsOrder.getOrderState()+1);
+		
+		if(!GoodsOrderDao.updateGoodsOrder(goodsOrder)){
+			return false;
+		}
+		
 		return true;
 	}
 
@@ -568,8 +640,8 @@ public class WechatService {
 
 	public static String MD5Signature(List<String> strs) {
 		Collections.sort(strs);
-		// strs.add("key=" + PropertiesUtil.getSignKey());
-		strs.add("key=abcdefghijklmnopqrstuvwxyzzzzzzz");
+		strs.add("key=" + PropertiesUtil.getSignKey());
+	
 
 		String str = "";
 

@@ -23,12 +23,6 @@
 		
 		GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
 		
-		int whatToShow = 4;
-		String showtype = request.getParameter("whatToShow");
-		if (showtype != null)
-		{
-			whatToShow = Integer.parseInt(showtype);
-		}
 
 		int orderstate = orderToShow.getOrderState();
 	%>
@@ -137,19 +131,7 @@
 
 		String appId = PropertiesUtil.getAppId();
 		
-		String prepayId = "wx20151231213205f4b66e72470696597124";
-		String wxPackage = "prepay_id="+prepayId;
-		String signType = "MD5";
 		
-		List<String> strs = new ArrayList<String>();
-		
-		strs.add("appId=" + appId);
-		strs.add("timeStamp=" + timestamp);
-		strs.add("nonceStr=" + noncestr);
-		strs.add("package=" + wxPackage);
-		strs.add("signType=" + signType);
-		
-		String paySign = WechatService.MD5Signature(strs);
 	%>
 	
 	
@@ -185,22 +167,69 @@
 			
 			
 			function onBridgeReady(){
+				
+				
 				$("#payButton").click(function(){
-					 WeixinJSBridge.invoke(
-						       'getBrandWCPayRequest', {
-						           "appId" : "<%=appId%>",     //公众号名称，由商户传入     
-						           "timeStamp":"<%=timestamp%>",         //时间戳，自1970年以来的秒数     
-						           "nonceStr" : "<%=noncestr%>", //随机串     
-						           "package" : "<%=wxPackage%>",     
-						           "signType" : "<%=signType%>",         //微信签名方式：     
-						           "paySign" : "<%=paySign%>" //微信签名 
-						       },
-						       function(res){     
-						           if(res.err_msg == "get_brand_wcpay_request：ok" ) {
-						        	   alert("a");
-						           }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
-						       }
-						   ); 
+					$("#payButton").attr("disabled","disabled");
+					$.ajax({
+						type: "post",
+						url: "/pay",
+						data: {
+							orderId:<%=orderId%>
+						},
+						dataType : "json",
+						success : function(data) {
+							if(data == null){
+								alert("服务器异常");
+								window.location.reload();
+							}else{
+								 WeixinJSBridge.invoke(
+								       'getBrandWCPayRequest', {
+								           "appId" : data.appId,     
+								           "timeStamp":data.timestamp,         
+								           "nonceStr" : data.noncestr,
+								           "package" : data.myPackage,     
+								           "signType" : data.signType,            
+								           "paySign" : data.paySign 
+								       },
+								       function(res){     
+								           if(res.err_msg == "get_brand_wcpay_request：ok" ) {
+								        	   $.ajax({
+								        			type: "post",
+													url: "/payFinish",
+													data: {
+														orderId:<%=orderId%>
+													},
+													dataType : "json",
+													success : function(data) {
+														if(data){
+															window.location.href="detailOrderMessage.jsp?orderId=<%=orderId%>";
+														}else{
+															alert("付款失败，请重新付款");
+															window.location.reload();
+														}
+													},
+													error : function() {
+														alert("网络异常");
+														window.location.href="detailOrderMessage.jsp?orderId=<%=orderId%>";
+													}
+								        	   });
+								           }else{
+								        	   $('#areaSelect').removeAttr("disabled");
+								           }
+								       }
+								); 
+							}
+							
+						},
+						error : function() {
+							alert("网络异常");
+							$('#areaSelect').removeAttr("disabled");
+						}
+						
+					});
+					
+				
 				});
 			}
 			

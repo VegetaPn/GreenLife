@@ -31,23 +31,12 @@ public class PlaceOrderTest {
 	
 	@Test
 	public void testPlaceOrder(){
-		GoodsOrder goodsOrder = new GoodsOrder();
-		
-		goodsOrder.setAddrDetail("地址");
-		goodsOrder.setGoodsId(1);
-		goodsOrder.setGoodsNum(2);
-		goodsOrder.setGroupMinnum(2);
-		goodsOrder.setMailPrice(0);
-		goodsOrder.setOrderState(1);
-		goodsOrder.setPhoneNumber("1888");
-		goodsOrder.setReceiverName("afsa");
-		goodsOrder.setSendTime("aa");
-		goodsOrder.setTotalPrice(0.01);
-		goodsOrder.setWechatId("ofK5FwyPHRh9EaEJRj9cgMK4uJrg");
+		int orderId = 1;
+
 		
 		String userIp = "192.168.1.1";
 	
-		WechatService.placeOrder(goodsOrder, userIp);
+		WechatService.placeOrder(orderId, userIp);
 		
 	}
 }
