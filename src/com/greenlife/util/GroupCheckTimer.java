@@ -19,7 +19,6 @@ public class GroupCheckTimer{
 			e.printStackTrace();
 		}
 		long in=midnightDate.getTime()-datetime.getTime();
-		//立刻执行，然后每隔1h执行一次
 		timer.schedule(new GroupCheckTask(), 0, 1000*60*60);
 	}
 	public void timerStop(){
