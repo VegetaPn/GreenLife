@@ -88,8 +88,7 @@
     <servlet-name>PayServlet</servlet-name>
     <url-pattern>/pay</url-pattern>
   </servlet-mapping>
-
- <servlet>
+  <servlet>
     <servlet-name>PayFinishServlet</servlet-name>
     <servlet-class>com.greenlife.client.controller.PayFinishServlet</servlet-class>
   </servlet>
