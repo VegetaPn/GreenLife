@@ -99,6 +99,24 @@ html,body
         
 }
 
+.middleHint
+{
+    width:60%;
+    background-color:#F76F00;
+    color:#E4E4E4;
+    margin-left:20%;
+    
+    clear:both;
+    text-align:center;    
+    
+    height:20px;
+    font-size: 10px;
+    margin-top:10px;
+    margin-bottom: 3px;
+    line-height: 20px;
+        
+}
+
 .orderMessage
 {
     
@@ -226,6 +244,15 @@ html,body
         line-height: 40px;
     }
 
+	.middleHint
+    {   
+                
+        height:20px;
+	    font-size: 10px;
+	    margin-top:10px;
+	    line-height: 20px;
+    }
+
     .tagLeft
     {        
         font-size:20px;
@@ -267,6 +294,14 @@ html,body
         margin-top:14px;
         margin-bottom: 14px;
         line-height: 45px;
+    }
+    
+    .middleHint
+    {                
+        height:24px;
+	    font-size: 12px;
+	    margin-top:12px;
+	    line-height: 24px;
     }
 
     .tagLeft
@@ -312,6 +347,14 @@ html,body
         line-height: 50px;
     }
 
+	.middleHint
+    {                
+        height:28px;
+	    font-size: 14px;
+	    margin-top:14px;
+	    line-height: 28px;
+    }
+
     .tagLeft
     {        
         font-size:26px;
@@ -352,6 +395,14 @@ html,body
         margin-top:16px;
         margin-bottom: 16px;
         line-height: 50px;
+    }
+    
+    .middleHint
+    {                
+        height:32px;
+	    font-size: 16px;
+	    margin-top:16px;
+	    line-height: 32px;
     }
 
     .tagLeft
@@ -395,6 +446,14 @@ html,body
         margin-top:18px;
         margin-bottom: 18px;
         line-height: 55px;
+    }
+    
+    .middleHint
+    {                
+        height:36px;
+	    font-size: 18px;
+	    margin-top:18px;
+	    line-height: 36px;
     }
 
     .tagLeft

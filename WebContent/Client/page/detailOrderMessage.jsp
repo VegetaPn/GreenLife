@@ -1,7 +1,8 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.greenlife.dao.*"
 	import="com.greenlife.model.*" import="java.util.*"
-	import="java.util.Properties" import="com.greenlife.util.*" import="java.text.SimpleDateFormat"%>
+	import="java.util.Properties" import="com.greenlife.util.*"
+	import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,6 @@
 		String productImg = PropertiesUtil.getPath() + goodsinfo.getPackagePath() + "normal.jpg";
 
 		String time = orderToShow.getSendTime();
-	
 	%>
 
 	<jsp:include page="header.jsp" />
@@ -66,7 +66,7 @@
 							else
 							{
 								out.write("(成团价)" + goodsinfo.getGoodsDiscontPrice() + "元");
-								
+
 							}
 						%>
 					</div>
@@ -90,6 +90,45 @@
 			</div>
 
 
+			
+
+			<%
+				if (orderstate == 1 || orderstate == 11)
+				{
+					//待付款
+			%>
+			<div class="middleHint">待付款</div>
+			<%
+				}
+				else if (orderstate == 2)
+				{
+					//待成团
+			%>
+			
+			<%
+				}
+				else if (orderstate == 3)
+				{
+					//待发货
+			%>
+			<div class="middleHint">开团成功</div>
+			<%
+				}
+				else if (orderstate == 5 || orderstate == 14)
+				{
+			%>
+			<div class="middleHint">交易成功</div>
+			<%
+				}
+			%>
+			
+		</div>
+
+
+
+		<div class="moreMessage">
+			
+
 			<%
 				if (orderstate == 1 || orderstate == 11)
 				{
@@ -104,15 +143,16 @@
 				{
 					//待成团
 			%>
-			<div class="functionButton" onclick="location.href='group.jsp?groupId=<%=orderToShow.getGroupId()%>'">约好友成团</div>
 			
+
 			<%
 				}
-				else if (orderstate == 3 || orderstate == 12)
+				else if (orderstate == 3)
 				{
 					//待发货
 			%>
-
+				<div class="functionButton"
+				onclick="location.href='group.jsp?groupId=<%=orderToShow.getGroupId()%>'">约好友成团</div>
 			<%
 				}
 				else if (orderstate == 5 || orderstate == 14)
@@ -123,6 +163,7 @@
 			<%
 				}
 			%>
+		
 		</div>
 
 		<div class="moreMessage">
