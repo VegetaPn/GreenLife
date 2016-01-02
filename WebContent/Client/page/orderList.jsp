@@ -72,7 +72,7 @@
         </div>
         <div id="content">
                 <%
-                    for (int orderIndex = 0; orderIndex < orderAmount; orderIndex++)
+                    for (int orderIndex = orderAmount-1; orderIndex >= 0; orderIndex--)
                         {
                                 orderToShow = orderList.get(orderIndex);
                                 goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
@@ -223,7 +223,7 @@
                                         {
                                                 //待成团
                                 %>
-                                <div class="functionButton" onclick="location.href='payForOrder.jsp?gourpId=<%=orderToShow.getGroupId()%>">约好友成团</div>
+                                <div class="functionButton" onclick="javascript:location.href='group.jsp?groupId=<%=orderToShow.getGroupId()%>'">约好友成团</div>
                               
                                 <%
                                     }

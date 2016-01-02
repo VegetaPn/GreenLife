@@ -165,7 +165,7 @@
 		</div>
 		
 		<div id="joinGroupDiv">
-			<span id="joinGroup">我要参团</span>
+			<span id="joinGroup" onclick="javascript:location.href='purchase.jsp?group=<%=groupId %>&goodsId=<%=goodsId%>'">我要参团</span>
 		</div>
 		
 		

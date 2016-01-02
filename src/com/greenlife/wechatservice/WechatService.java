@@ -12,6 +12,7 @@ import java.net.URLConnection;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import java.util.Collections;
@@ -31,9 +32,11 @@ import org.apache.http.impl.client.HttpClients;
 
 import com.greenlife.dao.GoodsInfoDao;
 import com.greenlife.dao.GoodsOrderDao;
+import com.greenlife.dao.TodayGroupDao;
 import com.greenlife.dao.UserInfoDao;
 import com.greenlife.model.GoodsInfo;
 import com.greenlife.model.GoodsOrder;
+import com.greenlife.model.TodayGroup;
 import com.greenlife.model.UserInfo;
 import com.greenlife.util.PropertiesUtil;
 import com.thoughtworks.xstream.XStream;
@@ -521,7 +524,13 @@ public class WechatService {
 		String out_trade_no = notifyInfo.getOut_trade_no();
 		GoodsOrder goodsOrder = GoodsOrderDao.getGoodsOrderByOutTradeNo(out_trade_no);
 		
-		if(goodsOrder.getOrderState() == 2 || goodsOrder.getOrderState() == 12){
+		if(goodsOrder == null){
+			return false;
+		}
+		
+		int orderState = goodsOrder.getOrderState();
+		
+		if(orderState == 2 || orderState == 12){
 			return true;
 		}
 		
@@ -530,16 +539,93 @@ public class WechatService {
 			return true;
 		}
 
-		String transaction_id = notifyInfo.getTransaction_id();
+		GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsOrder.getGoodsId());
 		
-
-		
-		goodsOrder.setTransactionId(transaction_id);
-		goodsOrder.setOrderState(goodsOrder.getOrderState()+1);
-		
-		if(!GoodsOrderDao.updateGoodsOrder(goodsOrder)){
+		if(goodsInfo == null){
 			return false;
 		}
+		
+		goodsInfo.setGoodsSoldnum(goodsInfo.getGoodsSoldnum()+goodsOrder.getGoodsNum());
+		if(!GoodsInfoDao.updateGoodsInfo(goodsInfo)){
+			return false;
+		}
+		
+		String transaction_id = notifyInfo.getTransaction_id();
+		goodsOrder.setTransactionId(transaction_id);
+		
+		
+		
+		int groupId = goodsOrder.getGroupId();
+		
+		if(orderState == 1 && groupId == 0){
+			TodayGroup todayGroup = new TodayGroup();
+			todayGroup.setGoodsId(goodsOrder.getGoodsId());
+			todayGroup.setGroupState(0);
+			
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
+			String startTime = sdf.format(new Date());
+			todayGroup.setStartTime(startTime);
+			todayGroup.setWechatId(goodsOrder.getWechatId());
+			
+			int newGroupId = TodayGroupDao.addTodayGroup(todayGroup);
+			if(newGroupId == -1){
+				return false;
+			}
+			goodsOrder.setGoodsId(newGroupId);
+			
+			goodsOrder.setOrderState(2);
+			if(GoodsOrderDao.updateGoodsOrder(goodsOrder)){
+				return false;
+			}
+		}else if(orderState == 1 && groupId != 0){
+			TodayGroup todayGroup = TodayGroupDao.getTodayGroup(groupId);
+			
+			//已成团，订单状态转到待发货
+			if(todayGroup.getGroupId() == 1){
+				goodsOrder.setOrderState(3);
+				if(GoodsOrderDao.updateGoodsOrder(goodsOrder)){
+					return false;
+				}
+			}else{				
+				//检查已参团人数
+				List<GoodsOrder> goodsOrders = GoodsOrderDao.getGoodsOrderListByGroupId(groupId);
+				int joinGroupNum = 0;
+				
+				if(joinGroupNum+1 >= goodsOrder.getGroupMinnum()){
+					todayGroup.setGroupState(1);
+					
+					if(!TodayGroupDao.updateTodayGroup(todayGroup)){
+						return false;
+					}
+					
+					for(GoodsOrder oGoodsOrder : goodsOrders){
+						if(oGoodsOrder.getOrderState() == 2){
+							oGoodsOrder.setOrderState(3);
+							GoodsOrderDao.updateGoodsOrder(oGoodsOrder);
+						}
+					}
+					goodsOrder.setOrderState(3);
+					GoodsOrderDao.updateGoodsOrder(goodsOrder);
+					
+				}else{
+					goodsOrder.setOrderState(2);
+					if(GoodsOrderDao.updateGoodsOrder(goodsOrder)){
+						return false;
+					}
+				}
+				
+				
+			}
+		
+		}else if(orderState == 11){
+			goodsOrder.setOrderState(12);
+			if(GoodsOrderDao.updateGoodsOrder(goodsOrder)){
+				return false;
+			}
+		}
+		
+		
 		
 		return true;
 	}

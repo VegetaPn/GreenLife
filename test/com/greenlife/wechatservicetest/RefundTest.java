@@ -30,7 +30,7 @@ public class RefundTest {
 	
 	@Test
 	public void testRefund(){
-		GoodsOrder goodsOrder = GoodsOrderDao.getGoodsOrderById(47);
+		GoodsOrder goodsOrder = GoodsOrderDao.getGoodsOrderById(48);
 	
 		WechatService.refund(goodsOrder);
 		

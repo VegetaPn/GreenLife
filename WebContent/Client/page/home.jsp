@@ -58,7 +58,7 @@ import="java.util.Date"
 		<%} %>
 		</div>
 		<%
-		for(int i=0;i<goodsList.size();i++){		
+		for(int i=goodsList.size()-1;i>=0;i--){		
 		
 			GoodsInfo gi = goodsList.get(i);
 			if(GoodsInfoService.getGoodsStatus(gi) != 3){

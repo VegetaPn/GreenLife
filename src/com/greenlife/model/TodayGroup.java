@@ -6,10 +6,11 @@ public class TodayGroup {
 	private int groupState;
 	private int goodsId;
 	private String wechatId;
-	
+	private int isDelete;
 	public int getGroupId() {
 		return groupId;
 	}
+
 	public void setGroupId(int groupId) {
 		this.groupId = groupId;
 	}
@@ -37,5 +38,10 @@ public class TodayGroup {
 	public void setWechatId(String wechatId) {
 		this.wechatId = wechatId;
 	}
-	
+	public int getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
+	}
 }

@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.greenlife.dao.GoodsOrderDao;
+import com.greenlife.dao.TodayGroupDao;
 import com.greenlife.model.GoodsOrder;
+import com.greenlife.model.TodayGroup;
 import com.greenlife.wechatservice.WechatService;
 
 
@@ -60,19 +62,25 @@ public class PurchaseServlet extends HttpServlet {
 		 goodsOrder.setSendTime(send_time);
 		 
 		 Date now = new Date(); 
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		 String tradeTime = dateFormat.format( now ); 
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+		 String tradeTime = dateFormat.format(now); 
 		 goodsOrder.setTradeTime(tradeTime);
 		 goodsOrder.setMailPrice(0);
 		 
 		 if(group.equals("true")){
 			 goodsOrder.setOrderState(1);
 		 }
-		 else{
+		 else if(group.equals("false")){
 			 goodsOrder.setOrderState(11);
+		 } else{
+			 int groupId = Integer.parseInt(group);
+			 
+			 TodayGroup todayGroup = TodayGroupDao.getTodayGroup(groupId);
+			 if(todayGroup.getIsDelete() == 1){
+				 return;
+			 }
+			 goodsOrder.setGroupId(groupId);
 		 }
-		 
-		 
 		 
 		 
 		 int orderId = GoodsOrderDao.addGoodsOrder(goodsOrder);

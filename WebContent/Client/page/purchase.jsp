@@ -13,12 +13,25 @@ int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 String group = request.getParameter("group");
 
+boolean notClick = false;
+
+if(GoodsInfoService.getGoodsStatus(goodsInfo)!=1){
+	notClick = true;
+}
+
 double price = 0;
 if(group.equals("false")){
 	price = goodsInfo.getGoodsPrice();
 }
-else{
+else if(group.equals("true")){
 	price = goodsInfo.getGoodsDiscontPrice();
+}else{
+	price = goodsInfo.getGoodsDiscontPrice();
+	int groupId = Integer.parseInt(group);
+	TodayGroup todayGroup = TodayGroupDao.getTodayGroup(groupId);
+	 if(todayGroup.getIsDelete() == 1){
+		 notClick = true;
+	 }
 }
 
 //剩余数量
@@ -156,7 +169,7 @@ for(int i =0; i<addressInfos.size();i++){
 		<!--最底层-->
 		<div id="dSubmit">
 			<div class="right">
-				<div id="iSubmit" <%=GoodsInfoService.getGoodsStatus(goodsInfo)!=1?"disabled='disabled' style='background-color:gray'":"" %>>确认支付</div>
+				<div id="iSubmit" <%=notClick?"disabled='disabled' style='background-color:gray'":"" %>>确认支付</div>
 			</div>
 			<div class="left">实付款：<span><span id="sTotalPrice"><%=price%></span>元</span></div>
 		</div>

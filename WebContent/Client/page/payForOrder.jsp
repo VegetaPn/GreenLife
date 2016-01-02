@@ -170,9 +170,8 @@
 			
 			function onBridgeReady(){
 				
-				
-				$("#payButton").click(function(){
-					$("#payButton").attr("disabled","disabled");
+					
+				$("#payButton").one("click",function(){			
 					$.ajax({
 						type: "post",
 						url: "/pay",
@@ -221,7 +220,7 @@
 													}
 								        	   });
 								           }else{
-								        	   $('#areaSelect').removeAttr("disabled");
+								        	   window.location.reload();
 								           }
 								       }
 								); 
@@ -230,7 +229,7 @@
 						},
 						error : function() {
 							alert("网络异常");
-							$('#areaSelect').removeAttr("disabled");
+							window.location.reload();
 						}
 						
 					});

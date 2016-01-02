@@ -104,7 +104,7 @@
 				{
 					//待成团
 			%>
-			<div class="functionButton" onclick="location.href='payForOrder.jsp?gourpId=<%=orderToShow.getGroupId()%>">约好友成团</div>
+			<div class="functionButton" onclick="location.href='group.jsp?groupId=<%=orderToShow.getGroupId()%>'">约好友成团</div>
 			
 			<%
 				}
