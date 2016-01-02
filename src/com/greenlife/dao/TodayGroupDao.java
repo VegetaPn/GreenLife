@@ -19,7 +19,7 @@ public class TodayGroupDao {
 	
 	
 	/*
-	 * ¸ù¾ÝÍÅ×´Ì¬ÒÔ¼°¾Ý¿ªÊ¼ÈÕÆÚµÄÌìÊý·µ»ØÁÐ±í
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½Ô¼ï¿½ï¿½Ý¿ï¿½Ê¼ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	 */
 	public static List<TodayGroup> getOverdueOrder(int groupState, int day){
 		List<TodayGroup> list = new ArrayList<TodayGroup>();
@@ -49,6 +49,7 @@ public class TodayGroupDao {
 				group.setGroupState(rs.getInt("group_state"));
 				group.setStartTime(time);
 				group.setWechatId(rs.getString("wechat_id"));
+				group.setIsDelete(rs.getInt("is_delete"));
 				
 				list.add(group);
 			}
@@ -80,6 +81,7 @@ public class TodayGroupDao {
 				group.setGroupState(rs.getInt("group_state"));
 				group.setStartTime(rs.getString("start_time"));
 				group.setWechatId(rs.getString("wechat_id"));
+				group.setIsDelete(rs.getInt("is_delete"));
 			}else{
 				return null;
 			}
@@ -158,8 +160,8 @@ public class TodayGroupDao {
 	
 	public static int addTodayGroup(TodayGroup group){
 		String sql = "INSERT INTO `greenlife`.`today_group` "
-				+ "(`start_time`, `group_state`, `goods_id`, `wechat_id`) "
-				+ "VALUES (?, ?, ?, ?);";
+				+ "(`start_time`, `group_state`, `goods_id`, `wechat_id`, `is_delete`) "
+				+ "VALUES (?, ?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
@@ -167,6 +169,7 @@ public class TodayGroupDao {
 			ps.setInt(2, group.getGroupState());
 			ps.setInt(3, group.getGoodsId());
 			ps.setString(4, group.getWechatId());
+			ps.setInt(5, group.getIsDelete());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -192,10 +195,11 @@ public class TodayGroupDao {
 	
 	public static boolean updateTodayGroup(TodayGroup group){
 		String sql = "UPDATE `greenlife`.`today_group` SET "
-				+"start_time = (?) "
-				+"group_state = (?)"
-				+"goods_id = (?)"
-				+"wechat_id = (?)"
+				+"start_time = (?),"
+				+"group_state = (?),"
+				+"goods_id = (?),"
+				+"wechat_id = (?),"
+				+"is_delete = (?)"
 				+"WHERE group_id = (?);";
 	
 		Connection conn = new DBUtil().getConn();
@@ -205,7 +209,8 @@ public class TodayGroupDao {
 			ps.setInt(2, group.getGroupState());
 			ps.setInt(3, group.getGoodsId());
 			ps.setString(4, group.getWechatId());
-			ps.setInt(5, group.getGroupId());
+			ps.setInt(5, group.getIsDelete());
+			ps.setInt(6, group.getGroupId());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
