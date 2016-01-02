@@ -581,7 +581,7 @@ public class WechatService {
 			TodayGroup todayGroup = TodayGroupDao.getTodayGroup(groupId);
 			
 			//已成团，订单状态转到待发货
-			if(todayGroup.getGroupId() == 1){
+			if(todayGroup.getGroupState() == 1){
 				goodsOrder.setOrderState(3);
 				if(!GoodsOrderDao.updateGoodsOrder(goodsOrder)){
 					return false;
@@ -590,6 +590,12 @@ public class WechatService {
 				//检查已参团人数
 				List<GoodsOrder> goodsOrders = GoodsOrderDao.getGoodsOrderListByGroupId(groupId);
 				int joinGroupNum = 0;
+				
+				for(GoodsOrder oGoodsOrder : goodsOrders){
+					if(oGoodsOrder.getOrderState() == 2){
+						joinGroupNum++;
+					}
+				}
 				
 				if(joinGroupNum+1 >= goodsOrder.getGroupMinnum()){
 					todayGroup.setGroupState(1);
