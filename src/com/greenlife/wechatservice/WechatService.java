@@ -521,6 +521,11 @@ public class WechatService {
 		}
 
 		
+		if (notifyInfo.getResult_code().equals("FAIL")) {
+			System.out.println("支付失败（错误描述：" + notifyInfo.getErr_code_des() + "）");
+			return true;
+		}
+
 		String out_trade_no = notifyInfo.getOut_trade_no();
 		GoodsOrder goodsOrder = GoodsOrderDao.getGoodsOrderByOutTradeNo(out_trade_no);
 		
@@ -534,11 +539,7 @@ public class WechatService {
 			return true;
 		}
 		
-		if (notifyInfo.getResult_code().equals("FAIL")) {
-			System.out.println("支付失败（错误描述：" + notifyInfo.getErr_code_des() + "）");
-			return true;
-		}
-
+		
 		GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsOrder.getGoodsId());
 		
 		if(goodsInfo == null){
@@ -552,8 +553,6 @@ public class WechatService {
 		
 		String transaction_id = notifyInfo.getTransaction_id();
 		goodsOrder.setTransactionId(transaction_id);
-		
-		
 		
 		int groupId = goodsOrder.getGroupId();
 		
@@ -572,10 +571,10 @@ public class WechatService {
 			if(newGroupId == -1){
 				return false;
 			}
-			goodsOrder.setGoodsId(newGroupId);
+			goodsOrder.setGroupId(newGroupId);
 			
 			goodsOrder.setOrderState(2);
-			if(GoodsOrderDao.updateGoodsOrder(goodsOrder)){
+			if(!GoodsOrderDao.updateGoodsOrder(goodsOrder)){
 				return false;
 			}
 		}else if(orderState == 1 && groupId != 0){
@@ -584,7 +583,7 @@ public class WechatService {
 			//已成团，订单状态转到待发货
 			if(todayGroup.getGroupId() == 1){
 				goodsOrder.setOrderState(3);
-				if(GoodsOrderDao.updateGoodsOrder(goodsOrder)){
+				if(!GoodsOrderDao.updateGoodsOrder(goodsOrder)){
 					return false;
 				}
 			}else{				
@@ -610,7 +609,7 @@ public class WechatService {
 					
 				}else{
 					goodsOrder.setOrderState(2);
-					if(GoodsOrderDao.updateGoodsOrder(goodsOrder)){
+					if(!GoodsOrderDao.updateGoodsOrder(goodsOrder)){
 						return false;
 					}
 				}
@@ -620,7 +619,7 @@ public class WechatService {
 		
 		}else if(orderState == 11){
 			goodsOrder.setOrderState(12);
-			if(GoodsOrderDao.updateGoodsOrder(goodsOrder)){
+			if(!GoodsOrderDao.updateGoodsOrder(goodsOrder)){
 				return false;
 			}
 		}

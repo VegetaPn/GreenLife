@@ -44,7 +44,15 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("ticket", wechatInfo.getTicket());
 		session.setAttribute("accessToken", wechatInfo.getAccessToken());
 		
-		response.sendRedirect("/Client/page/home.jsp");
+		String requestUrl = request.getParameter("requestUrl");
+		
+		if(requestUrl == null){
+			response.sendRedirect("/Client/page/home.jsp");
+		}else{
+			response.sendRedirect(requestUrl);
+		}
+		
+		
 		
 	}
 	

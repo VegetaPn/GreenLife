@@ -17,6 +17,7 @@ import com.greenlife.dao.GoodsOrderDao;
 import com.greenlife.dao.TodayGroupDao;
 import com.greenlife.model.GoodsOrder;
 import com.greenlife.model.TodayGroup;
+import com.greenlife.services.TodayGroupService;
 import com.greenlife.wechatservice.WechatService;
 
 
@@ -76,9 +77,11 @@ public class PurchaseServlet extends HttpServlet {
 			 int groupId = Integer.parseInt(group);
 			 
 			 TodayGroup todayGroup = TodayGroupDao.getTodayGroup(groupId);
-			 if(todayGroup.getIsDelete() == 1){
+			 if(todayGroup.getIsDelete() == 1 || TodayGroupService.isInGroup(groupId,wechatId)){
 				 return;
 			 }
+			 
+			 goodsOrder.setOrderState(1);
 			 goodsOrder.setGroupId(groupId);
 		 }
 		 

@@ -34,10 +34,34 @@
 	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 	String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"normal.jpg";
 	
-	UserInfo organiser = UserInfoDao.getUserInfo(wechatId);
+	UserInfo organiser = UserInfoDao.getUserInfo(organiserWechatId);
 	
 	List<GoodsOrder> orderList = GoodsOrderDao.getGoodsOrderListByGroupId(groupId);
-	int listSize = orderList.size();
+	
+	int joinNum = 0;
+	
+	int state = 0;
+	int myOrderId = 0;
+	
+	boolean isDelete = false;
+	if(group.getIsDelete() == 1){
+		isDelete = true;
+	}
+	
+	
+	for(GoodsOrder oGoodsOrder : orderList){
+		if(oGoodsOrder.getWechatId().equals(wechatId)){
+			state = oGoodsOrder.getOrderState();
+			myOrderId = oGoodsOrder.getOrderId();
+		}
+		if(oGoodsOrder.getOrderState() >= 2){
+			joinNum++;
+		}
+	}
+	
+	
+	
+	
 %>
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -69,7 +93,7 @@
 
 		String signature = WechatService.buildSignature(noncestr, jsapi_ticket, timestamp, url);
 
-		String appId = (String) session.getAttribute("appid");
+		String appId = PropertiesUtil.getAppId();
 		
 		String smallProductImg = "http://"+PropertiesUtil.getURL()+PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "small.jpg";
 	%>
@@ -158,15 +182,63 @@
 			
 		<div id="groupState">
 			<div>成团最少人数:<span>2</span></div>
-			<div>已参团<span><%=listSize %></span>人</div>
+			<div>已参团<span><%=joinNum %></span>人</div>
 			<div>报名截止：<%=endTime%></div><br/>
 			<div>如果报名截止时未成团，将自动退款</div>
 			
 		</div>
 		
-		<div id="joinGroupDiv">
-			<span id="joinGroup" onclick="javascript:location.href='purchase.jsp?group=<%=groupId %>&goodsId=<%=goodsId%>'">我要参团</span>
-		</div>
+		<%
+			if(!isDelete){	
+		%>
+		
+		<%
+			if(state == 0){
+			
+		%>
+			<div id="joinGroupDiv">
+				<span class="joinGroup" onclick="javascript:location.href='purchase.jsp?group=<%=groupId %>&goodsId=<%=goodsId%>'">我要参团</span>
+			</div>
+		<%
+			}
+		%>
+		
+		
+		<%
+		if(state == 1){
+			
+		%>
+			<div id="joinGroupDiv">
+				<span class="joinGroup" onclick="javascript:location.href='detailOrderMessage.jsp?orderId=<%=myOrderId%>'">去付款</span>
+			</div>
+		<%
+			}
+		%>
+		
+		
+		<%
+		if(state >= 2){
+			
+		%>
+			<div id="joinGroupDiv">
+				<span class="grayJoinGroup">已参团</span>
+			</div>
+		<%
+			}
+		%>
+		
+		<%
+			}else{
+				
+			
+		%>
+		
+			<div id="joinGroupDiv">
+				<span class="grayJoinGroup">已结束</span>
+			</div>
+		<%
+			}
+		%>
 		
 		
 		<div class="interval"></div>	
@@ -174,25 +246,28 @@
 		<div id="label">已参团<hr/></div>
 			
 		<%
-			for(int i=0;i<listSize;i++){
-				GoodsOrder order = orderList.get(i);
-				UserInfo user = UserInfoDao.getUserInfo(order.getWechatId());
+			for(GoodsOrder order : orderList){
+				if(order.getOrderState() >= 2){
+					
 				
-				Date tradeDate = sdf.parse(order.getTradeTime());
-				String tradeTime = showSdf.format(tradeDate);
+					UserInfo user = UserInfoDao.getUserInfo(order.getWechatId());
+					
+					Date tradeDate = sdf.parse(order.getTradeTime());
+					String tradeTime = showSdf.format(tradeDate);
 			
 		%>
 			
-			<div class="inGroup">
-				
-			<img class="avatar" src="<%=user.getPhotoPath()%>"/>
-			<span class="name"><%=user.getWechatName()%></span>
-			<span class="time"><%=tradeTime%></span>  
-			<hr/>
-				
-			</div>
+					<div class="inGroup">
+						
+					<img class="avatar" src="<%=user.getPhotoPath()%>"/>
+					<span class="name"><%=user.getWechatName()%></span>
+					<span class="time"><%=tradeTime%></span>  
+					<hr/>
+						
+					</div>
 				
 		<%
+				}
 			}
 		%>
 		

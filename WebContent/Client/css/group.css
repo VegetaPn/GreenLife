@@ -82,10 +82,19 @@
 	padding-bottom:35px;
 }
 
-#joinGroup{
+.joinGroup{
 	color:#FFFFFF;
 	font-weight:bold;
 	background-color:#F76F00;
+	border-radius:5px;
+	padding:15px 35% 15px 35%;
+}
+
+
+.grayJoinGroup{
+	color:#FFFFFF;
+	font-weight:bold;
+	background-color:gray;
 	border-radius:5px;
 	padding:15px 35% 15px 35%;
 }

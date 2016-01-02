@@ -181,7 +181,7 @@
 						dataType : "json",
 						success : function(data) {
 							if(data == null){
-								alert("服务器异常");
+								alert("订单支付异常");
 								window.location.reload();
 							}else{
 								 WeixinJSBridge.invoke(
