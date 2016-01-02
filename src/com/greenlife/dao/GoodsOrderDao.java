@@ -58,7 +58,49 @@ public class GoodsOrderDao {
 		return goodsOrder;
 	}
 	
-	
+	public static GoodsOrder getGoodsOrderByOutTradeNo(String out_trade_no){
+		GoodsOrder goodsOrder = new GoodsOrder();
+		
+		String sql = "select * from goods_order where out_trade_no = ?";
+		Connection conn = new DBUtil().getConn();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, out_trade_no);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				goodsOrder.setOrderId(rs.getInt("order_id"));
+				goodsOrder.setGoodsId(rs.getInt("goods_id"));
+				goodsOrder.setWechatId(rs.getString("wechat_id"));
+				goodsOrder.setGoodsNum(rs.getInt("goods_num"));
+				goodsOrder.setTradeTime(rs.getString("trade_time"));
+				goodsOrder.setComment(rs.getString("comment"));
+				goodsOrder.setMailPrice(rs.getDouble("mail_price"));
+				goodsOrder.setTotalPrice(rs.getDouble("total_price"));
+				goodsOrder.setGroupId(rs.getInt("group_id"));
+				goodsOrder.setSendTime(rs.getString("send_time"));
+				goodsOrder.setGroupMinnum(rs.getInt("group_minnum"));
+				goodsOrder.setOrderState(rs.getInt("order_state"));
+				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
+				goodsOrder.setReceiverName(rs.getString("addr_detail"));
+				goodsOrder.setReceiverName(rs.getString("receiver_name"));
+				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
+				goodsOrder.setPrepayId(rs.getString("prepay_id"));
+				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+				goodsOrder.setTransactionId(rs.getString("transaction_id"));
+				
+			}else{
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return goodsOrder;
+	}
 	
 	public static boolean deleteGoodsOrder(int orderId){
 		String sql = "delete from goods_order where order_id = ?;";
