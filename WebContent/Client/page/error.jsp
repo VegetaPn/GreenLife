@@ -3,12 +3,15 @@
     import="com.greenlife.util.PropertiesUtil"%>
  <%@ page isErrorPage="true"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	String url = PropertiesUtil.getURL();
+%>
 
 <HTML>
 <HEAD>
 <TITLE>抱歉，出错了</TITLE>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<META http-equiv=refresh content="5;URL = http://www.xunwe.cn/">
+<META http-equiv=refresh content="5;URL = http://<%=url %>/">
 <STYLE type=text/css></STYLE>
 <LINK type=text/css rel=stylesheet>
 <STYLE type=text/css>
@@ -37,9 +40,7 @@ H1 {
 
 
 <META content="MSHTML 6.00.2800.1458" name=GENERATOR></HEAD>
-<%
-	String url = PropertiesUtil.getURL();
-%>
+
 
 <BODY topMargin=20>
 <TABLE cellSpacing=0 width=600 align=center border=0 cepadding="0">

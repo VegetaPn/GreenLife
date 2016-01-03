@@ -43,7 +43,7 @@
 					<div class="um" onclick="javascript:location.href='orderList.jsp?whatToShow=0'"><img src="../images/profileGroup.png"/><span>待成团</span></div>
 					<div class="um" onclick="javascript:location.href='orderList.jsp?whatToShow=1'"><img src="../images/bankCards.png"/><span>待付款</span></div>
 					<div class="um" onclick="javascript:location.href='orderList.jsp?whatToShow=2'"><img src="../images/truck.png"/><span>待发货</span></div>
-					<div class="um" onclick="javascript:location.href='orderList.jsp?whatToShow=3'"><img src="../images/comment.png"/><span>待评论</span></div>
+					<div class="um" onclick="javascript:location.href='orderList.jsp?whatToShow=3'"><img src="../images/comment.png"/><span>待收货</span></div>
 				</div>
 				
 				

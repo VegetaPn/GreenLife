@@ -66,7 +66,7 @@
                                 }
                                 else if (whatToShow == 3)
                                 {
-                                        out.write("订单列表-待评论");
+                                        out.write("订单列表-待收货");
                                 }
                         %>
                 </div>
@@ -96,9 +96,9 @@
                                                 //跳过不是待发货的条目
                                                 continue;
                                         }
-                                        if (whatToShow == 3 && orderstate != 5 && orderstate != 14)
+                                        if (whatToShow == 3 && orderstate != 4 && orderstate != 13)
                                         {
-                                                //跳过不是待评论的条目
+                                                //跳过不是待收货的条目
                                                 continue;
                                         }
                                 }
@@ -240,7 +240,7 @@
                                         else if(orderstate == 3){                       
                                 %>
                                 
-                                  <div class="functionButton" onclick="javascript:location.href='group.jsp?groupId=<%=orderToShow.getGroupId()%>'">邀请好友加入此团</div>
+                                  <div class="functionButton" onclick="javascript:location.href='group.jsp?groupId=<%=orderToShow.getGroupId()%>'">邀请好友参团</div>
                                 <%
                                     }
                                         else if (orderstate == 4 || orderstate == 13)
@@ -250,7 +250,7 @@
 								<div class="functionButton" id="confirmReceive">确认收货</div>
 								<script>
 									$(function(){
-										$("#confirmReceive").click(){
+										$("#confirmReceive").one("click",function(){
 											$.ajax({
 												type: "post",
 												url: "/confirmReceive",
@@ -272,7 +272,7 @@
 													window.location.reload();
 												}
 											});
-										}
+										});
 									});
 								</script>
                                 <%

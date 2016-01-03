@@ -81,7 +81,7 @@
 
 				<div class="middleTag">
 					<div class="tagLeft">实付款：</div>
-					<div class="orangeText" id="paid"><%=orderToShow.getTotalPrice()%></div>
+					<div class="orangeText" id="paid"><%=orderToShow.getTotalPrice()%>元</div>
 				</div>
 
 				<div class="middleTag">
@@ -101,7 +101,7 @@
 			
 				<div class="middleTag">
 					<div class="tagLeft">订单状态：</div>
-					<div class="blackNormal" class="orderState">待付款</div>
+					<div class="blackNormal" id="orderState">待付款</div>
 				</div>
 			<%
 				}
@@ -111,7 +111,7 @@
 			%>
 				<div class="middleTag">
 					<div class="tagLeft">订单状态：</div>
-					<div class="blackNormal" class="orderState">待成团</div>
+					<div class="blackNormal" id="orderState">待成团</div>
 				</div>
 			<%
 				}
@@ -121,7 +121,7 @@
 			%>
 				<div class="middleTag">
 					<div class="tagLeft">订单状态：</div>
-					<div class="blackNormal" class="orderState">参团成功,待发货</div>
+					<div class="blackNormal" id="orderState">参团成功,待发货</div>
 				</div>
 				
 			
@@ -133,7 +133,7 @@
 			%>
 				<div class="middleTag">
 					<div class="tagLeft">订单状态：</div>
-					<div class="blackNormal" class="orderState">待发货</div>
+					<div class="blackNormal" id="orderState">待发货</div>
 				</div>
 				
 			<% 
@@ -142,7 +142,7 @@
 			%>
 				<div class="middleTag">
 					<div class="tagLeft">订单状态：</div>
-					<div class="blackNormal" class="orderState">待收货</div>
+					<div class="blackNormal" id="orderState">待收货</div>
 				</div>
 			<%
 				}
@@ -151,7 +151,7 @@
 			%>
 				<div class="middleTag">
 					<div class="tagLeft">订单状态：</div>
-					<div class="blackNormal" class="orderState">交易成功</div>
+					<div class="blackNormal" id="orderState">交易成功</div>
 				</div>
 			<%
 				}else if(orderstate == 9 || orderstate == 19){
@@ -161,7 +161,7 @@
 			
 				<div class="middleTag">
 					<div class="tagLeft">订单状态：</div>
-					<div class="blackNormal" class="orderState">已取消</div>
+					<div class="blackNormal" id="orderState">已取消</div>
 				</div>
 			
 			<%
@@ -170,7 +170,10 @@
 			
 		</div>
 
-
+		<%
+			if(orderstate != 9 && orderstate != 19){
+		
+		%>
 
 		<div class="moreMessage">
 			
@@ -185,7 +188,7 @@
 			<div id="cancelOrder" class="functionButton">取消订单</div>
 			<script>
 				$(function(){
-					$("#cancelOrder").click(){
+					$("#cancelOrder").one("click",function(){
 						$.ajax({
 							type: "post",
 							url: "/cancelOrder",
@@ -207,7 +210,7 @@
 								window.location.reload();
 							}
 						});
-					}
+					});
 				});
 			</script>
 			<%
@@ -226,7 +229,7 @@
 					//待发货
 			%>
 				<div class="functionButton"
-				onclick="location.href='group.jsp?groupId=<%=orderToShow.getGroupId()%>'">邀请好友加入此团</div>
+				onclick="location.href='group.jsp?groupId=<%=orderToShow.getGroupId()%>'">邀请好友参团</div>
 			<%
 				}else if(orderstate == 4 || orderstate == 13){
 			
@@ -235,7 +238,7 @@
 				<div class="functionButton" id="confirmReceive">确认收货</div>
 				<script>
 				$(function(){
-					$("#confirmReceive").click(){
+					$("#confirmReceive").one("click",function(){
 						$.ajax({
 							type: "post",
 							url: "/confirmReceive",
@@ -257,7 +260,7 @@
 								window.location.reload();
 							}
 						});
-					}
+					});
 				});
 			</script>
 			<% 
@@ -272,6 +275,11 @@
 			%>
 		
 		</div>
+
+		<%
+			}
+		
+		%>
 
 		<div class="moreMessage">
 

@@ -173,7 +173,7 @@ import="java.util.Date"
 				
 				<div class="undetermined" onclick="javascript:location.href='orderList.jsp?whatToShow=3'">
 	
-					<div class="um">待评论</div>
+					<div class="um">待收货</div>
 				
 				</div>
 			

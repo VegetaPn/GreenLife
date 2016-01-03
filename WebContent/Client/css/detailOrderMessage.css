@@ -155,7 +155,7 @@ html,body
     padding-right:3%;
 }
 
-.orderState{
+#orderState{
 	float:left;
     text-align: right;
     width:48%;
