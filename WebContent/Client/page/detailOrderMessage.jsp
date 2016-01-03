@@ -62,22 +62,48 @@
 						<%
 							if (orderstate > 10)
 							{
-								out.write(goodsinfo.getGoodsPrice() + "元");
+								out.write(goodsinfo.getGoodsPrice() + "元/"+goodsinfo.getGoods_unit());
 							}
 							else
 							{
-								out.write("(成团价)" + goodsinfo.getGoodsDiscontPrice() + "元");
+								out.write("(成团价)" + goodsinfo.getGoodsDiscontPrice() + "元/"+goodsinfo.getGoods_unit());
 
 							}
 						%>
 					</div>
 				</div>
+				
+				<div class="middleTag">
+					<div class="tagLeft">购买数量：</div>
+					<div class="blackNormal" id="purchaseNum"><%=orderToShow.getGoodsNum()%>份</div>
+				</div>
 
+				<%
+					if(orderToShow.getMailPrice() == 0){
+				%>
+				
+				
 				<div class="middleTag">
 					<div class="tagLeft">运费：</div>
-					<div class="orangeText" id="freight"><%=orderToShow.getMailPrice()%>元
+					<div class="blackNormal" id="freight">免邮费
 					</div>
 				</div>
+
+				<%
+					}else{
+						
+					
+				%>
+				<div class="middleTag">
+					<div class="tagLeft">运费：</div>
+					<div class="blackNormal" id="freight"><%=orderToShow.getMailPrice()%>元
+					</div>
+				</div>
+				
+				<%
+				
+					}
+				%>
 
 				<div class="middleTag">
 					<div class="tagLeft">实付款：</div>
@@ -171,7 +197,7 @@
 		</div>
 
 		<%
-			if(orderstate != 9 && orderstate != 19){
+			if(orderstate != 9 && orderstate != 19 && orderstate != 12){
 		
 		%>
 

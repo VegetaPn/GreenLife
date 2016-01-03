@@ -136,7 +136,7 @@ import="java.util.Date"
 			
 			<div class="service">
 				<div class="func" onclick="javascript:location.href='home.jsp'">
-					<div class="icon"><img src="../images/home.png"/></div>
+					<div class="icon"><img src="../images/blackHome.png"/></div>
 					<div class="myFunc">首页</div>
 				
 				</div>

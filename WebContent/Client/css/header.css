@@ -18,21 +18,25 @@ html,body {
 #leftButton{
 	float:left;
 	margin-left:10px;
+	margin-top:3px;
 }
 
 #homeButton{
 	float:right;
     margin-right:10px;
+    margin-top:3px;
 }
 
 #leftButton img{
-	width:36px;
-	height:36px;
+	width:26px;
+	height:26px;
+	
 }
 
 #homeButton img{
-	width:36px;
-	height:36px;
+	width:26px;
+	height:26px;
+	
 }
 
 #title{
@@ -58,13 +62,14 @@ html,body {
 
 
 	#leftButton img{
-		width:32px;
-		height:32px;
+		width:26px;
+		height:26px;
+	
 	}
 
 	#homeButton img{
-		width:32px;
-		height:32px;
+		width:26px;
+		height:26px;
 	}
 
 	#title{
@@ -85,13 +90,13 @@ html,body {
 
 
 	#leftButton img{
-		width:36px;
-		height:36px;
+		width:32px;
+		height:32px;
 	}
 
 	#homeButton img{
-		width:36px;
-		height:36px;
+		width:32px;
+		height:32px;
 	}
 
 	#title{
@@ -113,13 +118,13 @@ html,body {
 
 
 	#leftButton img{
-		width:40px;
-		height:40px;
+		width:36px;
+		height:36px;
 	}
 
 	#homeButton img{
-		width:40px;
-		height:40px;
+		width:36px;
+		height:36px;
 	}
 
 	#title{
@@ -139,13 +144,13 @@ html,body {
 
 
 	#leftButton img{
-		width:44px;
-		height:44px;
+		width:40px;
+		height:40px;
 	}
 
 	#homeButton img{
-		width:44px;
-		height:44px;
+		width:40px;
+		height:40px;
 	}
 
 	#title{
@@ -166,13 +171,13 @@ html,body {
 
 
 	#leftButton img{
-		width:48px;
-		height:48px;
+		width:44px;
+		height:44px;
 	}
 
 	#homeButton img{
-		width:48px;
-		height:48px;
+		width:44px;
+		height:44px;
 	}
 
 	#title{
