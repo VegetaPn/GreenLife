@@ -17,10 +17,16 @@ public class GoodsOrderService {
 					return false;
 				}
 			}
+			if(state >= 3){
+				return false;
+			}
 			order.setOrderState(9);
 		}else{
 			if(state == 11){
 				WechatService.closeOrder(order);
+			}
+			if(state >= 12){
+				return false;
 			}
 			order.setOrderState(19);
 		}

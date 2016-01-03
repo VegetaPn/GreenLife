@@ -137,7 +137,34 @@
 			%>
 			<div class="functionButton"
 				onclick="javascript:location.href='payForOrder.jsp?orderId=<%=orderToShow.getOrderId()%>'">去付款</div>
-			<div class="functionButton" onclick="">取消订单</div>
+			<div id="cancelOrder" class="functionButton">取消订单</div>
+			<script>
+				$(function(){
+					$("#cancelOrder").click(){
+						$.ajax({
+							type: "post",
+							url: "/cancelOrder",
+							data: {
+								orderId:<%=orderId%>
+							},
+							dataType : "json",
+							success : function(data) {
+								if(data){
+									window.location.reload();
+								}else{
+									alert("取消订单失败，服务器异常");
+									window.location.reload();
+								}
+								
+							},
+							error : function() {
+								alert("网络异常");
+								window.location.reload();
+							}
+						});
+					}
+				});
+			</script>
 			<%
 				}
 				else if (orderstate == 2)
