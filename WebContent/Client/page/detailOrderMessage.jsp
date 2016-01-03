@@ -154,6 +154,17 @@
 					<div class="blackNormal" class="orderState">交易成功</div>
 				</div>
 			<%
+				}else if(orderstate == 9 || orderstate == 19){
+					
+				
+			%>
+			
+				<div class="middleTag">
+					<div class="tagLeft">订单状态：</div>
+					<div class="blackNormal" class="orderState">已取消</div>
+				</div>
+			
+			<%
 				}
 			%>
 			

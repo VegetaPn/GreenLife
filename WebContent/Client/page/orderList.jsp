@@ -12,7 +12,7 @@
         content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" type="text/css" href="../css/header.css" />
 <link rel="stylesheet" type="text/css" href="../css/orderList.css" />
-
+<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
 
 
 
@@ -148,9 +148,11 @@
                                         {
                                                 out.write("已完成");
                                         }
-                                        else
+                                        else if (orderstate == 9 || orderstate == 19)
                                         {
-                                                out.write("未知类型订单");
+                                                out.write("已取消");
+                                        }else{
+                                        	 out.write("未知类型订单");
                                         }
                                  %>
                                 </span>
@@ -228,18 +230,51 @@
                               
                                 <%
                                     }
-                                        else if (orderstate == 3 || orderstate == 12)
+                                        else if (orderstate == 12)
                                         {
                                                 //待发货
                                 %>
                                 
+                                <%
+                                       }
+                                        else if(orderstate == 3){                       
+                                %>
+                                
+                                  <div class="functionButton" onclick="javascript:location.href='group.jsp?groupId=<%=orderToShow.getGroupId()%>'">邀请好友加入此团</div>
                                 <%
                                     }
                                         else if (orderstate == 4 || orderstate == 13)
                                         {
                                                 //待收货
                                 %>
-
+								<div class="functionButton" id="confirmReceive">确认收货</div>
+								<script>
+									$(function(){
+										$("#confirmReceive").click(){
+											$.ajax({
+												type: "post",
+												url: "/confirmReceive",
+												data: {
+													orderId:<%=orderToShow.getOrderId()%>
+												},
+												dataType : "json",
+												success : function(data) {
+													if(data){
+														window.location.reload();
+													}else{
+														alert("确认收货失败，服务器异常");
+														window.location.reload();
+													}
+													
+												},
+												error : function() {
+													alert("网络异常");
+													window.location.reload();
+												}
+											});
+										}
+									});
+								</script>
                                 <%
                                     }
                                         else if (orderstate == 5 || orderstate == 14)
@@ -247,7 +282,7 @@
                                                 //已完成
                                 %>
                                 <div class="functionButton" onclick="location.href='comment.jsp?orderId=<%=orderToShow.getOrderId()%>">我来说两句</div>
-                                <div class="functionButton" onclick="location.href='productHome.jsp?orderId=<%=orderToShow.getOrderId()%>">分享给好友</div>
+                           
                                 <%
                                     }
                                 %>
