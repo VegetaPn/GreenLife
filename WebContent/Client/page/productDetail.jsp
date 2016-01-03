@@ -2,7 +2,7 @@
     import="com.greenlife.dao.*" import="com.greenlife.model.*" import="java.util.*"
     import="com.greenlife.util.PropertiesUtil"
 %>
-
+<%@ page errorPage="error.jsp"%>
 <!DOCTYPE html>
 
 <%

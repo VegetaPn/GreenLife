@@ -217,14 +217,15 @@
 }
 
 #teamPurchase{
-	padding:10px 10px 0 10px;		
+	padding-top:10px;
+	padding-right:5px;
 	float:right;
 	
 }
 
 #personalPurchase{
 	padding-top:10px;
-	padding-left:10px;
+	padding-left:5px;
 	
 	float:left;
 	
@@ -1080,4 +1081,21 @@
 		font-size:34px;
 		
 	}         
+} 
+
+
+
+
+@media screen and (max-width: 350px) {   
+	
+	.salesPrice{
+		font-size:22px;
+		
+		
+	}
+	
+	.salesPrice span{
+		font-size:28px;
+	}
+
 } 

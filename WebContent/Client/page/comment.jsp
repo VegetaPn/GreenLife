@@ -5,6 +5,7 @@ import="java.text.SimpleDateFormat"
 import="com.greenlife.util.*"
 import="com.greenlife.wechatservice.*"
 %>
+<%@ page errorPage="error.jsp"%>
 <!DOCTYPE html>
 
 <% 

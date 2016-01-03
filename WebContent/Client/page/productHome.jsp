@@ -4,7 +4,7 @@
 	import="java.text.SimpleDateFormat" import="com.greenlife.util.*"
 	import="com.greenlife.wechatservice.*"
 	import="com.greenlife.services.*"%>
-
+<%@ page errorPage="error.jsp"%>
 
 <%
 	String wechatId = (String) session.getAttribute("wechatId");

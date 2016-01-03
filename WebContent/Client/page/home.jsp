@@ -9,7 +9,7 @@ import="java.text.SimpleDateFormat"
 import="java.util.Calendar" 
 import="java.util.Date"
 %>
-
+<%@ page errorPage="error.jsp"%>
 <!DOCTYPE html>
 <%	
 	List<GoodsInfo> goodsList = new ArrayList<GoodsInfo>();

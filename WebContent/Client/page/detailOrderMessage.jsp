@@ -3,6 +3,7 @@
 	import="com.greenlife.model.*" import="java.util.*"
 	import="java.util.Properties" import="com.greenlife.util.*"
 	import="java.text.SimpleDateFormat"%>
+	<%@ page errorPage="error.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>

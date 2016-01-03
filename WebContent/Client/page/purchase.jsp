@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" 
    import="com.greenlife.model.*"  import="com.greenlife.dao.*" import ="java.util.*"
    import="java.text.*" import="com.greenlife.util.*" import="com.greenlife.services.*" %>
+   <%@ page errorPage="error.jsp"%>
 <!DOCTYPE html>
 
 <%

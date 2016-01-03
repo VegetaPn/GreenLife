@@ -3,7 +3,7 @@
     import="com.greenlife.dao.*" import="com.greenlife.model.*"
     import="com.greenlife.util.*"
 %>
-    
+    <%@ page errorPage="error.jsp"%>
     
 <%
 	int goodsId = Integer.parseInt(request.getParameter("goodsId"));

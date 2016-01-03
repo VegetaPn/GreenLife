@@ -2,6 +2,7 @@
         pageEncoding="UTF-8" import="com.greenlife.dao.*"
         import="com.greenlife.model.*" import="java.util.ArrayList"
         import="java.util.List" import="com.greenlife.util.*"%>
+        <%@ page errorPage="error.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>

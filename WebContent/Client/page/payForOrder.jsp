@@ -3,6 +3,7 @@
 	import="com.greenlife.model.*" import="java.util.*"
 	import="com.greenlife.util.PropertiesUtil"
 	import="com.greenlife.wechatservice.*"%>
+	<%@ page errorPage="error.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
