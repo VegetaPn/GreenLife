@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.greenlife.model.GoodsOrder;
@@ -258,9 +261,126 @@ public class GoodsOrderDao {
 		return true;
 	}
 	
-	public static List<GoodsOrder> getGoodsOrderListByState(int order_state){
+public static ArrayList<GoodsOrder> getGoodsOrderListByStateAndDueDay(int order_state,int day){
 		
-		List<GoodsOrder> orderList = new ArrayList<>();
+		ArrayList<GoodsOrder> orderList = new ArrayList<>();
+		String time = null;
+		String sql = "select * from goods_order where order_state = ?";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, order_state);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				GoodsOrder goodsOrder = new GoodsOrder();
+				time = rs.getString("trade_time");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+				Date d1 = new Date();
+				Date d2 = sdf.parse(time);
+				long diff = d1.getTime() - d2.getTime();
+				long days = diff / (1000 * 60 * 60 * 24);
+				//long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
+				//long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
+				if(days >= day){
+					continue;
+				}
+				
+				goodsOrder.setOrderId(rs.getInt("order_id"));
+				goodsOrder.setGoodsId(rs.getInt("goods_id"));
+				goodsOrder.setWechatId(rs.getString("wechat_id"));
+				goodsOrder.setGoodsNum(rs.getInt("goods_num"));
+				goodsOrder.setTradeTime(rs.getString("trade_time"));
+				goodsOrder.setComment(rs.getString("comment"));
+				goodsOrder.setMailPrice(rs.getDouble("mail_price"));
+				goodsOrder.setTotalPrice(rs.getDouble("total_price"));
+				goodsOrder.setGroupId(rs.getInt("group_id"));
+				goodsOrder.setSendTime(rs.getString("send_time"));
+				goodsOrder.setGroupMinnum(rs.getInt("group_minnum"));
+				goodsOrder.setOrderState(rs.getInt("order_state"));
+				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
+				goodsOrder.setReceiverName(rs.getString("receiver_name"));
+				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
+				goodsOrder.setPrepayId(rs.getString("prepay_id"));
+				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+				goodsOrder.setTransactionId(rs.getString("transaction_id"));
+				orderList.add(goodsOrder);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+		
+		return orderList;
+	}
+	
+	
+	public static ArrayList<GoodsOrder> getGoodsOrderListByStateAndDueHours(int order_state,int hour){
+		
+		ArrayList<GoodsOrder> orderList = new ArrayList<>();
+		String time = null;
+		String sql = "select * from goods_order where order_state = ?";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, order_state);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				GoodsOrder goodsOrder = new GoodsOrder();
+				time = rs.getString("trade_time");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+				Date d1 = new Date();
+				Date d2 = sdf.parse(time);
+				long diff = d1.getTime() - d2.getTime();
+				long days = diff / (1000 * 60 * 60 * 24);
+				long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
+				//long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
+				if(hours >= hour){
+					continue;
+				}
+				
+				goodsOrder.setOrderId(rs.getInt("order_id"));
+				goodsOrder.setGoodsId(rs.getInt("goods_id"));
+				goodsOrder.setWechatId(rs.getString("wechat_id"));
+				goodsOrder.setGoodsNum(rs.getInt("goods_num"));
+				goodsOrder.setTradeTime(rs.getString("trade_time"));
+				goodsOrder.setComment(rs.getString("comment"));
+				goodsOrder.setMailPrice(rs.getDouble("mail_price"));
+				goodsOrder.setTotalPrice(rs.getDouble("total_price"));
+				goodsOrder.setGroupId(rs.getInt("group_id"));
+				goodsOrder.setSendTime(rs.getString("send_time"));
+				goodsOrder.setGroupMinnum(rs.getInt("group_minnum"));
+				goodsOrder.setOrderState(rs.getInt("order_state"));
+				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
+				goodsOrder.setReceiverName(rs.getString("receiver_name"));
+				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
+				goodsOrder.setPrepayId(rs.getString("prepay_id"));
+				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+				goodsOrder.setTransactionId(rs.getString("transaction_id"));
+				orderList.add(goodsOrder);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+		
+		return orderList;
+	}
+
+	public static ArrayList<GoodsOrder> getGoodsOrderListByState(int order_state){
+		
+		ArrayList<GoodsOrder> orderList = new ArrayList<>();
 
 		String sql = "select * from goods_order where order_state = ?";
 		Connection conn = new DBUtil().getConn();
@@ -303,9 +423,9 @@ public class GoodsOrderDao {
 	}
 	
 	
-	public static List<GoodsOrder> getGoodsOrderListByGroupIdAndState(int groupId, int orderState){
+	public static ArrayList<GoodsOrder> getGoodsOrderListByGroupIdAndState(int groupId, int orderState){
 		
-		List<GoodsOrder> orderList = new ArrayList<>();
+		ArrayList<GoodsOrder> orderList = new ArrayList<>();
 
 		String sql = "select * from goods_order where group_id = ? and order_state = ?";
 		Connection conn = new DBUtil().getConn();
