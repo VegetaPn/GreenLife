@@ -155,7 +155,12 @@ html,body
     padding-right:3%;
 }
 
-
+.orderState{
+	float:left;
+    text-align: right;
+    width:48%;
+    padding-right:3%;
+}
 
 .tagLeft
 {
