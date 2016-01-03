@@ -39,6 +39,7 @@ public class TimerCheckService {
 			/*
 			 * 在这里调用确认收货的方法
 			 */
+			GoodsOrderService.confirmReceive(order);
 		}
 		list = GoodsOrderDao.getGoodsOrderListByStateAndDueDay(13, 7);
 		for(int i=0;i<list.size();i++){
@@ -46,6 +47,7 @@ public class TimerCheckService {
 			/*
 			 * 在这里调用确认收货的方法
 			 */
+			GoodsOrderService.confirmReceive(order);
 		}
 	}
 	
