@@ -13,10 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.greenlife.dao.GoodsInfoDao;
 import com.greenlife.dao.GoodsOrderDao;
 import com.greenlife.dao.TodayGroupDao;
+import com.greenlife.model.GoodsInfo;
 import com.greenlife.model.GoodsOrder;
 import com.greenlife.model.TodayGroup;
+import com.greenlife.services.GoodsInfoService;
 import com.greenlife.services.TodayGroupService;
 import com.greenlife.wechatservice.WechatService;
 
@@ -41,6 +44,11 @@ public class PurchaseServlet extends HttpServlet {
 		 String wechatId = (String)request.getSession().getAttribute("wechatId");
 		 int goodsId = Integer.valueOf(request.getParameter("goodsId"));
 		 String group = request.getParameter("group");
+		 
+		 GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
+		 if(GoodsInfoService.getGoodsStatus(goodsInfo) != 1){
+			 return;
+		 }
 		 
 		 int goods_num = Integer.valueOf(request.getParameter("iNumber"));
 		 String send_time = request.getParameter("sPostTime");
@@ -67,6 +75,9 @@ public class PurchaseServlet extends HttpServlet {
 		 String tradeTime = dateFormat.format(now); 
 		 goodsOrder.setTradeTime(tradeTime);
 		 goodsOrder.setMailPrice(0);
+		 
+		
+		
 		 
 		 if(group.equals("true")){
 			 goodsOrder.setOrderState(1);
