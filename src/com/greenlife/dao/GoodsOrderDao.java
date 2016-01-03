@@ -261,7 +261,7 @@ public class GoodsOrderDao {
 		return true;
 	}
 	
-public static ArrayList<GoodsOrder> getGoodsOrderListByStateAndDueDay(int order_state,int day){
+	public static ArrayList<GoodsOrder> getGoodsOrderListByStateAndDueDay(int order_state,int day){
 		
 		ArrayList<GoodsOrder> orderList = new ArrayList<>();
 		String time = null;
@@ -421,7 +421,7 @@ public static ArrayList<GoodsOrder> getGoodsOrderListByStateAndDueDay(int order_
 		
 		return orderList;
 	}
-	
+
 	
 	public static ArrayList<GoodsOrder> getGoodsOrderListByGroupIdAndState(int groupId, int orderState){
 		

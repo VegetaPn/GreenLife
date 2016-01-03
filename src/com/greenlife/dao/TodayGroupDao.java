@@ -18,12 +18,31 @@ public class TodayGroupDao {
 	private static ResultSet rs;
 	
 	
-	/*
-	 * ������״̬�Լ��ݿ�ʼ���ڵ����������б�
-	 */
+	public static String getGroupStartTime(int group_id){
+
+		String sql = "select * from today_group where group_id = ?;";
+		Connection conn = new DBUtil().getConn();
+		String start_time = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, group_id);
+			rs = ps.executeQuery();
+			if (rs.next()){
+				start_time = rs.getString("start_time");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return start_time;
+	}
+	
 	public static ArrayList<TodayGroup> getOverdueOrderByDay(int groupState, int day){
 		ArrayList<TodayGroup> list = new ArrayList<TodayGroup>();
-		TodayGroup group = new TodayGroup();
+		
 		String sql = "select * from today_group where group_state = ?;";
 		String time = null;
 		Connection conn = new DBUtil().getConn();
@@ -32,6 +51,7 @@ public class TodayGroupDao {
 			ps.setInt(1, 0);
 			rs = ps.executeQuery();
 			while(rs.next()){
+				TodayGroup group = new TodayGroup();
 				time = rs.getString("start_time");
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
 				Date d1 = new Date();
@@ -68,7 +88,7 @@ public class TodayGroupDao {
 	
 	public static ArrayList<TodayGroup> getOverdueOrderByHour(int groupState, int hour){
 		ArrayList<TodayGroup> list = new ArrayList<TodayGroup>();
-		TodayGroup group = new TodayGroup();
+		
 		String sql = "select * from today_group where group_state = ?;";
 		String time = null;
 		Connection conn = new DBUtil().getConn();
@@ -77,6 +97,8 @@ public class TodayGroupDao {
 			ps.setInt(1, 0);
 			rs = ps.executeQuery();
 			while(rs.next()){
+				TodayGroup group = new TodayGroup();
+				
 				time = rs.getString("start_time");
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
 				Date d1 = new Date();
@@ -163,8 +185,8 @@ public class TodayGroupDao {
 		return list;
 	}
 	
-	public static List<Integer> getGroupIdByStatus(int group_state){
-		List<Integer> list = new ArrayList<Integer>();
+	public static ArrayList<Integer> getGroupIdByStatus(int group_state){
+		ArrayList<Integer> list = new ArrayList<Integer>();
 		String sql = "select group_id from today_group where group_state = ?";
 		
 		Connection conn = new DBUtil().getConn();
@@ -179,6 +201,45 @@ public class TodayGroupDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return list;
+	}
+	
+	public static ArrayList<Integer> getGroupIdByStatusAndHour(int group_state, int hour){
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		String sql = "select group_id from today_group where group_state = ?";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, group_state);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				
+				String time = rs.getString("start_time");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+				Date d1 = new Date();
+				Date d2 = sdf.parse(time);
+				long diff = d1.getTime() - d2.getTime();
+				long days = diff / (1000 * 60 * 60 * 24);
+				long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
+				//long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
+				if(hours >= hour){
+					continue;
+				}
+				
+				int groupId = rs.getInt("group_id");
+				list.add(groupId);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			clearUp(conn);
 		}
