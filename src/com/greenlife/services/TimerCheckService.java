@@ -21,15 +21,15 @@ public class TimerCheckService {
 			GoodsOrderService.cancleOrder(order);
 		}
 		
-		ArrayList<Integer> groupList = TodayGroupDao.getGroupIdByStatusAndHour(0, 24);
-		for(int i=0;i<groupList.size();i++){
-			int groupId = groupList.get(i);
-			list = GoodsOrderDao.getGoodsOrderListByGroupIdAndState(groupId, 2);
-			for(int j=0;j<list.size();j++){
-				GoodsOrder order = list.get(i);
-				GoodsOrderService.cancleOrder(order);
-			}
-		}
+//		ArrayList<Integer> groupList = TodayGroupDao.getGroupIdByStatusAndHour(0, 24);
+//		for(int i=0;i<groupList.size();i++){
+//			int groupId = groupList.get(i);
+//			list = GoodsOrderDao.getGoodsOrderListByGroupIdAndState(groupId, 2);
+//			for(int j=0;j<list.size();j++){
+//				GoodsOrder order = list.get(i);
+//				GoodsOrderService.cancleOrder(order);
+//			}
+//		}
 	}
 	
 	public static void CheckNeedReceiveOrder(){
@@ -57,6 +57,12 @@ public class TimerCheckService {
 			TodayGroup group = list.get(i);
 			group.setIsDelete(1);
 			TodayGroupDao.updateTodayGroup(group);
+			ArrayList<GoodsOrder> orderlist = GoodsOrderDao.getGoodsOrderListByGroupIdAndState(
+					group.getGroupId(), 2);
+			for(int j=0;j<orderlist.size();j++){
+				GoodsOrder order = orderlist.get(i);
+				GoodsOrderService.cancleOrder(order);
+			}
 		}
 		list = TodayGroupDao.getOverdueOrderByHour(1, 24);
 		for(int i=0;i<list.size();i++){
