@@ -14,7 +14,15 @@
     </head>
     <body>
 	
-		<jsp:include page="header.jsp" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+	<div id="header">
+		<div id="leftButton">
+			<img src="../images/leftArrowBlack.png" onclick="history.back(-1);" />
+		</div>
+		<div id="homeButton">
+			<img id="addAddr" src="../images/add.png"/>
+		</div>
+		<div id="title">源来生活</div>
+	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 		
 		<div id="content">
 		
