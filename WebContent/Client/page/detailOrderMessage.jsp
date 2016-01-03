@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="../css/header.css" />
 <link rel="stylesheet" type="text/css"
 	href="../css/detailOrderMessage.css" />
-
+<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
 
 
 </head>
@@ -98,27 +98,61 @@
 				{
 					//待付款
 			%>
-			<div class="middleHint">待付款</div>
+			
+				<div class="middleTag">
+					<div class="tagLeft">订单状态：</div>
+					<div class="blackNormal" class="orderState">待付款</div>
+				</div>
 			<%
 				}
 				else if (orderstate == 2)
 				{
 					//待成团
 			%>
-			
+				<div class="middleTag">
+					<div class="tagLeft">订单状态：</div>
+					<div class="blackNormal" class="orderState">待成团</div>
+				</div>
 			<%
 				}
 				else if (orderstate == 3)
 				{
 					//待发货
 			%>
-			<div class="middleHint">开团成功</div>
+				<div class="middleTag">
+					<div class="tagLeft">订单状态：</div>
+					<div class="blackNormal" class="orderState">参团成功,待发货</div>
+				</div>
+				
+			
+			<%
+				}else if(orderstate == 12){
+					
+				
+			
+			%>
+				<div class="middleTag">
+					<div class="tagLeft">订单状态：</div>
+					<div class="blackNormal" class="orderState">待发货</div>
+				</div>
+				
+			<% 
+				}else if(orderstate == 4 || orderstate == 13){
+			
+			%>
+				<div class="middleTag">
+					<div class="tagLeft">订单状态：</div>
+					<div class="blackNormal" class="orderState">待收货</div>
+				</div>
 			<%
 				}
 				else if (orderstate == 5 || orderstate == 14)
 				{
 			%>
-			<div class="middleHint">交易成功</div>
+				<div class="middleTag">
+					<div class="tagLeft">订单状态：</div>
+					<div class="blackNormal" class="orderState">交易成功</div>
+				</div>
 			<%
 				}
 			%>
@@ -171,7 +205,8 @@
 				{
 					//待成团
 			%>
-			
+				<div class="functionButton"
+				onclick="location.href='group.jsp?groupId=<%=orderToShow.getGroupId()%>'">约好友成团</div>
 
 			<%
 				}
@@ -180,14 +215,47 @@
 					//待发货
 			%>
 				<div class="functionButton"
-				onclick="location.href='group.jsp?groupId=<%=orderToShow.getGroupId()%>'">约好友成团</div>
+				onclick="location.href='group.jsp?groupId=<%=orderToShow.getGroupId()%>'">邀请好友加入此团</div>
 			<%
+				}else if(orderstate == 4 || orderstate == 13){
+			
+			%>
+			
+				<div class="functionButton" id="confirmReceive">确认收货</div>
+				<script>
+				$(function(){
+					$("#confirmReceive").click(){
+						$.ajax({
+							type: "post",
+							url: "/confirmReceive",
+							data: {
+								orderId:<%=orderId%>
+							},
+							dataType : "json",
+							success : function(data) {
+								if(data){
+									window.location.reload();
+								}else{
+									alert("确认收货失败，服务器异常");
+									window.location.reload();
+								}
+								
+							},
+							error : function() {
+								alert("网络异常");
+								window.location.reload();
+							}
+						});
+					}
+				});
+			</script>
+			<% 
 				}
 				else if (orderstate == 5 || orderstate == 14)
 				{
 			%>
-			<div class="functionButton" onclick="">我来说两句</div>
-			<div class="functionButton" onclick="">分享给好友</div>
+				<div class="functionButton" onclick="location.href='comment.jsp?goodsId=<%=orderToShow.getGoodsId()%>'">我来说两句</div>
+	
 			<%
 				}
 			%>

@@ -37,5 +37,26 @@ public class GoodsOrderService {
 		return true;
 	}
 	
-	
+	public static boolean confirmReceive(GoodsOrder order){
+		
+		int state = order.getOrderState();
+		
+		if(state != 4 && state != 13){
+			return false;
+		}
+		
+		if(state == 4){
+			order.setOrderState(5);
+		}
+		
+		if(state == 13){
+			order.setOrderState(14);
+		}
+		
+		
+		if(!GoodsOrderDao.updateGoodsOrder(order)){
+			return false;
+		}
+		return true;
+	}
 }
