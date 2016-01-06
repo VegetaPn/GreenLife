@@ -104,8 +104,7 @@
     <servlet-name>PayNotifyServlet</servlet-name>
     <url-pattern>/payNotify</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>CancelOrderServlet</servlet-name>
     <servlet-class>com.greenlife.client.controller.CancelOrderServlet</servlet-class>
   </servlet>
@@ -113,7 +112,6 @@
     <servlet-name>CancelOrderServlet</servlet-name>
     <url-pattern>/cancelOrder</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ConfirmReceiveServlet</servlet-name>
     <servlet-class>com.greenlife.client.controller.ConfirmReceiveServlet</servlet-class>
@@ -122,9 +120,6 @@
     <servlet-name>ConfirmReceiveServlet</servlet-name>
     <url-pattern>/confirmReceive</url-pattern>
   </servlet-mapping>
-  
-  
-  
   <welcome-file-list>
     <welcome-file>Client/page/login.jsp</welcome-file>
   </welcome-file-list>

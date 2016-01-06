@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8" import="com.greenlife.dao.*"
 	import="com.greenlife.model.*" import="java.util.*"
 	import="com.greenlife.util.PropertiesUtil"
-	import="com.greenlife.wechatservice.*"%>
+	import="com.greenlife.wechatservice.*"
+	import="com.greenlife.services.*"%>
 	<%@ page errorPage="error.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -24,7 +25,7 @@
 		
 		GoodsInfo goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
 		
-
+		int goodsState = GoodsInfoService.getGoodsStatus(goodsinfo);
 		int orderstate = orderToShow.getOrderState();
 	%>
 
@@ -112,7 +113,7 @@
 				<span class="blackBold" id="totalSym">合计：￥</span><span
 					class="orangeText"><%=orderToShow.getTotalPrice()%></span>
 			</div>
-			<%if(orderstate==1 || orderstate==11){ %>
+			<%if((orderstate==1 || orderstate==11) && goodsState==1){ %>
 			<div class="functionButton" id="payButton">支付</div>
 			<%} %>
 		</div>

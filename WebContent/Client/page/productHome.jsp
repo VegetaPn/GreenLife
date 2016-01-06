@@ -46,6 +46,10 @@
 	List<Comment> commentList = CommentDao.getCommentList(goodsId);
 
 	int commentListSize = commentList.size();
+	
+	
+	
+	
 %>
 
 <!DOCTYPE html>
