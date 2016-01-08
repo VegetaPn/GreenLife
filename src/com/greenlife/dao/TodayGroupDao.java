@@ -94,7 +94,7 @@ public class TodayGroupDao {
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, 0);
+			ps.setInt(1, groupState);
 			rs = ps.executeQuery();
 			while(rs.next()){
 				TodayGroup group = new TodayGroup();
