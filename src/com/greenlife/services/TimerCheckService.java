@@ -60,7 +60,7 @@ public class TimerCheckService {
 			ArrayList<GoodsOrder> orderlist = GoodsOrderDao.getGoodsOrderListByGroupIdAndState(
 					group.getGroupId(), 2);
 			for(int j=0;j<orderlist.size();j++){
-				GoodsOrder order = orderlist.get(i);
+				GoodsOrder order = orderlist.get(j);
 				GoodsOrderService.cancleOrder(order);
 			}
 		}
@@ -69,6 +69,7 @@ public class TimerCheckService {
 			TodayGroup group = list.get(i);
 			group.setIsDelete(1);
 			TodayGroupDao.updateTodayGroup(group);
+			System.out.println("TodayGorup:" + group.getGroupId());
 		}
 	}
 }

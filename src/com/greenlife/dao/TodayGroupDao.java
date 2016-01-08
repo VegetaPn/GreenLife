@@ -100,7 +100,7 @@ public class TodayGroupDao {
 				TodayGroup group = new TodayGroup();
 				
 				time = rs.getString("start_time");
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
 				Date d1 = new Date();
 				Date d2 = sdf.parse(time);
 				long diff = d1.getTime() - d2.getTime();
