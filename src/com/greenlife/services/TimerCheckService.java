@@ -2,6 +2,7 @@ package com.greenlife.services;
 
 import java.util.ArrayList;
 
+import com.greenlife.dao.GoodsInfoDao;
 import com.greenlife.dao.GoodsOrderDao;
 import com.greenlife.dao.TodayGroupDao;
 import com.greenlife.model.GoodsOrder;
@@ -69,7 +70,30 @@ public class TimerCheckService {
 			TodayGroup group = list.get(i);
 			group.setIsDelete(1);
 			TodayGroupDao.updateTodayGroup(group);
-			System.out.println("TodayGorup:" + group.getGroupId());
+			//System.out.println("TodayGorup:" + group.getGroupId());
+		}
+	}
+	
+	public static void CheckGoodsOverTime(){
+		ArrayList<Integer> goodslist = GoodsInfoDao.getOverTimeGoodsIdList();
+		for(int i=0;i<goodslist.size();i++){
+			int goodsId = goodslist.get(i);
+			ArrayList<GoodsOrder> orderlist = GoodsOrderDao.getGoodsOrderListByStateAndGoodsId(1, goodsId);
+			for(int j=0;j<orderlist.size();j++){
+				GoodsOrder order = orderlist.get(j);
+				GoodsOrderService.cancleOrder(order);
+			}
+			orderlist = GoodsOrderDao.getGoodsOrderListByStateAndGoodsId(11, goodsId);
+			for(int j=0;j<orderlist.size();j++){
+				GoodsOrder order = orderlist.get(j);
+				GoodsOrderService.cancleOrder(order);
+			}
+			ArrayList<TodayGroup> groupList = TodayGroupDao.getOverdueOrderByGoodsId(goodsId);
+			for(int j=0;j<groupList.size();j++){
+				TodayGroup group = groupList.get(j);
+				group.setIsDelete(1);
+				TodayGroupDao.updateTodayGroup(group);
+			}
 		}
 	}
 }

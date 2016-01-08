@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import com.greenlife.model.GoodsInfo;
 import com.greenlife.util.DBUtil;
@@ -200,9 +202,9 @@ public class GoodsInfoDao {
 	}
 	
 	
-	public static List<GoodsInfo> getGoodsList() {
+	public static ArrayList<GoodsInfo> getGoodsList() {
 		
-		List<GoodsInfo> goodsList = new ArrayList<>();
+		ArrayList<GoodsInfo> goodsList = new ArrayList<>();
 		String sql = "select * from goods_info";
 		
 		Connection conn = new DBUtil().getConn();
@@ -234,6 +236,44 @@ public class GoodsInfoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return goodsList;
+	}
+	
+	public static ArrayList<Integer> getOverTimeGoodsIdList() {
+		
+		ArrayList<Integer> goodsList = new ArrayList<>();
+		String sql = "select * from goods_info";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				
+				String start_time = rs.getString("start_time");
+				String end_time = rs.getString("end_time");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
+				Date start = sdf.parse(start_time);
+				Date end = sdf.parse(end_time);
+				Date now = new Date();
+				if(now.before(start)){
+					continue;
+				} else if(now.after(start) && now.before(end)){
+					continue;
+				}
+				
+				goodsList.add(rs.getInt("goods_id"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			clearUp(conn);
 		}

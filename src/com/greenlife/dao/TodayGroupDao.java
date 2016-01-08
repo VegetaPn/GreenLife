@@ -40,6 +40,37 @@ public class TodayGroupDao {
 		return start_time;
 	}
 	
+	public static ArrayList<TodayGroup> getOverdueOrderByGoodsId(int goods_id){
+		ArrayList<TodayGroup> list = new ArrayList<TodayGroup>();
+		
+		String sql = "select * from today_group where goods_id = ? and is_delete = 0;";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, goods_id);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				TodayGroup group = new TodayGroup();
+
+				group.setGoodsId(rs.getInt("goods_id"));
+				group.setGroupId(rs.getInt("group_id"));
+				group.setGroupState(rs.getInt("group_state"));
+				group.setStartTime(rs.getString("start_time"));
+				group.setWechatId(rs.getString("wechat_id"));
+				group.setIsDelete(rs.getInt("is_delete"));
+				
+				list.add(group);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return list;
+	}
+	
 	public static ArrayList<TodayGroup> getOverdueOrderByDay(int groupState, int day){
 		ArrayList<TodayGroup> list = new ArrayList<TodayGroup>();
 		
@@ -48,7 +79,7 @@ public class TodayGroupDao {
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, 0);
+			ps.setInt(1, groupState);
 			rs = ps.executeQuery();
 			while(rs.next()){
 				TodayGroup group = new TodayGroup();
