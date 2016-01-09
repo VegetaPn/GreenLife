@@ -44,18 +44,19 @@ import="java.util.Date"
 		<div id="sildeAd">
 			<% 
 				for(int i=0;i<goodsList.size();i++){
-				//if(goodsList.get(i).getIsAdv() == 0 || goodsList.get(i).getIsAdv() == 1){
+				if(goodsList.get(i).getIsAdv() == 1){
 					GoodsInfo giIsAdv = goodsList.get(i);
 					int idIsAdv = giIsAdv.getGoodsId();
 					String ImgIsAdv = PropertiesUtil.getPath()+giIsAdv.getPackagePath()+"normal.jpg";	
-					//<%=ImgIsAdv
+					
 			%>
 			<div class="product" >
 			<img id="productImg<%=idIsAdv%>" src=<%=ImgIsAdv%> onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'"/>
 			<div class="productName"><%=giIsAdv.getGoodsName()%></div>
 			</div>
 		
-		<%} %>
+		<%}} %>
+		
 		</div>
 		<%
 		for(int i=goodsList.size()-1;i>=0;i--){		
