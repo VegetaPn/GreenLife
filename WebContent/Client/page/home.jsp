@@ -256,5 +256,6 @@ import="java.util.Date"
  
 		window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", adjust, false);
 		</script>
+		<jsp:include page="footer.jsp" />
     </body>
 </html>

@@ -232,7 +232,7 @@ int commentListSize = commentList.size();
 	
 	
 	
-		
+		<jsp:include page="footer.jsp" />
     </body>
 </html>	
 	

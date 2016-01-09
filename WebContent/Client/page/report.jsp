@@ -28,5 +28,6 @@
 	
 		<img id="reportImg" src="<%=reportPath%>"/>
 	</div>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

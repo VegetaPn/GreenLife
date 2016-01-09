@@ -165,6 +165,8 @@ for(int i =0; i<addressInfos.size();i++){
 			    <input type="text" id="iMessage" name="iMessage" placeholder="给田园生活留个言"/>
 				<span>请在24小时内付款否则订单将取消</span>
 			</div>
+			
+				<jsp:include page="footer.jsp" />
 		</div>
 		
 		<!--最底层-->
@@ -273,5 +275,6 @@ for(int i =0; i<addressInfos.size();i++){
 		 	$("#iToAddress").attr("src","../images/rightArrowCircle3.png");
 		 }
 		</script>
+	
     </body>
 </html>

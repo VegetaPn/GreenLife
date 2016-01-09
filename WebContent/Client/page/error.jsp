@@ -70,4 +70,6 @@ H1 {
       <P>☉ 如果您对本站有任何疑问、意见、建议、咨询，请联系管理员</A> 
       <BR>
       &nbsp;&nbsp;&nbsp;<BR>
-      </P><!------------End this!---------------></TD></TR></TBODY></TABLE></BODY></HTML>
+      </P><!------------End this!---------------></TD></TR></TBODY></TABLE>
+      <jsp:include page="footer.jsp" />
+      </BODY></HTML>

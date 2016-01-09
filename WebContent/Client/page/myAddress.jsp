@@ -232,5 +232,6 @@
 				<span>删除地址</span>
 			</div>
 		</div>
+		<jsp:include page="footer.jsp" />
     </body>
 </html>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 
 @WebFilter(filterName="authority",
-	urlPatterns=("/*")
+	urlPatterns=("/Client/*")
 )
 public class AuthorityFilter implements Filter {
 
@@ -40,7 +40,7 @@ public class AuthorityFilter implements Filter {
 		if(session.getAttribute("wechatId") == null 
 				&& !requestPath.endsWith("/login.jsp")
 				&& !requestPath.endsWith("/login")
-				&& !requestPath.endsWith("/payNotify")){
+				){
 			String requestUrl = requestPath;
 			if(requ.getQueryString() != null){
 				requestUrl = requestUrl + "?" + requ.getQueryString();

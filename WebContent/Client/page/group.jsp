@@ -217,7 +217,7 @@
 		
 		
 		<%
-		if(state >= 2){
+		if(state == 2){
 			
 		%>
 			<div id="joinGroupDiv">
@@ -225,6 +225,16 @@
 			</div>
 		<%
 			}
+		%>
+		
+		<%
+		if(state >= 3){
+		%>
+			<div id="joinGroupDiv">
+				<span class="grayJoinGroup">已成团</span>
+			</div>
+		<%
+		}
 		%>
 		
 		<%
@@ -278,6 +288,6 @@
 	</div>
 	
 	
-	
+	<jsp:include page="footer.jsp" />
 </body>
 </html>
