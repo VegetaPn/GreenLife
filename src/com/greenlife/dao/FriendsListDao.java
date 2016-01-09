@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.greenlife.model.FriendsList;
 import com.greenlife.util.DBUtil;
@@ -33,12 +32,10 @@ public class FriendsListDao {
 		return true;
 	}
 	
-	/*
-	 * 获取好友wechatid列表
-	 */
-	public static List<String> getFriendWechatIdList(String wechatId) {
-		List<String> list = new ArrayList<String>();
-		String sql = "select * from friends_list where wechat_id = ?";
+	
+	public static ArrayList<String> getFriendWechatIdList(String wechatId) {
+		ArrayList<String> list = new ArrayList<String>();
+		String sql = "select * from friends_list where wechat_id = ? order by friends_level;";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
@@ -56,12 +53,38 @@ public class FriendsListDao {
 	}
 	
 	public static boolean addFriendList(FriendsList list){
-		String sql = "INSERT INTO `greenlife`.`friends_list` (`wechat_id`, `friend_wechat_id`) VALUES (?, ?);";
+		String sql = "insert into `greenlife`.`friends_list` "
+				+ "( `friends_level`, `friend_wechat_id`, `wechat_id`)"
+				+ " values (?, ?, ?);";
+		
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, list.getWechatId());
+			ps.setInt(1, list.getFriendslevel());
 			ps.setString(2, list.getFriendsWechatId());
+			ps.setString(3, list.getWechatId());
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		return true;
+	}
+	
+	
+	
+	public static boolean increaseLevel(FriendsList list, int num){
+		String sql = "update `greenlife`.`friends_list` "
+				+ "set `friends_level`= friends_level + " + num +" "
+				+ "where `friend_wechat_id`=? and `wechat_id`=?";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, list.getFriendsWechatId());
+			ps.setString(2, list.getWechatId());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,14 +97,16 @@ public class FriendsListDao {
 	
 	public static boolean updateFriendList(FriendsList list){
 		String sql = "UPDATE `greenlife`.`friends_list` SET "
-				+"friend_wechat_id = (?) "
+				+"friend_wechat_id = (?),"
+				+"friends_level = (?)"
 				+"WHERE wechat_id = (?);";
 		
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, list.getFriendsWechatId());
-			ps.setString(2, list.getWechatId());
+			ps.setInt(2, list.getFriendslevel());
+			ps.setString(3, list.getWechatId());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
