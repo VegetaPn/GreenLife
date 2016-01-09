@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String code = request.getParameter("code");
 		
+		
 		WechatInfo wechatInfo = WechatService.login(code);
 		
 		HttpSession session = request.getSession();

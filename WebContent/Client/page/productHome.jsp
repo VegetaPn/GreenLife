@@ -49,17 +49,7 @@
 	
 	
 	
-	ArrayList<HashMap<String, String>> friendlist = FriendsListService.getBuyList(goodsId,wechatId);
 	
-
-	int size = friendlist.size();
-	
-	int totalSaleNum = 0;
-	for(int i=0;i<size;i++){
-		String strNum = friendlist.get(i).get("number");
-		totalSaleNum += Integer.parseInt(strNum);
-		
-	}
 %>
 
 <!DOCTYPE html>
@@ -104,8 +94,8 @@
 			
 			<img id="productImg" src="<%=productImg%>" />
 			
-			<span class="arcLabel" id="salesState"><%=salesState%></span> 
-			<span class="arcLabel" id="orderNum" onclick="window.location.href='friendDetail.jsp?goodsId=<%=goodsId%>'">订单数：<%=orderNum%></span>
+			<span class="arcLabel" id="salesState"><%=salesState%></span> <span
+				class="arcLabel" id="orderNum">订单数：<%=orderNum%></span>
 			<script>var isCollected = false;</script>
 
 			
@@ -234,7 +224,12 @@
 
 				<hr />
 				<%=goodsInfo.getGoodsText1()%>
-		
+				<!--  
+			<span class="descFont">田园生活黏度最畅销产品</span><br/><br/>
+			<span class="descFont">通过ISO9001国际认证</span><br/><br/>
+			<span class="descFont">在《舌尖上的中国中播出》的产品</span><br/><br/>
+			<span class="descFont">中国羽毛球队指定唯一产品</span><br/><br/>
+			-->
 				<div class="link" onclick="location.href='productDetail.jsp?goodsId=<%=goodsId%>'">项目详情 ></div>
 
 			</div>
@@ -242,45 +237,36 @@
 
 		<div class="grayDiv">
 		
-			
+			<!--  
 			<div id="friendPurchase">
 				<div class="labelHeader">
 					<div class="whiteDiv"></div>
-					<span class="label">已售出<span id="purchaseNum"><%=totalSaleNum %></span>份
+					<span class="label">我的朋友订购了<span id="purchaseNum">21</span>份
 					</span>
 				</div>
 
-				
 
-				<div id="purchaseDetail" onclick="window.location.href='friendDetail.jsp?goodsId=<%=goodsId%>'">
-				
-				<%
-				int showSize = 0;
-				
-				if(size >= 5){
-					showSize = 5;
-				}else{
-					showSize = size;
-				}
-				for(int i=0;i<showSize;i++){
-					String puchaseWechatId = friendlist.get(i).get("wechatid");
-					String purchaseNum = friendlist.get(i).get("number");
-					UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
-					
-				%>	
+				<div id="purchaseDetail" onclick="window.location.href='#'">
 					<div class="personalPurchaseDiv">
-						<img class="avatar" src="<%=userInfo.getPhotoPath()%>"><br /><%=purchaseNum %>
+						<img class="avatar" src="../images/1.png"><br />10
 					</div>
-				<%
-				}
-				%>
-					
-				
+					<div class="personalPurchaseDiv">
+						<img class="avatar" src="../images/2.png"><br />4
+					</div>
+					<div class="personalPurchaseDiv">
+						<img class="avatar" src="../images/3.png"><br />3
+					</div>
+					<div class="personalPurchaseDiv">
+						<img class="avatar" src="../images/4.png"><br />2
+					</div>
+					<div class="personalPurchaseDiv">
+						<img class="avatar" src="../images/5.png"><br />2
+					</div>
 					<a class="link" id="friendLink">></a>
 				</div>
 
 			</div>
-
+-->
 			<div class="labelHeader" id="productSalesPrice">
 
 				<div class="whiteDiv"></div>
@@ -302,7 +288,15 @@
 				<div id="salesInfo">
 
 					<%=goodsInfo.getGoodsText2()%>
-				
+					<!--
+				<span class="titleFont">产品品种：</span><span class="descFont">稻花香2号</span><br/>
+				<span class="titleFont">产品产地：</span><span class="descFont">黑龙江五常</span><br/>
+				<span class="titleFont">产品特征：</span><span class="descFont">不惨假；现磨不抛光</span><br/>
+				<span class="titleFont">产品规格：</span><span class="descFont">10斤</span><br/>
+				<span class="titleFont">包装说明：</span><span class="descFont">10斤/袋，真空包装</span><br/>
+				<span class="titleFont">生产日期：</span><span class="descFont">2015年10月</span><br/>
+				<span class="titleFont">发货地点：</span><span class="descFont">五常</span><br/>
+				-->
 				</div>
 	
 				

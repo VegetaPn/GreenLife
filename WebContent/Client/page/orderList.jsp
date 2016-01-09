@@ -281,8 +281,8 @@
                                         {
                                                 //已完成
                                 %>
-                         
-                           		<div class="functionButton" onclick="location.href='comment.jsp?goodsId=<%=orderToShow.getGoodsId()%>'">我来说两句</div>
+                                <div class="functionButton" onclick="location.href='comment.jsp?orderId=<%=orderToShow.getOrderId()%>">我来说两句</div>
+                           
                                 <%
                                     }
                                 %>

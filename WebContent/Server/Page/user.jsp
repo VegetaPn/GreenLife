@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>示例</title>
+<title>用户</title>
 </head>
 <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css">
@@ -19,7 +19,7 @@
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
 			response.sendRedirect("/Server/Page/login.jsp");
-		}
+		} else {
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 
@@ -37,31 +37,26 @@
 					<tr>
 						<th>用户微信号</th>
 						<th>用户微信昵称</th>
-						<th>手机号</th>
-						<th>地址</th>
+
 					</tr>
 				</thead>
 				<tbody>
 					<%
-						        List<UserInfo> allUser = UserInfoDao.getUsersList();//用户信息
-								
-								for (int i = 0; i < allUser.size(); i++) {
-									UserInfo oneUser = allUser.get(i);//
-									AdressInfo ad = AdressInfoDao.getAdressInfo(oneUser.getAddrId());
-									
-									
-							%>
-							<tr class="goods">
-								<td><%=oneUser.getWechatId()%></td>
-								<td><%=oneUser.getWechatName()%></td>
-			
-								<td><%=ad.getAddrDetail()%></td>
-														   
-							</tr>
-							<%
-								}
-							%>
-						
+						List<UserInfo> allUser = UserInfoDao.getUsersList();//用户信息
+
+							for (int i = 0; i < allUser.size(); i++) {
+								UserInfo oneUser = allUser.get(i);//
+								AdressInfo ad = AdressInfoDao.getAdressInfo(oneUser.getAddrId());
+					%>
+					<tr class="goods">
+						<td><%=oneUser.getWechatId()%></td>
+						<td><%=oneUser.getWechatName()%></td>
+					</tr>
+					<%
+						}
+						}
+					%>
+
 				</tbody>
 			</table>
 		</div>

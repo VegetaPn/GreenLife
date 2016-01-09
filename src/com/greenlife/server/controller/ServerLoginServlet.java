@@ -23,16 +23,18 @@ public class ServerLoginServlet extends HttpServlet {
 	}
 
 	/*
-	 * ���ܵ�¼���е��˻�������
+	 * Judge the userid and password is all right
+	 * 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
-		System.out.println(userId+password);
-		if (AdminListDao.loginCheck(userId, password)) {// ��¼�ɹ�
-			session.setAttribute("login", true);/// ����session��ȷ����¼
+		System.out.println(userId + password);
+		if (AdminListDao.loginCheck(userId, password)) {// 成功登陆
+			session.setAttribute("login", true);/// 用于表示是否登录
 
 			response.sendRedirect("/Server/Page/product.jsp");
 		} else {

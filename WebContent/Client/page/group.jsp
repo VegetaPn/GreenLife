@@ -10,28 +10,6 @@
 	String wechatId = (String)session.getAttribute("wechatId");
 	int groupId = Integer.parseInt(request.getParameter("groupId"));
 
-	
-	String shareId = request.getParameter("shareId");
-	String shareMethod = request.getParameter("shareMethod");
-
-	
-	if(shareId != null && shareMethod != null){
-		if(!shareId.equals(wechatId)){
-			if(shareMethod.equals("TimeLine")){
-				FriendsList friendsList = new FriendsList();
-				friendsList.setWechatId(shareId);
-				friendsList.setFriendsWechatId(wechatId);
-				friendsList.setFriendslevel(5);
-			}else if(shareMethod.equals("AppMessage")){
-				FriendsList friendsList = new FriendsList();
-				friendsList.setWechatId(shareId);
-				friendsList.setFriendsWechatId(wechatId);
-				friendsList.setFriendslevel(2);
-			}
-		}
-	}
-	
-	
 	TodayGroup group = TodayGroupDao.getTodayGroup(groupId);
 
 	String time = group.getStartTime();
@@ -82,6 +60,8 @@
 	}
 	
 	
+	
+	
 %>
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -107,10 +87,9 @@
 		String timestamp = Long.toString((new Date()).getTime());
 		String url = request.getScheme()+"://"+ request.getServerName()+request.getRequestURI();
 	 	
-		url = url + "?groupId="+groupId+"&shareId="+wechatId;
-	 	
-		String TimeLineUrl = url + "&shareMethod=TimeLine"; 
-		String AppMessageUrl = url + "&shareMethod=AppMessage";
+	 	if(request.getQueryString() != null){
+	 		url = url + "?" + request.getQueryString();
+	 	}
 
 		String signature = WechatService.buildSignature(noncestr, jsapi_ticket, timestamp, url);
 
@@ -144,7 +123,7 @@
 				
 				wx.onMenuShareTimeline({
 				    title: '源来生活-<%=goodsInfo.getGoodsName()%>', // 分享标题
-				    link: '<%=TimeLineUrl%>', // 分享链接
+				    link: '<%=url%>', // 分享链接
 				    imgUrl: '<%=smallProductImg%>', // 分享图标
 				    success: function () { 
 				        // 用户确认分享后执行的回调函数
@@ -158,7 +137,7 @@
 				wx.onMenuShareAppMessage({
 				    title: '源来生活-<%=goodsInfo.getGoodsName()%>', // 分享标题
 				    desc: '<%=goodsInfo.getSubTitle()%>', // 分享描述
-				    link: '<%=AppMessageUrl%>', // 分享链接
+				    link: '<%=url%>', // 分享链接
 				    imgUrl: '<%=smallProductImg%>', // 分享图标
 				    success: function () { 
 				        // 用户确认分享后执行的回调函数

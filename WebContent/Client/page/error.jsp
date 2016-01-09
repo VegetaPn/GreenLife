@@ -10,7 +10,6 @@
 <HTML>
 <HEAD>
 <TITLE>抱歉，出错了</TITLE>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv=refresh content="5;URL = http://<%=url %>/">
 <STYLE type=text/css></STYLE>
@@ -40,13 +39,16 @@ H1 {
 </STYLE>
 
 
+<META content="MSHTML 6.00.2800.1458" name=GENERATOR></HEAD>
 
-<BODY topMargin="20">
-<TABLE cellSpacing="0" width="100%" align="center" border="0" cellpadding="0">
+
+<BODY topMargin=20>
+<TABLE cellSpacing=0 width=600 align=center border=0 cepadding="0">
   <TBODY>
   <TR colspan="2">
-    <TD vAlign=top align=middle>
-    </TD>
+    <TD vAlign=top align=middle><IMG height=100 src="404.jpg" 
+      width=100 border=0> 
+    <TD>
     <TD>
       <H1>无法找到该页</H1>
       HTTP 错误 404：您正在搜索的页面可能已经删除、更名或暂时不可用。 

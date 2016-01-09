@@ -31,15 +31,19 @@
 					<div class="panel-heading">新增商品</div>
 					<div class="panel-body ">
 						<form role="form" enctype="multipart/form-data"
-							onsubmit="return checkAddProduct()"
-							action="/AddGoodServlet" method="post">
+							onsubmit="return checkAddProduct()" action="/AddGoodServlet"
+							method="post">
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="form-group">
-										<label>商品名称</label> <input id="name" type="text"
+										<label>商品名称</label> <input id="good_name" type="text"
 											name="good_name" class="form-control">
 									</div>
 
+									<div class="form-group">
+										<label>副标题</label> <input id="sub_title" type="text"
+											name="sub_title" class="form-control">
+									</div>
 									<div class="form-group">
 										<label class="">商品单价</label>
 										<div class="input-group">
@@ -69,6 +73,7 @@
 										</div>
 									</div>
 
+
 									<div class="form-group">
 										<label>计量单位</label> <select class="form-control"
 											name="good_unit" id="good_unit">
@@ -87,7 +92,8 @@
 												<button class="btn btn-default" onclick="reduction1()"
 													type="button">-</button>
 											</span> <input id="report_num" type="text" class="form-control"
-												name="report_num" value="0" /> <span class="input-group-btn">
+												name="report_num" value="0" /> <span
+												class="input-group-btn">
 												<button class="btn btn-default" onclick="add1()"
 													type="button">+</button>
 											</span>
@@ -105,7 +111,6 @@
 											id="end_time" name="end_time">
 									</div>
 
-
 									<div class="form-group">
 										<div class="form-group-lg">
 											<label>商品描述1</label>
@@ -122,22 +127,14 @@
 												class="form-control" rows="3"></textarea>
 										</div>
 									</div>
+									<div class="form-group-lg">
+										<label>设置为广告</label> <label class="checkbox-inline"> <input
+											name="adv" type="radio" id="inlineCheckbox1" value="0" checked>
+											否
+										</label> <label class="checkbox-inline"> <input type="radio"
+											name="adv" id="inlineCheckbox2" value="1"> 是
+										</label>
 
-
-									<!-- 微信内容输入 -->
-									<div class="form-group">
-										<div style="margin-top: 2em;">
-											<div clas="form-group">
-												<label>微信标签标题</label> <input type="text" id="tag_title"
-													name="tag_title" class="form-control">
-											</div>
-
-											<div class="form-group">
-												<label>微信标签描述</label>
-												<textarea id="tag_text" name="tag_text" class="form-control"
-													rows="3"></textarea>
-											</div>
-										</div>
 									</div>
 								</div>
 								<div class="col-lg-6">
@@ -163,11 +160,12 @@
 										<label>检测报告长图(400*?,只会预览图片一小部分)</label> <input type="file"
 											accept="image/jpeg" name="report_img"
 											onchange="previewImage(this)" id="report_img">
-										<div id="pre_report" 
+										<div id="pre_report"
 											style="width: 400px; height: 200px; border: 1px solid #f00; overflow-y: auto;">
 											<img id="report_head" />
 										</div>
 									</div>
+
 									<div class="form-group">
 										<label>详细信息长图(400*?,只会预览图片一小部分)</label> <input type="file"
 											accept="image/jpeg" name="detail_img"

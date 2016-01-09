@@ -15,9 +15,7 @@
 
 <!-- Bootstrap Core CSS -->
 <link href="../CSS/bootstrap.min.css" rel="stylesheet">
-
 </head>
-
 <body>
 	<div class="container">
 		<div class="row">
@@ -30,28 +28,30 @@
 						String error = "";
 						String userId = "";
 						if (!(session.getAttribute("error") == null)) {
-							error = (String)session.getAttribute("error");
-							userId=(String)session.getAttribute("userId");
+							error = (String) session.getAttribute("error");
+							userId = (String) session.getAttribute("userId");
 						}
-						if(userId==null){
-							userId="";
+						if (userId == null) {
+							userId = "";
 						}
 					%>
 					<div class="panel-body">
-						<form action="/ServerLoginServlet" method="post" onsubmit="return checkLogin()">
+						<form action="/ServerLoginServlet" method="post"
+							onsubmit="return checkLogin()">
 							<fieldset>
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon">账户</span> <input
-											class="form-control" name="userId" id="userId" value="<%=userId%>"
-											autofocus />
+											class="form-control" name="userId" id="userId"
+											value="<%=userId%>" autofocus />
 									</div>
 								</div>
 
 								<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon">密码</span> <input
-											class="form-control" name="password" id="password" value="" type="password">
+											class="form-control" name="password" id="password" value=""
+											type="password">
 									</div>
 								</div>
 								<div class="form-group">
@@ -69,6 +69,7 @@
 			</div>
 		</div>
 	</div>
+
 	<script src="../js/login.js" type="text/javascript"></script>
 </body>
 

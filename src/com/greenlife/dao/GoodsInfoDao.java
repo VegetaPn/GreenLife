@@ -64,7 +64,7 @@ public class GoodsInfoDao {
 				+ "`goods_unit`, `is_delete`, `is_adv`, `goods_text1`, "
 				+ "`goods_text2`, `sub_title`, `report_num`) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, "
-				+ "?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "?, ?, ?, ?, ?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);

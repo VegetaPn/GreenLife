@@ -1,28 +1,6 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-    import="com.greenlife.dao.*" import="com.greenlife.model.*" import="java.util.*"
-    import="com.greenlife.util.PropertiesUtil" import="com.greenlife.services.*"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="error.jsp"%>
 <!DOCTYPE html>
-
-<%
-	String wechatId = (String)session.getAttribute("wechatId");
-	int goodsId = Integer.parseInt(request.getParameter("goodsId"));
-	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
-	String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"normal.jpg";
-	
-	ArrayList<HashMap<String, String>> friendlist = FriendsListService.getBuyList(goodsId,wechatId);
-	
-
-	int size = friendlist.size();
-	
-	int totalSaleNum = 0;
-	for(int i=0;i<size;i++){
-		String strNum = friendlist.get(i).get("number");
-		totalSaleNum += Integer.parseInt(strNum);
-		
-	}
-%>
-
 
 <html>
     <head>
@@ -38,39 +16,114 @@
 		
 		<div id="content">
 		
-			<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
-			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
-						
-			<div id="productName">
-				<%=goodsInfo.getGoodsName()%>
-			</div>
+			<div id="product">
+				<img id="productImg" src="../images/product.jpg"/>
+				<div id="productName">
+					2015现磨五常稻花香大米
+				</div>
 			</div>
 		
-			<div id="totalPurchase">已售出<span class="purchaseNum"><%=totalSaleNum %></span>份<hr/></div>
-			<%
-				for(int i=0;i<size;i++){
-					String puchaseWechatId = friendlist.get(i).get("wechatid");
-					String purchaseNum = friendlist.get(i).get("number");
-					UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
-					
-			%>		
+			<div id="totalPurchase">您的好友购买了<span class="purchaseNum">55</span>份<hr/></div>
+			
 			
 			<div class="personalPurchaseDiv">
 				
-				<img class="avatar" src="<%=userInfo.getPhotoPath()%>"/>
-				<span class="name"><%=userInfo.getWechatName() %></span>
-				<span class="personalPurchaseNum">已购买<span class="purchaseNum"><%=purchaseNum %></span>份</span>  
+				<img class="avatar" src="../images/1.png"/>
+				<span class="name">张二狗</span>
+				<span class="personalPurchaseNum">已购买<span class="purchaseNum">10</span>份</span>  
 				<hr/>
 				
 			</div>
 			
-			<%
-				}
-			%>
+			
+			<div class="personalPurchaseDiv">
+				
+				<img class="avatar" src="../images/2.png"/>
+				<span class="name">张一狗</span>
+				<span class="personalPurchaseNum">已购买<span class="purchaseNum">9</span>份</span>  
+				<hr/>
+				
+			</div>
+			
+			
+			<div class="personalPurchaseDiv">
+				
+				<img class="avatar" src="../images/1.png"/>
+				<span class="name">Mary</span>
+				<span class="personalPurchaseNum">已购买<span class="purchaseNum">5</span>份</span>  
+				<hr/>
+				
+			</div>
+			
+			
+			<div class="personalPurchaseDiv">
+				
+				<img class="avatar" src="../images/3.png"/>
+				<span class="name">Lily</span>
+				<span class="personalPurchaseNum">已购买<span class="purchaseNum">5</span>份</span>  
+				<hr/>
+				
+			</div>
 			
 			
 			
+			<div class="personalPurchaseDiv">
+				
+				<img class="avatar" src="../images/4.png"/>
+				<span class="name">张二狗</span>
+				<span class="personalPurchaseNum">已购买<span class="purchaseNum">10</span>份</span>  
+				<hr/>
+				
+			</div>
 			
+			
+			<div class="personalPurchaseDiv">
+				
+				<img class="avatar" src="../images/5.png"/>
+				<span class="name">张二狗</span>
+				<span class="personalPurchaseNum">已购买<span class="purchaseNum">10</span>份</span>  
+				<hr/>
+				
+			</div>
+			
+			
+			<div class="personalPurchaseDiv">
+				
+				<img class="avatar" src="../images/2.png"/>
+				<span class="name">张二狗</span>
+				<span class="personalPurchaseNum">已购买<span class="purchaseNum">10</span>份</span>  
+				<hr/>
+				
+			</div>
+			
+			<div class="personalPurchaseDiv">
+				
+				<img class="avatar" src="../images/1.png"/>
+				<span class="name">张二狗</span>
+				<span class="personalPurchaseNum">已购买<span class="purchaseNum">10</span>份</span>  
+				<hr/>
+				
+			</div>
+			
+			<div id="purchase">
+				<div id="teamPurchase" onclick="window.location.href='#'">
+					<div class="salesPrice" id="teamPrice">
+						89.00元/份
+					</div>
+					<div class="purchaseLink">
+						2人团>
+					</div >
+				</div>
+				
+				<div id="personalPurchase" onclick="window.location.href='#'">
+					<div  class="salesPrice"  id="personalPrice">
+						99.00元/份
+					</div>
+					<div class="purchaseLink">
+						单独预定
+					</div >
+				</div>
+			</div>
 		</div>
        <jsp:include page="footer.jsp" />
     </body>

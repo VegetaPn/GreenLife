@@ -8,7 +8,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import com.greenlife.model.GoodsOrder;
@@ -60,35 +59,6 @@ public class GoodsOrderDao {
 		}
 		
 		return goodsOrder;
-	}
-	
-	public static ArrayList<HashMap<String, String>> getGoodsBuyInfo(int goodsId){
-		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
-		
-		String sql = "select wechat_id, count(*) as number from goods_order where goods_id = ? group by wechat_id"
-				+ " order by number DESC;";
-		Connection conn = new DBUtil().getConn();
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, goodsId);
-			rs = ps.executeQuery();
-			while (rs.next()){
-				String id = rs.getString("wechat_id");
-				int number = rs.getInt("number");
-				HashMap<String, String> map = new HashMap<String, String>();
-				map.put("wechat_id", id);
-				map.put("number", number+"");
-				list.add(map);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			clearUp(conn);
-		}
-		
-		return list;
 	}
 	
 	public static GoodsOrder getGoodsOrderByOutTradeNo(String out_trade_no){
@@ -156,7 +126,7 @@ public class GoodsOrderDao {
 	public static int getGoodsOrderNum(int goodsId){
 		int num = -1;
 		
-		String sql = "select count(*) as cnt from goods_order where goods_id = ? and (order_state = 5 or order_state = 14)";
+		String sql = "select count(*) as cnt from goods_order where goods_id = ?";
 		
 		Connection conn = new DBUtil().getConn();
 		try {
