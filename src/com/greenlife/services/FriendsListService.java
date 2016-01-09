@@ -45,4 +45,11 @@ public class FriendsListService {
 		}
 		return ret;
 	}
+	
+	public static boolean updateFriendsList(FriendsList friendsList){
+		//根据friendsList的两个wechatId获取数据库中friendsList
+		//如果获取不到，则插入
+		//如果获取到，则获取该friendsList的level值加到原有的friendsList
+		return true;
+	}
 }
