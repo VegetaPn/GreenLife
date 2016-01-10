@@ -50,6 +50,12 @@ public class FriendsListService {
 		//根据friendsList的两个wechatId获取数据库中friendsList
 		//如果获取不到，则插入
 		//如果获取到，则获取该friendsList的level值加到原有的friendsList
+		int level = FriendsListDao.getFriendsList(friendsList.getWechatId(), friendsList.getFriendsWechatId());
+		if(level == -1){
+			FriendsListDao.addFriendList(friendsList);
+		} else {
+			FriendsListDao.increaseLevel(friendsList, friendsList.getFriendslevel());
+		}
 		return true;
 	}
 }
