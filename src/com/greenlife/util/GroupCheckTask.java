@@ -11,5 +11,6 @@ public class GroupCheckTask extends TimerTask {
            TimerCheckService.CheckNeedReceiveOrder();
            TimerCheckService.CheckNeedDeleteGroup();
            TimerCheckService.CheckNeedCancelOrder();
+           TimerCheckService.CheckGoodsOverTime();
      }
 }

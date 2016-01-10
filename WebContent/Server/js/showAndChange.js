@@ -1,9 +1,7 @@
 function changeAvaliable() {
 
-	var good_name = document.getElementById("good_name");
-	var sub_title = document.getElementById("sub_title");
-	good_name.disabled = false;
-	sub_title.disabled = false;
+	var name = document.getElementById("name");
+	name.disabled = false;
 	/*
 	 * 价格
 	 */
@@ -42,17 +40,25 @@ function changeAvaliable() {
 	good_text1.disabled = false;
 	good_text2.disabled = false;
 
+	/*
+	 * 微信标签内容
+	 */
+	var tag_title = document.getElementById("tag_title");
+	var tag_text = document.getElementById("tag_text");
 	var normal_img = document.getElementById("normal_img");
 	var small_img = document.getElementById("small_img");
 	var detail_img = document.getElementById("detail_img");
 	var report_image = document.getElementById("report_img");
 
+	tag_title.disabled = false;
+	tag_text.disabled = false;
 	normal_img.disabled = false;
 	small_img.disabled = false;
 	detail_img.disabled = false;
 	report_img.disabled = false;
 
-	var content = "<input type=\"submit\" class=\"btn btn-primary\" onclick=\"()\" value=\"保存\">"
+	var content = "<div class=\"btn btn-primary\" onclick=\"cancelChange()\">取消</div></div>"
+			+ "<input type=\"submit\" class=\"btn btn-primary\" onclick=\"()\" value=\"保存\">"
 			+ "</button>";
 
 	document.getElementById("control").innerHTML = content;
@@ -60,16 +66,75 @@ function changeAvaliable() {
 
 function cancelChange() {
 
-	window.location.href = "/Server/Page/product.jsp";
+	var name = document.getElementById("name");
+	name.disabled = true;
+	;
+	/*
+	 * 价格
+	 */
+	var price = document.getElementById("price");// 单价
+	var group_price = document.getElementById("group_price"); // 团购价
+
+	price.disabled = true;
+	group_price.disabled = true;
+
+	/*
+	 * 商品总量
+	 */
+	var total_num = document.getElementById("total_num");
+	total_num.disabled = true;
+
+	var good_unit = document.getElementById("good_unit");
+	good_unit.disabled = true;
+
+	var report_num = document.getElementById("report_num");
+	report_num.disabled = true;
+
+	/*
+	 * 售卖时间
+	 */
+	var start_time = document.getElementById("start_time");// 开始时间
+	var end_time = document.getElementById("end_time"); // 结束时间
+
+	start_time.disabled = true;
+	end_time.disabled = true;
+
+	/*
+	 * 商品描述
+	 */
+	var good_text1 = document.getElementById("good_text1");
+	var good_text2 = document.getElementById("good_text2");
+	good_text1.disabled = true;
+	good_text2.disabled = true;
+
+	/*
+	 * 微信标签内容
+	 */
+	var tag_title = document.getElementById("tag_title");
+	var tag_text = document.getElementById("tag_text");
+	var normal_img = document.getElementById("normal_img");
+	var small_img = document.getElementById("small_img");
+	var detail_img = document.getElementById("detail_img");
+	var report_image = document.getElementById("report_img");
+
+	tag_title.disabled = true;
+	tag_text.disabled = true;
+	normal_img.disabled = true;
+	small_img.disabled = true;
+	detail_img.disabled = true;
+	report_img.disabled = true;
+
+	var content = "<div class=\"btn btn-primary\" onclick=\"changeAvaliable()\">修改</div>";
+
+	document.getElementById("control").innerHTML = content;
 }
 
 function checkChangeProduct() {
-	
+
 	/*
 	 * 商品名称
 	 */
-	var good_name = document.getElementById("good_name").value;
-	var sub_title = document.getElementById("sub_title").value;
+	var name = document.getElementById("name").value;
 
 	/*
 	 * 价格
@@ -81,11 +146,7 @@ function checkChangeProduct() {
 	 * 商品总量
 	 */
 	var total_num = document.getElementById("total_num").value;
-
-	/*
-	 * 检测数量
-	 */
-	var report_num = document.getElementById("report_num").value;
+	var report_num=document.getElementById("report_num").value;
 
 	/*
 	 * 售卖时间
@@ -100,9 +161,10 @@ function checkChangeProduct() {
 	var good_text2 = document.getElementById("good_text2").value;
 
 	/*
-	 * 图片
+	 * 微信标签内容
 	 */
-
+	var tag_title = document.getElementById("tag_title").value;
+	var tag_text = document.getElementById("tag_text").value;
 	var normal_img = document.getElementById("normal_img").value;
 	var small_img = document.getElementById("small_img").value;
 	var detail_img = document.getElementById("detail_img").value;
@@ -111,13 +173,8 @@ function checkChangeProduct() {
 	/*
 	 * 商品名称检测；
 	 */
-	if (good_name == "") {
+	if (name == "") {
 		alert("请填写商品名称");
-		return false;
-	}
-
-	if (sub_title == "") {
-		alert("请填写商品副标题");
 		return false;
 	}
 
@@ -161,11 +218,11 @@ function checkChangeProduct() {
 	} else {
 		var pattern = new RegExp("^[0-9]{1,11}$");// /价格正则表达式
 		if (!pattern.test(total_num)) {// 价格格式
-			alert("商品总量格式填写错误");
+			alert("商品总量填写错误");
 			return false;
 		}
 	}
-
+	
 	if (total_num == "") {
 		alert("请填写通过检测总量");
 		return false;
@@ -204,11 +261,20 @@ function checkChangeProduct() {
 		return false;
 	}
 
-	return true;
-}
+	/*
+	 * 微信标签内容判断
+	 */
 
-$.doucment().ready(function() {
-	$("#cancel").click(function() {
-		window.location = "/Server/Page/product.jsp"
-	});
-});
+	if (tag_title == "") {
+		alert("请填写微信标签标题");
+		return false;
+	}
+
+	if (tag_text == "") {
+		alert("请填写微信标签描述");
+		return false;
+	}
+
+	return true;
+
+}

@@ -51,10 +51,8 @@
 									<th>编号</th>
 									<th>名称</th>
 									<th>价格</th>
-									<th>团价格</th>
 									<th>总量</th>
 									<th>卖出</th>
-									
 
 								</tr>
 							</thead>
@@ -66,10 +64,9 @@
 											GoodsInfo oneGoods = allGoods.get(i);//被遍历到的商品
 								%>
 								<tr class="goods" onclick="showInfo(<%=oneGoods.getGoodsId()%>)">
-									<td class="center"><%=oneGoods.getGoodsId()%></td>
-									<td class="center"><%=oneGoods.getGoodsName()%></td>
-									<td class="center"><%=oneGoods.getGoodsPrice()%></td>
-									<td class="center"><%=oneGoods.getGoodsDiscontPrice()%></td>
+									<td><%=oneGoods.getGoodsId()%></td>
+									<td><%=oneGoods.getGoodsName()%></td>
+									<td><%=oneGoods.getGoodsPrice()%></td>
 									<td class="center"><%=oneGoods.getGoodsTotalnum()%></td>
 									<td class="center"><%=oneGoods.getGoodsSoldnum()%></td>
 								</tr>

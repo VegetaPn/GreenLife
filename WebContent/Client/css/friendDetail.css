@@ -18,7 +18,6 @@
 	background-color:rgba(215,215,215,0.7);
 	width:100%;
 	bottom:0;
-	/*font-size:6vw;*/
 	text-align:center;
 	
 }
@@ -103,27 +102,7 @@
 	
 }
 
-#teamPrice{
-	background-color:#FF3300;
-	
-}
 
-#personalPrice{
-	background-color:#FFCC33;
-	
-}
-
-.purchaseLink{
-	border-bottom-left-radius:5px;
-	border-bottom-right-radius:5px;
-
-	padding:2px;
-	background-color:#F76F00;
-
-	font-weight:bold;
-	color:#ffffff;
-	text-align:center;
-}
 
 /*如果使用者视图宽度 < 480px，將会载入这里的 CSS。*/  
 @media screen and (max-width: 479px) {  
@@ -162,19 +141,6 @@
 		bottom:24px;
 	}
 
-
-
-	.salesPrice{
-		font-size:24px;
-		
-	}
-
-
-	.purchaseLink{
-
-		font-size:20px;
-		
-	}
 
 }  
 

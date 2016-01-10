@@ -7,13 +7,13 @@
 
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<title>待支付</title>
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css"/>
+<title>Free CSS template Collect from Cssmoban.com</title>
+<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css">
 <link rel="stylesheet" type="text/css"
-	href="../CSS/bootstrap-responsiv.css"/>
+	href="../CSS/bootstrap-responsiv.css">
 <link rel="stylesheet" type="text/css"
-	href="../CSS/jquery.dataTables.min.css"/>
+	href="../CSS/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -27,16 +27,16 @@
 	<div class="row">
 		<button type="button" onClick="location.href='togroup.jsp'"
 			class="btn btn-primary">待成团</button>
-		<button type="button" onClick="location.href='topay.jsp'"
-			class="btn btn-info">待付款</button>
 		<button type="button" onClick="location.href='tosend.jsp'"
 			class="btn btn-success">待发货</button>
-
+		<button type="button" onClick="location.href='topay.jsp'"
+			class="btn btn-info">待付款</button>
 		<button type="button" onClick="location.href='toreceive.jsp'"
 			class="btn btn-warning">待收货</button>
 		<button type="button" onClick="location.href='finish.jsp'"
 			class="btn btn-danger">已完成</button>
 	</div>
+
 	<div class="row">
 		<!-- Main -->
 		<div class="panel panel-default">
@@ -55,7 +55,7 @@
 							
 							<th>订单号</th>
 							<th>微信号</th>
-							<th>产品ID+产品名</th>
+							<th>产品ID</th>
 							<th>地址</th>
 							<th>数量</th>
 							<th>发货时间</th>
@@ -84,8 +84,7 @@
 							<tr class="goods">
 								<td><%=oneGoodsOrder.getOrderId()%></td>
 								<td><%=oneGoodsOrder.getWechatId()%></td>
-								<% GoodsInfo g=GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());%>
-							<td><%=oneGoodsOrder.getGoodsId()+" "+g.getGoodsName() %></td>
+								<td><%=oneGoodsOrder.getGoodsId()%></td>
 								<td><%=oneGoodsOrder.getAddrDetail()%></td>
 								<td><%=oneGoodsOrder.getGoodsNum()%></td>
 								<td><%=oneGoodsOrder.getSendTime()%></td>
@@ -106,12 +105,15 @@
 		</div>
 	</div>
 <jsp:include page="footer.html"></jsp:include>
-		<script src="../js/jquery.min.js"></script>
-	<script src="../js/head.js"></script>
-	<script type="text/javascript" src="../js/jquery.js"></script>
-	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
+	<!-- End Footer -->
+	<script type="text/javascript"
+		src="http://sandbox.runjs.cn/uploads/rs/238/n8vhm36h/jquery.js"></script>
+	<script type="text/javascript"
+		src="http://sandbox.runjs.cn/uploads/rs/238/n8vhm36h/jquery.dataTables.js"></script>
+	<script type="text/javascript"
+		src="http://sandbox.runjs.cn/uploads/rs/238/n8vhm36h/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="http://sandbox.runjs.cn/uploads/rs/238/n8vhm36h/dataTables.bootstrap.js"></script>
 	<script type="text/javascript" src="../js/datatable-zn.js"></script>
 
 </body>

@@ -26,12 +26,16 @@
 			} else {
 				showedGood = GoodsInfoDao.getGoodsInfo(Integer.parseInt(id));
 	%>
+
+
 	<jsp:include page="header.jsp"></jsp:include>
 	<div id="page-wrapper"
 		style="min-height: 616px; min-width: 700px; float: left">
 		<!-- /.row -->
 		<div class="row">
-
+			<h5>
+				<a href="product.jsp"> <-返回</a>
+			</h5>
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 
@@ -43,6 +47,7 @@
 						</p>
 					</div>
 					<div class="panel-body ">
+
 						<form role="form" enctype="multipart/form-data"
 							action="/ChangeGoodServlet"
 							onsubmit="return checkChangeProduct()" method="post">
@@ -53,18 +58,10 @@
 											value="<%=showedGood.getGoodsId()%>" readonly=true
 											name="good_id" class="form-control">
 									</div>
-
-
 									<div class="form-group">
-										<label>商品名称</label> <input id="good_name" type="text"
+										<label>商品名称</label> <input id="name" type="text"
 											value="<%=showedGood.getGoodsName()%>" disabled="true"
 											name="good_name" class="form-control">
-									</div>
-
-									<div class="form-group">
-										<label>副标题</label> <input id="sub_title" type="text"
-											value="<%=showedGood.getSubTitle()%>" disabled="true"
-											name="sub_title" class="form-control">
 									</div>
 
 									<div class="form-group">
@@ -84,6 +81,7 @@
 												class="input-group-addon">￥</span>
 										</div>
 									</div>
+
 									<div class="form-group">
 										<label class="">商品总量</label>
 										<div class="input-group">
@@ -100,18 +98,21 @@
 									</div>
 									<div class="form-group">
 										<label class="">卖出总量</label> <input type="text"
-											class="form-control" id="sold_num" name="sold_num"
-											value="<%=showedGood.getGoodsSoldnum()%>" disabled="true" />
+											class="form-control"
+											value="<%=showedGood.getGoodsSoldnum()%>" disabled="true"
+											value="0" />
+
 									</div>
+
 									<div class="form-group">
 										<label>计量单位</label> <select class="form-control"
-											disabled="true" name="good_unit" id="good_unit">
+											value="<%=showedGood.getGoods_unit()%>" disabled="true"
+											name="good_unit" id="good_unit">
 											<option>斤</option>
 											<option>袋</option>
 											<option>包</option>
 											<option>只</option>
 											<option>个</option>
-											<option selected><%=showedGood.getGoods_unit()%></option>
 										</select>
 									</div>
 
@@ -123,8 +124,7 @@
 													type="button">-</button>
 											</span> <input id="report_num" type="text" class="form-control"
 												value="<%=showedGood.getReportNum()%>" disabled="true"
-												name="report_num" value="0" /> <span
-												class="input-group-btn">
+												name="report_num" value="0" /> <span class="input-group-btn">
 												<button class="btn btn-default" onclick="add1()"
 													type="button">+</button>
 											</span>
@@ -138,11 +138,13 @@
 											id="start_time" name="start_time">
 									</div>
 
+
 									<div class="form-group">
 										<label>结束时间</label> <input class=" laydate-icon form-control"
 											value="<%=showedGood.getEndTime()%>" disabled="true"
 											id="end_time" name="end_time">
 									</div>
+
 
 									<div class="form-group">
 										<div class="form-group-lg">
@@ -159,33 +161,9 @@
 												class="form-control" rows="3"><%=showedGood.getGoodsText2()%></textarea>
 										</div>
 									</div>
-									<div class="form-group-lg">
-										<label>设置为广告</label>
-										<%
-											if (showedGood.getIsAdv() == 0) {
-										%>
-										<label class="checkbox-inline"> <input name="adv"
-											type="radio" id="inlineCheckbox1" value="0" checked>
-											否
-										</label> <label class="checkbox-inline"> <input type="radio"
-											name="adv" id="inlineCheckbox2" value="1"> 是
-										</label>
-										<%
-											} else {
-										%>
-										<label class="checkbox-inline"> <input name="adv"
-											type="radio" id="inlineCheckbox1" value="0">
-											否
-										</label> <label class="checkbox-inline"> <input type="radio"
-											name="adv" id="inlineCheckbox2" value="1" checked> 是
-										</label>
 
-										<%
-											}
-										%>
-
-									</div>
-
+										
+								
 								</div>
 								<div class="col-lg-6">
 									<div class="form-group">
@@ -198,6 +176,7 @@
 												width=420 height=210 />
 										</div>
 									</div>
+
 									<div class="form-group">
 										<label>列表小图片(100*100)</label> <input type="file"
 											disabled="true" accept="image/jpeg" name="small_img"
@@ -230,19 +209,18 @@
 												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>detail.jpg" />
 										</div>
 									</div>
-
-									<div class="form-group row">
-										<div class="col-lg-4" id="control">
-											<div class="btn btn-primary" onclick="changeAvaliable()">
-												修改</div>
-										</div>
-										<div class="col-lg-4">
-											<div class="btn btn-primary" onclick="cancelChange()">放弃修改</div>
-										</div>
+									<div id="control" class="form-group">
+										<div class="btn btn-primary" onclick="changeAvaliable()">
+											修改</div>
 									</div>
+
+
 								</div>
+
 							</div>
+
 						</form>
+
 					</div>
 				</div>
 			</div>
@@ -254,8 +232,8 @@
 	%>
 	<jsp:include page="footer.html"></jsp:include>
 	<script type="text/javascript" src="../js/showAndChange.js"></script>
+	<script type="text/javascript" src="../js/addProduct.js"></script>
 	<script type="text/javascript" src="../js/laydate.js"></script>
-	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript">
 		!function() {
 			laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库

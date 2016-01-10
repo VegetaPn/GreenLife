@@ -7,10 +7,11 @@ function reduction() {
 }
 
 function add(id) {
-
+	
 	var goods_count = document.getElementById("total_num").value;
 	document.getElementById("total_num").value = parseInt(goods_count) + 1;
 }
+
 
 function reduction1() {
 	var goods_count = document.getElementById("report_num").value;
@@ -21,7 +22,7 @@ function reduction1() {
 }
 
 function add1() {
-
+	
 	var goods_count = document.getElementById("report_num").value;
 	document.getElementById("report_num").value = parseInt(goods_count) + 1;
 }
@@ -34,12 +35,11 @@ function checkAddProduct() {
 	/*
 	 * 商品名称
 	 */
-	var good_name = document.getElementById("good_name").value;
+	var name = document.getElementById("name").value;
 
 	/*
 	 * 价格
 	 */
-	var sub_title = document.getElementById("sub_title").value;//副标题
 	var price = document.getElementById("price").value;// 单价
 	var group_price = document.getElementById("group_price").value; // 团购价
 
@@ -47,7 +47,7 @@ function checkAddProduct() {
 	 * 商品总量
 	 */
 	var total_num = document.getElementById("total_num").value;
-	var report_num = document.getElementById("report_num").value;
+	var report_num=document.getElementById("report_num").value;
 
 	/*
 	 * 售卖时间
@@ -64,7 +64,8 @@ function checkAddProduct() {
 	/*
 	 * 微信标签内容
 	 */
-
+	var tag_title = document.getElementById("tag_title").value;
+	var tag_text = document.getElementById("tag_text").value;
 	var normal_img = document.getElementById("normal_img").value;
 	var small_img = document.getElementById("small_img").value;
 	var detail_img = document.getElementById("detail_img").value;
@@ -73,15 +74,11 @@ function checkAddProduct() {
 	/*
 	 * 商品名称检测；
 	 */
-	if (good_name == "") {
+	if (name == "") {
 		alert("请填写商品名称");
 		return false;
 	}
-	
-	if (sub_title == "") {
-		alert("请填写副标题");
-		return false;
-	}
+
 	/*
 	 * 价格格式检测
 	 */
@@ -126,7 +123,7 @@ function checkAddProduct() {
 			return false;
 		}
 	}
-
+	
 	if (total_num == "") {
 		alert("请填写通过检测总量");
 		return false;
@@ -137,7 +134,6 @@ function checkAddProduct() {
 			return false;
 		}
 	}
-	
 
 	/*
 	 * 时间判定
@@ -155,8 +151,6 @@ function checkAddProduct() {
 	/*
 	 * 商品介绍判断
 	 */
-	
-	
 
 	if (good_text1 == "") {
 		alert("请填写商品描述1");
@@ -228,14 +222,14 @@ function previewImage(file) {
 
 		var reader = new FileReader();
 		reader.onload = function(evt) {
-			if (img.value != "") {
-				img.src = evt.target.result;
-			} else {
-				img.src = "";
+			if(img.value!=""){
+			img.src = evt.target.result;
+			}else{
+				img.src="";
 			}
 		}
 		reader.readAsDataURL(file.files[0]);
-
+		
 	} else // 兼容IE
 	{
 		var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
@@ -250,7 +244,8 @@ function previewImage(file) {
 				+ "px;height:" + rect.height + "px;margin-top:" + rect.top
 				+ "px;" + sFilter + src + "\"'></div>";
 	}
-
+	
+	
 }
 function clacImgZoomParam(maxWidth, maxHeight, width, height) {
 	var param = {

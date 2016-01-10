@@ -46,6 +46,7 @@ public class AddGoodServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 	}
 
 	/**
@@ -54,135 +55,138 @@ public class AddGoodServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getSession().getAttribute("login") == null) {// 用户没有登录
-			response.sendRedirect("/Server/Page/login.jsp");
-		} else {
-			request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
+	
+		String goodName = null;
+		int goodId=GoodsInfoDao.getNextGoodsId();
+		String packagePath = "goods/" +goodId+"/";
 
-			String goodName = null;
-			int goodId = GoodsInfoDao.getNextGoodsId();
-			String packagePath = "goods/" + goodId + "/";
+	
+		double goodPrice = 0;
+		double groupPrice = 0;
+		int totalNum = 0;
 
-			double goodPrice = 0;
-			double groupPrice = 0;
-			int totalNum = 0;
+		String goodUnit = null;
 
-			String goodUnit = null;
+		int reportNum = 0;
 
-			int reportNum = 0;
+		
+		String startTime = null;
+		String endTime = null;
 
-			String startTime = null;
-			String endTime = null;
+		String goodText1 = null;
+		String goodText2 = null;
 
-			String goodText1 = null;
-			String goodText2 = null;
+		String subTitle = null;
 
-			String subTitle = null;
-			String adv = null;
 
-			DiskFileItemFactory factory = new DiskFileItemFactory();
+		DiskFileItemFactory factory = new DiskFileItemFactory();
 
-			ServletFileUpload upload = new ServletFileUpload(factory);
+	
+		ServletFileUpload upload = new ServletFileUpload(factory);
 
-			List<FileItem> items = null;
-			try {
-				items = upload.parseRequest(request);
-			} catch (FileUploadException e) {
+		List<FileItem> items = null;
+		try {
+			items = upload.parseRequest(request);
+		} catch (FileUploadException e) {
+			
+			e.printStackTrace();
+		}
 
-				e.printStackTrace();
-			}
+		Iterator<FileItem> iter = items.iterator();
+	
+		while (iter.hasNext()) {
+			FileItem item = (FileItem) iter.next(); 
 
-			Iterator<FileItem> iter = items.iterator();
+			
+			if (item.isFormField()) {
+			
+				String name = item.getFieldName();
+				String value = new String(item.getString("UTF-8"));
 
-			while (iter.hasNext()) {
-				FileItem item = (FileItem) iter.next();
 
-				if (item.isFormField()) {
+				if (name.equals("good_name")) {
+					goodName = value;
+				} else if (name.equals("good_price")) {
+					goodPrice = Double.parseDouble(value);
+				} else if (name.equals("group_price")) {
+					groupPrice = Double.parseDouble(value);
+				} else if (name.equals("total_num")) {
+					totalNum = Integer.parseInt(value);
+				} else if (name.equals("good_unit")) {
+					goodUnit = value;
+				} else if (name.equals("report_num")) {
+					reportNum = Integer.parseInt(value);
+				} else if (name.equals("start_time")) {
+					startTime = value;
+				} else if (name.equals("end_time")) {
+					endTime = value;
+				} else if (name.equals("good_text1")) {
+					goodText1 = value;
+				} else if (name.equals("good_text2")) {
+					goodText2 = value;
+				} else if(name.equals("sub_title")){
+					subTitle = value;
+				}
+			} else {
+				
+				String filename = "";
+				if (item.getFieldName().equals("normal_img")) {
+					
+					
 
-					String name = item.getFieldName();
-					String value = new String(item.getString("UTF-8"));
+					filename = "normal.jpg";
+				} else if (item.getFieldName().equals("small_img")) {
+					filename = "small.jpg";
+				} else if (item.getFieldName().equals("detail_img")) {
 
-					if (name.equals("good_name")) {
-						goodName = value;
-					} else if (name.equals("good_price")) {
-						goodPrice = Double.parseDouble(value);
-					} else if (name.equals("group_price")) {
-						groupPrice = Double.parseDouble(value);
-					} else if (name.equals("total_num")) {
-						totalNum = Integer.parseInt(value);
-					} else if (name.equals("good_unit")) {
-						goodUnit = value;
-					} else if (name.equals("report_num")) {
-						reportNum = Integer.parseInt(value);
-					} else if (name.equals("start_time")) {
-						startTime = value;
-					} else if (name.equals("end_time")) {
-						endTime = value;
-					} else if (name.equals("good_text1")) {
-						goodText1 = value;
-					} else if (name.equals("good_text2")) {
-						goodText2 = value;
-					} else if (name.equals("sub_title")) {
-						subTitle = value;
-					} else if (name.equals("adv")) {
-						adv = value;
+					filename = "detail.jpg";
+				} else if (item.getFieldName().equals("report_img")) {
+					filename = "report.jpg";
+				}
+				if (!item.getName().equals("")) {
+					InputStream in = item.getInputStream();
+					
+					String path1 =PropertiesUtil.getSavePath() + packagePath;
+					File file = new File(path1);
+					
+					if (!file.exists() && !file.isDirectory()) {
+						file.mkdirs();
 					}
-				} else {
-					String filename = "";
-					if (item.getFieldName().equals("normal_img")) {
-						filename = "normal.jpg";
-					} else if (item.getFieldName().equals("small_img")) {
-						filename = "small.jpg";
-					} else if (item.getFieldName().equals("detail_img")) {
-						filename = "detail.jpg";
-					} else if (item.getFieldName().equals("report_img")) {
-						filename = "report.jpg";
+					
+					FileOutputStream fos = new FileOutputStream(new File(path1 + filename));
+					byte[] b = new byte[1024];
+					int size = 0;
+					while ((size = in.read(b)) > 0) {
+						fos.write(b, 0, size);
 					}
-					if (!item.getName().equals("")) {
-						// 将上传的图片保存
-						InputStream in = item.getInputStream();
-
-						String path1 = PropertiesUtil.getSavePath() + packagePath;
-						File file = new File(path1);
-
-						if (!file.exists() && !file.isDirectory()) {
-							file.mkdirs();
-						}
-						System.out.println(path1);
-						FileOutputStream fos = new FileOutputStream(new File(path1 + filename));
-						byte[] b = new byte[1024];
-						int size = 0;
-						while ((size = in.read(b)) > 0) {
-							fos.write(b, 0, size);
-						}
-						in.close();
-						fos.close();
-					}
+					in.close();
+					fos.close();
 				}
 			}
-
-			GoodsInfo newGood = new GoodsInfo();
-			newGood.setGoodsName(goodName);
-			newGood.setGoodsId(goodId);
-			newGood.setPackagePath(packagePath);
-			newGood.setGoodsPrice(goodPrice);
-			newGood.setGoodsTotalnum(totalNum);
-			newGood.setGoodsDiscontPrice(groupPrice);
-			newGood.setGoodsSoldnum(0);
-			newGood.setStartTime(startTime);
-			newGood.setEndTime(endTime);
-			newGood.setGoods_unit(goodUnit);
-			newGood.setIsDelete(0);
-			newGood.setIsAdv(0);
-			newGood.setGoodsText1(goodText1);
-			newGood.setGoodsText2(goodText2);
-			newGood.setReportNum(reportNum);
-			newGood.setSubTitle(subTitle);
-			newGood.setIsAdv(Integer.parseInt(adv));
-
-			int i = GoodsInfoDao.addGoodsInfo(newGood);
-			response.sendRedirect("/Server/Page/product.jsp");
 		}
+	
+		GoodsInfo newGood = new GoodsInfo();
+		newGood.setGoodsName(goodName);
+		newGood.setGoodsId(goodId);
+		newGood.setPackagePath(packagePath);
+		newGood.setGoodsPrice(goodPrice);
+		newGood.setGoodsTotalnum(totalNum);
+		newGood.setGoodsDiscontPrice(groupPrice);
+		newGood.setGoodsSoldnum(0);
+		newGood.setStartTime(startTime);
+		newGood.setEndTime(endTime);
+		newGood.setGoods_unit(goodUnit);
+		newGood.setIsDelete(0);
+		newGood.setIsAdv(0);
+		newGood.setGoodsText1(goodText1);
+		newGood.setGoodsText2(goodText2);
+		newGood.setReportNum(reportNum);
+		newGood.setSubTitle(subTitle);
+		int i=GoodsInfoDao.addGoodsInfo(newGood);
+		response.sendRedirect("/Server/Page/product.jsp");
 
 	}
 }
+
+
