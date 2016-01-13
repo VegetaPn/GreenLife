@@ -115,7 +115,7 @@ for(int i =0; i<addressInfos.size();i++){
 			<% }else{%>
 				<div id="dCusMess">
 				   <div id="dHint">
-				      <div id="sHint"> 点击此处前往地址中心添加收货地址</div>
+				      <div id="sHint"> 点击此处添加收货地址</div>
 				   </div>
 				   <!--  
 				   <div id="dToAddress">
