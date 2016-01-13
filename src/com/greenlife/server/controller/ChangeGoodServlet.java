@@ -22,155 +22,149 @@ import com.greenlife.dao.GoodsInfoDao;
 import com.greenlife.model.GoodsInfo;
 import com.greenlife.util.PropertiesUtil;
 
-
-
 public class ChangeGoodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
 	public ChangeGoodServlet() {
 		super();
-		
-	}
 
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-	
+		if (request.getSession().getAttribute("login") == null) {// 用户没有登录
+			response.sendRedirect("/Server/Page/login.jsp");
+		} else {
+			request.setCharacterEncoding("UTF-8");
 
-		GoodsInfo changedGood = null;
-		String goodName = null;
-		String packagePath = null;
+			GoodsInfo changedGood = null;
+			String goodName = null;
+			String packagePath = null;
 
-	
-		double goodPrice = 0;
-		double groupPrice = 0;
-		int totalNum = 0;
+			double goodPrice = 0;
+			double groupPrice = 0;
+			int totalNum = 0;
 
-		String goodUnit = null;
+			String goodUnit = null;
 
-		int reportNum = 0;
+			int reportNum = 0;
 
-		
-		String startTime = null;
-		String endTime = null;
+			String startTime = null;
+			String endTime = null;
 
-		
-		String goodText1 = null;
-		String goodText2 = null;
+			String goodText1 = null;
+			String goodText2 = null;
 
-		String subTitle = null;
-		DiskFileItemFactory factory = new DiskFileItemFactory();
+			String subTitle = null;
+			String adv = null;
+			DiskFileItemFactory factory = new DiskFileItemFactory();
 
-		
-		ServletFileUpload upload = new ServletFileUpload(factory);
+			ServletFileUpload upload = new ServletFileUpload(factory);
 
-	
-		List<FileItem> items = null;
-		try {
-			items = upload.parseRequest(request);
-		} catch (FileUploadException e) {
-			
-			e.printStackTrace();
-		}
+			List<FileItem> items = null;
+			try {
+				items = upload.parseRequest(request);
+			} catch (FileUploadException e) {
 
-		Iterator<FileItem> iter = items.iterator();
-	
-		while (iter.hasNext()) {
-			FileItem item = (FileItem) iter.next();
+				e.printStackTrace();
+			}
 
-		
+			Iterator<FileItem> iter = items.iterator();
 
-			if (item.isFormField()) {
-			
-				String name = item.getFieldName();
-				String value = new String(item.getString("UTF-8"));
+			while (iter.hasNext()) {
+				FileItem item = (FileItem) iter.next();
 
-			
-				System.out.println(name);
-				if (name.equals("good_id")) {
-					changedGood = GoodsInfoDao.getGoodsInfo(Integer.parseInt(value));
-					packagePath = changedGood.getPackagePath();
-				} else if (name.equals("good_name")) {
-					goodName = value;
-				} else if (name.equals("good_price")) {
-					goodPrice = Double.parseDouble(value);
-				} else if (name.equals("group_price")) {
-					groupPrice = Double.parseDouble(value);
-				} else if (name.equals("total_num")) {
-					totalNum = Integer.parseInt(value);
-				} else if (name.equals("good_unit")) {
-					goodUnit = value;
-				} else if (name.equals("report_num")) {
-					reportNum = Integer.parseInt(value);
-				} else if (name.equals("start_time")) {
-					startTime = value;
-				} else if (name.equals("end_time")) {
-					endTime = value;
-				} else if (name.equals("good_text1")) {
-					goodText1 = value;
-				} else if (name.equals("good_text2")) {
-					goodText2 = value;
-				} else if(name.equals("sub_title")){
-					subTitle = value;
-				}
-				System.out.println(value);
-			} else {
-			
-				String filename = "";
-				System.out.println(item.getFieldName());
-				if (item.getFieldName().equals("normal_img")) {
+				if (item.isFormField()) {
 
-					filename = "normal.jpg";
-				} else if (item.getFieldName().equals("small_img")) {
-					filename = "small.jpg";
-				} else if (item.getFieldName().equals("detail_img")) {
+					String name = item.getFieldName();
+					String value = new String(item.getString("UTF-8"));
 
-					filename = "detail.jpg";
-				} else if (item.getFieldName().equals("report_img")) {
-					filename = "report.jpg";
-				}
-				if (!item.getName().equals("")) {
-					System.out.println(item.getName());
-					InputStream in = item.getInputStream();
-					
-					String path1 = PropertiesUtil.getSavePath()+ packagePath;
-					File file = new File(path1);
-					
-					if (!file.exists() && !file.isDirectory()) {
-						file.mkdir();
+					System.out.println(name);
+					if (name.equals("good_id")) {
+						changedGood = GoodsInfoDao.getGoodsInfo(Integer.parseInt(value));
+						packagePath = changedGood.getPackagePath();
+					} else if (name.equals("good_name")) {
+						goodName = value;
+					} else if (name.equals("good_price")) {
+						goodPrice = Double.parseDouble(value);
+					} else if (name.equals("group_price")) {
+						groupPrice = Double.parseDouble(value);
+					} else if (name.equals("total_num")) {
+						totalNum = Integer.parseInt(value);
+					} else if (name.equals("good_unit")) {
+						goodUnit = value;
+					} else if (name.equals("report_num")) {
+						reportNum = Integer.parseInt(value);
+					} else if (name.equals("start_time")) {
+						startTime = value;
+					} else if (name.equals("end_time")) {
+						endTime = value;
+					} else if (name.equals("good_text1")) {
+						goodText1 = value;
+					} else if (name.equals("good_text2")) {
+						goodText2 = value;
+					} else if (name.equals("sub_title")) {
+						subTitle = value;
+					} else if (name.equals("adv")) {
+						adv = value;
 					}
-					FileOutputStream fos = new FileOutputStream(new File(path1 + "/" + filename));
-					byte[] b = new byte[1024];
-					int size = 0;
-					while ((size = in.read(b)) > 0) {
-						fos.write(b, 0, size);
+					System.out.println(value);
+				} else {
+					String filename = "";
+					System.out.println(item.getFieldName());
+					if (item.getFieldName().equals("normal_img")) {
+
+						filename = "normal.jpg";
+					} else if (item.getFieldName().equals("small_img")) {
+						filename = "small.jpg";
+					} else if (item.getFieldName().equals("detail_img")) {
+
+						filename = "detail.jpg";
+					} else if (item.getFieldName().equals("report_img")) {
+						filename = "report.jpg";
 					}
-					in.close();
-					fos.close();
+					if (!item.getName().equals("")) {
+						System.out.println(item.getName());
+						InputStream in = item.getInputStream();
+
+						String path1 = PropertiesUtil.getSavePath() + packagePath;
+						File file = new File(path1);
+
+						if (!file.exists() && !file.isDirectory()) {
+							file.mkdir();
+						}
+						FileOutputStream fos = new FileOutputStream(new File(path1 + "/" + filename));
+						byte[] b = new byte[1024];
+						int size = 0;
+						while ((size = in.read(b)) > 0) {
+							fos.write(b, 0, size);
+						}
+						in.close();
+						fos.close();
+					}
 				}
 			}
+
+			System.out.println("teci chakan" + goodName);
+			changedGood.setGoodsName(goodName);
+			changedGood.setGoodsPrice(goodPrice);
+			changedGood.setGoodsTotalnum(totalNum);
+			changedGood.setGoodsSoldnum(0);
+			changedGood.setGoodsDiscontPrice(groupPrice);
+			changedGood.setStartTime(startTime);
+			changedGood.setEndTime(endTime);
+
+			changedGood.setGoods_unit(goodUnit);
+			changedGood.setIsDelete(0);
+			changedGood.setIsAdv(0);
+			changedGood.setGoodsText1(goodText1);
+			changedGood.setGoodsText2(goodText2);
+			changedGood.setReportNum(reportNum);
+			changedGood.setSubTitle(subTitle);
+			changedGood.setIsAdv(Integer.parseInt(adv));
+			GoodsInfoDao.updateGoodsInfo(changedGood);
+			response.sendRedirect("/Server/Page/product.jsp");
 		}
-	
-		System.out.println("teci chakan" + goodName);
-		changedGood.setGoodsName(goodName);
-		changedGood.setGoodsPrice(goodPrice);
-		changedGood.setGoodsTotalnum(totalNum);
-		changedGood.setGoodsSoldnum(0);
-		changedGood.setGoodsDiscontPrice(groupPrice);
-		changedGood.setStartTime(startTime);
-		changedGood.setEndTime(endTime);
-	
-		changedGood.setGoods_unit(goodUnit);
-		changedGood.setIsDelete(0);
-		changedGood.setIsAdv(0);
-		changedGood.setGoodsText1(goodText1);
-		changedGood.setGoodsText2(goodText2);
-		changedGood.setReportNum(reportNum);
-		changedGood.setSubTitle(subTitle);
-		GoodsInfoDao.updateGoodsInfo(changedGood);
-		response.sendRedirect("/Server/Page/product.jsp");
 	}
 
 }

@@ -16,21 +16,25 @@ import com.greenlife.model.GoodsOrder;
 
 public class SendGoodOrderServlet extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		int orderId = Integer.parseInt(request.getParameter("orderId"));
-		//System.out.println("orderId:" + orderId);
-		GoodsOrder order = new GoodsOrder();
-		GoodsOrderDao dao = new GoodsOrderDao();
-		order = dao.getGoodsOrderById(orderId);
-		int order_state = order.getOrderState();
-		order.setOrderState(order_state + 1);
-		//System.out.println("now order_state:" + order.getOrderState());
-		dao.updateGoodsOrder(order);
-
-		response.sendRedirect("/Server/Page/tosend.jsp");
+		if (request.getSession().getAttribute("login") == null) {// 用户没有登录
+			response.sendRedirect("/Server/Page/login.jsp");
+		} else {
+			request.setCharacterEncoding("UTF-8");
+			int orderId = Integer.parseInt(request.getParameter("orderId"));
+			// System.out.println("orderId:" + orderId);
+			GoodsOrder order = new GoodsOrder();
+			GoodsOrderDao dao = new GoodsOrderDao();
+			order = dao.getGoodsOrderById(orderId);
+			int order_state = order.getOrderState();
+			order.setOrderState(order_state + 1);
+			// System.out.println("now order_state:" + order.getOrderState());
+			dao.updateGoodsOrder(order);
+			response.sendRedirect("/Server/Page/tosend.jsp");
+		}
 
 	}
 
@@ -53,5 +57,5 @@ public class SendGoodOrderServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	
+
 }

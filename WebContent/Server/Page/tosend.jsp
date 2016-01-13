@@ -7,30 +7,34 @@
 
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<title>Free CSS template Collect from Cssmoban.com</title> <
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css">
-		<link rel="stylesheet" type="text/css"
-			href="../CSS/bootstrap-responsiv.css">
-			<link rel="stylesheet" type="text/css"
-				href="../CSS/jquery.dataTables.min.css">
+<title>待发货</title>
+<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css" />
+<link rel="stylesheet" type="text/css"
+	href="../CSS/bootstrap-responsiv.css" />
+<link rel="stylesheet" type="text/css"
+	href="../CSS/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../CSS/jquery-confirm.css" />
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/refund.js"></script>
 </head>
 
 <body>
 	<%
-		///登录判断，防止未登录直接修改
-		if (session.getAttribute("login") == null) {//用户没有登录
+		if (request.getSession().getAttribute("login") == null) {// 用户没有登录
 			response.sendRedirect("/Server/Page/login.jsp");
-		}
+		} else {
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="row">
 		<button type="button" onClick="location.href='togroup.jsp'"
 			class="btn btn-primary">待成团</button>
-		<button type="button" onClick="location.href='tosend.jsp'"
-			class="btn btn-success">待发货</button>
 		<button type="button" onClick="location.href='topay.jsp'"
 			class="btn btn-info">待付款</button>
+		<button type="button" onClick="location.href='tosend.jsp'"
+			class="btn btn-success">待发货</button>
+
 		<button type="button" onClick="location.href='toreceive.jsp'"
 			class="btn btn-warning">待收货</button>
 		<button type="button" onClick="location.href='finish.jsp'"
@@ -51,56 +55,56 @@
 					id="group">
 					<thead>
 						<tr>
-							
+
 							<th>订单号</th>
 							<th>微信号</th>
-							<th>产品ID</th>
+							<th>产品ID+产品名</th>
 							<th>地址</th>
 							<th>数量</th>
 							<th>发货时间</th>
 							<th>总价</th>
 							<th>购买类型</th>
-                            <th>操作</th>
+							<th>发货</th>
+							<th>取消订单</th>
 						</tr>
 					</thead>
 					<tbody>
-						  <%
-								List<GoodsOrder> GoodsOrderByPerson = GoodsOrderDao.getGoodsOrderListByState(3);//团购订单待发货
+						<%
+							List<GoodsOrder> GoodsOrderByPerson = GoodsOrderDao.getGoodsOrderListByState(3);//团购订单待发货
 								List<GoodsOrder> GoodsOrderByGroup = GoodsOrderDao.getGoodsOrderListByState(12);//个人订单待发货
 								String type = "";
 								GoodsOrderByGroup.addAll(GoodsOrderByPerson);
 								for (int i = 0; i < GoodsOrderByGroup.size(); i++) {
 									GoodsOrder oneGoodsOrder = GoodsOrderByGroup.get(i);//被遍历到的商品
-									if(oneGoodsOrder.getOrderState()==3)
-									{
-									    type = "团购";
-									}
-									else
+									if (oneGoodsOrder.getOrderState() == 3) {
+										type = "团购";
+									} else
 										type = "个人";
-									
-									
-							%>
-							<tr class="goods">
-								<td><%=oneGoodsOrder.getOrderId()%></td>
-								<td><%=oneGoodsOrder.getWechatId()%></td>
-								<td><%=oneGoodsOrder.getGoodsId()%></td>
-								<td><%=oneGoodsOrder.getAddrDetail()%></td>
-								<td><%=oneGoodsOrder.getGoodsNum()%></td>
-								<td><%=oneGoodsOrder.getSendTime()%></td>
-								<td><%=oneGoodsOrder.getTotalPrice()%></td>
-								<td><%=type%></td>
-								<td><a href="/SendGoodOrderServlet?orderId=<%=oneGoodsOrder.getOrderId()%>" class="btn btn-info btn-sm">
-          <span class="glyphicon glyphicon-refresh"></span> 发货
-        </a></td>
-							    
-							</tr>
-							<%
-								}
-							%>
+						%>
+						<tr class="goods">
+							<td><%=oneGoodsOrder.getOrderId()%></td>
+							<td><%=oneGoodsOrder.getWechatId()%></td>
+							<% GoodsInfo g=GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());%>
+							<td><%=oneGoodsOrder.getGoodsId()+" "+g.getGoodsName() %></td>
+							<td><%=oneGoodsOrder.getAddrDetail()%></td>
+							<td><%=oneGoodsOrder.getGoodsNum()%></td>
+							<td><%=oneGoodsOrder.getSendTime()%></td>
+							<td><%=oneGoodsOrder.getTotalPrice()%></td>
+							<td><%=type%></td>
+							<td><a
+								href="/SendGoodOrderServlet?orderId=<%=oneGoodsOrder.getOrderId()%>"
+								class="btn btn-info btn-sm"> 发货 </a></td>
+							<td><button class="btn btn-danger refund"
+									id="<%=oneGoodsOrder.getOrderId()%>">取消并退款</button></td>
+							</td>
 
-						</tbody>
+						</tr>
+						<%
+							}
+							}
+						%>
+					</tbody>
 				</table>
-
 			</div>
 			<!-- Table -->
 		</div>
@@ -108,12 +112,12 @@
 	<jsp:include page="footer.html"></jsp:include>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/head.js"></script>
-	<script type="text/javascript" src="../js/jquery.js"></script>
+
+	<script type="text/javascript" src="../js/jquery-confirm.js"></script>
 	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
 	<script type="text/javascript" src="../js/datatable-zn.js"></script>
-
 </body>
 
 </html>
