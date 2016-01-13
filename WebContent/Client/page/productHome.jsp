@@ -263,9 +263,9 @@
 					showSize = size;
 				}
 				for(int i=0;i<showSize;i++){
-					String puchaseWechatId = friendlist.get(i).get("wechatid");
+					String puchaseWechatId = friendlist.get(i).get("wechat_id");
 					String purchaseNum = friendlist.get(i).get("number");
-					UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
+					UserInfo userInfo = UserInfoDao.getUserInfo(puchaseWechatId);
 					
 				%>	
 					<div class="personalPurchaseDiv">
@@ -340,7 +340,9 @@
 				}
 			%>
 
-			
+			<%
+			if(reportNum != 0){
+			%>
 			<div id="productQuality">
 				<div id="qualityContent">
 				
@@ -361,7 +363,7 @@
 				</div>
 			</div>
 
-
+			<%} %>
 
 			<div id="productComment">
 				<div class="labelHeader">

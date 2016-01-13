@@ -83,7 +83,21 @@ html,body
 }
     
 
+#noOrder{
+	width:100%;
+	height:400px;
+	text-align:center;
+}
 
+#noOrderImg{
+	margin-top:150px;
+	text-align:center;
+}
+
+#noOrderDesc{
+	font-size:20px;
+	text-align:cetner;
+}
 
 .productImg
 {

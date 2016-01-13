@@ -49,9 +49,9 @@
 			<div id="totalPurchase">已售出<span class="purchaseNum"><%=totalSaleNum %></span>份<hr/></div>
 			<%
 				for(int i=0;i<size;i++){
-					String puchaseWechatId = friendlist.get(i).get("wechatid");
+					String puchaseWechatId = friendlist.get(i).get("wechat_id");
 					String purchaseNum = friendlist.get(i).get("number");
-					UserInfo userInfo = UserInfoDao.getUserInfo(wechatId);
+					UserInfo userInfo = UserInfoDao.getUserInfo(puchaseWechatId);
 					
 			%>		
 			

@@ -1,3 +1,4 @@
+<%@page import="com.greenlife.services.FriendsListService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="com.greenlife.model.*" import="java.util.*"
@@ -22,12 +23,15 @@
 				friendsList.setWechatId(shareId);
 				friendsList.setFriendsWechatId(wechatId);
 				friendsList.setFriendslevel(5);
+				FriendsListService.updateFriendsList(friendsList);
 			}else if(shareMethod.equals("AppMessage")){
 				FriendsList friendsList = new FriendsList();
 				friendsList.setWechatId(shareId);
 				friendsList.setFriendsWechatId(wechatId);
 				friendsList.setFriendslevel(2);
+				FriendsListService.updateFriendsList(friendsList);
 			}
+			
 		}
 	}
 	

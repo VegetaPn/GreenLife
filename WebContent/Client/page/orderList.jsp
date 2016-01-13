@@ -72,7 +72,10 @@
                 </div>
         </div>
         <div id="content">
+       
+        
                 <%
+                	int showAmount = 0;
                     for (int orderIndex = orderAmount-1; orderIndex >= 0; orderIndex--)
                         {
                                 orderToShow = orderList.get(orderIndex);
@@ -289,9 +292,28 @@
                         </div>
                 </div>
                 <%
+                	showAmount++;
                     }
+                    
+       
                 %>
+                
+                
+                
+                
+                 <%if(showAmount == 0){%>
+	        <div id='noOrder'>
+	        <div id='noOrderImg'><img src='../images/order.png'/></div>
+	        <div id='noOrderDesc'>您还没有相关订单</div>
+	        </div>
+        
+        <%
+        }
+        %>
         </div>
+        
+        
+        
         <jsp:include page="footer.jsp" />
 </body>
 </html>
