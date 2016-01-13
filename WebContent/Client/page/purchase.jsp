@@ -126,7 +126,7 @@ for(int i =0; i<addressInfos.size();i++){
 				<script>
 				$("#dHint").click(function(){
 					location.href = "changeAddress.jsp?group="+<%=group%>+"&goodsId="+<%=goodsId%>;
-				}
+				});
 				</script>
 			<% }%>
 
