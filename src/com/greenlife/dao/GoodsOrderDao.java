@@ -65,7 +65,7 @@ public class GoodsOrderDao {
 	public static ArrayList<HashMap<String, String>> getGoodsBuyInfo(int goodsId){
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		
-		String sql = "select wechat_id, count(*) as number from goods_order where goods_id = ? group by wechat_id"
+		String sql = "select wechat_id, count(*), order_state as number from goods_order where goods_id = ? group by wechat_id"
 				+ " order by number DESC;";
 		Connection conn = new DBUtil().getConn();
 		
@@ -76,6 +76,8 @@ public class GoodsOrderDao {
 			while (rs.next()){
 				String id = rs.getString("wechat_id");
 				int number = rs.getInt("number");
+				int state = rs.getInt("order_state");
+				if(state == 1 || state == 2 || state == 11 || state == 9 || state == 19)continue;
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put("wechat_id", id);
 				map.put("number", number+"");
