@@ -243,7 +243,9 @@
 
 		<div class="grayDiv">
 		
-			
+			<%
+			if(totalSaleNum!=0){
+			%>
 			<div id="friendPurchase">
 				<div class="labelHeader">
 					<div class="whiteDiv"></div>
@@ -282,6 +284,7 @@
 
 			</div>
 
+		<%} %>
 			<div class="labelHeader" id="productSalesPrice">
 
 				<div class="whiteDiv"></div>
