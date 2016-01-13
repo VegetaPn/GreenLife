@@ -40,9 +40,19 @@
 }
 
 #dHint{
-	width:70%; 
-	float:left;
+	width:100%; 
+	//float:left;
+	overflow:hidden;
 	margin-left:8px;
+}
+
+#sHint{
+	width:100%;
+	text-align:center;
+	height:30px;
+	font-size:16px;
+	//padding-top: 12px;
+	color:red;
 }
     
 #dCusInfor .top{
