@@ -79,6 +79,9 @@
 		   <%}
 		   else{%>
 			     <%if(defaultAddressInfo!=null){ %>
+			    <div id="dHint">
+				    <div id="hint" style="background-color: white; color: red">请点击以下地址，跳转到订单页面</div>
+				</div>
 				    <div class="dDeCusMess" style="display:block" id="<%=defaultAddressInfo!=null?defaultAddressInfo.getAddrId():-1%>" 
 				            onclick="location.href='/changeAddress?addressId=<%=defaultAddressInfo.getAddrId()%>&group=<%=group%>&goodsId=<%=goodsId%>'">
 						<div class="dCusInfor">

@@ -115,12 +115,19 @@ for(int i =0; i<addressInfos.size();i++){
 			<% }else{%>
 				<div id="dCusMess">
 				   <div id="dHint">
-				      <span id="sHint"> 请前往地址中心添加收货地址</span>
+				      <span id="sHint"> 点击此处前往地址中心添加收货地址</span>
 				   </div>
+				   <!--  
 				   <div id="dToAddress">
 					  <a href="changeAddress.jsp?group=<%=group%>&goodsId=<%=goodsId%>"><img id="iToAddress" src="../images/rightArrowCircle3.png" ></a>
 				   </div>
+				   -->
 				</div>
+				<script>
+				$("#dHint").click(function(){
+					location.href = "changeAddress.jsp?group="+<%=group%>+"&goodsId="+<%=goodsId%>;
+				}
+				</script>
 			<% }%>
 
 			<!--第二层产品信息-->
@@ -162,7 +169,7 @@ for(int i =0; i<addressInfos.size();i++){
 			
 			<!--第七层留言-->
 			<div id="dMessage">
-			    <input type="text" id="iMessage" name="iMessage" placeholder="给田园生活留个言"/>
+			    <input type="text" id="iMessage" name="iMessage" placeholder="给源来生活留个言"/>
 				<span>请在24小时内付款否则订单将取消</span>
 			</div>
 			
@@ -274,6 +281,10 @@ for(int i =0; i<addressInfos.size();i++){
 		 function mouseup(){
 		 	$("#iToAddress").attr("src","../images/rightArrowCircle3.png");
 		 }
+		 
+		 $(document).ready(function(){ 
+			 calculate();
+			}) 
 		</script>
 	
     </body>
