@@ -65,7 +65,8 @@ public class GoodsOrderDao {
 	public static ArrayList<HashMap<String, String>> getGoodsBuyInfo(int goodsId){
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		
-		String sql = "select wechat_id, count(*) as number, order_state from goods_order where goods_id = ? group by wechat_id"
+		String sql = "select wechat_id, count(*) as number, order_state from goods_order "
+				+ "where goods_id = ? group by wechat_id"
 				+ " order by number DESC;";
 		Connection conn = new DBUtil().getConn();
 		
