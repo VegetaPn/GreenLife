@@ -109,9 +109,15 @@ for(int i =0; i<addressInfos.size();i++){
 					</div>
 				</div>
 				<div id="dToAddress">
-					<a href="changeAddress.jsp?group=<%=group%>&goodsId=<%=goodsId%>"><img id="iToAddress" src="../images/rightArrowCircle3.png" ></a>
+					<!--  <a href="changeAddress.jsp?group=<%=group%>&goodsId=<%=goodsId%>">--><img id="iToAddress" src="../images/rightArrowCircle3.png" >
 				</div>
 			</div>
+			
+				<script>
+				$("#dCusMess").click(function(){
+					location.href = "changeAddress.jsp?group="+<%=group%>+"&goodsId="+<%=goodsId%>;
+				});
+				</script>
 			<% }else{%>
 				<div id="dCusMess">
 				   <div id="dHint">
