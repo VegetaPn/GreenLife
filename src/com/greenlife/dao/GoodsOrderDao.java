@@ -65,8 +65,9 @@ public class GoodsOrderDao {
 	public static ArrayList<HashMap<String, String>> getGoodsBuyInfo(int goodsId){
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		
-		String sql = "select wechat_id, count(*) as number, order_state from goods_order "
-				+ "where goods_id = ? group by wechat_id"
+		String sql = "select wechat_id, count(*) as number from goods_order "
+				+ "where goods_id = ? and ((order_state >= 3 and order_state <= 5) or (order_state >= 13 and order_state <=14))"
+				+ "group by wechat_id"
 				+ " order by number DESC;";
 		Connection conn = new DBUtil().getConn();
 		
@@ -77,8 +78,8 @@ public class GoodsOrderDao {
 			while (rs.next()){
 				String id = rs.getString("wechat_id");
 				int number = rs.getInt("number");
-				int state = rs.getInt("order_state");
-				if(state == 1 || state == 2 || state == 11 || state == 9 || state == 19)continue;
+//				int state = rs.getInt("order_state");
+//				if(state == 1 || state == 2 || state == 11 || state == 9 || state == 19)continue;
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put("wechat_id", id);
 				map.put("number", number+"");
@@ -307,7 +308,7 @@ public class GoodsOrderDao {
 			
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
-				time = rs.getString("trade_time");
+				time = rs.getString("send_time");
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
 				Date d1 = new Date();
 				Date d2 = sdf.parse(time);
