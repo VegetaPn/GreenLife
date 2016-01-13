@@ -65,7 +65,7 @@ public class GoodsOrderDao {
 	public static ArrayList<HashMap<String, String>> getGoodsBuyInfo(int goodsId){
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		
-		String sql = "select wechat_id, count(*) as number from goods_order "
+		String sql = "select wechat_id, sum(goods_num) as number from goods_order "
 				+ "where goods_id = ? and ((order_state >= 3 and order_state <= 5) or (order_state >= 13 and order_state <=14))"
 				+ "group by wechat_id"
 				+ " order by number DESC;";
@@ -82,7 +82,7 @@ public class GoodsOrderDao {
 //				if(state == 1 || state == 2 || state == 11 || state == 9 || state == 19)continue;
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put("wechat_id", id);
-				map.put("number", number+"");
+				map.put("number", Integer.toString(number));
 				list.add(map);
 			}
 		} catch (SQLException e) {
@@ -309,7 +309,7 @@ public class GoodsOrderDao {
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
 				time = rs.getString("send_time");
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 				Date d1 = new Date();
 				Date d2 = sdf.parse(time);
 				long diff = d1.getTime() - d2.getTime();
