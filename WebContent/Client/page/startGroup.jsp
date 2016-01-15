@@ -23,7 +23,6 @@
 		int goodsID=Integer.parseInt(request.getParameter("goodsId"));
 	
 
-		goodsID = 1;
 		String str_goodsID = request.getParameter("goodsID");
 		if (str_goodsID != null)
 		{
