@@ -109,16 +109,24 @@
 		String jsapi_ticket = (String) session.getAttribute("ticket");
 		String noncestr = "abcdefg";
 		String timestamp = Long.toString((new Date()).getTime());
+		
+
+		
 		String url = request.getScheme()+"://"+ request.getServerName()+request.getRequestURI();
 	 	
-		url = url + "?groupId="+groupId+"&shareId="+wechatId;
-	 	
-		String TimeLineUrl = url + "&shareMethod=TimeLine"; 
-		String AppMessageUrl = url + "&shareMethod=AppMessage";
-
+	 	if(request.getQueryString() != null){
+	 		url = url + "?" + request.getQueryString();
+	 	}
 		String signature = WechatService.buildSignature(noncestr, jsapi_ticket, timestamp, url);
 
 		String appId = PropertiesUtil.getAppId();
+		
+		String shareUrl = request.getScheme()+"://"+ request.getServerName()+request.getRequestURI();
+	 	
+		shareUrl = shareUrl + "?groupId="+groupId+"&shareId="+wechatId;
+	 	
+		String TimeLineUrl = shareUrl + "&shareMethod=TimeLine"; 
+		String AppMessageUrl = shareUrl + "&shareMethod=AppMessage";
 		
 		String smallProductImg = "http://"+PropertiesUtil.getURL()+PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "small.jpg";
 	%>

@@ -233,8 +233,9 @@
 			<div id="infoDesc">
 
 				<hr />
-				<%=goodsInfo.getGoodsText1()%>
-		
+				
+				
+				<%=goodsInfo.getGoodsText1().replace("\n", "<br/>")%>
 				<div class="link" onclick="location.href='productDetail.jsp?goodsId=<%=goodsId%>'">项目详情 ></div>
 
 			</div>
@@ -242,7 +243,9 @@
 
 		<div class="grayDiv">
 		
-			
+			<%
+			if(totalSaleNum!=0){
+			%>
 			<div id="friendPurchase">
 				<div class="labelHeader">
 					<div class="whiteDiv"></div>
@@ -281,6 +284,7 @@
 
 			</div>
 
+		<%} %>
 			<div class="labelHeader" id="productSalesPrice">
 
 				<div class="whiteDiv"></div>
@@ -301,7 +305,7 @@
 			<div id="productSalesInfo">
 				<div id="salesInfo">
 
-					<%=goodsInfo.getGoodsText2()%>
+					<%=goodsInfo.getGoodsText2().replace("\n", "<br/>")%>
 				
 				</div>
 	
@@ -396,7 +400,7 @@
 						</div>
 
 						<div class="comment">
-							<%=comment.getContent()%>
+							<%=comment.getContent().replace("\n", "<br/>")%>
 
 
 							<%
