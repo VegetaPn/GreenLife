@@ -146,7 +146,7 @@
 
 									<div class="form-group">
 										<div class="form-group-lg">
-											<label>商品描述1</label>
+											<label>商品描述1(限200字)</label>
 											<textarea id="good_text1" name="good_text1" disabled="true"
 												class="form-control" rows="3"><%=showedGood.getGoodsText1()%></textarea>
 										</div>
@@ -154,7 +154,7 @@
 
 									<div class="form-group ">
 										<div class="form-group-lg ">
-											<label>商品描述2</label>
+											<label>商品描述2(限200字)</label>
 											<textarea id="good_text2" name="good_text2" disabled="true"
 												class="form-control" rows="3"><%=showedGood.getGoodsText2()%></textarea>
 										</div>

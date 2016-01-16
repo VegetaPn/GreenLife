@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
-<title>田园生活后台管理系统</title>
+<title>源来生活后台管理系统</title>
 <link rel="stylesheet" href="../CSS/bootstrap.css" type="text/css" />
 <link rel="stylesheet" href="../CSS/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="../CSS/global.css" />

@@ -77,7 +77,7 @@ function checkAddProduct() {
 		alert("请填写商品名称");
 		return false;
 	}
-	
+
 	if (sub_title == "") {
 		alert("请填写副标题");
 		return false;
@@ -127,7 +127,7 @@ function checkAddProduct() {
 		}
 	}
 
-	if (total_num == "") {
+	if (report_num == "") {
 		alert("请填写通过检测总量");
 		return false;
 	} else {
@@ -137,7 +137,6 @@ function checkAddProduct() {
 			return false;
 		}
 	}
-	
 
 	/*
 	 * 时间判定
@@ -155,8 +154,6 @@ function checkAddProduct() {
 	/*
 	 * 商品介绍判断
 	 */
-	
-	
 
 	if (good_text1 == "") {
 		alert("请填写商品描述1");
@@ -190,7 +187,12 @@ function checkAddProduct() {
 		alert("请选择一张列表小图片");
 		return false;
 	}
-
+	if (report_img == "") {
+		if (report_num != "0") {
+			alert("检测数量不为0，所以你要上传一个检测图片");
+			return false;
+		}
+	}
 	return true;
 
 }

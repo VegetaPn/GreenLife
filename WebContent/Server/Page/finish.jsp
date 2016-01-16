@@ -33,7 +33,7 @@
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
 			response.sendRedirect("/Server/Page/login.jsp");
-		}else{
+		} else {
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="row">
@@ -65,15 +65,13 @@
 					id="group">
 					<thead>
 						<tr>
-
-							<th>订单号</th>
 							<th>微信号</th>
-							<th>产品ID+产品名</th>
-							<th>地址</th>
+							<th>微信昵称</th>
+							<th>产品名称</th>
 							<th>数量</th>
-							<th>发货时间</th>
-							<th>总价</th>
-							<th>订单类型</th>
+							<th>收货人</th>
+							<th>收货地址</th>
+							<th>电话</th>
 							<th>取消并退款</th>
 
 						</tr>
@@ -93,23 +91,24 @@
 									}
 						%>
 						<tr class="goods">
-							<td><%=oneGoodsOrder.getOrderId()%></td>
 							<td><%=oneGoodsOrder.getWechatId()%></td>
-							<% GoodsInfo g=GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());%>
-							<td><%=oneGoodsOrder.getGoodsId()+" "+g.getGoodsName() %></td>
-							<td><%=oneGoodsOrder.getAddrDetail()%></td>
+							<%
+								GoodsInfo g = GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());
+										UserInfo user = UserInfoDao.getUserInfo(oneGoodsOrder.getWechatId());
+							%>
+							<td><%=user.getWechatName() %></td>
+							<td><%=g.getGoodsName() %></td>
 							<td><%=oneGoodsOrder.getGoodsNum()%></td>
-							<td><%=oneGoodsOrder.getSendTime()%></td>
-							<td><%=oneGoodsOrder.getTotalPrice()%></td>
-							<td><%=type%></td>
+							<td><%=oneGoodsOrder.getReceiverName()%>
+							<td><%=oneGoodsOrder.getAddrDetail()%></td>
+							<td><%=oneGoodsOrder.getPhoneNumber()%></td>
 							<td><button class="btn btn-danger refund"
 									id="<%=oneGoodsOrder.getOrderId()%>">取消并退款</button></td>
 
 						</tr>
 						<%
-								}
 							}
-							
+							}
 						%>
 					
 				</table>
