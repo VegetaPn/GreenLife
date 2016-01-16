@@ -66,7 +66,7 @@ public class GoodsOrderDao {
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		
 		String sql = "select wechat_id, sum(goods_num) as number from goods_order "
-				+ "where goods_id = ? and ((order_state >= 3 and order_state <= 5) or (order_state >= 13 and order_state <=14))"
+				+ "where goods_id = ? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14))"
 				+ "group by wechat_id"
 				+ " order by number DESC;";
 		Connection conn = new DBUtil().getConn();
