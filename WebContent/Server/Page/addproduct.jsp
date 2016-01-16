@@ -13,7 +13,6 @@
 
 
 </head>
-
 <body>
 	<%
 		///登录判断，防止未登录直接修改
@@ -113,7 +112,7 @@
 
 									<div class="form-group">
 										<div class="form-group-lg">
-											<label>商品描述1</label>
+											<label>商品描述1(限200字)</label>
 											<textarea id="good_text1" name="good_text1"
 												class="form-control" rows="3"></textarea>
 										</div>
@@ -122,7 +121,7 @@
 
 									<div class="form-group ">
 										<div class="form-group-lg ">
-											<label>商品描述2</label>
+											<label>商品描述2(限200字)</label>
 											<textarea id="good_text2" name="good_text2"
 												class="form-control" rows="3"></textarea>
 										</div>
