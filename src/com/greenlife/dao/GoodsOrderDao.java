@@ -160,7 +160,7 @@ public class GoodsOrderDao {
 	public static int getGoodsOrderNum(int goodsId){
 		int num = -1;
 		
-		String sql = "select count(*) as cnt from goods_order where goods_id = ? and ((order_state >= 3 and order_state <= 5) or (order_state >= 13 and order_state <=14))";
+		String sql = "select count(*) as cnt from goods_order where goods_id = ? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14))";
 		
 		Connection conn = new DBUtil().getConn();
 		try {
