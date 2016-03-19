@@ -14,10 +14,16 @@
 	href="../CSS/bootstrap-responsiv.css" />
 <link rel="stylesheet" type="text/css"
 	href="../CSS/jquery.dataTables.min.css" />
+
+
+
 <link rel="stylesheet" type="text/css" href="../CSS/jquery-confirm.css" />
+
+
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/refund.js"></script>
+<script src="../js/send.js"></script>
 </head>
 
 <body>
@@ -55,13 +61,13 @@
 					id="group">
 					<thead>
 						<tr>
-							<th>微信号</th>
 							<th>微信昵称</th>
 							<th>产品名</th>
 							<th>数量</th>
 							<th>收货人</th>
 							<th>收货地址</th>
 							<th>电话</th>
+							<th></th>
 							<th>发货</th>
 							<th>取消订单</th>
 						</tr>
@@ -80,7 +86,7 @@
 										type = "个人";
 						%>
 						<tr class="goods">
-							<td><%=oneGoodsOrder.getWechatId()%></td>
+
 							<%
 								//订单对应的用户信息和商品信息
 										UserInfo user = UserInfoDao.getUserInfo(oneGoodsOrder.getWechatId());
@@ -93,12 +99,10 @@
 							<td><%=oneGoodsOrder.getAddrDetail()%></td>
 							<td><%=oneGoodsOrder.getPhoneNumber()%></td>
 							<td><%=type%></td>
-							<td><a
-								href="/SendGoodOrderServlet?orderId=<%=oneGoodsOrder.getOrderId()%>"
-								class="btn btn-info btn-sm"> 发货 </a></td>
+							<td><button id="<%=oneGoodsOrder.getOrderId()%>"
+								class="btn btn-info btn-sm send"> 发货 </button></td>
 							<td><button class="btn btn-danger refund"
 									id="<%=oneGoodsOrder.getOrderId()%>">取消并退款</button></td>
-							</td>
 
 						</tr>
 						<%
@@ -112,10 +116,10 @@
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
-	<script src="../js/jquery.min.js"></script>
 	<script src="../js/head.js"></script>
 
 	<script type="text/javascript" src="../js/jquery-confirm.js"></script>
+
 	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>

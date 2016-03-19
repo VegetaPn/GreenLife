@@ -30,7 +30,7 @@
 						<button class="navbar-toggle" type="button">
 							<span class="sr-only">导航菜单</span> <span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand navbar-left" style="color: White">田园生活后台管理系统</a>
+						<a class="navbar-brand navbar-left" style="color: White">源来生活后台管理系统</a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<div class="nav navbar-text navbar-right" id="userinfo"

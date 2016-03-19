@@ -53,7 +53,7 @@
 					<thead>
 						<tr>
 
-							<th>微信号</th>
+						
 							<th>微信昵称</th>
 							<th>产品名</th>
 							<th>数量</th>
@@ -79,7 +79,7 @@
 						%>
 						<tr class="goods">
 
-							<td><%=oneGoodsOrder.getWechatId()%></td>
+						
 							<%
 								//订单对应的用户信息和商品信息
 									UserInfo user = UserInfoDao.getUserInfo(oneGoodsOrder.getWechatId());
@@ -115,6 +115,6 @@
 	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
 	<script type="text/javascript" src="../js/datatable-zn.js"></script>
 
-</body>
+
 
 </html>
