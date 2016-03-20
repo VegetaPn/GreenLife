@@ -41,7 +41,7 @@ html{
 	
 .normalProduct{
 	
-	border-top:15px solid #DDDDDD;
+	border-top:5px solid #DDDDDD;
 	border-bottom:1px solid #999999;
 	width:100%;
 	overflow:hidden;
@@ -75,7 +75,7 @@ html{
 	font-weight:bold;
 
 	margin-bottom:2px;
-	
+	text-align:right;
 }
 
 .nIntro{
@@ -84,7 +84,7 @@ html{
 	color:#999999;
 	
 	margin-bottom:2px;
-	
+	text-align:right;
 }
 
 .nCheapprice{
@@ -92,7 +92,7 @@ html{
 
 	color:#FF3366;
 	margin-bottom:2px;
-	
+	text-align:right;
 
 }
 
@@ -106,7 +106,7 @@ html{
 	
 	color:#999999;
 	margin-bottom:2px;
-	
+	text-align:right;
 
 }
 
@@ -378,7 +378,7 @@ html{
 	
 	#sildeAd{
 	
-		height:220px;
+		height:200px;
 	}
 	
 
