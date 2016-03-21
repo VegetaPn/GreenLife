@@ -113,7 +113,7 @@ public class ChangeGoodServlet extends HttpServlet {
 					String filename = "";
 					System.out.println(item.getFieldName());
 					if (item.getFieldName().equals("normal_img")) {
-
+						System.out.print("normal");
 						filename = "normal.jpg";
 					} else if (item.getFieldName().equals("small_img")) {
 						filename = "small.jpg";

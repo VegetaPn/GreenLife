@@ -174,8 +174,7 @@
 											} else {
 										%>
 										<label class="checkbox-inline"> <input name="adv"
-											type="radio" id="inlineCheckbox1" value="0">
-											否
+											type="radio" id="inlineCheckbox1" value="0"> 否
 										</label> <label class="checkbox-inline"> <input type="radio"
 											name="adv" id="inlineCheckbox2" value="1" checked> 是
 										</label>
@@ -254,8 +253,11 @@
 	%>
 	<jsp:include page="footer.html"></jsp:include>
 	<script type="text/javascript" src="../js/showAndChange.js"></script>
+	<script type="text/javascript" src="../js/previewImage.js"></script>
+
 	<script type="text/javascript" src="../js/laydate.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
+	<!-- 时间选择控件 -->
 	<script type="text/javascript">
 		!function() {
 			laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库

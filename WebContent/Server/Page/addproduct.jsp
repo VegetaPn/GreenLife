@@ -10,7 +10,7 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <script src="../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/addProduct.js"></script>
-
+<script type="text/javascript" src="../js/previewImage.js"></script>
 
 </head>
 <body>
@@ -128,8 +128,8 @@
 									</div>
 									<div class="form-group-lg">
 										<label>设置为广告</label> <label class="checkbox-inline"> <input
-											name="adv" type="radio" id="inlineCheckbox1" value="0" checked>
-											否
+											name="adv" type="radio" id="inlineCheckbox1" value="0"
+											checked> 否
 										</label> <label class="checkbox-inline"> <input type="radio"
 											name="adv" id="inlineCheckbox2" value="1"> 是
 										</label>
@@ -224,5 +224,4 @@
 		laydate(start);
 		laydate(end);
 	</script>
-
 </html>
