@@ -33,6 +33,9 @@ import="com.greenlife.wechatservice.*"
 		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
 
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+	var base = 0;
+	</script>
 		  
     </head>
     <% 
@@ -271,10 +274,11 @@ import="com.greenlife.wechatservice.*"
 						$(value).css("left",y*n + "px");
 					
 					});
-					var base = 0;
+					
 					$.each(ads,function(n,value){
 						if(n == 0) base = $(value).position().left;
 					});
+					alert("base" + base);
 					setInterval(function(){
 						
 						$.each(ads,function(n, value){
