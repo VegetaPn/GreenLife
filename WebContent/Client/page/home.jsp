@@ -280,13 +280,14 @@ import="com.greenlife.wechatservice.*"
 								});
 								//alert(n*y);				
 							}
-							else{	
+							else{
+								if(n != (ads.length - 1)){
 								$.each(ads,function(n,value){								
 									//$(value).css("display","block");
 									var l = $(value).position().left;
-									$(value).css("left", l-y + "px");
-		
-								});
+									$(value).css("left", (l-y)*2 + "px");
+								
+								});}
 						
 							}
 						});	
