@@ -263,7 +263,7 @@ import="com.greenlife.wechatservice.*"
 	
 		$(document).ready(function()
 				  {
-					var y = document.body.clientWidth;
+					var y = document.documentElement.clientWidth;
 					var ads = $("#sildeAd").children("div.product");
 					//alert(ads.length);
 					$.each(ads,function(n,value){
@@ -285,7 +285,7 @@ import="com.greenlife.wechatservice.*"
 								$.each(ads,function(n,value){								
 									//$(value).css("display","block");
 									var l = $(value).position().left;
-									$(value).css("left", (l-y)*2 + "px");
+									$(value).css("left", l-y + "px");
 								
 								});}
 						
