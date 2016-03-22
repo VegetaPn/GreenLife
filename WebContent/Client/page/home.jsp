@@ -285,7 +285,7 @@ import="com.greenlife.wechatservice.*"
 							if(n == (ads.length - 1) && $(value).position().left == 0){								
 								$.each(ads, function(n,value){								
 									$(value).css("left", base + n*y + "px");
-									alter("n" + n + " " + value);
+									alert("n" + n + " " + value);
 								});
 								//alert(n*y);				
 							}
