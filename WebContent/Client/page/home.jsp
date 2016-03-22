@@ -35,8 +35,7 @@ import="com.greenlife.wechatservice.*"
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 		  
     </head>
-    
-   	<%
+    <% 
 		String jsapi_ticket = (String) session.getAttribute("ticket");
 		String noncestr = "abcdefg";
 		String timestamp = Long.toString((new Date()).getTime());
@@ -52,8 +51,8 @@ import="com.greenlife.wechatservice.*"
 		
 		String shareImg = request.getScheme()+"://"+ request.getServerName()+"/Client/images/yuanlai.jpg";
 		String shareDesc = "我们拥有绿色农场（北京平谷）和牧场（内蒙古草原腹地），可为中国家庭提供来自源头的自然生态食品。";
-	%>
-    
+
+    %>
     <script>
 		
 			
@@ -118,6 +117,7 @@ import="com.greenlife.wechatservice.*"
 		
 		<div id="content">
 		<div id="sildeAd">
+			
 			<% 
 				for(int i=0;i<goodsList.size();i++){
 				if(goodsList.get(i).getIsAdv() == 1){
@@ -132,8 +132,8 @@ import="com.greenlife.wechatservice.*"
 			</div>
 		
 		<%}} %>
+			</div>
 		
-		</div>
 		<%
 		for(int i=goodsList.size()-1;i>=0;i--){		
 		
@@ -271,22 +271,25 @@ import="com.greenlife.wechatservice.*"
 						$(value).css("left",y*n + "px");
 					
 					});
-					
+					var base = 0;
+					$.each(ads,function(n,value){
+						if(n == 0) base = $(value).position().left;
+					});
 					setInterval(function(){
-						$.each(ads,function(n,value){
+						
+						$.each(ads,function(n, value){
 							if(n == (ads.length - 1) && $(value).position().left == 0){								
-								$.each(ads,function(n,value){								
-									$(value).css("left", n*y + "px");
+								$.each(ads, function(n,value){								
+									$(value).css("left", base + n*y + "px");
 								});
 								//alert(n*y);				
 							}
 							else{
 								if(n != (ads.length - 1)){
-								$.each(ads,function(n,value){								
+								$.each(ads, function(n,value){								
 									//$(value).css("display","block");
 									var l = $(value).position().left;
-									$(value).css("left", l-y + "px");
-								
+									$(value).css("left", base + l-y + "px");
 								});}
 						
 							}
