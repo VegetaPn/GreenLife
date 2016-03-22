@@ -278,13 +278,14 @@ import="com.greenlife.wechatservice.*"
 					$.each(ads,function(n,value){
 						if(n == 0) base = $(value).position().left;
 					});
-					alert("base" + base);
+
 					setInterval(function(){
 						
 						$.each(ads,function(n, value){
 							if(n == (ads.length - 1) && $(value).position().left == 0){								
 								$.each(ads, function(n,value){								
 									$(value).css("left", base + n*y + "px");
+									alter("n" + n + " " + value);
 								});
 								//alert(n*y);				
 							}
