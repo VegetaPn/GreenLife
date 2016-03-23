@@ -31,7 +31,7 @@ import="com.greenlife.wechatservice.*"
         <link rel="stylesheet" href="../css/home.css" type="text/css">
 		<link rel="stylesheet" href="../css/guide.css" type="text/css">
 		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
-		<script src="unslider.min.js"></script>
+		<script src="../js/unslider.min.js"></script>
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script>
 	var base = 0;
@@ -138,7 +138,7 @@ import="com.greenlife.wechatservice.*"
 			<li><img id="productImg<%=idIsAdv%>" src=<%=ImgIsAdv%> onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'"/></li>
 			
 			
-			<!--<div class="productName"><%=giIsAdv.getGoodsName()%></div>   --> 
+			<!--<div class="productName"> //giIsAdv.getGoodsName()</div>   --> 
 			 
 			 
 			
@@ -147,7 +147,7 @@ import="com.greenlife.wechatservice.*"
 		<%}} %>
 		 </ul>
 		</div>  
-			</div>
+			
 		
 		<%
 		for(int i=goodsList.size()-1;i>=0;i--){		
@@ -214,9 +214,9 @@ import="com.greenlife.wechatservice.*"
 			<%
 			}}
 			%>
+			</div>
 			
-			
-		</div>
+		
 	
 		
 		<div id="guide">
