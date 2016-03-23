@@ -135,7 +135,7 @@ import="com.greenlife.wechatservice.*"
 			
 			
 			
-			<li><img id="productImg<%=idIsAdv%>" src=<%=ImgIsAdv%> onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'"/></li>
+			<li><img id="productImg<%=idIsAdv%>" src=<%=ImgIsAdv%> onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'" ></li>
 			
 			
 			<!--<div class="productName"> //giIsAdv.getGoodsName()</div>   --> 

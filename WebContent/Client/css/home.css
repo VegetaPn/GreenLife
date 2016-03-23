@@ -17,18 +17,26 @@ html{
 }
 
 .product{
-	position:absolute;
+	position:relative;
 	overflow:hidden;
 	top:0;
 	transition:0.2s ease-out; 
 	-webkit-transition:0.2s ease-out; 
 }
 
+#sildeAd ul li{
+	float: left;
+	
+}
 
+#sildeAd li{
+	list-style: none;
+}
+/*
 .product img{
 	width:100%;
 }
-
+*/
 
 .productName{
 
