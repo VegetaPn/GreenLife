@@ -122,7 +122,7 @@ import="com.greenlife.wechatservice.*"
 		<div id="content">
 		
 		<div id="sildeAd">
-			
+			<ul class="product" >
 			<% 
 				for(int i=0;i<goodsList.size();i++){
 				if(goodsList.get(i).getIsAdv() == 1){
@@ -132,19 +132,21 @@ import="com.greenlife.wechatservice.*"
 					
 			%>
 			
-			<ul class="product" >
+			
 			
 			
 			<li><img id="productImg<%=idIsAdv%>" src=<%=ImgIsAdv%> onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'"/></li>
 			
-			 </ul>
+			
 			<!--<div class="productName"><%=giIsAdv.getGoodsName()%></div>   --> 
 			 
 			 
-			</div>  
+			
 			
 		  
 		<%}} %>
+		 </ul>
+		</div>  
 			</div>
 		
 		<%
