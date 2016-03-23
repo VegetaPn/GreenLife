@@ -29,9 +29,8 @@ html{
 	float: left;
 }
 
-#sildeAd ul{
-	 margin-top:0px;
-	width: 100%;
+#sildeAd ul ol{
+	 margin-top:0;
 	list-style: none;
 }
 
