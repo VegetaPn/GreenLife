@@ -24,10 +24,12 @@ html{
 }
 
 #sildeAd li{
+	 top:0;
 	float: left;
 }
 
 #sildeAd ul{
+	 top:0;
 	width: 100%;
 	list-style: none;
 }
