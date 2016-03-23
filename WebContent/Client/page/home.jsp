@@ -31,8 +31,12 @@ import="com.greenlife.wechatservice.*"
         <link rel="stylesheet" href="../css/home.css" type="text/css">
 		<link rel="stylesheet" href="../css/guide.css" type="text/css">
 		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
-
+		<script type="text/Javascript" src="js/jquery.easyslides.min.v1.1.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/easySlides.default.min.css" />
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+	var base = 0;
+	</script>
 		  
     </head>
     <% 
@@ -107,7 +111,7 @@ import="com.greenlife.wechatservice.*"
 	
 		</script>
     <body>
-	
+		<div id="example_1_container" class="easy_slides_container"></div>
 		<div id="header">
 			<div id="leftButton" onclick="slide()"><img src="../images/menuBar.png"/></div> <!-- 左上角功能键：返回、或是菜单按键-->
 			
@@ -271,16 +275,18 @@ import="com.greenlife.wechatservice.*"
 						$(value).css("left",y*n + "px");
 					
 					});
-					var base = 0;
+					
 					$.each(ads,function(n,value){
 						if(n == 0) base = $(value).position().left;
 					});
+
 					setInterval(function(){
 						
 						$.each(ads,function(n, value){
 							if(n == (ads.length - 1) && $(value).position().left == 0){								
 								$.each(ads, function(n,value){								
 									$(value).css("left", base + n*y + "px");
+									alert("n" + n + " " + value);
 								});
 								//alert(n*y);				
 							}
@@ -339,4 +345,6 @@ import="com.greenlife.wechatservice.*"
 		</script>
 		<jsp:include page="footer.jsp" />
     </body>
+    <script type="text/Javascript" src="js/example_1.js"></script>
+    
 </html>
