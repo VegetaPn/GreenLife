@@ -131,20 +131,11 @@ import="com.greenlife.wechatservice.*"
 					String ImgIsAdv = PropertiesUtil.getPath()+giIsAdv.getPackagePath()+"normal.jpg";	
 					
 			%>
-			
-			
-			
-			
+
 			<li><img id="productImg<%=idIsAdv%>" src=<%=ImgIsAdv%> onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'" ></li>
-			<script>
-			 alert("i " + <%=i%>);
-			</script>
-			
+		
 			<!--<div class="productName"> //giIsAdv.getGoodsName()</div>   --> 
-			 
-			 
-			
-			
+	
 		  
 		<%}} %>
 		 </ul>

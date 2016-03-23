@@ -22,11 +22,11 @@ html{
 	*/
 }
 
-#sildeAd ul li{
+#sildeAd li{
 	float: left;
 }
 
-#sildeAd li{
+#sildeAd ul{
 	width: 100%;
 	list-style: none;
 }
