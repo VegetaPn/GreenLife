@@ -11,12 +11,12 @@ html{
 
 #sildeAd{
 	width:100%;
-	position:relative;
 	overflow-x:hidden;
 	overflow:hidden;
 }
 
 .product{
+	width:500%;
 	position:relative;
 	overflow:hidden;
 	top:0;
@@ -25,11 +25,13 @@ html{
 }
 
 #sildeAd ul li{
+
 	float: left;
 	
 }
 
 #sildeAd li{
+	width: 100%;
 	list-style: none;
 }
 /*
