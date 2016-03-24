@@ -82,6 +82,3 @@ function clacImgZoomParam(maxWidth, maxHeight, width, height) {
 	param.top = Math.round((maxHeight - param.height) / 2);
 	return param;
 }
-$document.ready(function(){
-	window.location.reload(true);
-})

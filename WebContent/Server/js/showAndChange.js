@@ -21,6 +21,7 @@ function changeAvaliable() {
 
 	var good_unit = document.getElementById("good_unit");
 	good_unit.disabled = false;
+	
 
 	var report_num = document.getElementById("report_num");
 	report_num.disabled = false;
@@ -164,6 +165,10 @@ function checkChangeProduct() {
 			alert("商品总量格式填写错误");
 			return false;
 		}
+	}
+	if(good_unit==""){
+		alert("请填写计量单位");
+		return false;
 	}
 
 	if (total_num == "") {

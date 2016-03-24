@@ -31,11 +31,11 @@ import="com.greenlife.wechatservice.*"
         <link rel="stylesheet" href="../css/home.css" type="text/css">
 		<link rel="stylesheet" href="../css/guide.css" type="text/css">
 		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
-		<script type="text/Javascript" src="js/jquery.easyslides.min.v1.1.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/easySlides.default.min.css" />
+		<script src="../js/unslider.min.js"></script>
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script>
 	var base = 0;
+	var imgPath;
 	</script>
 		  
     </head>
@@ -111,7 +111,7 @@ import="com.greenlife.wechatservice.*"
 	
 		</script>
     <body>
-		<div id="example_1_container" class="easy_slides_container"></div>
+		
 		<div id="header">
 			<div id="leftButton" onclick="slide()"><img src="../images/menuBar.png"/></div> <!-- 左上角功能键：返回、或是菜单按键-->
 			
@@ -120,8 +120,9 @@ import="com.greenlife.wechatservice.*"
 		</div>
 		
 		<div id="content">
+		
 		<div id="sildeAd">
-			
+			<ul class="product" >
 			<% 
 				for(int i=0;i<goodsList.size();i++){
 				if(goodsList.get(i).getIsAdv() == 1){
@@ -130,13 +131,16 @@ import="com.greenlife.wechatservice.*"
 					String ImgIsAdv = PropertiesUtil.getPath()+giIsAdv.getPackagePath()+"normal.jpg";	
 					
 			%>
-			<div class="product" >
-			<img id="productImg<%=idIsAdv%>" src=<%=ImgIsAdv%> onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'"/>
-			<div class="productName"><%=giIsAdv.getGoodsName()%></div>
-			</div>
+
+			<li><img id="productImg<%=idIsAdv%>" src=<%=ImgIsAdv%> onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'" ></li>
 		
+			<!--<div class="productName"> //giIsAdv.getGoodsName()</div>   --> 
+	
+		  
 		<%}} %>
-			</div>
+		 </ul>
+		</div>  
+			
 		
 		<%
 		for(int i=goodsList.size()-1;i>=0;i--){		
@@ -145,9 +149,10 @@ import="com.greenlife.wechatservice.*"
 			if(GoodsInfoService.getGoodsStatus(gi) != 3){
 			int id = gi.getGoodsId();
 			String productImg = PropertiesUtil.getPath()+gi.getPackagePath()+"small.jpg";
-
+          
 	
-		%>
+		%>  
+		 
 			<div class="normalProduct" onclick="javascript:location.href='productHome.jsp?goodsId=<%=id%>'">
 				<div class="nPic"><img src="<%=productImg%>"/></div>
 				<div class="nSellInfo">
@@ -202,9 +207,9 @@ import="com.greenlife.wechatservice.*"
 			<%
 			}}
 			%>
+			</div>
 			
-			
-		</div>
+		
 	
 		
 		<div id="guide">
@@ -265,8 +270,12 @@ import="com.greenlife.wechatservice.*"
 		
 		<script>
 	
-		$(document).ready(function()
-				  {
+			$(document).ready(function(e) {
+			    $('#sildeAd').unslider();
+			});
+			
+			        
+			       /*
 					var y = document.documentElement.clientWidth;
 					var ads = $("#sildeAd").children("div.product");
 					//alert(ads.length);
@@ -302,6 +311,7 @@ import="com.greenlife.wechatservice.*"
 						});	
 					},5000);
 				  });		
+		          */
 					/*
 					$("slideAd").on("swipe",function(){
 							  //$("span").text("Swipe detected!");
