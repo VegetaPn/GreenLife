@@ -33,10 +33,7 @@ import="com.greenlife.wechatservice.*"
 		<script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
 		<script src="../js/unslider.min.js"></script>
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-	<script>
-	var base = 0;
-	var imgPath;
-	</script>
+
 		  
     </head>
     <% 

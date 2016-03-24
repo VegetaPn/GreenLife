@@ -24,9 +24,9 @@ html{
 	*/
 }
 
-#sildeAd li{
+#sildeAd ul li{
 	margin-top:0;
-	 top:0;
+	top:0;
 	float: left;
 }
 
