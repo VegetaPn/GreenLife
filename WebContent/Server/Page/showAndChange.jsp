@@ -8,13 +8,15 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta   http-equiv="pragma"   content="no-cache">
 <title>商品添加</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <script src="../js/bootstrap.min.js"></script>
 </head>
 
+
 <body>
-	<%
+	<% 
 		///登录判断，防止未登录直接修改
 		GoodsInfo showedGood = null;
 		String id = request.getParameter("id");
@@ -254,9 +256,17 @@
 	<jsp:include page="footer.html"></jsp:include>
 	<script type="text/javascript" src="../js/showAndChange.js"></script>
 	<script type="text/javascript" src="../js/previewImage.js"></script>
-
+   <script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/laydate.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
+	
+	
+	<script type="text/javascript" src="../js/jquery-confirm.js"></script>
+
+	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
+
+	
 	<!-- 时间选择控件 -->
 	<script type="text/javascript">
 		!function() {
