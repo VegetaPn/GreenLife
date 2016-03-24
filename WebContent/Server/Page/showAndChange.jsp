@@ -8,7 +8,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta   http-equiv="pragma"   content="no-cache">
+<meta http-equiv="pragma" content="no-cache">
 <title>商品添加</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <script src="../js/bootstrap.min.js"></script>
@@ -16,7 +16,7 @@
 
 
 <body>
-	<% 
+	<%
 		///登录判断，防止未登录直接修改
 		GoodsInfo showedGood = null;
 		String id = request.getParameter("id");
@@ -59,28 +59,30 @@
 
 									<div class="form-group">
 										<label>商品名称</label> <input id="good_name" type="text"
-											value="<%=showedGood.getGoodsName()%>" disabled="true"
-											name="good_name" class="form-control">
+											autocomplete="off" value="<%=showedGood.getGoodsName()%>"
+											disabled="true" name="good_name" class="form-control">
 									</div>
 
 									<div class="form-group">
 										<label>副标题</label> <input id="sub_title" type="text"
-											value="<%=showedGood.getSubTitle()%>" disabled="true"
-											name="sub_title" class="form-control">
+											autocomplete="off" value="<%=showedGood.getSubTitle()%>"
+											disabled="true" name="sub_title" class="form-control">
 									</div>
 
 									<div class="form-group">
 										<label class="">商品单价</label>
 										<div class="input-group">
 											<input id="price" type="text" class="form-control"
-												value="<%=showedGood.getGoodsPrice()%>" disabled="true"
-												name="good_price"> <span class="input-group-addon">￥</span>
+												autocomplete="off" value="<%=showedGood.getGoodsPrice()%>"
+												disabled="true" name="good_price"> <span
+												class="input-group-addon">￥</span>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="">团购价</label>
 										<div class="input-group">
 											<input id="group_price" type="text" class="form-control"
+												autocomplete="off"
 												value="<%=showedGood.getGoodsDiscontPrice()%>"
 												disabled="true" name="group_price"> <span
 												class="input-group-addon">￥</span>
@@ -93,6 +95,7 @@
 												<button class="btn btn-default" onclick="reduction()"
 													type="button">-</button>
 											</span> <input id="total_num" type="text" class="form-control"
+												autocomplete="off"
 												value="<%=showedGood.getGoodsTotalnum()%>" name="total_num"
 												disabled="true" value="0" /> <span class="input-group-btn">
 												<button class="btn btn-default" onclick="add()"
@@ -102,20 +105,18 @@
 									</div>
 									<div class="form-group">
 										<label class="">卖出总量</label> <input type="text"
-											class="form-control" id="sold_num" name="sold_num"
-											value="<%=showedGood.getGoodsSoldnum()%>" disabled="true" />
+											autocomplete="off" class="form-control" id="sold_num"
+											name="sold_num" value="<%=showedGood.getGoodsSoldnum()%>"
+											disabled="true" />
 									</div>
 									<div class="form-group">
-										<label>计量单位</label> <select class="form-control"
-											disabled="true" name="good_unit" id="good_unit">
-											<option>斤</option>
-											<option>袋</option>
-											<option>包</option>
-											<option>只</option>
-											<option>个</option>
-											<option selected><%=showedGood.getGoods_unit()%></option>
-										</select>
+
+										<label>计量单位</label> <input id="good_unit" type="text"
+											autocomplete="off" name="good_unit" class="form-control"
+											maxlength=1 value="<%=showedGood.getGoods_unit()%>"
+											disabled="true">
 									</div>
+
 
 									<div class="form-group">
 										<label class="">通过检测数量</label>
@@ -124,8 +125,8 @@
 												<button class="btn btn-default" onclick="reduction1()"
 													type="button">-</button>
 											</span> <input id="report_num" type="text" class="form-control"
-												value="<%=showedGood.getReportNum()%>" disabled="true"
-												name="report_num" value="0" /> <span
+												autocomplete="off" value="<%=showedGood.getReportNum()%>"
+												disabled="true" name="report_num" value="0" /> <span
 												class="input-group-btn">
 												<button class="btn btn-default" onclick="add1()"
 													type="button">+</button>
@@ -256,17 +257,17 @@
 	<jsp:include page="footer.html"></jsp:include>
 	<script type="text/javascript" src="../js/showAndChange.js"></script>
 	<script type="text/javascript" src="../js/previewImage.js"></script>
-   <script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/laydate.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
-	
-	
+
+
 	<script type="text/javascript" src="../js/jquery-confirm.js"></script>
 
 	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
 
-	
+
 	<!-- 时间选择控件 -->
 	<script type="text/javascript">
 		!function() {

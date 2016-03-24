@@ -6,6 +6,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
 <title>商品添加</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <script src="../js/bootstrap.min.js"></script>
@@ -36,25 +37,27 @@
 								<div class="col-lg-6">
 									<div class="form-group">
 										<label>商品名称</label> <input id="good_name" type="text"
-											name="good_name" class="form-control">
+											name="good_name" class="form-control" autocomplete="off">
 									</div>
 
 									<div class="form-group">
 										<label>副标题</label> <input id="sub_title" type="text"
-											name="sub_title" class="form-control">
+											name="sub_title" class="form-control" autocomplete="off">
 									</div>
 									<div class="form-group">
 										<label class="">商品单价</label>
 										<div class="input-group">
 											<input id="price" type="text" class="form-control"
-												name="good_price"> <span class="input-group-addon">￥</span>
+												autocomplete="off" name="good_price"> <span
+												class="input-group-addon">￥</span>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="">团购价</label>
 										<div class="input-group">
 											<input id="group_price" type="text" class="form-control"
-												name="group_price"> <span class="input-group-addon">￥</span>
+												autocomplete="off" name="group_price"> <span
+												class="input-group-addon">￥</span>
 										</div>
 									</div>
 
@@ -65,7 +68,8 @@
 												<button class="btn btn-default" onclick="reduction()"
 													type="button">-</button>
 											</span> <input id="total_num" type="text" class="form-control"
-												name="total_num" value="0" /> <span class="input-group-btn">
+												autocomplete="off" name="total_num" value="0" /> <span
+												class="input-group-btn">
 												<button class="btn btn-default" onclick="add()"
 													type="button">+</button>
 											</span>
@@ -73,15 +77,11 @@
 									</div>
 
 
+
 									<div class="form-group">
-										<label>计量单位</label> <select class="form-control"
-											name="good_unit" id="good_unit">
-											<option>斤</option>
-											<option>袋</option>
-											<option>包</option>
-											<option>只</option>
-											<option>个</option>
-										</select>
+										<label>计量单位</label> <input id="good_unit" type="text"
+											autocomplete="off" name="good_unit" class="form-control"
+											maxlength=1>
 									</div>
 
 									<div class="form-group">
@@ -91,7 +91,7 @@
 												<button class="btn btn-default" onclick="reduction1()"
 													type="button">-</button>
 											</span> <input id="report_num" type="text" class="form-control"
-												name="report_num" value="0" /> <span
+												autocomplete="off" name="report_num" value="0" /> <span
 												class="input-group-btn">
 												<button class="btn btn-default" onclick="add1()"
 													type="button">+</button>
@@ -177,9 +177,7 @@
 									<input type="submit" class="btn btn-primary" value="提交" />
 									<button type="reset" class="btn btn-primary">重置</button>
 								</div>
-
 							</div>
-
 						</form>
 					</div>
 				</div>

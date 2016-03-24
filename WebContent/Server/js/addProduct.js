@@ -19,7 +19,6 @@ function reduction1() {
 		document.getElementById("report_num").value = parseInt(goods_count) - 1;
 	}
 }
-
 function add1() {
 
 	var goods_count = document.getElementById("report_num").value;
@@ -30,7 +29,6 @@ function add1() {
  * 提交前判断填写信息是否完整
  */
 function checkAddProduct() {
-
 	/*
 	 * 商品名称
 	 */
@@ -48,6 +46,7 @@ function checkAddProduct() {
 	 */
 	var total_num = document.getElementById("total_num").value;
 	var report_num = document.getElementById("report_num").value;
+	var good_unit = document.getElementById("good_unit").value;
 
 	/*
 	 * 售卖时间
@@ -126,6 +125,11 @@ function checkAddProduct() {
 			return false;
 		}
 	}
+	
+	if(good_unit==""){
+		alert("请填写计量单位");
+		return false;
+	}
 
 	if (report_num == "") {
 		alert("请填写通过检测总量");
@@ -168,16 +172,6 @@ function checkAddProduct() {
 	/*
 	 * 微信标签内容判断
 	 */
-
-	if (tag_title == "") {
-		alert("请填写微信标签标题");
-		return false;
-	}
-
-	if (tag_text == "") {
-		alert("请填写微信标签描述");
-		return false;
-	}
 
 	if (normal_img == "") {
 		alert("请选择一张主页大图片");
