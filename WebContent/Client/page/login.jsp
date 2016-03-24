@@ -10,9 +10,9 @@
 	
 	String requestUrl = (String)request.getAttribute("requestUrl");
 	if(requestUrl == null){
-		refreshUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri=http%3A%2F%2F"+url+"%2Flogin&response_type=code&scope=snsapi_base#wechat_redirect";
+		refreshUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri=http%3A%2F%2F"+url+"%2Flogin&response_type=code&scope=snsapi_userinfo#wechat_redirect";
 	}else{
-		refreshUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri=http%3A%2F%2F"+url+"%2Flogin?requestUrl="+requestUrl+"&response_type=code&scope=snsapi_base#wechat_redirect";
+		refreshUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri=http%3A%2F%2F"+url+"%2Flogin?requestUrl="+requestUrl+"&response_type=code&scope=snsapi_userinfo#wechat_redirect";
 	}
 		
 %>    
