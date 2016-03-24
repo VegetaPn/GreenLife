@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import com.greenlife.dao.UserInfoDao;
 import com.greenlife.model.UserInfo;
 import com.greenlife.util.PropertiesUtil;
-import com.greenlife.wechatservice.WechatInfo;
+import com.greenlife.wechatservice.LoginInfo;
 import com.greenlife.wechatservice.WechatService;
 
 import net.sf.json.JSONObject;
@@ -34,25 +34,38 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String code = request.getParameter("code");
 		
-		WechatInfo wechatInfo = WechatService.login(code);
+		LoginInfo loginInfo = WechatService.login(code);
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("wechatId", wechatInfo.getWechatId());
-		session.setAttribute("nickname",wechatInfo.getNickname());
-		session.setAttribute("headimgurl",wechatInfo.getHeadimgurl());
-		session.setAttribute("ticket", wechatInfo.getTicket());
-		session.setAttribute("accessToken", wechatInfo.getAccessToken());
+		if(loginInfo == null){
+			String appid = PropertiesUtil.getAppId();
+			String url = PropertiesUtil.getURL();
 		
-		String requestUrl = request.getParameter("requestUrl");
-		
-		if(requestUrl == null){
-			response.sendRedirect("/Client/page/home.jsp");
+			String refreshUrl = null;
+			
+			String requestUrl = request.getParameter("requestUrl");
+			if(requestUrl == null){
+				refreshUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri=http%3A%2F%2F"+url+"%2Flogin&response_type=code&scope=snsapi_userinfo#wechat_redirect";
+			}else{
+				refreshUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri=http%3A%2F%2F"+url+"%2Flogin?requestUrl="+requestUrl+"&response_type=code&scope=snsapi_userinfo#wechat_redirect";
+			}
+			
+			response.sendRedirect(refreshUrl);
 		}else{
-			response.sendRedirect(requestUrl);
+			HttpSession session = request.getSession();
+			session.setAttribute("wechatId", loginInfo.getWechatId());
+			session.setAttribute("nickname",loginInfo.getNickname());
+			session.setAttribute("headimgurl",loginInfo.getHeadimgurl());
+			session.setAttribute("ticket", loginInfo.getTicket());
+			session.setAttribute("accessToken", loginInfo.getAccessToken());
+			
+			String requestUrl = request.getParameter("requestUrl");
+			
+			if(requestUrl == null){
+				response.sendRedirect("/Client/page/home.jsp");
+			}else{
+				response.sendRedirect(requestUrl);
+			}
 		}
-		
-		
-		
 	}
 	
 	

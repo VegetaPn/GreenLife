@@ -34,10 +34,12 @@ import com.greenlife.dao.GoodsInfoDao;
 import com.greenlife.dao.GoodsOrderDao;
 import com.greenlife.dao.TodayGroupDao;
 import com.greenlife.dao.UserInfoDao;
+import com.greenlife.dao.WechatInfoDao;
 import com.greenlife.model.GoodsInfo;
 import com.greenlife.model.GoodsOrder;
 import com.greenlife.model.TodayGroup;
 import com.greenlife.model.UserInfo;
+import com.greenlife.model.WechatInfo;
 import com.greenlife.util.PropertiesUtil;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -46,7 +48,7 @@ import com.thoughtworks.xstream.io.xml.XmlFriendlyNameCoder;
 import net.sf.json.JSONObject;
 
 public class WechatService {
-	public static WechatInfo login(String code) {
+	public static LoginInfo login(String code) {
 		String appid = PropertiesUtil.getAppId();
 		String secret = PropertiesUtil.getAppsecret();
 
@@ -63,30 +65,116 @@ public class WechatService {
 		String refresh_token = (String) jsonObject.get("refresh_token");
 		String openid = (String) jsonObject.get("openid");
 		String scope = (String) jsonObject.get("scope");
-		String unionid = (String) jsonObject.get("unionid");
 
-		String refreshUrl = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=" + appid
-				+ "&grant_type=refresh_token&refresh_token=" + refresh_token;
-		jsonStr = getJsonStrFromURL(refreshUrl);
-		jsonObject = JSONObject.fromObject(jsonStr);
-		access_token = (String) jsonObject.get("access_token");
-		expires_in = (Integer) jsonObject.get("expires_in");
-		refresh_token = (String) jsonObject.get("refresh_token");
-		openid = (String) jsonObject.get("openid");
-		scope = (String) jsonObject.get("scope");
+		String nickname = null;
+		Integer sex =  null;
+		String province =  null;
+		String city =  null;
+		String country =  null;
+		String headimgurl =  null;
+		String unionid =  null;
+		
+		
+		if(scope.equals("snsapi_userinfo")){
+			String userInfoUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid
+					+ "&lang=zh_CN";
+			jsonStr = getJsonStrFromURL(userInfoUrl);
+			jsonObject = JSONObject.fromObject(jsonStr);
+			openid = (String) jsonObject.get("openid");
+			nickname = (String) jsonObject.get("nickname");
+			sex = (Integer) jsonObject.get("sex");
+			province = (String) jsonObject.get("province");
+			city = (String) jsonObject.get("city");
+			country = (String) jsonObject.get("country");
+			headimgurl = (String) jsonObject.get("headimgurl");
+			unionid = (String) jsonObject.get("unionid");
+			
+			if(!WechatInfoDao.isExist(openid)){
+				WechatInfo wehchatInfo = new WechatInfo();
+				wehchatInfo.setWechatId(openid);
+				wehchatInfo.setAccessToken(access_token);
+				wehchatInfo.setRefreshToken(refresh_token);
+				WechatInfoDao.addWechatInfo(wehchatInfo);
+				
+				UserInfo userInfo = new UserInfo();
+				userInfo.setWechatId(openid);
+				userInfo.setWechatName(nickname);
+				userInfo.setPhotoPath(headimgurl);
+				UserInfoDao.addUserInfo(userInfo);
+			}else{
+				WechatInfo wehchatInfo = WechatInfoDao.getWechatInfo(openid);
+				wehchatInfo.setAccessToken(access_token);
+				wehchatInfo.setRefreshToken(refresh_token);
+				WechatInfoDao.updateWechatInfo(wehchatInfo);
+				
+				UserInfo userInfo = UserInfoDao.getUserInfo(openid);
+				userInfo.setWechatId(openid);
+				userInfo.setWechatName(nickname);
+				userInfo.setPhotoPath(headimgurl);
+				UserInfoDao.updateUserInfo(userInfo);
+			}
+		}else if(scope.equals("snsapi_base")){
+			if(!WechatInfoDao.isExist(openid)){
+				return null;
+			}else{
+				WechatInfo wehcatInfo = WechatInfoDao.getWechatInfo(openid);
+				access_token = wehcatInfo.getAccessToken();
+				
+				String userInfoUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid
+						+ "&lang=zh_CN";
+				
+				
+				jsonStr = getJsonStrFromURL(userInfoUrl);
+				jsonObject = JSONObject.fromObject(jsonStr);
 
-		String userInfoUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid
-				+ "&lang=zh_CN";
-		jsonStr = getJsonStrFromURL(userInfoUrl);
-		jsonObject = JSONObject.fromObject(jsonStr);
-		openid = (String) jsonObject.get("openid");
-		String nickname = (String) jsonObject.get("nickname");
-		Integer sex = (Integer) jsonObject.get("sex");
-		String province = (String) jsonObject.get("province");
-		String city = (String) jsonObject.get("city");
-		String country = (String) jsonObject.get("country");
-		String headimgurl = (String) jsonObject.get("headimgurl");
-		unionid = (String) jsonObject.get("unionid");
+				refresh_token = wehcatInfo.getRefreshToken();
+				String refreshUrl = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=" + appid
+						+ "&grant_type=refresh_token&refresh_token=" + refresh_token;
+				jsonStr = getJsonStrFromURL(refreshUrl);
+				jsonObject = JSONObject.fromObject(jsonStr);
+				Integer refreshErrcode = (Integer) jsonObject.get("errcode");
+				System.out.println(refreshErrcode);
+				System.out.println(jsonObject.get("errmsg"));
+				if(refreshErrcode == 0){
+					access_token = (String) jsonObject.get("access_token");
+					expires_in = (Integer) jsonObject.get("expires_in");
+					refresh_token = (String) jsonObject.get("refresh_token");
+					openid = (String) jsonObject.get("openid");
+					scope = (String) jsonObject.get("scope");
+					
+					WechatInfo wehchatInfo = WechatInfoDao.getWechatInfo(openid);
+					wehchatInfo.setAccessToken(access_token);
+					wehchatInfo.setRefreshToken(refresh_token);
+					WechatInfoDao.updateWechatInfo(wehchatInfo);
+					
+	
+					userInfoUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid
+							+ "&lang=zh_CN";
+					jsonStr = getJsonStrFromURL(userInfoUrl);
+					jsonObject = JSONObject.fromObject(jsonStr);
+					openid = (String) jsonObject.get("openid");
+					nickname = (String) jsonObject.get("nickname");
+					sex = (Integer) jsonObject.get("sex");
+					province = (String) jsonObject.get("province");
+					city = (String) jsonObject.get("city");
+					country = (String) jsonObject.get("country");
+					headimgurl = (String) jsonObject.get("headimgurl");
+					unionid = (String) jsonObject.get("unionid");
+					
+					UserInfo userInfo = UserInfoDao.getUserInfo(openid);
+					userInfo.setWechatId(openid);
+					userInfo.setWechatName(nickname);
+					userInfo.setPhotoPath(headimgurl);
+					UserInfoDao.updateUserInfo(userInfo);
+						
+				}else{
+					return null;
+				}
+					
+			}
+			
+		}
+		
 
 		String jsTokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appid
 				+ "&secret=" + secret;
@@ -101,23 +189,8 @@ public class WechatService {
 		jsonObject = JSONObject.fromObject(jsonStr);
 		String ticket = (String) jsonObject.get("ticket");
 
-		
 
-		if (!UserInfoDao.isExist(openid)) {
-			UserInfo userInfo = new UserInfo();
-			userInfo.setWechatId(openid);
-			userInfo.setWechatName(nickname);
-			userInfo.setPhotoPath(headimgurl);
-			UserInfoDao.addUserInfo(userInfo);
-		} else {
-			UserInfo userInfo = UserInfoDao.getUserInfo(openid);
-			userInfo.setWechatId(openid);
-			userInfo.setWechatName(nickname);
-			userInfo.setPhotoPath(headimgurl);
-			UserInfoDao.updateUserInfo(userInfo);
-		}
-
-		WechatInfo wechatInfo = new WechatInfo();
+		LoginInfo wechatInfo = new LoginInfo();
 		wechatInfo.setAccessToken(jsAccessToken);
 		wechatInfo.setCity(city);
 		wechatInfo.setCountry(country);

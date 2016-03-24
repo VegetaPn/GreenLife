@@ -1,6 +1,6 @@
 package com.greenlife.wechatservice;
 
-public class WechatInfo {
+public class LoginInfo {
 	
 	private String wechatId;
 	private String nickname;
