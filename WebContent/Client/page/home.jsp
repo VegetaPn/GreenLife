@@ -172,17 +172,23 @@ import="com.greenlife.wechatservice.*"
 							gTime = "距开始";
 							cal.setTime(sdf.parse(sdf.format(new Date())));
 							time1 = cal.getTimeInMillis();        
-							cal.setTime(sdf.parse(gi.getEndTime()));    
+							cal.setTime(sdf.parse(gi.getStartTime()));    
 							time2 = cal.getTimeInMillis();
 							break;
 						}
 						case 1: {
 							gState = "预定中";
 							gTime = "剩余时间";
+							cal.setTime(sdf.parse(sdf.format(new Date())));
+							time1 = cal.getTimeInMillis();        
+							cal.setTime(sdf.parse(gi.getEndTime()));    
+							time2 = cal.getTimeInMillis();
+							/*
 							cal.setTime(sdf.parse(gi.getStartTime()));  
 							time1 = cal.getTimeInMillis();    
 							cal.setTime(sdf.parse(gi.getEndTime()));
-							time2 = cal.getTimeInMillis();    
+							time2 = cal.getTimeInMillis();  
+							*/
 							break;
 						}
 						case 2: {
