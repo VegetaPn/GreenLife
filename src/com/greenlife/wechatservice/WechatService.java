@@ -97,7 +97,7 @@ public class WechatService {
 				wehchatInfo.setRefreshToken(refresh_token);
 				
 				Date date = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/hh:mm:ss");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
 				wehchatInfo.setRefreshTime(sdf.format(date));
 				
 				WechatInfoDao.addWechatInfo(wehchatInfo);
@@ -113,7 +113,7 @@ public class WechatService {
 				wehchatInfo.setRefreshToken(refresh_token);
 				
 				Date date = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/hh:mm:ss");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
 				wehchatInfo.setRefreshTime(sdf.format(date));
 				
 				WechatInfoDao.updateWechatInfo(wehchatInfo);
@@ -187,7 +187,7 @@ public class WechatService {
 				
 				String strRefreshTime = wechatInfo.getRefreshTime();
 				
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/hh:mm:ss");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
 				
 				Date refreshTime = null;
 				try {

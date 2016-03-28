@@ -51,7 +51,7 @@ li img{
 	
 .normalProduct{
 	
-	border-top:5px solid #DDDDDD;
+	border-top:1px solid #DDDDDD;
 	border-bottom:1px solid #999999;
 	width:100%;
 	overflow:hidden;
@@ -388,13 +388,13 @@ li img{
 	
 	#sildeAd{
 	
-		height:200px;
+		height:180px;
 	}
 	
 
 	.product img{
 		
-		height:220px;
+		height:180px;
 	}
 
 	.productName{

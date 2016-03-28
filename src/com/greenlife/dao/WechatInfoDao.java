@@ -56,13 +56,15 @@ public class WechatInfoDao {
 		String sql = "UPDATE `greenlife`.`wechat_info` SET "
 				+"access_token = (?), "
 				+"refresh_token = (?), "
-				+"refresh_time = (?);";
+				+"refresh_time = (?) "
+				+"Where wechat_id = (?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, info.getAccessToken());
 			ps.setString(2, info.getRefreshToken());
 			ps.setString(3, info.getRefreshTime());
+			ps.setString(4, info.getWechatId());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

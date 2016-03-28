@@ -155,7 +155,7 @@ import="com.greenlife.wechatservice.*"
 				<div class="nSellInfo">
 					<div class="nName"><%=gi.getGoodsName()%></div>
 					<div class="nIntro"><%=gi.getSubTitle()%></div>
-					<div class="nCheapprice">￥<%=gi.getGoodsPrice()%><span>/<%=gi.getGoods_unit()%></span>
+					<div class="nCheapprice"><span>/<%=gi.getGoods_unit()%></span>&nbsp￥<%=gi.getGoodsPrice()%>
 						</div>
 					
 					<% 	

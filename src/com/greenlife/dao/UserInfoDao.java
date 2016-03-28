@@ -77,7 +77,7 @@ public class UserInfoDao {
 		String sql = "UPDATE `greenlife`.`user_info` SET "
 				+"wechat_name = (?), "
 				+"address_id = (?),"
-				+"photo_path = (?)"
+				+"photo_path = (?) "
 				+"WHERE wechat_id = (?);";
 		Connection conn = new DBUtil().getConn();
 		try {
