@@ -12,9 +12,10 @@ import java.net.URLConnection;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -94,6 +95,11 @@ public class WechatService {
 				wehchatInfo.setWechatId(openid);
 				wehchatInfo.setAccessToken(access_token);
 				wehchatInfo.setRefreshToken(refresh_token);
+				
+				Date date = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/hh:mm:ss");
+				wehchatInfo.setRefreshTime(sdf.format(date));
+				
 				WechatInfoDao.addWechatInfo(wehchatInfo);
 				
 				UserInfo userInfo = new UserInfo();
@@ -105,6 +111,11 @@ public class WechatService {
 				WechatInfo wehchatInfo = WechatInfoDao.getWechatInfo(openid);
 				wehchatInfo.setAccessToken(access_token);
 				wehchatInfo.setRefreshToken(refresh_token);
+				
+				Date date = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/hh:mm:ss");
+				wehchatInfo.setRefreshTime(sdf.format(date));
+				
 				WechatInfoDao.updateWechatInfo(wehchatInfo);
 				
 				UserInfo userInfo = UserInfoDao.getUserInfo(openid);
@@ -117,8 +128,9 @@ public class WechatService {
 			if(!WechatInfoDao.isExist(openid)){
 				return null;
 			}else{
-				WechatInfo wehcatInfo = WechatInfoDao.getWechatInfo(openid);
-				access_token = wehcatInfo.getAccessToken();
+				/*
+				WechatInfo wechatInfo = WechatInfoDao.getWechatInfo(openid);
+				access_token = wechatInfo.getAccessToken();
 				
 				String userInfoUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=" + access_token + "&openid=" + openid
 						+ "&lang=zh_CN";
@@ -169,8 +181,38 @@ public class WechatService {
 						
 				}else{
 					return null;
+				}*/
+				
+				WechatInfo wechatInfo = WechatInfoDao.getWechatInfo(openid);
+				
+				String strRefreshTime = wechatInfo.getRefreshTime();
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/hh:mm:ss");
+				
+				Date refreshTime = null;
+				try {
+					refreshTime = sdf.parse(strRefreshTime);
+				} catch (ParseException e) {
+					e.printStackTrace();
 				}
-					
+				
+				Date now = new Date();
+				
+				Calendar cal = Calendar.getInstance();    
+			    cal.setTime(refreshTime);    
+			    long time1 = cal.getTimeInMillis();                 
+			    cal.setTime(now);    
+			    long time2 = cal.getTimeInMillis();         
+			    long between_days=(time2-time1)/(1000*3600*24);  
+				
+			    if(between_days < 7){
+					UserInfo userInfo = UserInfoDao.getUserInfo(openid);
+					nickname = userInfo.getWechatName();
+					headimgurl = userInfo.getPhotoPath();
+			    }else{
+			    	return null;
+			    }
+			   
 			}
 			
 		}

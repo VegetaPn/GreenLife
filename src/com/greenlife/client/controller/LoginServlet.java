@@ -1,26 +1,20 @@
 package com.greenlife.client.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
-import javax.servlet.RequestDispatcher;
+import java.io.IOException;
+
+
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.greenlife.dao.UserInfoDao;
-import com.greenlife.model.UserInfo;
+
 import com.greenlife.util.PropertiesUtil;
 import com.greenlife.wechatservice.LoginInfo;
 import com.greenlife.wechatservice.WechatService;
-
-import net.sf.json.JSONObject;
 
 public class LoginServlet extends HttpServlet {
 

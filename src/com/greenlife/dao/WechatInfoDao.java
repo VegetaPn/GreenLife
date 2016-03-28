@@ -33,14 +33,15 @@ public class WechatInfoDao {
 	
 	public static boolean addWechatInfo(WechatInfo info){
 		String sql = "INSERT INTO `greenlife`.`wechat_info` "
-				+ "(`wechat_id`, `access_token`, `refresh_token`) "
-				+ "VALUES (?, ?, ?);";
+				+ "(`wechat_id`, `access_token`, `refresh_token`, `refresh_time`) "
+				+ "VALUES (?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, info.getWechatId());
 			ps.setString(2, info.getAccessToken());
 			ps.setString(3, info.getRefreshToken());
+			ps.setString(4, info.getRefreshTime());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -54,12 +55,14 @@ public class WechatInfoDao {
 	public static boolean updateWechatInfo(WechatInfo info){
 		String sql = "UPDATE `greenlife`.`wechat_info` SET "
 				+"access_token = (?), "
-				+"refresh_token = (?);";
+				+"refresh_token = (?), "
+				+"refresh_time = (?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, info.getAccessToken());
 			ps.setString(2, info.getRefreshToken());
+			ps.setString(3, info.getRefreshTime());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,6 +85,7 @@ public class WechatInfoDao {
 				wechatInfo.setWechatId(rs.getString("wechat_id"));
 				wechatInfo.setAccessToken(rs.getString("access_token"));
 				wechatInfo.setRefreshToken(rs.getString("refresh_token"));
+				wechatInfo.setRefreshTime(rs.getString("refresh_time"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

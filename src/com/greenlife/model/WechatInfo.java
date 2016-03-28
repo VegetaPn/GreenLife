@@ -1,9 +1,12 @@
 package com.greenlife.model;
 
+
 public class WechatInfo {
 	private String wechatId;
 	private String accessToken;
 	private String refreshToken;
+	private String refreshTime;
+	
 	public String getWechatId() {
 		return wechatId;
 	}
@@ -21,6 +24,12 @@ public class WechatInfo {
 	}
 	public void setRefreshToken(String refreshToken) {
 		this.refreshToken = refreshToken;
+	}
+	public String getRefreshTime() {
+		return refreshTime;
+	}
+	public void setRefreshTime(String refreshTime) {
+		this.refreshTime = refreshTime;
 	}
 	
 	
