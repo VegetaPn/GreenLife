@@ -17,6 +17,7 @@ public class GoodsInfo {
 	private String goodsText2;
 	private String subTitle;
 	private int reportNum;
+	private int orderIndex;
 	
 	public int getReportNum() {
 		return reportNum;
@@ -113,6 +114,12 @@ public class GoodsInfo {
 	}
 	public void setGoodsText2(String goodsText2) {
 		this.goodsText2 = goodsText2;
+	}
+	public int getOrderIndex() {
+		return orderIndex;
+	}
+	public void setOrderIndex(int orderIndex) {
+		this.orderIndex = orderIndex;
 	}
 
 }

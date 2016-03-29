@@ -81,7 +81,7 @@
 									<div class="form-group">
 										<label>计量单位</label> <input id="good_unit" type="text"
 											autocomplete="off" name="good_unit" class="form-control"
-											maxlength=1>
+											maxlength=10>
 									</div>
 
 									<div class="form-group">
