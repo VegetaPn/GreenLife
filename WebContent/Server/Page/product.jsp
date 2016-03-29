@@ -54,7 +54,8 @@
 									<th>团价格</th>
 									<th>总量</th>
 									<th>卖出</th>
-									
+									<th>优先级调整</th>
+
 
 								</tr>
 							</thead>
@@ -65,13 +66,26 @@
 										for (int i = 0; i < allGoods.size(); i++) {
 											GoodsInfo oneGoods = allGoods.get(i);//被遍历到的商品
 								%>
-								<tr class="goods" onclick="showInfo(<%=oneGoods.getGoodsId()%>)">
-									<td class="center"><%=oneGoods.getGoodsId()%></td>
-									<td class="center"><%=oneGoods.getGoodsName()%></td>
-									<td class="center"><%=oneGoods.getGoodsPrice()%></td>
-									<td class="center"><%=oneGoods.getGoodsDiscontPrice()%></td>
-									<td class="center"><%=oneGoods.getGoodsTotalnum()%></td>
-									<td class="center"><%=oneGoods.getGoodsSoldnum()%></td>
+								<tr class="goods">
+									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
+										class="center"><%=oneGoods.getGoodsId()%></td>
+									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
+										class="center"><%=oneGoods.getGoodsName()%></td>
+									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
+										class="center"><%=oneGoods.getGoodsPrice()%></td>
+									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
+										class="center"><%=oneGoods.getGoodsDiscontPrice()%></td>
+									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
+										class="center"><%=oneGoods.getGoodsTotalnum()%></td>
+									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
+										class="center"><%=oneGoods.getGoodsSoldnum()%></td>
+
+									<td>
+										<% if(i!=0){//第一行不显示按钮%>
+										<button class="btn-primary"
+											onclick="changeTop(<%=oneGoods.getGoodsId()%>)">置顶</button> <% }%>
+									</td>
+
 								</tr>
 								<%
 									}

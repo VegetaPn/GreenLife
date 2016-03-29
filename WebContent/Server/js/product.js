@@ -14,3 +14,8 @@ function getXMLHttpRequest() {
 	}
 	return xhr;
 }
+
+function changeTop(value){
+	alert(value);
+	alert("hello");
+}
