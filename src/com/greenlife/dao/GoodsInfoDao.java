@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.greenlife.model.GoodsInfo;
 import com.greenlife.util.DBUtil;
@@ -62,9 +63,9 @@ public class GoodsInfoDao {
 				+ "`goods_price`, `goods_totalnum`, `goods_soldnum`, "
 				+ "`start_time`, `end_time`, `goods_discount_price`, "
 				+ "`goods_unit`, `is_delete`, `is_adv`, `goods_text1`, "
-				+ "`goods_text2`, `sub_title`, `report_num`) "
+				+ "`goods_text2`, `sub_title`, `report_num`, `order_index`) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, "
-				+ "?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
@@ -84,7 +85,7 @@ public class GoodsInfoDao {
 			ps.setString(13, info.getGoodsText2());
 			ps.setString(14, info.getSubTitle());
 			ps.setInt(15, info.getReportNum());
-			
+			ps.setInt(16, info.getOrderIndex());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -128,7 +129,8 @@ public class GoodsInfoDao {
 				+ "`goods_text1`=? , "
 				+ "`goods_text2`=? , "
 				+ "`sub_title`=? , "
-				+ "`report_num`=?  "
+				+ "`report_num`=? , "
+				+ "`order_index`=? "
 				+ "WHERE (`goods_id`= ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
@@ -148,7 +150,8 @@ public class GoodsInfoDao {
 			ps.setString(13, info.getGoodsText2());
 			ps.setString(14, info.getSubTitle());
 			ps.setInt(15, info.getReportNum());
-			ps.setInt(16, info.getGoodsId());
+			ps.setInt(16, info.getOrderIndex());
+			ps.setInt(17, info.getGoodsId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -188,6 +191,7 @@ public class GoodsInfoDao {
 				goodsInfo.setGoodsText2(rs.getString("goods_text2"));
 				goodsInfo.setSubTitle(rs.getString("sub_title"));
 				goodsInfo.setReportNum(rs.getInt("report_num"));
+				goodsInfo.setOrderIndex(rs.getInt("order_index"));
 			}else{
 				return null;
 			}
@@ -231,6 +235,7 @@ public class GoodsInfoDao {
 				goodsInfo.setGoodsText2(rs.getString("goods_text2"));
 				goodsInfo.setSubTitle(rs.getString("sub_title"));
 				goodsInfo.setReportNum(rs.getInt("report_num"));
+				goodsInfo.setOrderIndex(rs.getInt("order_index"));
 				goodsList.add(goodsInfo);
 			}
 		} catch (SQLException e) {
@@ -280,6 +285,140 @@ public class GoodsInfoDao {
 		
 		return goodsList;
 	}
+	
+	public static int getNextOrderIndex(){
+		int orderIndex = -1;
+		String sql = "select max(order_index) as maxIndex from goods_info;";
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				orderIndex = rs.getInt("maxIndex") + 1;
+			}else{
+				return -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			clearUp(conn);
+		}
+		return orderIndex;
+	}
+	
+	public static boolean topGoods(int goodsId){
+		String sql1 = "select order_index from goods_info where goods_id = ?";
+		String sql2 = "select max(order_index) as maxIndex from goods_info";
+		String sql3 = "update goods_info set order_index = order_index - 1 where order_index>? and order_index<=?";
+		String sql4 = "update goods_info set order_index = ? where goods_id = ?";
+		
+		int orderIndex = -1;
+		int maxIndex = -1;
+		
+		Connection conn = new DBUtil().getConn();
+		try{
+			ps = conn.prepareStatement(sql1);
+			ps.setInt(1, goodsId);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				orderIndex = rs.getInt("order_index");
+			}else{
+				return false;
+			}
+			
+			if(rs != null){
+                rs.close();
+            }
+            if(ps != null){
+                ps.close();
+            }
+			
+			
+			ps = conn.prepareStatement(sql2);
+			rs = ps.executeQuery();
+			
+			if(rs.next()){
+				maxIndex = rs.getInt("maxIndex");
+			}else{
+				return false;
+			}
+			
+			if(rs != null){
+                rs.close();
+            }
+            if(ps != null){
+                ps.close();
+            }
+			
+			ps = conn.prepareStatement(sql3);
+			ps.setInt(1, orderIndex);
+			ps.setInt(2, maxIndex);
+			ps.executeUpdate();
+			
+            if(ps != null){
+                ps.close();
+            }
+			
+			ps = conn.prepareStatement(sql4);
+			ps.setInt(1, maxIndex);
+			ps.setInt(2, goodsId);
+			ps.executeUpdate();
+			
+			
+		}	catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			clearUp(conn);
+		}
+		
+		
+		
+		return true;
+	}
+	
+	public static ArrayList<GoodsInfo> getGoodsListByOrderIndex(){
+		ArrayList<GoodsInfo> goodsList = new ArrayList<>();
+		String sql = "select * from goods_info order by order_index desc";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				GoodsInfo goodsInfo = new GoodsInfo();
+				
+				// stupid set method......
+				goodsInfo.setGoodsId(rs.getInt("goods_id"));
+				goodsInfo.setGoodsName(rs.getString("goods_name"));
+				goodsInfo.setPackagePath(rs.getString("package_path"));
+				goodsInfo.setGoodsPrice(rs.getDouble("goods_price"));
+				goodsInfo.setGoodsTotalnum(rs.getInt("goods_totalnum"));
+				goodsInfo.setGoodsSoldnum(rs.getInt("goods_soldnum"));
+				goodsInfo.setStartTime(rs.getString("start_time"));
+				goodsInfo.setEndTime(rs.getString("end_time"));
+				goodsInfo.setGoodsDiscontPrice(rs.getDouble("goods_discount_price"));
+				goodsInfo.setGoods_unit(rs.getString("goods_unit"));
+				goodsInfo.setIsDelete(rs.getInt("is_delete"));
+				goodsInfo.setIsAdv(rs.getInt("is_adv"));
+				goodsInfo.setGoodsText1(rs.getString("goods_text1"));
+				goodsInfo.setGoodsText2(rs.getString("goods_text2"));
+				goodsInfo.setSubTitle(rs.getString("sub_title"));
+				goodsInfo.setReportNum(rs.getInt("report_num"));
+				goodsInfo.setOrderIndex(rs.getInt("order_index"));
+				goodsList.add(goodsInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return goodsList;
+	}
+	
 	
 	public static void clearUp(Connection conn) {
         
