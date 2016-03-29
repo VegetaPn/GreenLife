@@ -62,7 +62,7 @@
 							<!-- 每条商品信息 -->
 							<tbody>
 								<%
-									List<GoodsInfo> allGoods = GoodsInfoDao.getGoodsList();//获得所有商品列表
+									List<GoodsInfo> allGoods = GoodsInfoDao.getGoodsListByOrderIndex();//获得所有商品列表
 										for (int i = 0; i < allGoods.size(); i++) {
 											GoodsInfo oneGoods = allGoods.get(i);//被遍历到的商品
 								%>
@@ -85,7 +85,6 @@
 										<button class="btn-primary"
 											onclick="changeTop(<%=oneGoods.getGoodsId()%>)">置顶</button> <% }%>
 									</td>
-
 								</tr>
 								<%
 									}

@@ -16,6 +16,5 @@ function getXMLHttpRequest() {
 }
 
 function changeTop(value){
-	alert(value);
-	alert("hello");
+	window.location.href="?id="+value;
 }
