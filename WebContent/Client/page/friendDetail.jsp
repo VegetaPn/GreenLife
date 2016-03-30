@@ -1,6 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
     import="com.greenlife.dao.*" import="com.greenlife.model.*" import="java.util.*"
-    import="com.greenlife.util.PropertiesUtil" import="com.greenlife.services.*"%>
+    import="com.greenlife.util.PropertiesUtil" import="com.greenlife.services.*" import="java.text.SimpleDateFormat" %>
 <%@ page errorPage="error.jsp"%>
 <!DOCTYPE html>
 
@@ -53,6 +53,13 @@
 					String purchaseNum = friendlist.get(i).get("number");
 					UserInfo userInfo = UserInfoDao.getUserInfo(puchaseWechatId);
 					String time = GoodsOrderDao.getMaxTradeTimeByWechatId(puchaseWechatId);
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+					Date date = sdf.parse(time);
+					
+					SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+					SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+					String time1 = sdf1.format(date);
+					String time2 = sdf2.format(date);
 			%>		
 			
 			<div class="personalPurchaseDiv">
@@ -60,7 +67,7 @@
 				<img class="avatar" src="<%=userInfo.getPhotoPath()%>"/>
 				<span class="name"><%=userInfo.getWechatName() %></span>
 				
-				<span class="personalPurchaseNum"><span class="time"><%=time%></span>&nbsp已购买<span class="purchaseNum"><%=purchaseNum %></span>份</span>  
+				<span class="personalPurchaseNum"><span class="time"><%=time1%></span>&nbsp已购买<span class="purchaseNum"><%=purchaseNum %></span>份</span>  
 				<hr/>
 				
 			</div>

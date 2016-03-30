@@ -1,3 +1,39 @@
+#blackDiv{
+	background-color:black;
+	opacity:0.8;
+    z-index:10;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	
+}
+
+#closeBlack{
+	position:absolute;
+	width:25px;
+	height:25px;
+	top:20px;
+	left:20px;
+}
+
+
+#shareArrow{
+	float:right;
+	width:50%;
+	margin-right:5%:
+}
+
+#shareText{
+	clear:both;
+	width:90%;
+	margin:auto;
+	text-align:center;
+	color:white;
+	font-size:20px;
+}
+
 .interval{
 	background-color:#DDDDDD;
 	height:15px;

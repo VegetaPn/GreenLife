@@ -254,8 +254,29 @@
 			
 		%>
 			<div id="joinGroupDiv">
-				<span class="grayJoinGroup">已参团</span>
+				<span class="joinGroup">邀请好友参团</span>
 			</div>
+			
+			<div id="blackDiv">
+				<img id="closeBlack" src="../images/close.png"/>
+				<div><img id="shareArrow" src="../images/share_it.png"/></div>
+			
+				<div id="shareText">点击右上角按钮可邀请好友或分享到朋友圈</div>
+			</div>
+			
+			
+			<script>
+				$(function(){
+					$("#closeBlack").click(function(){
+						$("#blackDiv").hide();
+					});
+					
+					$("#joinGroupDiv").click(function(){
+						$("#blackDiv").show();
+					});
+				});
+				
+			</script>
 		<%
 			}
 		%>
