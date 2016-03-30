@@ -9,6 +9,35 @@ html{
 }
 
 
+#productList{
+	position:relative;
+}
+
+.arcLabel{
+	background-color:#F76F00;
+	color:#FFFFFF;
+
+	padding:5px 15px 5px 15px;
+	border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+	position:absolute;
+	left:0;
+	top:25%;
+}
+
+.sellOutLabel{
+	background-color:#999999;
+	color:#FFFFFF;
+
+	padding:5px 15px 5px 15px;
+	border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+	position:absolute;
+	left:0;
+	top:25%;
+}
+
+
 #sildeAd{
 	margin-top:0;
 	position: relative;
@@ -127,6 +156,14 @@ li img{
 
 	
 @media screen and (min-width: 980px) {  
+	.arcLabel{
+
+		font-size:32px;
+	}
+	
+	.sellOutLabel{
+		font-size:32px;
+	}
 	
 	#sildeAd{
 	
@@ -191,6 +228,14 @@ li img{
 	
 	
 @media screen and (min-width: 768px) and (max-width: 979px) {  
+	.arcLabel{
+
+		font-size:28px;
+	}
+	
+	.sellOutLabel{
+		font-size:28px;
+	}
 	
 	#sildeAd{
 	
@@ -254,6 +299,14 @@ li img{
 	
 
 @media screen and (min-width: 640px) and (max-width: 767px) {
+	.arcLabel{
+
+		font-size:24px;
+	}
+	
+	.sellOutLabel{
+		font-size:24px;
+	}
 	
 	#sildeAd{
 	
@@ -319,6 +372,14 @@ li img{
 	
 
 @media screen and (min-width:480px) and (max-width:639px){
+	.arcLabel{
+
+		font-size:20px;
+	}
+	
+	.sellOutLabel{
+		font-size:20px;
+	}
 	
 	#sildeAd{
 	
@@ -385,6 +446,14 @@ li img{
 
 
 @media screen and (max-width: 479px){
+	.arcLabel{
+
+		font-size:16px;
+	}
+	
+	.sellOutLabel{
+		font-size:16px;
+	}
 	
 	#sildeAd{
 	
