@@ -52,14 +52,15 @@
 					String puchaseWechatId = friendlist.get(i).get("wechat_id");
 					String purchaseNum = friendlist.get(i).get("number");
 					UserInfo userInfo = UserInfoDao.getUserInfo(puchaseWechatId);
-					
+					String time = GoodsOrderDao.getMaxTradeTimeByWechatId(puchaseWechatId);
 			%>		
 			
 			<div class="personalPurchaseDiv">
 				
 				<img class="avatar" src="<%=userInfo.getPhotoPath()%>"/>
 				<span class="name"><%=userInfo.getWechatName() %></span>
-				<span class="personalPurchaseNum">已购买<span class="purchaseNum"><%=purchaseNum %></span>份</span>  
+				
+				<span class="personalPurchaseNum"><span class="time"><%=time%></span>&nbsp已购买<span class="purchaseNum"><%=purchaseNum %></span>份</span>  
 				<hr/>
 				
 			</div>

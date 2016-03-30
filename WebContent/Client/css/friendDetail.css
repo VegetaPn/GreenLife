@@ -69,6 +69,10 @@
 
 }
 
+.time{
+	color:#999999;
+}
+
 
 #purchase{
 	width:90%;
@@ -104,7 +108,7 @@
 
 
 
-/*如果使用者视图宽度 < 480px，將会载入这里的 CSS。*/  
+/*濡傛灉浣跨敤鑰呰鍥惧搴� < 480px锛屽皣浼氳浇鍏ヨ繖閲岀殑 CSS銆�*/  
 @media screen and (max-width: 479px) {  
 	#productImg{
 		height:220px;
@@ -141,11 +145,14 @@
 		bottom:24px;
 	}
 
+	.time{
+		font-size:12px;
+	}
 
 }  
 
 
-/* 如果使用者视图宽度介于 480 ~ 639，將会载入这里的 CSS。*/    
+/* 濡傛灉浣跨敤鑰呰鍥惧搴︿粙浜� 480 ~ 639锛屽皣浼氳浇鍏ヨ繖閲岀殑 CSS銆�*/    
 @media screen and (min-width:480px) and (max-width:639px) {
 	#productImg{
 		height:300px;
@@ -183,6 +190,9 @@
 	}
 
 
+	.time{
+		font-size:16px;
+	}
 
 	.salesPrice{
 		font-size:28px;
@@ -200,7 +210,7 @@
 
    
    
-/* 如果使用者视图宽度介于 640 ~ 767，將会载入这里的 CSS。*/ 
+/* 濡傛灉浣跨敤鑰呰鍥惧搴︿粙浜� 640 ~ 767锛屽皣浼氳浇鍏ヨ繖閲岀殑 CSS銆�*/ 
 
 @media screen and (min-width:640px) and (max-width:767px) {  
 	#productImg{
@@ -238,7 +248,9 @@
 		bottom:50px;
 	}
 
-
+	.time{
+		font-size:20px;
+	}
 
 	.salesPrice{
 		font-size:32px;
@@ -254,7 +266,7 @@
 }  
    
 
-/*如果使用者视图宽度介于 768px ~ 979px，將会载入这里的 CSS。*/
+/*濡傛灉浣跨敤鑰呰鍥惧搴︿粙浜� 768px ~ 979px锛屽皣浼氳浇鍏ヨ繖閲岀殑 CSS銆�*/
 @media screen and (min-width:768px) and (max-width:979px) {  
     #productImg{
 		height:420px;
@@ -291,7 +303,9 @@
 		bottom:60px;
 	}
 
-
+	.time{
+		font-size:24px;
+	}
 
 	.salesPrice{
 		font-size:36px;
@@ -308,7 +322,7 @@
    
    
 
-/*如果使用者视图宽度 >980px，將会载入这里的 CSS。*/
+/*濡傛灉浣跨敤鑰呰鍥惧搴� >980px锛屽皣浼氳浇鍏ヨ繖閲岀殑 CSS銆�*/
 @media screen and (min-width:980px){  
 	#productImg{
 		height:500px;
@@ -345,7 +359,9 @@
 		bottom:60px;
 	}
 
-
+	.time{
+		font-size:28px;
+	}
 
 	.salesPrice{
 		font-size:40px;

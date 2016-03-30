@@ -97,9 +97,8 @@
 		<div class="detail">
 			<h2>详细说明：</h2>
 			<p id="detailInfo">
-				<%
-					out.println(goodsinfo.getGoodsText2());
-				%>
+				<%=goodsinfo.getGoodsText2().replace("\n", "<br/>")%>
+				
 			</p>
 
 		</div>
