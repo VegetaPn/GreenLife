@@ -167,11 +167,11 @@
 				});
 			</script>
 
+			
+		</div>
 			<div id="productName">
 				<%=goodsInfo.getGoodsName()%>
 			</div>
-		</div>
-		
 		<script>
 		
 			

@@ -14,12 +14,14 @@
 }
 
 #productName{
-	position: absolute;
-	background-color:rgba(215,215,215,0.7);
+	color:#272727;
+	background-color:#ECEBEB;
+	padding-top:5px;
+	padding-bottom:5px;
 	width:100%;
-	bottom:0;
 	text-align:center;
-	
+	font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
+	margin-top:-5px;
 }
 
 
@@ -96,8 +98,8 @@
 
 
 .grayDiv{
-	background-color:#DDDDDD;
-	border:1px solid #DDDDDD;
+	background-color:rgb(233,233,233);
+	border:1px solid rgb(233,233,233);
 	
 }
 
@@ -404,11 +406,11 @@
 @media screen and (max-width: 479px) {   
 	#productImg{
 		
-		height:220px;
+		height:200px;
 	}
 
 	#productName{
-		font-size:22px;
+		font-size:18px;
 	}
 
 
