@@ -56,6 +56,8 @@
 								href="togroup.jsp">订单管理</a></li>
 							<li class="list-group-item" style="border: 0px"><a
 								href="user.jsp">用户管理</a></li>
+								<li class="list-group-item" style="border: 0px"><a
+								href="knowUs.jsp">关于我们</a></li>
 						</ol>
 					</div>
 				</div>

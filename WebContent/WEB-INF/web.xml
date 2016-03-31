@@ -136,13 +136,21 @@
     <servlet-name>ConfirmReceiveServlet</servlet-name>
     <url-pattern>/confirmReceive</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>ChangeTopServlet</servlet-name>
     <servlet-class>com.greenlife.server.controller.ChangeTopServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ChangeTopServlet</servlet-name>
     <url-pattern>/changeTop</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>ChangeKnowUsServlet</servlet-name>
+    <servlet-class>com.greenlife.server.controller.ChangeKnowUsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeKnowUsServlet</servlet-name>
+    <url-pattern>/changeKnowUs</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>Client/page/login.jsp</welcome-file>

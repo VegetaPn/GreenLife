@@ -179,6 +179,7 @@ public class AddGoodServlet extends HttpServlet {
 			newGood.setReportNum(reportNum);
 			newGood.setSubTitle(subTitle);
 			newGood.setIsAdv(Integer.parseInt(adv));
+			newGood.setOrderIndex(GoodsInfoDao.getNextOrderIndex());
 
 			int i = GoodsInfoDao.addGoodsInfo(newGood);
 			response.sendRedirect("/Server/Page/product.jsp");

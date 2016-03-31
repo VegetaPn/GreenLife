@@ -28,7 +28,13 @@ function previewImage(file) {
 		id = "detail_head";
 		MAXWIDTH = 400;
 		MAXHEIGHT = 200;
+	} else if (file.id == "knowus_img") {
+		div = document.getElementById('pre_knowus');
+		id = "knowus_head";
+		MAXWIDTH = 400;
+		MAXHEIGHT = 200;
 	}
+
 	if (file.files && file.files[0]) {
 		var img = document.getElementById(id);
 
