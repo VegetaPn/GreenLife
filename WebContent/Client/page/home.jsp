@@ -140,6 +140,12 @@ import="com.greenlife.wechatservice.*"
 		</div>  
 			
 		
+		<div id="knowDiv">
+			<span id="knowBtn" onclick="javascript:location.href='know.jsp'">一分钟了解源来生活>>></span>
+		</div>
+		
+		
+		
 		<%
 		for(int i=goodsList.size()-1;i>=0;i--){		
 		
