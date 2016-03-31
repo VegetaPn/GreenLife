@@ -53,7 +53,7 @@ function changeAvaliable() {
 	detail_img.disabled = false;
 	report_img.disabled = false;
 
-	var content = "<input type=\"submit\" class=\"btn btn-primary\" onclick=\"()\" value=\"保存\">"
+	var content = "<input type=\"submit\" class=\"btn btn-success\" onclick=\"()\" value=\"保存\">"
 			+ "</button>";
 
 	document.getElementById("control").innerHTML = content;
