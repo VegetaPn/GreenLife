@@ -14,7 +14,7 @@ import="com.greenlife.wechatservice.*"
 <!DOCTYPE html>
 <%	
 	List<GoodsInfo> goodsList = new ArrayList<GoodsInfo>();
-	goodsList = GoodsInfoDao.getGoodsList();
+	goodsList = GoodsInfoDao.getGoodsListByOrderIndex();
 	
 	String wechatId = (String)session.getAttribute("wechatId");
 	String nickname = (String)session.getAttribute("nickname");
@@ -27,6 +27,7 @@ import="com.greenlife.wechatservice.*"
         <title>源来生活</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+       
 		<link rel="stylesheet" href="../css/header.css" type="text/css">
         <link rel="stylesheet" href="../css/home.css" type="text/css">
 		<link rel="stylesheet" href="../css/guide.css" type="text/css">
@@ -116,9 +117,9 @@ import="com.greenlife.wechatservice.*"
 			<div id="title">源来生活</div>
 		</div>
 		
-		<div id="content">
+		<div id="content" >
 		
-		<div id="sildeAd">
+		<div id="sildeAd" >
 			<ul class="product" >
 			<% 
 				for(int i=0;i<goodsList.size();i++){
@@ -139,6 +140,12 @@ import="com.greenlife.wechatservice.*"
 		</div>  
 			
 		
+		<div id="knowDiv">
+			<span id="knowBtn" onclick="javascript:location.href='know.jsp'">一分钟了解源来生活>>></span>
+		</div>
+		
+		
+		
 		<%
 		for(int i=goodsList.size()-1;i>=0;i--){		
 		
@@ -149,7 +156,7 @@ import="com.greenlife.wechatservice.*"
           
 	
 		%>  
-		 
+		 <div id="productList">
 			<div class="normalProduct" onclick="javascript:location.href='productHome.jsp?goodsId=<%=id%>'">
 				<div class="nPic"><img src="<%=productImg%>"/></div>
 				<div class="nSellInfo">
@@ -200,13 +207,35 @@ import="com.greenlife.wechatservice.*"
 				        long between_days=(time2-time1)/(1000*3600*24);  
 
 					%>
-					<div class="nOrderTime"><%=gState %></div>
+					<!-- <div class="nOrderTime"><%=gState %></div> -->
 					<%if(!gState.equals("已售完")){ %>
 					<div class="nOrderTime"><%=gTime%>：<%=between_days%>天</div>
 					<%} %>
 				</div>
 			</div>
 			
+					<%
+						if(gState.equals("未开始")){
+					%>
+						<span class="arcLabel" id="salesState">未开始</span>
+						
+					<%
+						}else if(gState.equals("预定中")){
+					%>
+						<span class="arcLabel">预定中</span>
+					
+					<%
+						}else if(gState.equals("已售完")){
+							
+						
+					%>
+						<span class="sellOutLabel">已售完</span>
+					
+					<% 
+						}
+							
+					%>
+			</div>
 			<%
 			}}
 			%>
@@ -359,5 +388,5 @@ import="com.greenlife.wechatservice.*"
 		<jsp:include page="footer.jsp" />
     </body>
     <script type="text/Javascript" src="js/example_1.js"></script>
-    
+
 </html>

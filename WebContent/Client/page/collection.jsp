@@ -34,7 +34,7 @@
 				int size = goodsIdList.size();
 				
 				GoodsInfo goodsInfo = null;
-				for(int i=0;i<size;i++){
+				for(int i=size-1;i>=0;i--){
 					int goodsId = goodsIdList.get(i);
 					goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 		
@@ -70,7 +70,7 @@
 					<div class="nSellInfo">
 						<div class="nName"><%=goodsInfo.getGoodsName()%></div>
 						<div class="nIntro"><%=goodsInfo.getSubTitle()%></div>
-						<div class="nCheapprice">￥<%=goodsInfo.getGoodsPrice()%><span>/<%=goodsInfo.getGoods_unit()%></span>
+						<div class="nCheapprice"><span><%=goodsInfo.getGoods_unit()%></span>&nbsp￥<%=goodsInfo.getGoodsPrice()%>
 							</div>
 						
 						<% 	
@@ -94,10 +94,11 @@
 						case 1: {
 							gState = "预定中";
 							gTime = "剩余时间";
-							cal.setTime(sdf.parse(goodsInfo.getStartTime()));  
-							time1 = cal.getTimeInMillis();    
-							cal.setTime(sdf.parse(goodsInfo.getEndTime()));
-							time2 = cal.getTimeInMillis();    
+							cal.setTime(sdf.parse(sdf.format(new Date())));
+							time1 = cal.getTimeInMillis();        
+							cal.setTime(sdf.parse(goodsInfo.getEndTime()));    
+							time2 = cal.getTimeInMillis();
+							
 							break;
 						}
 						case 2: {
@@ -141,7 +142,7 @@
 					<%
 						}
 					%>
-						<img class="link" src="../images/rightArrowCircle2.png"></img>
+						<!--  <img class="link" src="../images/rightArrowCircle2.png"></img>-->
 			</div>	
 			
 			<%
