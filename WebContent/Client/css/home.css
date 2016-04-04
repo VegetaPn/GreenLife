@@ -147,7 +147,7 @@ li img{
 
 .nCheapprice{
 	
-
+	
 	color:#FF3366;
 	margin-bottom:2px;
 	text-align:right;
@@ -155,6 +155,7 @@ li img{
 }
 
 .nCheapprice span{
+	background-color:#EEEEEE;
 	color:#999999;
 	margin-bottom:2px;
 
