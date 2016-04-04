@@ -126,7 +126,7 @@
 }
 
 #gray{ 
-	position:absolute; 
+	position:fixed; 
 	top:32px; 
 	bottom:0; 
 	left:0;
@@ -393,11 +393,11 @@
 @media screen and (max-width: 479px){
 
 	#guide{
-		top:28px;
+		top:32px;
 	}
 	
 	#gray{
-		top:28px; 
+		top:32px; 
 	}
 	
 	#icon{
