@@ -108,11 +108,11 @@
 			<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
 			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
 						
+			
+			</div>
 			<div id="productName">
 				<%=goodsInfo.getGoodsName()%>
 			</div>
-			</div>
-		
 			<img id="detailImg" src="<%=detailPath%>"/>
 			<!--  
 			<div class="details">

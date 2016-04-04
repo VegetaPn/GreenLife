@@ -194,12 +194,12 @@
 		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
 			<img id="productImg" src="<%=productImg%>"/>
 						
-			<div id="productName">
+			
+			</div>
+	
+		<div id="productName">
 				<%=goodsInfo.getGoodsName()%>
 			</div>
-			</div>
-	
-	
 		<div id="organiser">
 			
 			<img class="avatar" src="<%=organiser.getPhotoPath()%>"/>

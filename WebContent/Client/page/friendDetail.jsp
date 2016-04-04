@@ -41,11 +41,11 @@
 			<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
 			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
 						
+			
+			</div>
 			<div id="productName">
 				<%=goodsInfo.getGoodsName()%>
 			</div>
-			</div>
-		
 			<div id="totalPurchase">已售出<span class="purchaseNum"><%=totalSaleNum %></span>份<hr/></div>
 			<%
 				for(int i=0;i<size;i++){
