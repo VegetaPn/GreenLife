@@ -130,7 +130,7 @@ import="com.greenlife.wechatservice.*"
 					
 			%>
 
-			<li><img id="productImg<%=idIsAdv%>" src=<%=ImgIsAdv%> onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'" ></li>
+			<li><img class="pImg" id="productImg<%=idIsAdv%>" src=<%=ImgIsAdv%> onclick="javascript:location.href='productHome.jsp?goodsId=<%=idIsAdv%>'" ></li>
 		
 			<!--<div class="productName"> //giIsAdv.getGoodsName()</div>   --> 
 	
@@ -301,12 +301,36 @@ import="com.greenlife.wechatservice.*"
 		<div id="gray" onclick="slideOut()"></div>
 		
 		<script>
+		
+		function imgReload()
+		{
+			var imgHeight = 0;
+			var wtmp = $("body").width();
+			$("#sildeAd ul li").each(function(){
+		        $(this).css({width:wtmp + "px"});
+		    });
+			$(".pImg").each(function(){
+				$(this).css({width:wtmp + "px"});
+				imgHeight = $(this).height();
+			});
+		}
+		
+		$(window).resize(function(){imgReload();});
 	
+		$(document).ready(function(e) {
+			imgReload();
+		    var unslider06 = $('#b06').unslider({
+				//dots: true,
+				fluid: true
+			}),
+			data06 = unslider06.data('unslider');
+		});
+			/*
 			$(document).ready(function(e) {
 			    $('#sildeAd').unslider();
 			});
 			
-			        
+			        */
 			       /*
 					var y = document.documentElement.clientWidth;
 					var ads = $("#sildeAd").children("div.product");

@@ -41,12 +41,13 @@ html{
 #sildeAd{
 	margin-top:0;
 	position: relative;
-	width:100%;
+	
 }
 
 .product{
     margin-top:0;
     padding:0;
+    list-style: none;
 	/*
 	transition:0.2s ease-out; 
 	-webkit-transition:0.2s ease-out; 
@@ -61,7 +62,7 @@ html{
 
 #sildeAd ul ol{
 	 margin-top:0;
-	list-style: none;
+	
 }
 
 li img{
