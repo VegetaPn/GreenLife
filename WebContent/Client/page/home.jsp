@@ -319,7 +319,7 @@ import="com.greenlife.wechatservice.*"
 	
 		$(document).ready(function(e) {
 			imgReload();
-		    var unslider06 = $('#b06').unslider({
+		    var unslider06 = $('#sildeAd').unslider({
 				//dots: true,
 				fluid: true
 			}),
