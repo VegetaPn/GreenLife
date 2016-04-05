@@ -6,6 +6,7 @@
 	z-index:6;
 	left:-70%;
 	bottom:0; 
+	overflow-y:auto;
 	transition:0.2s ease-out; 
 	-webkit-transition:0.2s ease-out; 
 }
