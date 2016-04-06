@@ -50,6 +50,8 @@ public class PurchaseServlet extends HttpServlet {
 			 return;
 		 }
 		 
+		 
+		 
 		 int goods_num = Integer.valueOf(request.getParameter("iNumber"));
 		 String send_time = request.getParameter("sPostTime");
 		 String comment = request.getParameter("iMessage");
@@ -57,50 +59,60 @@ public class PurchaseServlet extends HttpServlet {
 		 String address = request.getParameter("sAddress").trim().replaceAll(" ", ";");
 		 String receiver = request.getParameter("sCusName");
 		 String phone = request.getParameter("sPhoneNum");
+		 String orderTime = request.getParameter("orderTime");
 		 
-		 GoodsOrder goodsOrder = new GoodsOrder();
-		 goodsOrder.setGoodsId(goodsId);
-		 goodsOrder.setGoodsNum(goods_num);
-		 goodsOrder.setAddrDetail(address);
-		 goodsOrder.setComment(comment);
-		 goodsOrder.setPhoneNumber(phone);
-		 goodsOrder.setReceiverName(receiver);
-		 goodsOrder.setTotalPrice(total_price);
-		 goodsOrder.setWechatId(wechatId);
-		 goodsOrder.setGroupMinnum(2);
-		 goodsOrder.setSendTime(send_time);
+		 int serchOrderId = GoodsOrderDao.getOrderIdByWechatIdAndOrderTime(wechatId, orderTime);
 		 
-		 Date now = new Date(); 
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
-		 String tradeTime = dateFormat.format(now); 
-		 goodsOrder.setTradeTime(tradeTime);
-		 goodsOrder.setMailPrice(0);
-		 
-		
-		
-		 
-		 if(group.equals("true")){
-			 goodsOrder.setOrderState(1);
-		 }
-		 else if(group.equals("false")){
-			 goodsOrder.setOrderState(11);
-		 } else{
-			 int groupId = Integer.parseInt(group);
+		 if(serchOrderId==-1){
+			 GoodsOrder goodsOrder = new GoodsOrder();
+			 goodsOrder.setGoodsId(goodsId);
+			 goodsOrder.setGoodsNum(goods_num);
+			 goodsOrder.setAddrDetail(address);
+			 goodsOrder.setComment(comment);
+			 goodsOrder.setPhoneNumber(phone);
+			 goodsOrder.setReceiverName(receiver);
+			 goodsOrder.setTotalPrice(total_price);
+			 goodsOrder.setWechatId(wechatId);
+			 goodsOrder.setGroupMinnum(2);
+			 goodsOrder.setSendTime(send_time);
+			 goodsOrder.setOrderTime(orderTime);
+			 Date now = new Date(); 
+			 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+			 String tradeTime = dateFormat.format(now); 
+			 goodsOrder.setTradeTime(tradeTime);
+			 goodsOrder.setMailPrice(0);
 			 
-			 TodayGroup todayGroup = TodayGroupDao.getTodayGroup(groupId);
-			 if(todayGroup.getIsDelete() == 1 || TodayGroupService.isInGroup(groupId,wechatId)){
-				 return;
+			 if(group.equals("true")){
+				 goodsOrder.setOrderState(1);
+			 }
+			 else if(group.equals("false")){
+				 goodsOrder.setOrderState(11);
+			 } else{
+				 int groupId = Integer.parseInt(group);
+				 
+				 TodayGroup todayGroup = TodayGroupDao.getTodayGroup(groupId);
+				 if(todayGroup.getIsDelete() == 1 || TodayGroupService.isInGroup(groupId,wechatId)){
+					 return;
+				 }
+				 
+				 goodsOrder.setOrderState(1);
+				 goodsOrder.setGroupId(groupId);
 			 }
 			 
-			 goodsOrder.setOrderState(1);
-			 goodsOrder.setGroupId(groupId);
+			 
+			 int orderId = GoodsOrderDao.addGoodsOrder(goodsOrder);
+			 
+			 response.setContentType("application/json");	
+			 PrintWriter out = response.getWriter();
+			 out.write("{\"result\":\"success\",\"orderId\":"+orderId+"}");
+			//out.write("orderId="+orderId);
+		 }else{
+			 response.setContentType("application/json");
+			 PrintWriter out = response.getWriter();
+			 out.write("{\"result\":\"failure\",\"orderId\":"+serchOrderId+"}");
 		 }
 		 
-		 
-		 int orderId = GoodsOrderDao.addGoodsOrder(goodsOrder);
-		 PrintWriter out = response.getWriter();
-		 out.write("orderId="+orderId);
-		 
+		
 	}
 	
 	

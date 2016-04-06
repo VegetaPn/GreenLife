@@ -52,8 +52,8 @@
 }
 
 #userName{
-	color:#fff;
-	font-family:"黑体";
+	color:#999999;
+	
 	font-size: 24px;
 	font-weight:bold;
 	position:absolute;
@@ -64,7 +64,7 @@
 
 #logout{
 	color:#F76F00;
-	font-family:"黑体";
+	
 	font-size: 16px;
 	position:absolute;
 	top:80px;
@@ -100,7 +100,7 @@
 }
 
 .myFunc{
-	font-family:"微软雅黑";
+	
 	font-size: 20px;
 	margin-top:20px;
 	margin-left:10px;
@@ -118,7 +118,7 @@
 }	
 
 .um{
-	font-family:"微软雅黑";
+	
 	font-size: 20px;
 	margin-top:10px;
 	margin-left:65px;
@@ -465,3 +465,18 @@
 	}
 
 }
+
+
+
+@media screen and (max-width: 350px) {   
+	#visitingCard {
+		height:110px;
+	}
+	
+	#icon{
+		top:15px;
+	}
+	#userName{
+		top:40px;
+	}
+} 
