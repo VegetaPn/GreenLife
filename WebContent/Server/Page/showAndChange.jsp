@@ -12,6 +12,7 @@
 <title>商品添加</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/addOrReduceNum.js"></script>
 </head>
 
 
@@ -138,7 +139,7 @@
 									<div class="form-group">
 										<label>开始时间</label> <input class=" laydate-icon form-control"
 											value="<%=showedGood.getStartTime()%>" disabled="true"
-											id="start_time" name="start_time">
+											id="start_time" onfocus="changeTime()" name="start_time">
 									</div>
 
 									<div class="form-group">
@@ -260,7 +261,6 @@
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/laydate.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
-
 
 	<script type="text/javascript" src="../js/jquery-confirm.js"></script>
 

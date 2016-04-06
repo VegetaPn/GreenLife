@@ -90,6 +90,7 @@ public class ChangeKnowUsServlet extends HttpServlet {
 			}
 
 		}
+		
 		response.sendRedirect("/Server/Page/knowUs.jsp");
 	}
 

@@ -7,14 +7,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
 <title>关于源来生活</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min.css">
-<script src="../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/previewImage.js"></script>
-<script type="text/javascript" src="../js/knowus.js"></script>
 </head>
 <body>
 
@@ -61,6 +58,8 @@
 	</div>
 
 	<jsp:include page="footer.html"></jsp:include>
-
+	<script src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/previewImage.js"></script>
+	<script type="text/javascript" src="../js/knowus.js"></script>
 </body>
 </html>

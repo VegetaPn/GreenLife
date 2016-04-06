@@ -1,3 +1,5 @@
+
+
 function changeAvaliable() {
 
 	var good_name = document.getElementById("good_name");
@@ -171,17 +173,17 @@ function checkChangeProduct() {
 		return false;
 	}
 
-	if (total_num == "") {
+	if (report_num == "") {
 		alert("请填写通过检测总量");
 		return false;
 	} else {
-		var pattern = new RegExp("^[0-9]{1,11}$");// /价格正则表达式
-		if (!pattern.test(total_num)) {// 价格格式
-			alert("通过检测总量总量填写错误");
+		var pattern = new RegExp("^[0-9]{1,11}$");//
+		if (!pattern.test(report_num)) {// 价格格式
+			alert("通过检测总量填写错误");
 			return false;
 		}
+	
 	}
-
 	/*
 	 * 时间判定
 	 */
@@ -215,5 +217,13 @@ function checkChangeProduct() {
 $.doucment().ready(function() {
 	$("#cancel").click(function() {
 		window.location = "/Server/Page/product.jsp"
-	});
+	});	
 });
+
+
+function changeTime(){
+	document.getElementById("start_time").value="";
+	document.getElementById("end_time").value="";
+}
+
+
