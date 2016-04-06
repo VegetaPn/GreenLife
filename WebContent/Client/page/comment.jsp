@@ -40,11 +40,11 @@ int commentListSize = commentList.size();
 		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
 			<img id="productImg" src="<%=productImg%>"/>
 						
-			<div id="productName">
+			
+		</div>
+		<div id="productName">
 				<%=goodsInfo.getGoodsName()%>
 			</div>
-		</div>
-		
 		
 		<div id="commentDiv">
 			<hr/>

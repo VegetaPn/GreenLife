@@ -48,7 +48,7 @@ public class GoodsOrderDao {
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
-				
+				goodsOrder.setOrderTime(rs.getString("order_time"));
 			}else{
 				return null;
 			}
@@ -125,7 +125,7 @@ public class GoodsOrderDao {
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
-				
+				goodsOrder.setOrderTime(rs.getString("order_time"));
 			}else{
 				return null;
 			}
@@ -190,10 +190,10 @@ public class GoodsOrderDao {
 				+ "`mail_price`, `total_price`, `group_id`, "
 				+ "`send_time`, `group_minnum`, `order_state`, "
 				+ "`addr_detail`, `receiver_name`, `phone_number`"
-				+ ", `prepay_id`, `out_trade_no`, `transaction_id`) "
+				+ ", `prepay_id`, `out_trade_no`, `transaction_id`, `order_time`) "
 				+ "VALUES (?, ?, ?, ?, "
 				+ "?, ?, ?, ?, ?,"
-				+ " ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ " ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
@@ -215,6 +215,7 @@ public class GoodsOrderDao {
 			ps.setString(15, order.getPrepayId());
 			ps.setString(16, order.getOutTradeNo());
 			ps.setString(17, order.getTransactionId());
+			ps.setString(18, order.getOrderTime());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -261,7 +262,8 @@ public class GoodsOrderDao {
 				+ "phone_number = ?, "
 				+ "prepay_id = ?, "
 				+ "out_trade_no = ?, "
-				+ "transaction_id = ? "
+				+ "transaction_id = ?, "
+				+ "order_time = ? "
 				+ "WHERE order_id = ?;";
 		Connection conn = new DBUtil().getConn();
 		try {
@@ -283,7 +285,8 @@ public class GoodsOrderDao {
 			ps.setString(15, order.getPrepayId());
 			ps.setString(16, order.getOutTradeNo());
 			ps.setString(17, order.getTransactionId());
-			ps.setInt(18, order.getOrderId());
+			ps.setString(18, order.getOrderTime());
+			ps.setInt(19, order.getOrderId());
 			
 			ps.execute();
 		} catch (SQLException e) {
@@ -338,6 +341,7 @@ public class GoodsOrderDao {
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
+				goodsOrder.setOrderTime(rs.getString("order_time"));
 				orderList.add(goodsOrder);
 			}
 		} catch (SQLException e) {
@@ -397,6 +401,7 @@ public class GoodsOrderDao {
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
+				goodsOrder.setOrderTime(rs.getString("order_time"));
 				orderList.add(goodsOrder);
 			}
 		} catch (SQLException e) {
@@ -444,6 +449,7 @@ public class GoodsOrderDao {
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
+				goodsOrder.setOrderTime(rs.getString("order_time"));
 				orderList.add(goodsOrder);
 			}
 		} catch (SQLException e) {
@@ -490,6 +496,7 @@ public class GoodsOrderDao {
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
+				goodsOrder.setOrderTime(rs.getString("order_time"));
 				orderList.add(goodsOrder);
 			}
 		} catch (SQLException e) {
@@ -536,7 +543,7 @@ public class GoodsOrderDao {
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
-				
+				goodsOrder.setOrderTime(rs.getString("order_time"));
 				orderList.add(goodsOrder);
 			}
 		} catch (SQLException e) {
@@ -582,7 +589,7 @@ public class GoodsOrderDao {
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
-				
+				goodsOrder.setOrderTime(rs.getString("order_time"));
 				orderList.add(goodsOrder);
 			}
 		} catch (SQLException e) {
@@ -630,7 +637,7 @@ public class GoodsOrderDao {
 					goodsOrder.setPrepayId(rs.getString("prepay_id"));
 					goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 					goodsOrder.setTransactionId(rs.getString("transaction_id"));
-					
+					goodsOrder.setOrderTime(rs.getString("order_time"));
 					orderList.add(goodsOrder);
 				}
 			} catch (SQLException e) {
@@ -676,7 +683,7 @@ public class GoodsOrderDao {
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
-				
+				goodsOrder.setOrderTime(rs.getString("order_time"));
 				orderList.add(goodsOrder);
 			}
 		} catch (SQLException e) {
@@ -721,7 +728,7 @@ public class GoodsOrderDao {
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
-				
+				goodsOrder.setOrderTime(rs.getString("order_time"));
 				orderList.add(goodsOrder);
 			}
 		} catch (SQLException e) {
@@ -765,7 +772,7 @@ public class GoodsOrderDao {
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
-				
+				goodsOrder.setOrderTime(rs.getString("order_time"));
 				orderList.add(goodsOrder);
 			}
 		} catch (SQLException e) {
@@ -801,6 +808,33 @@ public class GoodsOrderDao {
 		}
 		
 		return maxTime;
+	}
+	
+	
+	public static int getOrderIdByWechatIdAndOrderTime(String wechatId,String orderTime){
+		String sql = "select * from goods_order where wechat_id = ? and order_time = ?;";
+		
+		int orderId = -1;
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, wechatId);
+			ps.setString(2, orderTime);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				orderId = rs.getInt("order_id");
+			}else{
+				return -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return orderId;
 	}
 	
 	public static void clearUp(Connection conn) {

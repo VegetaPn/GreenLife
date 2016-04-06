@@ -50,8 +50,7 @@ html,body {
 }
 
 #userName{
-	color:#fff;
-	font-family:"黑体";
+	color:#999999;
 	font-size: 16px;
 	font-weight:bold;
 	position:absolute;
@@ -87,7 +86,7 @@ html,body {
 }
 
 .myFunc{
-	font-family:"微软雅黑";
+	
 	font-size: 16px;
 	margin-top:16px;
 	margin-left:8px;
@@ -111,7 +110,7 @@ html,body {
 
 .undetermined{
 	background-color:#fff;
-	font-family:"微软雅黑";
+
 	font-size: 14px;
 	padding-top:6px;
 	padding-bottom:12px;
@@ -157,7 +156,7 @@ html,body {
 	padding-top:10px;
 	border-radius:5px;
 	color:#fff;
-	font-family:"微软雅黑";
+
 	font-size: 16px;
 }
 

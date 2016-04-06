@@ -22,7 +22,7 @@ html{
     border-bottom-right-radius:15px;
 	position:absolute;
 	left:0;
-	top:25%;
+	top:18%;
 }
 
 .sellOutLabel{
@@ -34,7 +34,7 @@ html{
     border-bottom-right-radius:15px;
 	position:absolute;
 	left:0;
-	top:25%;
+	top:18%;
 }
 
 .link{
@@ -50,8 +50,8 @@ html{
 	
 .normalProduct{
 	
-	border-top:15px solid #DDDDDD;
-	border-bottom:1px solid #999999;
+	border-top:1px solid #EEEEEE;
+	
 	width:100%;
 	overflow:hidden;
 }

@@ -18,6 +18,7 @@ public class GoodsOrder {
 	private String phoneNumber;
 	private String prepayId;
 	private String outTradeNo;
+	private String orderTime;
 	
 	public String getPrepayId() {
 		return prepayId;
@@ -129,6 +130,12 @@ public class GoodsOrder {
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	public String getOrderTime() {
+		return orderTime;
+	}
+	public void setOrderTime(String orderTime) {
+		this.orderTime = orderTime;
 	}
 	
 }

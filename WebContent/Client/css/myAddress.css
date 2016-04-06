@@ -1,5 +1,5 @@
 html{
-	background:#D7D7D7;
+	background:rgb(233,233,233);
 }
 
 body {
@@ -11,7 +11,7 @@ body {
 }
 
 .blank{
-	background:#dddddd;
+	background:rgb(233,233,233);
 	width:100%;
 	height:15px;
 }

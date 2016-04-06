@@ -1,6 +1,6 @@
 html,body
 {
-    background-color:#DDDDDD;
+    background-color:rgb(233,233,233);
 
 }
 
@@ -32,8 +32,8 @@ html,body
 
 
 .tag{
-	border-top:15px solid #E4E4E4;
-	border-bottom:1px solid #999999;
+	border-top:15px solid rgb(233,233,233);
+	border-bottom:1px solid rgb(233,233,233);
 }
 
 

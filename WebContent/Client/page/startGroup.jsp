@@ -57,9 +57,10 @@
 		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsID%>'">
 			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
 						
+			
+			</div>
 			<div id="productName">
 				<%=goodsinfo.getGoodsName()%>
-			</div>
 			</div>
 
 		<div class="mainMessage">

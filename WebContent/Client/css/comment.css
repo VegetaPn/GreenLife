@@ -14,13 +14,14 @@
 }
 
 #productName{
-	position: absolute;
-	background-color:rgba(215,215,215,0.7);
+	color:#272727;
+	background-color:#ECEBEB;
+	padding-top:5px;
+	padding-bottom:5px;
 	width:100%;
-	bottom:0;
-
 	text-align:center;
-	
+	font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
+	margin-top:-5px;
 }
 
 
@@ -193,11 +194,11 @@
 @media screen and (max-width: 479px) {  
 	
 	#productImg{
-		height:220px;
+		height:200px;
 	}
 
 	#productName{
-		font-size:22px;
+		font-size:18px;
 		
 	}
 
@@ -237,7 +238,7 @@
 
 }  
 
-/* 如果使用者视图宽度介于 480 ~ 639，將会载入这里的 CSS。*/    
+/* 濡傛灉浣跨敤鑰呰鍥惧搴︿粙浜� 480 ~ 639锛屽皣浼氳浇鍏ヨ繖閲岀殑 CSS銆�*/    
 @media screen and (min-width:480px) and (max-width:639px) {
 	#productImg{
 		height:300px;
@@ -285,7 +286,7 @@
 
    
    
-/* 如果使用者视图宽度介于 640 ~ 767，將会载入这里的 CSS。*/ 
+/* 濡傛灉浣跨敤鑰呰鍥惧搴︿粙浜� 640 ~ 767锛屽皣浼氳浇鍏ヨ繖閲岀殑 CSS銆�*/ 
 
 @media screen and (min-width:640px) and (max-width:767px) {  
 	#productImg{
@@ -332,7 +333,7 @@
 }  
    
 
-/*如果使用者视图宽度介于 768px ~ 979px，將会载入这里的 CSS。*/
+/*濡傛灉浣跨敤鑰呰鍥惧搴︿粙浜� 768px ~ 979px锛屽皣浼氳浇鍏ヨ繖閲岀殑 CSS銆�*/
 @media screen and (min-width:768px) and (max-width:979px) {  
     #productImg{
 		height:420px;
@@ -379,7 +380,7 @@
    
    
 
-/*如果使用者视图宽度 >980px，將会载入这里的 CSS。*/
+/*濡傛灉浣跨敤鑰呰鍥惧搴� >980px锛屽皣浼氳浇鍏ヨ繖閲岀殑 CSS銆�*/
 @media screen and (min-width:980px){  
 	#productImg{
 		height:500px;

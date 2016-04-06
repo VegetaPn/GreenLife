@@ -5,7 +5,7 @@ body{
 
 
 html{
-	background-color:#DDDDDD;
+	background-color:#EEEEEE;
 }
 
 
@@ -22,11 +22,11 @@ html{
     border-bottom-right-radius:15px;
 	position:absolute;
 	left:0;
-	top:25%;
+	top:18%;
 }
 
 .sellOutLabel{
-	background-color:#999999;
+	background-color:#EEEEEE;
 	color:#FFFFFF;
 
 	padding:5px 15px 5px 15px;
@@ -34,19 +34,20 @@ html{
     border-bottom-right-radius:15px;
 	position:absolute;
 	left:0;
-	top:25%;
+	top:18%;
 }
 
 
 #sildeAd{
 	margin-top:0;
 	position: relative;
-	width:100%;
+	
 }
 
 .product{
     margin-top:0;
     padding:0;
+    list-style: none;
 	/*
 	transition:0.2s ease-out; 
 	-webkit-transition:0.2s ease-out; 
@@ -61,7 +62,7 @@ html{
 
 #sildeAd ul ol{
 	 margin-top:0;
-	list-style: none;
+	
 }
 
 li img{
@@ -98,8 +99,8 @@ li img{
 	
 .normalProduct{
 	
-	border-top:1px solid #DDDDDD;
-	border-bottom:1px solid #999999;
+	border-top:1px solid #EEEEEE;
+	
 	width:100%;
 	overflow:hidden;
 }
@@ -146,7 +147,7 @@ li img{
 
 .nCheapprice{
 	
-
+	
 	color:#FF3366;
 	margin-bottom:2px;
 	text-align:right;
@@ -154,7 +155,8 @@ li img{
 }
 
 .nCheapprice span{
-	color:#000;
+	background-color:#EEEEEE;
+	color:#999999;
 	margin-bottom:2px;
 
 }

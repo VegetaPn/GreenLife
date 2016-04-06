@@ -87,7 +87,12 @@ for(int i =0; i<addressInfos.size();i++){
     </head>
     <body>
 	
-	
+		<%
+			Date date = new Date();
+			String orderTime = Long.toString(date.getTime());
+		%>
+		<div id="orderTime" style="display:none;"><%=orderTime%></div>
+		
 		<jsp:include page="header.jsp" />
 		
 		<div id="content">
@@ -211,12 +216,19 @@ for(int i =0; i<addressInfos.size();i++){
 					iMessage:$("#iMessage").val(),
 					sPostTime:$("#sPostTime").text(),
 					iNumber:$("#iNumber").val(),
+					orderTime:$("#orderTime").text(),
 					goodsId:<%=goodsId%>,
 					group:<%=group%>
 				},//提交的数据(自定义的一些后台程序需要的参数)
-				dataType: "text",//返回的数据类型
+				dataType: "json",//返回的数据类型
 				success: function(data){
-					location.href = "payForOrder.jsp?"+data;
+					if(data.result == "success"){
+						location.href = "payForOrder.jsp?orderId="+data.orderId;
+					}else{
+						alert("请勿重复提交订单");
+						location.href = "detailOrderMessage.jsp?orderId="+data.orderId;
+					}
+					
 				},
 			 	error: function(){
 			        alert(arguments[1]);
