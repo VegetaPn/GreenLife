@@ -11,6 +11,7 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <script src="../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/addProduct.js"></script>
+<script type="text/javascript" src="../js/addOrReduceNum.js"></script>
 <script type="text/javascript" src="../js/previewImage.js"></script>
 
 </head>

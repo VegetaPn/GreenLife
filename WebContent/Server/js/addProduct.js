@@ -1,29 +1,4 @@
-function reduction() {
-	var goods_count = document.getElementById("total_num").value;
 
-	if (goods_count != 0) {
-		document.getElementById("total_num").value = parseInt(goods_count) - 1;
-	}
-}
-
-function add(id) {
-
-	var goods_count = document.getElementById("total_num").value;
-	document.getElementById("total_num").value = parseInt(goods_count) + 1;
-}
-
-function reduction1() {
-	var goods_count = document.getElementById("report_num").value;
-
-	if (goods_count != 0) {
-		document.getElementById("report_num").value = parseInt(goods_count) - 1;
-	}
-}
-function add1() {
-
-	var goods_count = document.getElementById("report_num").value;
-	document.getElementById("report_num").value = parseInt(goods_count) + 1;
-}
 /*
  * 
  * 提交前判断填写信息是否完整
@@ -103,7 +78,7 @@ function checkAddProduct() {
 		alert("请填写团购价格");
 		return false;
 	} else {
-		var pattern = new RegExp("^[0-9]+(.[0-9]{1,2})?$");// /价格正则表达式
+		var pattern = new RegExp("^[0-9]+(.[0-9]{1,2})?$");// /正则表达式
 		if (!pattern.test(group_price)) {// 价格格式
 			alert("团购价格格式错误，保留两位小数");
 			return false;
@@ -119,28 +94,30 @@ function checkAddProduct() {
 		alert("请填写商品总量");
 		return false;
 	} else {
-		var pattern = new RegExp("^[0-9]{1,11}$");// /价格正则表达式
+		var pattern = new RegExp("^[0-9]{1,11}$");// /正则表达式
 		if (!pattern.test(total_num)) {// 价格格式
 			alert("商品总量填写错误");
 			return false;
 		}
 	}
-	
-	if(good_unit==""){
+
+	if (good_unit == "") {
 		alert("请填写计量单位");
 		return false;
 	}
+	
 
 	if (report_num == "") {
 		alert("请填写通过检测总量");
 		return false;
-	} else {
-		var pattern = new RegExp("^[0-9]{1,11}$");// /价格正则表达式
-		if (!pattern.test(total_num)) {// 价格格式
-			alert("通过检测总量总量填写错误");
+	} else {	
+		var pattern = new RegExp("^[0-9]{1,11}$");// /正则表达式
+		if (!pattern.test(report_num)) {
+			alert("通过检测总量填写错误");
 			return false;
 		}
 	}
+
 
 	/*
 	 * 时间判定
@@ -190,5 +167,3 @@ function checkAddProduct() {
 	return true;
 
 }
-
-

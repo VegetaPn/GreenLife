@@ -1,22 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="com.greenlife.util.PropertiesUtil"%>
+<%@page import="com.greenlife.util.PropertiesUtil,java.util.Date"%>
 <%@page
 	import="java.util.List ,com.greenlife.model.*,com.greenlife.dao.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="pragma" content="no-cache">
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="-1">
 <title>关于源来生活</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min.css">
-<script src="../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/previewImage.js"></script>
-<script type="text/javascript" src="../js/knowus.js"></script>
 </head>
-<body>
+<body ">
 
 	<%
 		///登录判断，防止未登录直接修改
@@ -42,7 +41,7 @@
 							<div id="pre_knowus"
 								style="width: 400px; height: 400px; border: 1px solid #f00; overflow-y: auto;">
 								<img id="knowus_head"
-									src="<%=PropertiesUtil.getPath()%>konwYuanlai.jpg" />
+									src="<%=PropertiesUtil.getPath()%>konwYuanlai.jpg?=<%=(new Date()).getTime()%>" />
 							</div>
 						</div>
 
@@ -61,6 +60,9 @@
 	</div>
 
 	<jsp:include page="footer.html"></jsp:include>
-
+	<script src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/previewImage.js"></script>
+	<script type="text/javascript" src="../js/knowus.js"></script>
+	<script type="text/javascript" src="../js/jquery.js"></script>
 </body>
 </html>

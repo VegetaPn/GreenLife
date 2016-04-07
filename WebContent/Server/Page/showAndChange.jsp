@@ -1,6 +1,6 @@
 <%@page import="com.greenlife.util.PropertiesUtil"%>
 <%@page
-	import="java.util.List ,com.greenlife.model.*,com.greenlife.dao.*"%>
+	import="java.util.List ,com.greenlife.model.*,com.greenlife.dao.*,java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,10 +8,13 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="pragma" content="no-cache">
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
 <title>商品添加</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/addOrReduceNum.js"></script>
 </head>
 
 
@@ -138,7 +141,7 @@
 									<div class="form-group">
 										<label>开始时间</label> <input class=" laydate-icon form-control"
 											value="<%=showedGood.getStartTime()%>" disabled="true"
-											id="start_time" name="start_time">
+											id="start_time" onfocus="changeTime()" name="start_time">
 									</div>
 
 									<div class="form-group">
@@ -196,7 +199,7 @@
 											onchange="previewImage(this)" id="normal_img">
 										<div id="pre_normal">
 											<img id="normal_head"
-												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>normal.jpg"
+												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>normal.jpg?=<%=(new Date()).getTime()%>"
 												width=420 height=210 />
 										</div>
 									</div>
@@ -206,7 +209,7 @@
 											onchange="previewImage(this)" id="small_img">
 										<div id="pre_small">
 											<img id="small_head"
-												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>small.jpg"
+												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>small.jpg?=<%=(new Date()).getTime()%>"
 												width=100 height=100 />
 										</div>
 									</div>
@@ -219,7 +222,7 @@
 											overflow-y:auto;
 											style="width: 400px; height: 200px; border: 1px solid #f00; overflow-y: auto;">
 											<img id="report_head"
-												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>report.jpg" />
+												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>report.jpg?=<%=(new Date()).getTime()%>" />
 										</div>
 									</div>
 									<div class="form-group">
@@ -229,7 +232,7 @@
 										<div id="pre_detail"
 											style="width: 400px; height: 200px; border: 1px solid #f00; overflow-y: auto;">
 											<img id="detail_head"
-												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>detail.jpg" />
+												src="<%=PropertiesUtil.getPath()%><%=showedGood.getPackagePath()%>detail.jpg?=<%=(new Date()).getTime()%>" />
 										</div>
 									</div>
 
@@ -260,7 +263,6 @@
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/laydate.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
-
 
 	<script type="text/javascript" src="../js/jquery-confirm.js"></script>
 
