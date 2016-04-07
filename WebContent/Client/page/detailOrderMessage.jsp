@@ -281,8 +281,10 @@
 								}
 								
 							},
-							error : function() {
+							error : function(jqXHR, textStatus, errorThrown) {
 								alert("网络异常");
+							    
+					   
 								window.location.reload();
 							}
 						});

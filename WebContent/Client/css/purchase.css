@@ -28,7 +28,7 @@
 #dCusMess{
 	 width:100%;
 	 overflow:hidden;
-	 border-bottom:1px solid #797979;
+	 border-bottom:1px solid #EEEEEE;
 }
 
 #dCusInfor{
@@ -97,7 +97,7 @@
 #dProductMess{
 	overflow:hidden;
 	width:100%;
-	border-bottom:1px solid #797979;
+	border-bottom:1px solid #EEEEEE;
 }
 
 #dProductImg{
@@ -138,7 +138,7 @@
 #dSell{
 	width:100%;
 	overflow:hidden;
-	border-bottom:1px solid #797979;
+	border-bottom:1px solid #EEEEEE;
 }
 
 #dSell .left{
@@ -186,7 +186,7 @@
 
 #dOriAddress{
     width:100%;
-	border-bottom:1px solid #797979;
+	border-bottom:1px solid #EEEEEE;
 	padding-top:15px;
 	padding-bottom:15px;
 }
@@ -205,7 +205,7 @@
 
 #dPostTime{
 	width:100%;
-	border-bottom:1px solid #797979;
+	border-bottom:1px solid #EEEEEE;
 	padding-top:15px;
 	padding-bottom:15px;
 }
@@ -218,7 +218,7 @@
 
 #dMessage{
 	overflow:hidden;
-	border-top:1px solid #797979;
+	border-top:1px solid #EEEEEE;
 	margin-bottom:8px;
 	padding-top:8px;
 }
@@ -244,8 +244,8 @@
     bottom:0;
 	width:100%;
 	background-color:white;
-	border-top:1px solid #797979;
-	border-bottom:1px solid #797979;
+	border-top:1px solid #EEEEEE;
+	border-bottom:1px solid #EEEEEE;
 	box-shadow: #333 0px 0px 10px;
 }
 
@@ -273,7 +273,7 @@
 }
 
 #dMail{
-	//border-bottom: 1px solid #797979;
+	//border-bottom: 1px solid #EEEEEE;
     padding-top: 15px;
     padding-bottom: 15px;
     font-size: 14px;	

@@ -6,7 +6,6 @@
 }
 
 
-
 #productImg{
 
 	width:100%;
@@ -420,6 +419,9 @@
 	}
 
 
+	#infoDesc{
+		font-size:14px;
+	}
 
 	.descFont{
 		font-size:16px;

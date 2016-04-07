@@ -6,7 +6,7 @@ html,body {
 }
 
 #content{
-	background-color:  #999999;
+	background-color:  #EEEEEE;
 }
 
 #visitingCard {
@@ -67,7 +67,7 @@ html,body {
 
 .func{
 	background-color:#fff;
-	border-bottom:1px solid #797979;
+	border-bottom:1px solid #EEEEEE;
 	overflow:hidden;
 }
 
