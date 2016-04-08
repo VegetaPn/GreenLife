@@ -116,7 +116,7 @@
 
 										<label>计量单位</label> <input id="good_unit" type="text"
 											autocomplete="off" name="good_unit" class="form-control"
-											maxlength=1 value="<%=showedGood.getGoods_unit()%>"
+											maxlength=10 value="<%=showedGood.getGoods_unit()%>"
 											disabled="true">
 									</div>
 
