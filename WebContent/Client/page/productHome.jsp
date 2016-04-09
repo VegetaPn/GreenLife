@@ -288,7 +288,7 @@
 			<div class="labelHeader" id="productSalesPrice">
 
 				<div class="whiteDiv"></div>
-				<span class="label"><%=goodsInfo.getGoodsPrice() + "/" + goodsInfo.getGoods_unit()%></span>
+				<span class="label">￥<%=goodsInfo.getGoodsPrice() + "/" + goodsInfo.getGoods_unit()%></span>
 
 			</div>
 
