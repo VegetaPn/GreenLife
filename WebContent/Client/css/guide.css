@@ -52,7 +52,7 @@
 }
 
 #userName{
-	color:#999999;
+	color:#333333;
 	
 	font-size: 24px;
 	font-weight:bold;
@@ -80,7 +80,7 @@
 
 .func{
 	background-color:#fff;
-	border-bottom:1px solid #797979;
+	border-bottom:1px solid #EEEEEE;
 	overflow:hidden;
 	margin-left:10px;
 }
@@ -111,7 +111,7 @@
 
 .undetermined{
 	background-color:#fff;
-	border-bottom:1px solid #797979;
+	border-bottom:1px solid #EEEEEE;
 	overflow:hidden;
 	margin-left:10px;
 
