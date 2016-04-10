@@ -289,7 +289,7 @@
 
 				<div class="whiteDiv"></div>
 				<span class="label">购买详情</span>
-				<!-- ￥<%=/*goodsInfo.getGoodsPrice() + "/" + goodsInfo.getGoods_unit()*/%> -->
+				
 			</div>
 
 
