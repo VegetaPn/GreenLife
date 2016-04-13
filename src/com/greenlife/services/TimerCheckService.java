@@ -70,7 +70,7 @@ public class TimerCheckService {
 			TodayGroup group = list.get(i);
 			group.setIsDelete(1);
 			TodayGroupDao.updateTodayGroup(group);
-			//System.out.println("TodayGorup:" + group.getGroupId());
+		
 		}
 	}
 	

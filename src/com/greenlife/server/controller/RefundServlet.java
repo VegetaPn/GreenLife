@@ -41,8 +41,8 @@ public class RefundServlet extends HttpServlet {
 		// 取消订单
 		GoodsOrderService.cancleOrder(order);
 
-		System.out.println("post");
-		// System.out.println("now order_state:" + order.getOrderState());
+		
+	
 
 		response.sendRedirect(locate);
 

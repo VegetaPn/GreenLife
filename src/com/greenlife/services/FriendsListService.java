@@ -20,7 +20,7 @@ public class FriendsListService {
 		ArrayList<String> friends = FriendsListDao.getFriendWechatIdList(wechat_id);
 		
 		for(int i=0;i<bylist.size();i++){
-			//System.out.println("bylist:"+bylist.get(i).get("wechat_id"));
+			
 			boolean flag = false;
 			String friendId = bylist.get(i).get("wechat_id");
 			for(int j=0;j<friends.size();j++){
@@ -45,8 +45,7 @@ public class FriendsListService {
 				ret.add(bylist.get(i));
 			}
 		}
-//		for(int i=0;i<ret.size();i++)
-//			System.out.println(ret.get(i).get("wechat_id"));
+
 		return ret;
 	}
 	

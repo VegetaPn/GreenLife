@@ -79,7 +79,7 @@ public class ChangeGoodServlet extends HttpServlet {
 					String name = item.getFieldName();
 					String value = new String(item.getString("UTF-8"));
 
-					System.out.println(name);
+					
 					if (name.equals("good_id")) {
 						changedGood = GoodsInfoDao.getGoodsInfo(Integer.parseInt(value));
 						packagePath = changedGood.getPackagePath();
@@ -108,12 +108,12 @@ public class ChangeGoodServlet extends HttpServlet {
 					} else if (name.equals("adv")) {
 						adv = value;
 					}
-					System.out.println(value);
+					
 				} else {
 					String filename = "";
-					System.out.println(item.getFieldName());
+					
 					if (item.getFieldName().equals("normal_img")) {
-						System.out.print("normal");
+						
 						filename = "normal.jpg";
 					} else if (item.getFieldName().equals("small_img")) {
 						filename = "small.jpg";
@@ -124,7 +124,7 @@ public class ChangeGoodServlet extends HttpServlet {
 						filename = "report.jpg";
 					}
 					if (!item.getName().equals("")) {
-						System.out.println(item.getName());
+						
 						InputStream in = item.getInputStream();
 
 						String path1 = PropertiesUtil.getSavePath() + packagePath;
@@ -145,7 +145,7 @@ public class ChangeGoodServlet extends HttpServlet {
 				}
 			}
 
-			System.out.println("teci chakan" + goodName);
+			
 			changedGood.setGoodsName(goodName);
 			changedGood.setGoodsPrice(goodPrice);
 			changedGood.setGoodsTotalnum(totalNum);

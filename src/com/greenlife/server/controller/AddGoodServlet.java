@@ -148,7 +148,7 @@ public class AddGoodServlet extends HttpServlet {
 						if (!file.exists() && !file.isDirectory()) {
 							file.mkdirs();
 						}
-						System.out.println(path1);
+						
 						FileOutputStream fos = new FileOutputStream(new File(path1 + filename));
 						byte[] b = new byte[1024];
 						int size = 0;

@@ -25,13 +25,13 @@ public class SendGoodOrderServlet extends HttpServlet {
 		} else {
 			request.setCharacterEncoding("UTF-8");
 			int orderId = Integer.parseInt(request.getParameter("orderId"));
-			// System.out.println("orderId:" + orderId);
+			
 			GoodsOrder order = new GoodsOrder();
 			GoodsOrderDao dao = new GoodsOrderDao();
 			order = dao.getGoodsOrderById(orderId);
 			int order_state = order.getOrderState();
 			order.setOrderState(order_state + 1);
-			// System.out.println("now order_state:" + order.getOrderState());
+			
 			dao.updateGoodsOrder(order);
 			response.sendRedirect("/Server/Page/tosend.jsp");
 		}

@@ -73,7 +73,7 @@ public class ChangeKnowUsServlet extends HttpServlet {
 					if (item.getFieldName().equals("knowus_img")) {
 
 						if (!item.getName().equals("")) {
-							System.out.println(item.getName());
+							
 							InputStream in = item.getInputStream();
 							String path1 = PropertiesUtil.getSavePath() + "konwYuanlai.jpg";
 							FileOutputStream fos = new FileOutputStream(new File(path1));
