@@ -53,7 +53,7 @@
 					id="group">
 					<thead>
 						<tr>
-							
+						<th>下单时间</th>
 							<th>微信昵称</th>
 							<th>产品名</th>
 							<th>数量</th>
@@ -77,6 +77,7 @@
 							   GoodsInfo g=GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());
 							   
 							%>
+							<td><%=oneGoodsOrder.getTradeTime() %>
 							<td><%=user.getWechatName()%></td>
 							<td><%=g.getGoodsName() %></td>
 							<td><%=oneGoodsOrder.getGoodsNum() %></td>

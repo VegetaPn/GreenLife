@@ -20,10 +20,10 @@
 
 <body>
 	<%
-		///登录判断，防止未登录直接修改
+		 ///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
 			response.sendRedirect("/Server/Page/login.jsp");
-		} else {
+		} else { 
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="content">
@@ -48,7 +48,7 @@
 							id="product" style="ordering:false;">
 							<thead>
 								<tr>
-								    <th>序号</th>
+								    <th style="display:none">序号</th>
 									<th>产品编号</th>
 									<th>名称</th>
 									<th>价格</th>
@@ -68,7 +68,7 @@
 											GoodsInfo oneGoods = allGoods.get(i);//被遍历到的商品
 								%>
 								<tr class="goods">
-								    <td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"><%=i+1 %></td>
+								    <td style="display:none" onclick="showInfo(<%=oneGoods.getGoodsId()%>)"><%=i+1 %></td>
 									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
 										class="center"><%=oneGoods.getGoodsId()%></td>
 									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
