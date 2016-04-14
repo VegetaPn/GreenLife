@@ -208,11 +208,10 @@
 				
 			
 				wx.onMenuShareAppMessage({
-				    title: '源来生活-<%=goodsInfo.getGoodsName()%>', // 分享标题
-				    desc: '<%=goodsInfo.getSubTitle()%>', // 分享描述
-				    link: '<%=url%>', // 分享链接
-				    imgUrl: '<%=smallProductImg%>
-			', // 分享图标
+				    title: '源来生活-<%=goodsInfo.getGoodsName()%>',
+				    desc: '<%=goodsInfo.getSubTitle()%>',
+				    link: '<%=url%>',
+				    imgUrl: '<%=smallProductImg%>',
 					success : function() {
 						// 用户确认分享后执行的回调函数
 					},

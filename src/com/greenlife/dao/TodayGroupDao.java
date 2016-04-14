@@ -120,7 +120,7 @@ public class TodayGroupDao {
 	public static ArrayList<TodayGroup> getOverdueOrderByHour(int groupState, int hour){
 		ArrayList<TodayGroup> list = new ArrayList<TodayGroup>();
 		
-		String sql = "select * from today_group where group_state = ?;";
+		String sql = "select * from today_group where group_state = ? and is_delete = 0;";
 		String time = null;
 		Connection conn = new DBUtil().getConn();
 		try {

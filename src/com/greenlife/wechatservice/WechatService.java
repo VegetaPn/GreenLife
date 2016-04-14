@@ -314,9 +314,10 @@ public class WechatService {
 		String result_code = reInfo.getResult_code();
 
 		if (result_code.equals("FAIL")) {
+			String err_code = reInfo.getErr_code();
 			String err_code_des = reInfo.getErr_code_des();
-
-			System.out.println("订单号："+orderId+" 下单失败（错误描述：" + err_code_des + "）");
+			
+			System.out.println("订单号："+orderId+" 下单失败（错误代码："+err_code+";错误描述：" + err_code_des + "）");
 			return null;
 		}
 
@@ -425,7 +426,7 @@ public class WechatService {
 		closeOrderInfo.setAppid(PropertiesUtil.getAppId());
 		closeOrderInfo.setMch_id(PropertiesUtil.getMchId());
 		closeOrderInfo.setNonce_str("abcdefg");
-		closeOrderInfo.setOut_trade_no("");
+		closeOrderInfo.setOut_trade_no(goodsOrder.getOutTradeNo());
 
 		List<String> strs = new ArrayList<String>();
 		strs.add("appid=" + closeOrderInfo.getAppid());
@@ -460,7 +461,7 @@ public class WechatService {
 		}
 
 		if (reInfo.getErr_code() != null) {
-			System.out.println("订单号："+goodsOrder.getOrderId()+" 关闭订单失败（错误描述" + reInfo.getErr_code_des() + "）");
+			System.out.println("订单号："+goodsOrder.getOrderId()+" 关闭订单失败（错误代码："+reInfo.getErr_code()+";错误描述" + reInfo.getErr_code_des() + "）");
 			return false;
 		}
 
@@ -529,7 +530,7 @@ public class WechatService {
 		}
 
 		if (reInfo.getResult_code().equals("FAIL")) {
-			System.out.println("订单号："+goodsOrder.getOrderId()+" 退款失败（错误描述：" + reInfo.getErr_code_des() + "）");
+			System.out.println("订单号："+goodsOrder.getOrderId()+" 退款失败（错误代码："+reInfo.getErr_code()+";错误描述：" + reInfo.getErr_code_des() + "）");
 			
 			QueryOrderReturnInfo queryReInfo = WechatService.queryOrder(goodsOrder);
 			if(queryReInfo.getTrade_state().equals("REFUND") || queryReInfo.getTrade_state().equals("CLOSED")){
@@ -642,7 +643,7 @@ public class WechatService {
 
 		
 		if (notifyInfo.getResult_code().equals("FAIL")) {
-			System.out.println("订单out_trade_no:"+notifyInfo.getOut_trade_no()+" 支付失败（错误描述：" + notifyInfo.getErr_code_des() + "）");
+			System.out.println("订单out_trade_no:"+notifyInfo.getOut_trade_no()+" 支付失败（错误代码："+notifyInfo.getErr_code()+";错误描述：" + notifyInfo.getErr_code_des() + "）");
 			return true;
 		}
 

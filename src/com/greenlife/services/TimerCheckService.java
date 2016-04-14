@@ -56,14 +56,21 @@ public class TimerCheckService {
 		ArrayList<TodayGroup> list = TodayGroupDao.getOverdueOrderByHour(0, 24);
 		for(int i=0;i<list.size();i++){
 			TodayGroup group = list.get(i);
-			group.setIsDelete(1);
-			TodayGroupDao.updateTodayGroup(group);
+			boolean allCancel = true;
 			ArrayList<GoodsOrder> orderlist = GoodsOrderDao.getGoodsOrderListByGroupIdAndState(
 					group.getGroupId(), 2);
 			for(int j=0;j<orderlist.size();j++){
 				GoodsOrder order = orderlist.get(j);
-				GoodsOrderService.cancleOrder(order);
+				if(!GoodsOrderService.cancleOrder(order)){
+					allCancel =false;
+				}
 			}
+			if(allCancel){
+				group.setIsDelete(1);
+				TodayGroupDao.updateTodayGroup(group);
+			}
+		
+			
 		}
 		list = TodayGroupDao.getOverdueOrderByHour(1, 24);
 		for(int i=0;i<list.size();i++){

@@ -8,6 +8,7 @@ public class GroupCheckTimer{
 	public Timer timer;
 	public void timerStart(){
 		timer = new Timer();
+		/*
 		Date datetime=new Date();
 		Date midnightDate=new Date();
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -18,8 +19,8 @@ public class GroupCheckTimer{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		long in=midnightDate.getTime()-datetime.getTime();
-		timer.schedule(new GroupCheckTask(), 0, 1000*60*60);
+		long in=midnightDate.getTime()-datetime.getTime();*/
+		timer.schedule(new GroupCheckTask(), 1000*60, 1000*60*60);
 	}
 	public void timerStop(){
 		if(timer!=null){ 

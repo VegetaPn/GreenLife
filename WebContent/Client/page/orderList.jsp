@@ -150,12 +150,15 @@
                                         else if (orderstate == 14)
                                         {
                                                 out.write("已完成");
+                                        }else if(orderstate == 8 || orderstate == 18){
+                                      
+                                        		out.write("已退款");
                                         }
                                         else if (orderstate == 9 || orderstate == 19)
                                         {
                                                 out.write("已取消");
                                         }else{
-                                        	 out.write("未知类型订单");
+                                        	    out.write("未知类型订单");
                                         }
                                  %>
                                 </span>

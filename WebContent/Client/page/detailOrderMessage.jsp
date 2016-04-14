@@ -180,20 +180,27 @@
 					<div class="blackNormal" id="orderState">交易成功</div>
 				</div>
 			<%
-				}else if(orderstate == 9 || orderstate == 19){
+				}else if(orderstate == 8 || orderstate == 18){
 					
 				
 			%>
 			
 				<div class="middleTag">
 					<div class="tagLeft">订单状态：</div>
-					<div class="blackNormal" id="orderState">已取消</div>
+					<div class="blackNormal" id="orderState">已退款</div>
 				</div>
 			
 			<%
-				}
+				}else if(orderstate == 9 || orderstate == 19){
 			%>
 			
+				<div class="middleTag">
+					<div class="tagLeft">订单状态：</div>
+					<div class="blackNormal" id="orderState">已取消</div>
+				</div>
+			<%	
+				}
+			%>
 		</div>
 
 		<%
