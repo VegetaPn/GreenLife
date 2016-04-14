@@ -12,42 +12,59 @@ public class GoodsOrderService {
 		if(state < 10){
 			if(state == 1){
 				WechatService.closeOrder(order);
+				order.setOrderState(9);
 			}
 			else if(state == 2){
-				if(!WechatService.refund(order)){
+				
+				if(WechatService.refund(order)){
+					order.setOrderState(8);
+				}else{
 					return false;
 				}
 			}
 			else if(state == 3){
-				if(!WechatService.refund(order)){
+				
+				if(WechatService.refund(order)){
+					order.setOrderState(8);
+				}else{
 					return false;
 				}
 			}
 			else if(state == 5){
-				if(!WechatService.refund(order)){
+				
+				if(WechatService.refund(order)){
+					order.setOrderState(8);
+					
+				}else{
 					return false;
 				}
 			}else{
 				return false;
 			}
-			order.setOrderState(9);
+			
 		}else{
 			if(state == 11){
 				WechatService.closeOrder(order);
+				order.setOrderState(19);
 			}
 			else if(state == 12){
-				if(!WechatService.refund(order)){
+				if(WechatService.refund(order)){
+					order.setOrderState(18);
+					
+				}else{
 					return false;
 				}
 			}
 			else if(state == 14){
-				if(!WechatService.refund(order)){
+				if(WechatService.refund(order)){
+					order.setOrderState(18);
+				}else{
 					return false;
 				}
 			}else{
 				return false;
 			}
-			order.setOrderState(19);
+			
 		}
 		
 		if(!GoodsOrderDao.updateGoodsOrder(order)){

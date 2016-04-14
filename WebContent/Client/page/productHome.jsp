@@ -8,9 +8,9 @@
 
 <%
 	String wechatId = (String) session.getAttribute("wechatId");
-	
+
 	int goodsId = Integer.parseInt(request.getParameter("goodsId"));
-	
+
 	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
@@ -20,25 +20,24 @@
 	String salesState = null;
 
 	int status = GoodsInfoService.getGoodsStatus(goodsInfo);
-	
-	
-	if(status == 0){
+
+	if (status == 0) {
 		salesState = "未开始";
 	}
-	if(status == 1){
+	if (status == 1) {
 		salesState = "预定中";
 	}
-	if(status == 2){
+	if (status == 2) {
 		salesState = "已售完";
 	}
-	if(status == 3){
+	if (status == 3) {
 		salesState = "已下架";
 	}
 
-	
 	String productImg = PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "normal.jpg";
-	String smallProductImg = "http://"+PropertiesUtil.getURL()+PropertiesUtil.getPath() + goodsInfo.getPackagePath() + "small.jpg";
-	
+	String smallProductImg = "http://" + PropertiesUtil.getURL() + PropertiesUtil.getPath()
+			+ goodsInfo.getPackagePath() + "small.jpg";
+
 	int orderNum = GoodsOrderDao.getGoodsOrderNum(goodsId);
 
 	int reportNum = goodsInfo.getReportNum();
@@ -46,19 +45,16 @@
 	List<Comment> commentList = CommentDao.getCommentList(goodsId);
 
 	int commentListSize = commentList.size();
-	
-	
-	
-	ArrayList<HashMap<String, String>> friendlist = FriendsListService.getBuyList(goodsId,wechatId);
-	
+
+	ArrayList<HashMap<String, String>> friendlist = FriendsListService.getBuyList(goodsId, wechatId);
 
 	int size = friendlist.size();
-	
+
 	int totalSaleNum = 0;
-	for(int i=0;i<size;i++){
+	for (int i = 0; i < size; i++) {
 		String strNum = friendlist.get(i).get("number");
 		totalSaleNum += Integer.parseInt(strNum);
-		
+
 	}
 %>
 
@@ -73,7 +69,8 @@
 <link rel="stylesheet" href="../css/header.css" type="text/css">
 <link rel="stylesheet" href="../css/productHome.css">
 <script type="text/javascript" src="../js/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript"
+	src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
 <body>
 
@@ -81,11 +78,11 @@
 		String jsapi_ticket = (String) session.getAttribute("ticket");
 		String noncestr = "abcdefg";
 		String timestamp = Long.toString((new Date()).getTime());
-		String url = request.getScheme()+"://"+ request.getServerName()+request.getRequestURI();
-	 	
-	 	if(request.getQueryString() != null){
-	 		url = url + "?" + request.getQueryString();
-	 	}
+		String url = request.getScheme() + "://" + request.getServerName() + request.getRequestURI();
+
+		if (request.getQueryString() != null) {
+			url = url + "?" + request.getQueryString();
+		}
 
 		String signature = WechatService.buildSignature(noncestr, jsapi_ticket, timestamp, url);
 
@@ -94,21 +91,23 @@
 
 	<jsp:include page="header.jsp" />
 
-	
+
 
 	<div id="content">
 
-		<div id="prompt"><span>关注成功</span></div>
+		<div id="prompt">
+			<span>关注成功</span>
+		</div>
 		<div id="product">
 
-			
-			<img id="productImg" src="<%=productImg%>" />
-			
-			<span class="arcLabel" id="salesState"><%=salesState%></span> 
-			<span class="arcLabel" id="orderNum" onclick="window.location.href='friendDetail.jsp?goodsId=<%=goodsId%>'">订单数：<%=orderNum%></span>
+
+			<img id="productImg" src="<%=productImg%>" /> <span class="arcLabel"
+				id="salesState"><%=salesState%></span> <span class="arcLabel"
+				id="orderNum"
+				onclick="window.location.href='friendDetail.jsp?goodsId=<%=goodsId%>'">销量：<%=totalSaleNum%></span>
 			<script>var isCollected = false;</script>
 
-			
+
 			<%
 				boolean isConcerned = false;
 
@@ -125,7 +124,7 @@
 			<%
 				} else {
 			%>
-			
+
 			<img id="heart" src="../images/collect.png" />
 			<script>isCollected = true;</script>
 			<%
@@ -167,11 +166,11 @@
 				});
 			</script>
 
-			
+
 		</div>
-			<div id="productName">
-				<%=goodsInfo.getGoodsName()%>
-			</div>
+		<div id="productName">
+			<%=goodsInfo.getGoodsName()%>
+		</div>
 		<script>
 		
 			
@@ -212,84 +211,86 @@
 				    title: '源来生活-<%=goodsInfo.getGoodsName()%>', // 分享标题
 				    desc: '<%=goodsInfo.getSubTitle()%>', // 分享描述
 				    link: '<%=url%>', // 分享链接
-				    imgUrl: '<%=smallProductImg%>', // 分享图标
-				    success: function () { 
-				        // 用户确认分享后执行的回调函数
-				    },
-				    cancel: function () { 
-				        // 用户取消分享后执行的回调函数
-				    }
+				    imgUrl: '<%=smallProductImg%>
+			', // 分享图标
+					success : function() {
+						// 用户确认分享后执行的回调函数
+					},
+					cancel : function() {
+						// 用户取消分享后执行的回调函数
+					}
 				});
 			});
-		
-		
-	
 		</script>
-		
-		
-		
-		
+
+
+
+
 		<div id="productInfo">
 			<div id="infoDesc">
 
 				<hr />
-				
-				
+
+
 				<%=goodsInfo.getGoodsText1().replace("\n", "<br/>")%>
-				<div class="link" onclick="location.href='productDetail.jsp?goodsId=<%=goodsId%>'">项目详情 ></div>
+				<div class="link"
+					onclick="location.href='productDetail.jsp?goodsId=<%=goodsId%>'">项目详情
+					></div>
 
 			</div>
 		</div>
 
 		<div class="grayDiv">
-		
+
 			<%
-			if(totalSaleNum!=0){
+				if (totalSaleNum != 0) {
 			%>
 			<div id="friendPurchase">
 				<div class="labelHeader">
 					<div class="whiteDiv"></div>
-					<span class="label">已售出<span id="purchaseNum"><%=totalSaleNum %></span>份
+					<span class="label">已售出<span id="purchaseNum"><%=totalSaleNum%></span>份
 					</span>
 				</div>
 
-				
 
-				<div id="purchaseDetail" onclick="window.location.href='friendDetail.jsp?goodsId=<%=goodsId%>'">
-				
-				<%
-				int showSize = 0;
-				
-				if(size >= 5){
-					showSize = 5;
-				}else{
-					showSize = size;
-				}
-				for(int i=0;i<showSize;i++){
-					String puchaseWechatId = friendlist.get(i).get("wechat_id");
-					String purchaseNum = friendlist.get(i).get("number");
-					UserInfo userInfo = UserInfoDao.getUserInfo(puchaseWechatId);
-					
-				%>	
+
+				<div id="purchaseDetail"
+					onclick="window.location.href='friendDetail.jsp?goodsId=<%=goodsId%>'">
+
+					<%
+						int showSize = 0;
+
+							if (size >= 5) {
+								showSize = 5;
+							} else {
+								showSize = size;
+							}
+							for (int i = 0; i < showSize; i++) {
+								String puchaseWechatId = friendlist.get(i).get("wechat_id");
+								String purchaseNum = friendlist.get(i).get("number");
+								UserInfo userInfo = UserInfoDao.getUserInfo(puchaseWechatId);
+					%>
 					<div class="personalPurchaseDiv">
-						<img class="avatar" src="<%=userInfo.getPhotoPath()%>"><br /><%=purchaseNum %>
+						<img class="avatar" src="<%=userInfo.getPhotoPath()%>"><br /><%=purchaseNum%>
 					</div>
-				<%
-				}
-				%>
-					
-				
+					<%
+						}
+					%>
+
+
 					<a class="link" id="friendLink">></a>
 				</div>
 
 			</div>
 
-		<%} %>
+			<%
+				}
+			%>
 			<div class="labelHeader" id="productSalesPrice">
 
 				<div class="whiteDiv"></div>
 				<span class="label">购买详情</span>
-				
+
 			</div>
 
 
@@ -306,68 +307,70 @@
 				<div id="salesInfo">
 
 					<%=goodsInfo.getGoodsText2().replace("\n", "<br/>")%>
-				
+
 				</div>
-	
-				
-	
+
+
+
 				<div id="purchaseLeft">
-				<div id="teamPurchase" onclick="location.href='startGroup.jsp?goodsId=<%=goodsId%>'">
-					<div class="salesPrice" id="teamPrice">
-						<span><%=goodsInfo.getGoodsDiscontPrice()%></span>元/份
+					<div id="teamPurchase"
+						onclick="location.href='startGroup.jsp?goodsId=<%=goodsId%>'">
+						<div class="salesPrice" id="teamPrice">
+							<span><%=goodsInfo.getGoodsDiscontPrice()%></span>元/份
+						</div>
+						<div class="purchaseLink">2人团></div>
 					</div>
-					<div class="purchaseLink">2人团></div>
-				</div>
 				</div>
 				<div id="purchaseRight">
-				<div id="personalPurchase" onclick="location.href='purchase.jsp?group=false&goodsId=<%=goodsId%>'">
-					<div class="salesPrice" id="personalPrice">
-						<span><%=goodsInfo.getGoodsPrice()%></span>元/份
+					<div id="personalPurchase"
+						onclick="location.href='purchase.jsp?group=false&goodsId=<%=goodsId%>'">
+						<div class="salesPrice" id="personalPrice">
+							<span><%=goodsInfo.getGoodsPrice()%></span>元/份
+						</div>
+						<div class="purchaseLink">单独预定</div>
 					</div>
-					<div class="purchaseLink">单独预定</div>
-				</div>
 				</div>
 			</div>
 
 			<%
-				if(status != 1){
+				if (status != 1) {
 			%>
-				<script>
-					$(function(){
-						$("#teamPurchase").hide();
-						$("#personalPurchase").hide();
-						
-					});
-					
-				</script>
-			<%	
+			<script>
+				$(function() {
+					$("#teamPurchase").hide();
+					$("#personalPurchase").hide();
+
+				});
+			</script>
+			<%
 				}
 			%>
 
 			<%
-			if(reportNum != 0){
+				if (reportNum != 0) {
 			%>
 			<div id="productQuality">
 				<div id="qualityContent">
-				
-					<div id="qualityLeft">
-					<div id="qualityLogo">
-						<img id="qualityLogoImg" src="../images/yuanlai.jpg" />
 
-					</div>
+					<div id="qualityLeft">
+						<div id="qualityLogo">
+							<img id="qualityLogoImg" src="../images/yuanlai.jpg" />
+
+						</div>
 					</div>
 					<div id="qualityRight">
-					<div id="qualityInfo">
-						<span id="qualityFont">已通过<%=reportNum%>项田园检测</span>
-						<br /> 
-						<br /> 
-						<span id="qualityLink" onclick="location.href='report.jsp?goodsId=<%=goodsId%>'">查看检测详情></span>
-					</div>
+						<div id="qualityInfo">
+							<span id="qualityFont">已通过<%=reportNum%>项田园检测
+							</span> <br /> <br /> <span id="qualityLink"
+								onclick="location.href='report.jsp?goodsId=<%=goodsId%>'">查看检测详情></span>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<%} %>
+			<%
+				}
+			%>
 
 			<div id="productComment">
 				<div class="labelHeader">
@@ -383,12 +386,11 @@
 								Comment comment = commentList.get(i);
 
 								UserInfo userInfo = UserInfoDao.getUserInfo(comment.getWechatId());
-								
+
 								String commentTime = comment.getTime();
 								Date commentDate = sdf.parse(commentTime);
 								SimpleDateFormat commentSdf = new SimpleDateFormat("yy-MM-dd HH:mm");
 								String showTime = commentSdf.format(commentDate);
-								
 						%>
 						<div>
 							<div class="avatarDiv">
@@ -405,7 +407,7 @@
 
 							<%
 								if (comment.getImgPath() != null) {
-									String commentImgSrc = PropertiesUtil.getPath()+comment.getImgPath();
+										String commentImgSrc = PropertiesUtil.getPath() + comment.getImgPath();
 							%>
 							<br /> <img class="commentImg" src="<%=commentImgSrc%>" />
 
@@ -425,14 +427,15 @@
 
 					<div id="commentLinkDiv">
 
-						<span id="commentLink"  onclick="location.href='comment.jsp?goodsId=<%=goodsId%>'">我来说两句</span>
+						<span id="commentLink"
+							onclick="location.href='comment.jsp?goodsId=<%=goodsId%>'">我来说两句</span>
 
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

@@ -530,6 +530,11 @@ public class WechatService {
 
 		if (reInfo.getResult_code().equals("FAIL")) {
 			System.out.println("订单号："+goodsOrder.getOrderId()+" 退款失败（错误描述：" + reInfo.getErr_code_des() + "）");
+			
+			QueryOrderReturnInfo queryReInfo = WechatService.queryOrder(goodsOrder);
+			if(queryReInfo.getTrade_state().equals("REFUND") || queryReInfo.getTrade_state().equals("CLOSED")){
+				return true;
+			}
 			return false;
 		}
 
