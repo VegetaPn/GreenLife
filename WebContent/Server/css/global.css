@@ -1,0 +1,404 @@
+/* 
+	Resets defualt browser settings
+	reset.css
+*/
+
+.nav-header.collapsed > span.glyphicon-chevron-toggle:before {
+    content: "\e114";
+}
+
+.nav-header > span.glyphicon-chevron-toggle:before {
+    content: "\e113";
+}
+
+.secondmenu a 
+{
+  margin-top:10px;
+  font-size: 12px;
+  color: #4A515B;
+  text-align: center;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    font-family:'Microsoft YaHei';
+}
+
+:focus {
+    outline: 0;
+}
+
+a:active {
+    outline: none;
+}
+
+body 
+{
+    line-height: 1;
+    color: black;
+    background: white;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+caption, th, td {
+    text-align: left;
+    font-weight: normal;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: "";
+}
+
+blockquote, q {
+    quotes: "" "";
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#container {
+    width: 580px;
+    padding: 10px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 0;
+}
+
+#example {
+    margin: auto;
+    width: 1000px;
+    height: 350px;
+    position: relative;
+}
+
+#ribbon {
+    position: absolute;
+    top: -3px;
+    left: -15px;
+    z-index: 500;
+}
+
+#frame {
+    position: absolute;
+    z-index: 0;
+    width: 1092px;
+    height: 341px;
+    top: -3px;
+    left: -80px;
+}
+
+#slides {
+    position: absolute;
+    top: 15px;
+    left: 4px;
+    z-index: 100;
+}
+
+    #slides .next, #slides .prev {
+        position: absolute;
+        top: 107px;
+        left: -39px;
+        width: 24px;
+        height: 43px;
+        display: block;
+        z-index: 101;
+    }
+
+.slides_container {
+    width: 870px;
+    height: 270px;
+    overflow: hidden;
+    position: relative;
+}
+
+#slides .next {
+    left: 985px;
+}
+
+.picholder 
+{
+    height:300px;
+    font-size:14px;
+    margin:auto;
+    background-color:#444;
+    margin-bottom: 25px;
+    text-align: center;
+    width: 1020px;
+    border-left: 0px;
+    border-right: 0px;
+    box-shadow: 0px 0px 5px #888888;
+}
+    .picholder:hover {
+        box-shadow: 0px 0px 10px #a4a8ef;
+    }
+
+.block 
+{
+    padding:10px;
+    -moz-box-shadow: 5px 5px 15px #888888; /* 锟较碉拷 Firefox */
+    box-shadow: 5px 5px 15px #888888;
+    background-color:White;
+    text-align:left;
+    margin: auto;
+    width: 100%;
+    min-height:600px;
+}
+
+.ul 
+{
+    background-color:#666666;
+    margin: 0px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.li 
+{
+    line-height:28px;
+    padding-left: 20px;
+    background-color: white;
+    margin-top: 1px;
+    height: 28px;
+}
+
+    .li:hover 
+    {
+        transition: all 1s;
+        -moz-transition: all 1s; /* Firefox 4 */
+        -webkit-transition: all 1s; /* Safari 锟斤拷 Chrome */
+        -o-transition: all 1s; /* Opera */
+        background-color: #f2fa5f;
+    }
+h1 {
+    font-weight: 100;
+    background-color: #2e0b25;
+    color: white;
+    text-align: center;
+}
+
+.left 
+{
+    width: 20%;
+    float: left;
+}
+
+.right 
+{
+    width: 78%;
+    float: right;
+}
+
+ol {
+    counter-reset: li; /* 锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷 */
+    list-style: none; /* 锟斤拷锟斤拷斜锟侥拷系谋锟斤拷锟�*/
+    *list-style: decimal; /* 锟斤拷IE6/7锟斤拷锟斤拷默锟较的憋拷锟斤拷 */
+    font-size:15px;
+    padding: 0;
+    margin-bottom: 4em;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+ol ol {
+    font-size:12px;
+    margin: 0 0 0 2em; /* 锟斤拷锟斤拷锟斤拷斜锟斤拷锟斤拷锟揭伙拷锟斤拷锟斤拷锟竭撅拷*/
+}
+
+.listtitle {
+    display:block;
+    margin-top:25px;
+    width:100%;
+    font-size:16px;
+}
+.rectangle-list a {
+    position: relative;
+    display: block;
+    padding: 0.4em 0.4em 0.4em 0.8em;
+    *padding: 0.4em;
+    margin: 0.5em 0 0.5em 2em;
+    background: White;
+    color: black;
+    text-decoration: none;
+    /*transition锟斤拷锟斤拷效锟斤拷*/
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.rectangle-list a:hover 
+{
+    background: #a0bf7c;
+}
+
+    .rectangle-list a::before 
+    {
+        color:white;
+        content: counter(li);
+        counter-increment: li;
+        position: absolute;
+        left: -2.5em;
+        top: 50%;
+        margin-top: -1em;
+        background: #65934a;
+        width: 2em;
+        height: 2em;
+        line-height: 2em;
+        text-align: center;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        -ms-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+    }
+
+    .rectangle-list a::after {
+        position: absolute;
+        content: "";
+        border: 0.5em solid transparent;
+        left: -1em;
+        top: 50%;
+        margin-top: -0.5em;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        -ms-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+    }
+
+    .rectangle-list a:hover::after {
+        left: -0.5em;
+        border-left-color: #a0bf7c;
+    }
+.Dcontainer {
+    border-bottom:1px dotted #888888;
+    margin-top:20px;
+    height:200px;
+}
+.Dleft {
+    float:left;
+    width:233px;
+    margin:auto;
+}
+.Dright {
+    max-height:200px;
+    margin-left:20px;
+    display:block;
+    float:left;
+}
+.Dpicholder {
+}
+.Dtitle {
+    width:100%;
+    display:block;
+    font-size:15px;
+    margin-bottom:20px;
+}
+.Dtitle :hover{
+    transition:all 0.5s;
+    background-color:#f5fc46;
+}
+    .Dtitle::after {
+        content:square;
+        background: #fa8072;
+        width: 5em;
+        height: 5em;
+        line-height: 2em;
+        text-align: center;
+    }
+.Dcontext 
+{
+    line-height:25px;
+    width:100%;
+    padding-left:25px;
+}
+.uploadpanel 
+{
+    margin:auto;
+    width:1000px;
+    text-align:center;
+}
+.colorpanel 
+{
+    padding-bottom:5px;
+    border-radius: 7px 7px 0px 0px;
+    border:1px solid #C3CED9;
+    border-bottom:none;
+    background-color:#ededed;
+    color:black;
+    margin-right:30px;
+    float:left;
+}
+
+/*锟斤拷锟斤拷*/
+.red {
+    color:red;
+}
+.center {
+    text-align:center;
+    margin:auto;
+}
+.BackgroundQ 
+{
+    background-color:#ccf5c4;
+}
+.SerachArea
+{
+    height:100px;
+    line-height:100px;
+}
+
+.breaker-25
+{
+    height:25px;
+}
+
+.breaker-10
+{
+    height:10px;
+}
+
+.breaker-1
+{
+    height:1px;
+}
+
+/* 锟斤拷色锟斤拷锟斤拷 */
+
+.bg-color1
+{
+    background:white;
+}
+
+.bg-color2
+{
+    background:#a0bf7c;
+}
+
+.bg-color3
+{
+    background:#65934a;
+}
+
+.bg-color4
+{
+    background:#65934a;
+}
+
+.bg-color5
+{
+    background:#03230e;
+}
