@@ -53,7 +53,9 @@
 					id="group">
 					<thead>
 						<tr>
+						<th style="display:none">序号</th>
 						<th>下单时间</th>
+						<th>交易号</th>
 							<th>微信昵称</th>
 							<th>产品名</th>
 							<th>数量</th>
@@ -77,7 +79,9 @@
 							   GoodsInfo g=GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());
 							   
 							%>
-							<td><%=oneGoodsOrder.getTradeTime() %>
+							<td style="display: none"><%=allGoodsOrder.size() - i%></td>
+							<td><%=oneGoodsOrder.getTradeTime() %></td>
+							<td><%=oneGoodsOrder.getPrepayId()%></td>
 							<td><%=user.getWechatName()%></td>
 							<td><%=g.getGoodsName() %></td>
 							<td><%=oneGoodsOrder.getGoodsNum() %></td>
@@ -105,7 +109,7 @@
 		src="http://sandbox.runjs.cn/uploads/rs/238/n8vhm36h/bootstrap.min.js"></script>
 	<script type="text/javascript"
 		src="http://sandbox.runjs.cn/uploads/rs/238/n8vhm36h/dataTables.bootstrap.js"></script>
-	<script type="text/javascript" src="../js/datatable-zn.js"></script>
+	<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
 
 
 

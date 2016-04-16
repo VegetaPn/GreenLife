@@ -65,7 +65,9 @@
 					id="group">
 					<thead>
 						<tr>
-						<th>时间</th>
+						<th style="display:none">序号</th>
+							<th>时间</th>
+							<th>交易号</th>
 							<th>微信昵称</th>
 							<th>产品名称</th>
 							<th>数量</th>
@@ -96,9 +98,11 @@
 								GoodsInfo g = GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());
 										UserInfo user = UserInfoDao.getUserInfo(oneGoodsOrder.getWechatId());
 							%>
-							<td><%=oneGoodsOrder.getTradeTime() %>
-							<td><%=user.getWechatName() %></td>
-							<td><%=g.getGoodsName() %></td>
+							<td style="display: none"><%=GoodsOrderByGroup.size() - i%></td>
+							<td><%=oneGoodsOrder.getTradeTime()%>
+							<td><%=oneGoodsOrder.getPrepayId() %>
+							<td><%=user.getWechatName()%></td>
+							<td><%=g.getGoodsName()%></td>
 							<td><%=oneGoodsOrder.getGoodsNum()%></td>
 							<td><%=oneGoodsOrder.getReceiverName()%>
 							<td><%=oneGoodsOrder.getAddrDetail()%></td>
@@ -128,8 +132,5 @@
 	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
-	<script type="text/javascript" src="../js/datatable-zn.js"></script>
-
-
-
+	<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
 </html>
