@@ -9,13 +9,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min1.css">
 <link rel="stylesheet" type="text/css"
-	href="../CSS/bootstrap-responsiv.css">
+	href="../css/bootstrap-responsiv.css">
 <link rel="stylesheet" type="text/css"
-	href="../CSS/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css" href="../CSS/table.css">
+	href="../css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="../css/table.css">
 </head>
 
 <body>
@@ -23,15 +23,16 @@
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
 			response.sendRedirect("/Server/Page/login.jsp");
-		} else {
+		}
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="content">
 		<div class="row">
-			<div class="col-sm-6">
-				<form>
-					<button type="submit" class="btn btn-primary"
-						formaction="addproduct.jsp">新增</button>
+			<div class="col-sm-11">
+				<form >
+					<button type="submit" class="btn btn-primary btn-sm" formaction="addproduct.jsp">
+ 						 <span class="glyphicon glyphicon-plus"></span> 新增
+					</button>
 				</form>
 			</div>
 		</div>
@@ -104,19 +105,8 @@
 			</div>
 		</div>
 	</div>
-	<%
-		}
-	%>
 
 	<jsp:include page="footer.html"></jsp:include>
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/head.js"></script>
-	<script type="text/javascript" src="../js/jquery.js"></script>
-	<script type="text/javascript" src="../js/product.js"></script>
-	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
-	<script type="text/javascript" src="../js/datatable-zn.js"></script>
 </body>
 
 </html>

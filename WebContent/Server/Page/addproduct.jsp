@@ -5,15 +5,10 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="pragma" content="no-cache">
 <title>商品添加</title>
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<script src="../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/addProduct.js"></script>
-<script type="text/javascript" src="../js/addOrReduceNum.js"></script>
-<script type="text/javascript" src="../js/previewImage.js"></script>
-
+<script src="../js/previewImage.js"></script>
+<script src="../js/addOrReduceNum.js"></script>
+<script src="../js/addProduct.js"></script>
 </head>
 <body>
 	<%

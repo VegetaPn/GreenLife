@@ -8,29 +8,15 @@
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <title>待发货</title>
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css" />
-<link rel="stylesheet" type="text/css"
-	href="../CSS/bootstrap-responsiv.css" />
-<link rel="stylesheet" type="text/css"
-	href="../CSS/jquery.dataTables.min.css" />
-
-
-
-<link rel="stylesheet" type="text/css" href="../CSS/jquery-confirm.css" />
-
-
-<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 <script src="../js/refund.js"></script>
-<script src="../js/send.js"></script>
 </head>
 
 <body>
 	<%
-		if (request.getSession().getAttribute("login") == null) {// 用户没有登录
+		///登录判断，防止未登录直接修改
+		if (session.getAttribute("login") == null) {//用户没有登录
 			response.sendRedirect("/Server/Page/login.jsp");
-		} else {
+		}
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="row">
@@ -114,7 +100,7 @@
 						</tr>
 						<%
 							}
-							}
+							
 						%>
 					</tbody>
 				</table>
@@ -123,14 +109,6 @@
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
-	<script src="../js/head.js"></script>
-
-	<script type="text/javascript" src="../js/jquery-confirm.js"></script>
-
-	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
-	<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
 </body>
 
 </html>

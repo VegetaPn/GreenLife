@@ -1,0 +1,13 @@
+.table tbody tr:hover{
+	background-color:#aab8d5;
+}
+
+nav li a{
+	font-size: 20px;
+	text-shadow:inset;
+}
+
+.navbar-right li{
+	color: #888888;
+	
+}

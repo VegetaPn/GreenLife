@@ -4,36 +4,17 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head id="Head1" runat="server">
 <title>已完成订单</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport"
-	content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css">
-<link rel="stylesheet" type="text/css"
-	href="../CSS/bootstrap-responsiv.css">
-<link rel="stylesheet" type="text/css"
-	href="../CSS/jquery.dataTables.min.css">
-
-
-
-<link rel="stylesheet" type="text/css" href="../CSS/jquery-confirm.css">
-
-
-<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 <script src="../js/refund.js"></script>
 </head>
-
 <body>
 
-	<%
+<%
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
 			response.sendRedirect("/Server/Page/login.jsp");
-		} else {
+		}
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="row">
@@ -115,7 +96,6 @@
 						</tr>
 						<%
 							}
-							}
 						%>
 					
 				</table>
@@ -124,15 +104,6 @@
 			<!-- Table -->
 		</div>
 	</div>
-
 	<jsp:include page="footer.html"></jsp:include>
 
-	<script src="../js/head.js"></script>
-
-	<script type="text/javascript" src="../js/jquery-confirm.js"></script>
-
-	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
-	<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
 </html>

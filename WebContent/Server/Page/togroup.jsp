@@ -8,12 +8,6 @@
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <title>待成团</title>
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css" />
-<link rel="stylesheet" type="text/css"
-	href="../CSS/bootstrap-responsiv.css" />
-<link rel="stylesheet" type="text/css"
-	href="../CSS/jquery.dataTables.min.css" />
 </head>
 
 <body>
@@ -102,14 +96,5 @@
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
-	<!-- End Footer -->
-	<script type="text/javascript"
-		src="http://sandbox.runjs.cn/uploads/rs/238/n8vhm36h/jquery.js"></script>
-	<script type="text/javascript"
-		src="http://sandbox.runjs.cn/uploads/rs/238/n8vhm36h/jquery.dataTables.js"></script>
-	<script type="text/javascript"
-		src="http://sandbox.runjs.cn/uploads/rs/238/n8vhm36h/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="http://sandbox.runjs.cn/uploads/rs/238/n8vhm36h/dataTables.bootstrap.js"></script>
-	<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
+
 </html>

@@ -279,7 +279,7 @@
 			13 === d && c.creation([c.ymd[0], c.ymd[1] + 1, c.ymd[2]])
 		})
 	}, c.init = function() {
-		c.use("../CSS"), c.use(h[4] + b.defSkin, h[3]), c.skinLink = c.query("#" + h[3])
+		c.use("../css"), c.use(h[4] + b.defSkin, h[3]), c.skinLink = c.query("#" + h[3])
 	}(), laydate.reset = function() {
 		c.box && c.elem && c.follow(c.box)
 	}, laydate.now = function(a, b) {

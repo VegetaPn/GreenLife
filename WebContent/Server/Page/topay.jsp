@@ -8,12 +8,7 @@
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <title>待支付</title>
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css" />
-<link rel="stylesheet" type="text/css"
-	href="../CSS/bootstrap-responsiv.css" />
-<link rel="stylesheet" type="text/css"
-	href="../CSS/jquery.dataTables.min.css" />
+
 </head>
 
 <body>
@@ -113,9 +108,4 @@
 	<jsp:include page="footer.html"></jsp:include>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/head.js"></script>
-	<script type="text/javascript" src="../js/jquery.js"></script>
-	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
-	<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
 </html>

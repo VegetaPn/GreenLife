@@ -48,25 +48,25 @@ function checkAddProduct() {
 	 * 商品名称检测；
 	 */
 	if (good_name == "") {
-		alert("请填写商品名称");
+		showError("请填写商品名称");
 		return false;
 	}
 
 	if (sub_title == "") {
-		alert("请填写副标题");
+		showError("请填写副标题");
 		return false;
 	}
 	/*
 	 * 价格格式检测
 	 */
 	if (price == "") {
-		alert("请填写商品价格");
+		showError("请填写商品价格");
 		return false;
 	} else {
 
 		var pattern = new RegExp("^[0-9]+(.[0-9]{1,2})?$");// /价格正则表达式
 		if (!pattern.test(price)) {// 价格格式
-			alert("商品价格格式错误，保留两位小数");
+			showError("商品价格格式错误，保留两位小数");
 			return false;
 		}
 	}
@@ -75,45 +75,45 @@ function checkAddProduct() {
 	 * 团购价格格式检测
 	 */
 	if (group_price == "") {
-		alert("请填写团购价格");
+		showError("请填写团购价格");
 		return false;
 	} else {
 		var pattern = new RegExp("^[0-9]+(.[0-9]{1,2})?$");// /正则表达式
 		if (!pattern.test(group_price)) {// 价格格式
-			alert("团购价格格式错误，保留两位小数");
+			showError("团购价格格式错误，保留两位小数");
 			return false;
 		}
 
 		if (parseFloat(price) < parseFloat(group_price)) {
-			alert("团购价格不应大于单价")
+			showError("团购价格不应大于单价")
 			return false;
 		}
 	}
 
 	if (total_num == "") {
-		alert("请填写商品总量");
+		showError("请填写商品总量");
 		return false;
 	} else {
 		var pattern = new RegExp("^[0-9]{1,11}$");// /正则表达式
 		if (!pattern.test(total_num)) {// 价格格式
-			alert("商品总量填写错误");
+			showError("商品总量填写错误");
 			return false;
 		}
 	}
 
 	if (good_unit == "") {
-		alert("请填写计量单位");
+		showError("请填写计量单位");
 		return false;
 	}
 	
 
 	if (report_num == "") {
-		alert("请填写通过检测总量");
+		showError("请填写通过检测总量");
 		return false;
 	} else {	
 		var pattern = new RegExp("^[0-9]{1,11}$");// /正则表达式
 		if (!pattern.test(report_num)) {
-			alert("通过检测总量填写错误");
+			showError("通过检测总量填写错误");
 			return false;
 		}
 	}
@@ -123,12 +123,12 @@ function checkAddProduct() {
 	 * 时间判定
 	 */
 	if (start_time == "") {
-		alert("请选择开始时间");
+		showError("请选择开始时间");
 		return false;
 	}
 
 	if (end_time == "") {
-		alert("请选择结束时间");
+		showError("请选择结束时间");
 		return false;
 	}
 
@@ -137,12 +137,12 @@ function checkAddProduct() {
 	 */
 
 	if (good_text1 == "") {
-		alert("请填写商品描述1");
+		showError("请填写商品描述1");
 		return false;
 	}
 
 	if (good_text2 == "") {
-		alert("请填写商品描述2");
+		showError("请填写商品描述2");
 		return false;
 	}
 
@@ -151,16 +151,16 @@ function checkAddProduct() {
 	 */
 
 	if (normal_img == "") {
-		alert("请选择一张主页大图片");
+		showError("请选择一张主页大图片");
 		return false;
 	}
 	if (small_img == "") {
-		alert("请选择一张列表小图片");
+		showError("请选择一张列表小图片");
 		return false;
 	}
 	if (report_img == "") {
 		if (report_num != "0") {
-			alert("检测数量不为0，所以你要上传一个检测图片");
+			showError("检测数量不为0，所以你要上传一个检测图片");
 			return false;
 		}
 	}

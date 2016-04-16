@@ -19,7 +19,7 @@ function cancelChange() {
 function checkKnowUs() {
 
 	if (document.getElementById("knowus_img").value == "") {
-		alert("未选择图片");
+		showError("未选择图片");
 		return false;
 	} else {
 		return true;

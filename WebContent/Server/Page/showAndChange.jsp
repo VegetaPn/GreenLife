@@ -12,24 +12,19 @@
 <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
 <meta HTTP-EQUIV="expires" CONTENT="0">
 <title>商品添加</title>
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<script src="../js/bootstrap.min.js"></script>
+
 <script src="../js/addOrReduceNum.js"></script>
+	<script type="text/javascript" src="../js/showAndChange.js"></script>
+	<script type="text/javascript" src="../js/previewImage.js"></script>
 </head>
 
 
 <body>
 	<%
 		///登录判断，防止未登录直接修改
-		GoodsInfo showedGood = null;
-		String id = request.getParameter("id");
-		if (id == null) {
-			response.sendRedirect("/Server/Page/product.jsp");
-		} else {
-			if (session.getAttribute("login") == null) {
-				response.sendRedirect("/Server/Page/login.jsp");
-			} else {
-				showedGood = GoodsInfoDao.getGoodsInfo(Integer.parseInt(id));
+		if (session.getAttribute("login") == null) {//用户没有登录
+			response.sendRedirect("/Server/Page/login.jsp");
+		}
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div id="page-wrapper"
@@ -258,18 +253,6 @@
 		}
 	%>
 	<jsp:include page="footer.html"></jsp:include>
-	<script type="text/javascript" src="../js/showAndChange.js"></script>
-	<script type="text/javascript" src="../js/previewImage.js"></script>
-	<script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../js/laydate.js"></script>
-	<script type="text/javascript" src="../js/jquery.js"></script>
-
-	<script type="text/javascript" src="../js/jquery-confirm.js"></script>
-
-	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
-
-
 	<!-- 时间选择控件 -->
 	<script type="text/javascript">
 		!function() {

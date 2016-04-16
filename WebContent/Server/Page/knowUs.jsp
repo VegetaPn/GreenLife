@@ -6,14 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
-<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
-<meta HTTP-EQUIV="expires" CONTENT="-1">
 <title>关于源来生活</title>
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min.css">
 </head>
 <body ">
 
@@ -63,6 +56,5 @@
 	<script src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/previewImage.js"></script>
 	<script type="text/javascript" src="../js/knowus.js"></script>
-	<script type="text/javascript" src="../js/jquery.js"></script>
 </body>
 </html>
