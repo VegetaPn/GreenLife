@@ -9,11 +9,11 @@
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <title>待成团</title>
 <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css" />
-		<link rel="stylesheet" type="text/css"
-			href="../CSS/bootstrap-responsiv.css" />
-			<link rel="stylesheet" type="text/css"
-				href="../CSS/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css" />
+<link rel="stylesheet" type="text/css"
+	href="../CSS/bootstrap-responsiv.css" />
+<link rel="stylesheet" type="text/css"
+	href="../CSS/jquery.dataTables.min.css" />
 </head>
 
 <body>
@@ -36,6 +36,8 @@
 			class="btn btn-warning">待收货</button>
 		<button type="button" onClick="location.href='finish.jsp'"
 			class="btn btn-danger">已完成</button>
+		<button type="button" onClick="location.href='refund.jsp'"
+			class="btn btn-primary">已退款</button>
 	</div>
 
 	<div class="row">
@@ -53,9 +55,9 @@
 					id="group">
 					<thead>
 						<tr>
-						<th style="display:none">序号</th>
-						<th>下单时间</th>
-						<th>交易号</th>
+							<th style="display: none">序号</th>
+							<th>下单时间</th>
+							<th>交易号</th>
 							<th>微信昵称</th>
 							<th>产品名</th>
 							<th>数量</th>
@@ -72,8 +74,8 @@
 									GoodsOrder oneGoodsOrder = allGoodsOrder.get(i);//被遍历到的商品	
 							%>
 						<tr class="goods">
-						
-						
+
+
 							<% //订单对应的用户信息和商品信息
 							   UserInfo user=UserInfoDao.getUserInfo(oneGoodsOrder.getWechatId());
 							   GoodsInfo g=GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());
@@ -87,7 +89,7 @@
 							<td><%=oneGoodsOrder.getGoodsNum() %></td>
 							<td><%=oneGoodsOrder.getReceiverName() %></td>
 							<td><%=oneGoodsOrder.getAddrDetail() %></td>
-							<td><%=oneGoodsOrder.getPhoneNumber() %></td>	
+							<td><%=oneGoodsOrder.getPhoneNumber() %></td>
 						</tr>
 						<%
 								}
@@ -110,7 +112,4 @@
 	<script type="text/javascript"
 		src="http://sandbox.runjs.cn/uploads/rs/238/n8vhm36h/dataTables.bootstrap.js"></script>
 	<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
-
-
-
 </html>

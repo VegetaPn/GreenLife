@@ -14,6 +14,11 @@
 <script src="../Scripts/bootstrap.js" type="text/jscript"></script>
 <script src="../Scripts/bootstrap.min.js" type="text/jscript"></script>
 <!-- 在这里写下你的自定义头部信息 -->
+<style  tyle="text/css">
+li a{
+font-size:20px;
+}
+</style>
 </head>
 <body style="background-color: #E1E1E1">
 	<%
@@ -32,36 +37,28 @@
 						</button>
 						<a class="navbar-brand navbar-left" style="color: White">源来生活后台管理系统</a>
 					</div>
-					<div class="collapse navbar-collapse">
-						<div class="nav navbar-text navbar-right" id="userinfo"
-							runat="server">
-							<!-- 该区域为用户登录区 -->
-						</div>
-					</div>
 				</div>
 			</div>
-			<div class="container-fluid" style="margin: 0px; margin-top: 25px">
-				<div class="col-lg-2">
+			<div>
+				<nav class="navbar nav-pills" role="navigation">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#">导航</a>
+					</div>
 					<div>
-						<h4>
-							<strong>快捷导航</strong>
-						</h4>
-						<div class="breaker-10"></div>
-						<div class="breaker-1 bg-color2"></div>
-						<div class="breaker-10"></div>
-						<ol class="list-group list-unstyled" style="border: 0px">
+						<ul class="nav nav-pills">
+
 							<li class="list-group-item" style="border: 0px"><a
+							font-size="20"
 								href="product.jsp">商品管理</a></li>
 							<li class="list-group-item" style="border: 0px"><a
 								href="togroup.jsp">订单管理</a></li>
 							<li class="list-group-item" style="border: 0px"><a
 								href="user.jsp">用户管理</a></li>
-								<li class="list-group-item" style="border: 0px"><a
+							<li class="list-group-item" style="border: 0px"><a
 								href="knowUs.jsp">关于我们</a></li>
-						</ol>
+
+						</ul>
 					</div>
-				</div>
-				<div class="col-lg-10" id="content">
-			
-			
-			
+				</nav>
+
+				<div class="col-lg-12" id="content">

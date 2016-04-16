@@ -36,6 +36,8 @@
 			class="btn btn-warning">待收货</button>
 		<button type="button" onClick="location.href='finish.jsp'"
 			class="btn btn-danger">已完成</button>
+			<button type="button" onClick="location.href='refund.jsp'"
+			class="btn btn-primary">已退款</button>
 	</div>
 
 	<div class="row">

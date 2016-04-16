@@ -45,6 +45,8 @@
 			class="btn btn-warning">待收货</button>
 		<button type="button" onClick="location.href='finish.jsp'"
 			class="btn btn-danger">已完成</button>
+		<button type="button" onClick="location.href='refund.jsp'"
+			class="btn btn-primary">已退款</button>
 	</div>
 	<div class="row">
 		<!-- Main -->
@@ -61,7 +63,7 @@
 					id="group">
 					<thead>
 						<tr>
-						<th style="display:none">序号</th>
+							<th style="display: none">序号</th>
 							<th>交易时间</th>
 							<th>交易号</th>
 							<th>微信昵称</th>
