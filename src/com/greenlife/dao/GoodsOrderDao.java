@@ -17,18 +17,18 @@ import com.greenlife.util.DBUtil;
 public class GoodsOrderDao {
 	private static PreparedStatement ps;
 	private static ResultSet rs;
-	
-	public static GoodsOrder getGoodsOrderById(int orderId){
+
+	public static GoodsOrder getGoodsOrderById(int orderId) {
 		GoodsOrder goodsOrder = new GoodsOrder();
-		
+
 		String sql = "select * from goods_order where order_id = ?";
 		Connection conn = new DBUtil().getConn();
-		
+
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, orderId);
 			rs = ps.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
@@ -49,7 +49,7 @@ public class GoodsOrderDao {
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
 				goodsOrder.setOrderTime(rs.getString("order_time"));
-			}else{
+			} else {
 				return null;
 			}
 		} catch (SQLException e) {
@@ -58,28 +58,28 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return goodsOrder;
 	}
-	
-	public static ArrayList<HashMap<String, String>> getGoodsBuyInfo(int goodsId){
+
+	public static ArrayList<HashMap<String, String>> getGoodsBuyInfo(int goodsId) {
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
-		
+
 		String sql = "select wechat_id, sum(goods_num) as number from goods_order "
 				+ "where goods_id = ? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14))"
-				+ "group by wechat_id"
-				+ " order by number DESC;";
+				+ "group by wechat_id" + " order by number DESC;";
 		Connection conn = new DBUtil().getConn();
-		
+
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, goodsId);
 			rs = ps.executeQuery();
-			while (rs.next()){
+			while (rs.next()) {
 				String id = rs.getString("wechat_id");
 				int number = rs.getInt("number");
-//				int state = rs.getInt("order_state");
-//				if(state == 1 || state == 2 || state == 11 || state == 9 || state == 19)continue;
+				// int state = rs.getInt("order_state");
+				// if(state == 1 || state == 2 || state == 11 || state == 9 ||
+				// state == 19)continue;
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put("wechat_id", id);
 				map.put("number", Integer.toString(number));
@@ -91,21 +91,21 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return list;
 	}
-	
-	public static GoodsOrder getGoodsOrderByOutTradeNo(String out_trade_no){
+
+	public static GoodsOrder getGoodsOrderByOutTradeNo(String out_trade_no) {
 		GoodsOrder goodsOrder = new GoodsOrder();
-		
+
 		String sql = "select * from goods_order where out_trade_no = ?";
 		Connection conn = new DBUtil().getConn();
-		
+
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, out_trade_no);
 			rs = ps.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
@@ -126,7 +126,7 @@ public class GoodsOrderDao {
 				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
 				goodsOrder.setTransactionId(rs.getString("transaction_id"));
 				goodsOrder.setOrderTime(rs.getString("order_time"));
-			}else{
+			} else {
 				return null;
 			}
 		} catch (SQLException e) {
@@ -135,13 +135,13 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return goodsOrder;
 	}
-	
-	public static boolean deleteGoodsOrder(int orderId){
+
+	public static boolean deleteGoodsOrder(int orderId) {
 		String sql = "delete from goods_order where order_id = ?;";
-		
+
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
@@ -153,23 +153,23 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return true;
 	}
-	
-	public static int getGoodsOrderNum(int goodsId){
+
+	public static int getGoodsOrderNum(int goodsId) {
 		int num = -1;
-		
+
 		String sql = "select count(*) as cnt from goods_order where goods_id = ? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14))";
-		
+
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, goodsId);
 			rs = ps.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				num = rs.getInt("cnt");
-			}else{
+			} else {
 				return -1;
 			}
 		} catch (SQLException e) {
@@ -178,26 +178,20 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return num;
 	}
-	
-	
-	public static int addGoodsOrder(GoodsOrder order){
-		String sql = "INSERT INTO `greenlife`.`goods_order`"
-				+ " (`goods_id`, `wechat_id`, "
-				+ "`goods_num`, `trade_time`, `comment`, "
-				+ "`mail_price`, `total_price`, `group_id`, "
-				+ "`send_time`, `group_minnum`, `order_state`, "
-				+ "`addr_detail`, `receiver_name`, `phone_number`"
-				+ ", `prepay_id`, `out_trade_no`, `transaction_id`, `order_time`) "
-				+ "VALUES (?, ?, ?, ?, "
-				+ "?, ?, ?, ?, ?,"
-				+ " ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+	public static int addGoodsOrder(GoodsOrder order) {
+		String sql = "INSERT INTO `greenlife`.`goods_order`" + " (`goods_id`, `wechat_id`, "
+				+ "`goods_num`, `trade_time`, `comment`, " + "`mail_price`, `total_price`, `group_id`, "
+				+ "`send_time`, `group_minnum`, `order_state`, " + "`addr_detail`, `receiver_name`, `phone_number`"
+				+ ", `prepay_id`, `out_trade_no`, `transaction_id`, `order_time`) " + "VALUES (?, ?, ?, ?, "
+				+ "?, ?, ?, ?, ?," + " ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
-			//ps.setInt(1, order.getOrderId());
+			// ps.setInt(1, order.getOrderId());
 			ps.setInt(1, order.getGoodsId());
 			ps.setString(2, order.getWechatId());
 			ps.setInt(3, order.getGoodsNum());
@@ -229,9 +223,9 @@ public class GoodsOrderDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				order_id = rs.getInt("id");
-			}else{
+			} else {
 				return -1;
 			}
 		} catch (SQLException e) {
@@ -242,29 +236,13 @@ public class GoodsOrderDao {
 		}
 		return order_id;
 	}
-	
-	
-	public static boolean updateGoodsOrder(GoodsOrder order){
-		String sql = "UPDATE `greenlife`.`goods_order` SET "
-				+ "goods_id = ?, "
-				+ "wechat_id = ?, "
-				+ "goods_num = ?, "
-				+ "trade_time = ?, "
-				+ "comment = ?, "
-				+ "mail_price = ?, "
-				+ "total_price = ?, "
-				+ "group_id = ?, "
-				+ "send_time = ?, "
-				+ "group_minnum = ?, "
-				+ "order_state = ?, "
-				+ "addr_detail = ?, "
-				+ "receiver_name = ?, "
-				+ "phone_number = ?, "
-				+ "prepay_id = ?, "
-				+ "out_trade_no = ?, "
-				+ "transaction_id = ?, "
-				+ "order_time = ? "
-				+ "WHERE order_id = ?;";
+
+	public static boolean updateGoodsOrder(GoodsOrder order) {
+		String sql = "UPDATE `greenlife`.`goods_order` SET " + "goods_id = ?, " + "wechat_id = ?, " + "goods_num = ?, "
+				+ "trade_time = ?, " + "comment = ?, " + "mail_price = ?, " + "total_price = ?, " + "group_id = ?, "
+				+ "send_time = ?, " + "group_minnum = ?, " + "order_state = ?, " + "addr_detail = ?, "
+				+ "receiver_name = ?, " + "phone_number = ?, " + "prepay_id = ?, " + "out_trade_no = ?, "
+				+ "transaction_id = ?, " + "order_time = ? " + "WHERE order_id = ?;";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
@@ -287,7 +265,7 @@ public class GoodsOrderDao {
 			ps.setString(17, order.getTransactionId());
 			ps.setString(18, order.getOrderTime());
 			ps.setInt(19, order.getOrderId());
-			
+
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -297,9 +275,9 @@ public class GoodsOrderDao {
 		}
 		return true;
 	}
-	
-	public static ArrayList<GoodsOrder> getGoodsOrderListByStateAndDueDay(int order_state,int day){
-		
+
+	public static ArrayList<GoodsOrder> getGoodsOrderListByStateAndDueDay(int order_state, int day) {
+
 		ArrayList<GoodsOrder> orderList = new ArrayList<>();
 		String time = null;
 		String sql = "select * from goods_order where order_state = ?";
@@ -308,7 +286,7 @@ public class GoodsOrderDao {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, order_state);
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
 				time = rs.getString("send_time");
@@ -317,12 +295,14 @@ public class GoodsOrderDao {
 				Date d2 = sdf.parse(time);
 				long diff = d1.getTime() - d2.getTime();
 				long days = diff / (1000 * 60 * 60 * 24);
-				//long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
-				//long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
-				if(days < day){
+				// long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 *
+				// 60);
+				// long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000*
+				// 60 * 60))/(1000* 60);
+				if (days < day) {
 					continue;
 				}
-				
+
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
@@ -353,13 +333,12 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return orderList;
 	}
-	
-	
-	public static ArrayList<GoodsOrder> getGoodsOrderListByStateAndDueHours(int order_state,int hour){
-		
+
+	public static ArrayList<GoodsOrder> getGoodsOrderListByStateAndDueHours(int order_state, int hour) {
+
 		ArrayList<GoodsOrder> orderList = new ArrayList<>();
 		String time = null;
 		String sql = "select * from goods_order where order_state = ?";
@@ -368,7 +347,7 @@ public class GoodsOrderDao {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, order_state);
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
 				time = rs.getString("trade_time");
@@ -377,12 +356,13 @@ public class GoodsOrderDao {
 				Date d2 = sdf.parse(time);
 				long diff = d1.getTime() - d2.getTime();
 				long days = diff / (1000 * 60 * 60 * 24);
-				long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
-				//long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
-				if(hours < hour && days == 0){
+				long hours = (diff - days * (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
+				// long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000*
+				// 60 * 60))/(1000* 60);
+				if (hours < hour && days == 0) {
 					continue;
 				}
-				
+
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
@@ -413,12 +393,12 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return orderList;
 	}
 
-	public static ArrayList<GoodsOrder> getGoodsOrderListByState(int order_state){
-		
+	public static ArrayList<GoodsOrder> getGoodsOrderListByState(int order_state) {
+
 		ArrayList<GoodsOrder> orderList = new ArrayList<>();
 
 		String sql = "select * from goods_order where order_state = ?";
@@ -427,10 +407,10 @@ public class GoodsOrderDao {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, order_state);
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
-				
+
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
@@ -458,13 +438,12 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return orderList;
 	}
 
-	
-	public static ArrayList<GoodsOrder> getGoodsOrderListByStateAndGoodsId(int order_state, int goods_id){
-		
+	public static ArrayList<GoodsOrder> getGoodsOrderListByStateAndGoodsId(int order_state, int goods_id) {
+
 		ArrayList<GoodsOrder> orderList = new ArrayList<>();
 
 		String sql = "select * from goods_order where order_state = ? and goods_id = ?;";
@@ -474,10 +453,10 @@ public class GoodsOrderDao {
 			ps.setInt(1, order_state);
 			ps.setInt(2, goods_id);
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
-				
+
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
@@ -505,13 +484,12 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return orderList;
 	}
 
-	
-	public static ArrayList<GoodsOrder> getGoodsOrderListByGroupIdAndState(int groupId, int orderState){
-		
+	public static ArrayList<GoodsOrder> getGoodsOrderListByGroupIdAndState(int groupId, int orderState) {
+
 		ArrayList<GoodsOrder> orderList = new ArrayList<>();
 
 		String sql = "select * from goods_order where group_id = ? and order_state = ?";
@@ -521,10 +499,10 @@ public class GoodsOrderDao {
 			ps.setInt(1, groupId);
 			ps.setInt(2, orderState);
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
-				
+
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
@@ -552,13 +530,12 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return orderList;
 	}
-	
-	
-	public static List<GoodsOrder> getGoodsOrderListByGroupId(int groupId){
-		
+
+	public static List<GoodsOrder> getGoodsOrderListByGroupId(int groupId) {
+
 		List<GoodsOrder> orderList = new ArrayList<>();
 
 		String sql = "select * from goods_order where group_id = ?";
@@ -567,10 +544,10 @@ public class GoodsOrderDao {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, groupId);
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
-				
+
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
@@ -598,27 +575,26 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return orderList;
 	}
-	
-	
-	public static List<GoodsOrder> getGoodsOrderList(List<Integer> groupId){
-		
+
+	public static List<GoodsOrder> getGoodsOrderList(List<Integer> groupId) {
+
 		List<GoodsOrder> orderList = new ArrayList<>();
-		
-		for(int i=0;i<groupId.size();i++){
-		
+
+		for (int i = 0; i < groupId.size(); i++) {
+
 			String sql = "select * from goods_order where group_id = ?";
 			Connection conn = new DBUtil().getConn();
 			try {
 				ps = conn.prepareStatement(sql);
 				ps.setInt(1, groupId.get(i));
 				rs = ps.executeQuery();
-				
+
 				while (rs.next()) {
 					GoodsOrder goodsOrder = new GoodsOrder();
-					
+
 					goodsOrder.setOrderId(rs.getInt("order_id"));
 					goodsOrder.setGoodsId(rs.getInt("goods_id"));
 					goodsOrder.setWechatId(rs.getString("wechat_id"));
@@ -646,25 +622,25 @@ public class GoodsOrderDao {
 			} finally {
 				clearUp(conn);
 			}
-			
+
 		}
 		return orderList;
 	}
-	
+
 	public static List<GoodsOrder> getGoodsOrderList(String wechat_id) {
-		
+
 		List<GoodsOrder> orderList = new ArrayList<>();
 		String sql = "select * from goods_order where wechat_id = ?";
-		
+
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, wechat_id);
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
-				
+
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
@@ -692,16 +668,15 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return orderList;
 	}
-	
 
 	public static List<GoodsOrder> getGoodsOrderList(int goodsId) {
-		
+
 		List<GoodsOrder> orderList = new ArrayList<>();
 		String sql = "select * from goods_order where goods_id = ?";
-		
+
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
@@ -709,7 +684,7 @@ public class GoodsOrderDao {
 			ps.setInt(1, goodsId);
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
-				
+
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
@@ -737,23 +712,22 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return orderList;
 	}
-	
-	
+
 	public static List<GoodsOrder> getGoodsOrderList() {
-		
+
 		List<GoodsOrder> orderList = new ArrayList<>();
 		String sql = "select * from goods_order";
-		
+
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
-				
+
 				goodsOrder.setOrderId(rs.getInt("order_id"));
 				goodsOrder.setGoodsId(rs.getInt("goods_id"));
 				goodsOrder.setWechatId(rs.getString("wechat_id"));
@@ -781,23 +755,23 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return orderList;
 	}
-	
-	public static String getMaxTradeTimeByWechatId(String wechatId){
+
+	public static String getMaxTradeTimeByWechatId(String wechatId) {
 		String sql = "select max(trade_time) as maxTime from goods_order where wechat_id=? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14));";
-		
+
 		String maxTime = null;
-		
+
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, wechatId);
 			rs = ps.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				maxTime = rs.getString("maxTime");
-			}else{
+			} else {
 				return null;
 			}
 		} catch (SQLException e) {
@@ -806,25 +780,24 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return maxTime;
 	}
-	
-	
-	public static int getOrderIdByWechatIdAndOrderTime(String wechatId,String orderTime){
+
+	public static int getOrderIdByWechatIdAndOrderTime(String wechatId, String orderTime) {
 		String sql = "select * from goods_order where wechat_id = ? and order_time = ?;";
-		
+
 		int orderId = -1;
-		
+
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, wechatId);
 			ps.setString(2, orderTime);
 			rs = ps.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				orderId = rs.getInt("order_id");
-			}else{
+			} else {
 				return -1;
 			}
 		} catch (SQLException e) {
@@ -833,24 +806,49 @@ public class GoodsOrderDao {
 		} finally {
 			clearUp(conn);
 		}
-		
+
 		return orderId;
 	}
-	
+
 	public static void clearUp(Connection conn) {
-        try {
-            if(rs != null){
-                rs.close();
-            }
-            if(ps != null){
-                ps.close();
-            }
-            if(conn != null){
-                conn.close();
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/*
+	 * by niejunbao
+	 */
+	public static int getCountByState(int orderstate) {
+		String sql = "select count(*) as count from goods_order where order_state = ?";
+
+		int count = 0;
+
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, orderstate);
+			rs = ps.executeQuery();
+			rs.next();
+			count = rs.getInt("count");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			clearUp(conn);
+		}
+		return count;
+	}
 }

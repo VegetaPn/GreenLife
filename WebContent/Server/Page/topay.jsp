@@ -18,21 +18,7 @@
 		}
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
-	<div class="row">
-		<button type="button" onclick="location.href='togroup.jsp'"
-			class="btn btn-primary">待成团</button>
-		<button type="button" onclick="location.href='topay.jsp'"
-			class="btn btn-info">待付款</button>
-		<button type="button" onclick="location.href='tosend.jsp'"
-			class="btn btn-success">待发货</button>
-
-		<button type="button" onclick="location.href='toreceive.jsp'"
-			class="btn btn-warning">待收货</button>
-		<button type="button" onclick="location.href='finish.jsp'"
-			class="btn btn-danger">已完成</button>
-		<button type="button" onclick="location.href='refund.jsp'"
-			class="btn btn-primary">已退款</button>
-	</div>
+	<jsp:include page="navbaroforder.jsp"></jsp:include>
 	<div class="row">
 		<!-- Main -->
 		<div class="panel panel-default">

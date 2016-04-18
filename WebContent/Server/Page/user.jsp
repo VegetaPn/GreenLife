@@ -52,6 +52,6 @@
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
-
+	<script type="text/javascript" src="../js/datatable-zn.js"></script>
 </body>
 </html>
