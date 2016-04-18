@@ -12,15 +12,13 @@
 <meta name="author" content="">
 
 <title>login</title>
-
-<!-- Bootstrap Core CSS -->
-<link href="../CSS/bootstrap.min.css" rel="stylesheet">
+<%@ include file="common.html"%>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
-				<div class="login-panel panel panel-default">
+				<div class="login-panel panel panel-default" style="margin-top:150px">
 					<div class="panel-heading">
 						<h3 class="panel-title text-center">管理员登录</h3>
 					</div>
@@ -63,8 +61,6 @@
 							</fieldset>
 						</form>
 					</div>
-
-
 				</div>
 			</div>
 		</div>

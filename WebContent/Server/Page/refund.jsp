@@ -8,14 +8,7 @@
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <title>待支付</title>
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.min1.css" />
-<link rel="stylesheet" type="text/css"
-	href="../CSS/bootstrap-responsiv.css" />
-<link rel="stylesheet" type="text/css"
-	href="../CSS/jquery.dataTables.min.css" />
 </head>
-
 <body>
 <%
 		///登录判断，防止未登录直接修改
@@ -25,18 +18,18 @@
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="row">
-		<button type="button" onClick="location.href='togroup.jsp'"
+		<button type="button" onclick="location.href='togroup.jsp'"
 			class="btn btn-primary">待成团</button>
-		<button type="button" onClick="location.href='topay.jsp'"
+		<button type="button" onclick="location.href='topay.jsp'"
 			class="btn btn-info">待付款</button>
-		<button type="button" onClick="location.href='tosend.jsp'"
+		<button type="button" onclick="location.href='tosend.jsp'"
 			class="btn btn-success">待发货</button>
 
-		<button type="button" onClick="location.href='toreceive.jsp'"
+		<button type="button" onclick="location.href='toreceive.jsp'"
 			class="btn btn-warning">待收货</button>
-		<button type="button" onClick="location.href='finish.jsp'"
+		<button type="button" onclick="location.href='finish.jsp'"
 			class="btn btn-danger">已完成</button>
-		<button type="button" onClick="location.href='refund.jsp'"
+		<button type="button" onclick="location.href='refund.jsp'"
 			class="btn btn-primary">已退款</button>
 	</div>
 	<div class="row">
@@ -54,7 +47,7 @@
 					id="group">
 					<thead>
 						<tr>
-							<th style="display: none">序号</th>
+							
 							<th>下单时间</th>
 							<th>交易号</th>
 							<th>微信昵称</th>
@@ -75,7 +68,7 @@
 							for (int i = 0; i < GoodsOrderByGroup.size(); i++) {
 								GoodsOrder oneGoodsOrder = GoodsOrderByGroup.get(i);//被遍历到的商品
 								if (oneGoodsOrder.getOrderState() == 1) {
-									type = "团购";
+									type = "团购("+oneGoodsOrder.getGoodsId()+")";
 								} else
 									type = "个人";
 						%>
@@ -87,7 +80,7 @@
 									UserInfo user = UserInfoDao.getUserInfo(oneGoodsOrder.getWechatId());
 									GoodsInfo g = GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());
 							%>
-							<td style="display: none"><%=GoodsOrderByGroup.size() - i%></td>
+							
 							<td><%=oneGoodsOrder.getTradeTime()%></td>
 							<td><%=oneGoodsOrder.getPrepayId()%></td>
 							<td><%=user.getWechatName()%></td>
@@ -110,12 +103,7 @@
 			<!-- Table -->
 		</div>
 	</div>
+	</body>
 	<jsp:include page="footer.html"></jsp:include>
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/head.js"></script>
-	<script type="text/javascript" src="../js/jquery.js"></script>
-	<script type="text/javascript" src="../js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/dataTables.bootstrap.js"></script>
 	<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
 </html>

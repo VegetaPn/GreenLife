@@ -4,13 +4,12 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
+<head >
 <title>已完成订单</title>
-<script src="../js/refund.js"></script>
 </head>
 <body>
 
-<%
+	<%
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
 			response.sendRedirect("/Server/Page/login.jsp");
@@ -18,18 +17,18 @@
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="row">
-		<button type="button" onClick="location.href='togroup.jsp'"
+		<button type="button" onclick="location.href='togroup.jsp'"
 			class="btn btn-primary">待成团</button>
-		<button type="button" onClick="location.href='topay.jsp'"
+		<button type="button" onclick="location.href='topay.jsp'"
 			class="btn btn-info">待付款</button>
-		<button type="button" onClick="location.href='tosend.jsp'"
+		<button type="button" onclick="location.href='tosend.jsp'"
 			class="btn btn-success">待发货</button>
 
-		<button type="button" onClick="location.href='toreceive.jsp'"
+		<button type="button" onclick="location.href='toreceive.jsp'"
 			class="btn btn-warning">待收货</button>
-		<button type="button" onClick="location.href='finish.jsp'"
+		<button type="button" onclick="location.href='finish.jsp'"
 			class="btn btn-danger">已完成</button>
-			<button type="button" onClick="location.href='refund.jsp'"
+		<button type="button" onclick="location.href='refund.jsp'"
 			class="btn btn-primary">已退款</button>
 	</div>
 
@@ -48,7 +47,7 @@
 					id="group">
 					<thead>
 						<tr>
-						<th style="display:none">序号</th>
+
 							<th>时间</th>
 							<th>交易号</th>
 							<th>微信昵称</th>
@@ -70,7 +69,7 @@
 								for (int i = 0; i < GoodsOrderByGroup.size(); i++) {
 									GoodsOrder oneGoodsOrder = GoodsOrderByGroup.get(i);//被遍历到的商品
 									if (oneGoodsOrder.getOrderState() == 5) {
-										type = "团购";
+										type = "团购("+oneGoodsOrder.getGoodsId()+")";
 									} else {
 										type = "个人";
 									}
@@ -81,7 +80,7 @@
 								GoodsInfo g = GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());
 										UserInfo user = UserInfoDao.getUserInfo(oneGoodsOrder.getWechatId());
 							%>
-							<td style="display: none"><%=GoodsOrderByGroup.size() - i%></td>
+
 							<td><%=oneGoodsOrder.getTradeTime()%>
 							<td><%=oneGoodsOrder.getPrepayId() %>
 							<td><%=user.getWechatName()%></td>
@@ -105,5 +104,6 @@
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
-
+	<script src="../js/refund.js"></script>
+	<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
 </html>

@@ -9,13 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.min1.css">
-<link rel="stylesheet" type="text/css"
-	href="../css/bootstrap-responsiv.css">
-<link rel="stylesheet" type="text/css"
-	href="../css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css" href="../css/table.css">
+<script src="../js/product.js"></script>
+
 </head>
 
 <body>
@@ -29,9 +24,10 @@
 	<div class="content">
 		<div class="row">
 			<div class="col-sm-11">
-				<form >
-					<button type="submit" class="btn btn-primary btn-sm" formaction="addproduct.jsp">
- 						 <span class="glyphicon glyphicon-plus"></span> 新增
+				<form>
+					<button type="submit" class="btn btn-primary btn-sm"
+						formaction="addproduct.jsp">
+						<span class="glyphicon glyphicon-plus"></span> 新增
 					</button>
 				</form>
 			</div>
@@ -49,7 +45,6 @@
 							id="product" style="ordering: false;">
 							<thead>
 								<tr>
-									<th style="display: none">序号</th>
 									<th>产品编号</th>
 									<th>名称</th>
 									<th>价格</th>
@@ -65,12 +60,10 @@
 							<tbody>
 								<%
 									List<GoodsInfo> allGoods = GoodsInfoDao.getGoodsListByOrderIndex();//获得所有商品列表
-										for (int i = 0; i < allGoods.size(); i++) {
-											GoodsInfo oneGoods = allGoods.get(i);//被遍历到的商品
+									for (int i = 0; i < allGoods.size(); i++) {
+										GoodsInfo oneGoods = allGoods.get(i);//被遍历到的商品
 								%>
 								<tr class="goods">
-									<td style="display: none"
-										onclick="showInfo(<%=oneGoods.getGoodsId()%>)"><%=i + 1%></td>
 									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
 										class="center"><%=oneGoods.getGoodsId()%></td>
 									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
@@ -107,6 +100,7 @@
 	</div>
 
 	<jsp:include page="footer.html"></jsp:include>
+	<script type="text/javascript" src="../js/datatable-zn.js"></script>
 </body>
 
 </html>

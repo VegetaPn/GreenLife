@@ -14,17 +14,22 @@
 <title>商品添加</title>
 
 <script src="../js/addOrReduceNum.js"></script>
-	<script type="text/javascript" src="../js/showAndChange.js"></script>
-	<script type="text/javascript" src="../js/previewImage.js"></script>
+<script type="text/javascript" src="../js/showAndChange.js"></script>
+<script type="text/javascript" src="../js/previewImage.js"></script>
 </head>
 
 
 <body>
 	<%
-		///登录判断，防止未登录直接修改
-		if (session.getAttribute("login") == null) {//用户没有登录
+	GoodsInfo showedGood = null;
+	String id = request.getParameter("id");
+	if (id == null) {
+		response.sendRedirect("/Server/Page/product.jsp");
+	} else {
+		if (session.getAttribute("login") == null) {
 			response.sendRedirect("/Server/Page/login.jsp");
-		}
+		} else {
+			showedGood = GoodsInfoDao.getGoodsInfo(Integer.parseInt(id));
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div id="page-wrapper"
