@@ -33,13 +33,13 @@ public class ServerLoginServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 		
-		if (AdminListDao.loginCheck(userId, password)) {// 鎴愬姛鐧婚檰
-			session.setAttribute("login", true);/// 鐢ㄤ簬琛ㄧず鏄惁鐧诲綍
+		if (AdminListDao.loginCheck(userId, password)) {// 登录成功
+			session.setAttribute("login", true);/// 添加变量用于判断是否登录
 
 			response.sendRedirect("/Server/Page/product.jsp");
 		} else {
 			session.setAttribute("userId", userId);
-			session.setAttribute("error", "鐢ㄦ埛鍚嶆垨瀵嗙爜閿欒");
+			session.setAttribute("error", "用户名或密码错误");
 			response.sendRedirect("/Server/Page/login.jsp");
 		}
 
