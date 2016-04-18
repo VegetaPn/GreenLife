@@ -1,6 +1,8 @@
 .table tbody tr:hover{
 	background-color:#aab8d5;
+	 cursor:pointer;  
 }
+
 
 nav li a{
 	font-size: 20px;
@@ -11,3 +13,5 @@ nav li a{
 	color: #888888;
 	
 }
+
+
