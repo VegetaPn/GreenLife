@@ -52,22 +52,43 @@
 					String puchaseWechatId = friendlist.get(i).get("wechat_id");
 					String purchaseNum = friendlist.get(i).get("number");
 					UserInfo userInfo = UserInfoDao.getUserInfo(puchaseWechatId);
+					String wechatName = userInfo.getWechatName();
+					
+					String personalName = null;
+					
+					if(wechatName.length() == 0){
+						personalName = "***";
+	
+					}else if(wechatName.length() <= 2){
+						personalName = wechatName.substring(0,1) + "***";
+					}else{
+						personalName = wechatName.substring(0,1) + "***" + wechatName.substring(wechatName.length()-1);
+						
+					}
+					
 					String time = GoodsOrderDao.getMaxTradeTimeByWechatId(puchaseWechatId);
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
 					Date date = sdf.parse(time);
 					
 					SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-					SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+					SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
 					String time1 = sdf1.format(date);
 					String time2 = sdf2.format(date);
 			%>		
 			
 			<div class="personalPurchaseDiv">
 				
-				<img class="avatar" src="<%=userInfo.getPhotoPath()%>"/>
-				<span class="name"><%=userInfo.getWechatName() %></span>
+				<div class="avatarDiv"><img class="avatar" src="<%=userInfo.getPhotoPath()%>"/></div>
+				<div class="rightDiv">
+					<div class="topDiv">
+						<span class="name"><%=personalName%></span>
+						<span class="time"><%=time1+" "+time2%></span>
+					</div>
 				
-				<span class="personalPurchaseNum"><span class="time"><%=time1%></span>&nbsp已购买<span class="purchaseNum"><%=purchaseNum %></span>份</span>  
+				
+					<div class="personalPurchaseNum"><%=goodsInfo.getGoodsName()+" "+purchaseNum+"份" %></div>
+				</div>
+				
 				<hr/>
 				
 			</div>

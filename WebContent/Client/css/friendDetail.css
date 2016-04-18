@@ -44,8 +44,12 @@
 .personalPurchaseDiv{
 	width:90%;
 	margin:auto;
-	position:relative;
+	
 
+}
+
+.avatarDiv{
+	float:left;
 }
 
 .avatar{
@@ -55,25 +59,17 @@
 	
 }
 
-.name{
 
-	margin-left:25px;
-	
-	position:absolute;
-
-}
-
-.personalPurchaseNum{
-
-	position:absolute;
-	right:0;
-
-}
 
 .time{
 	color:#999999;
+	float:right;
 }
 
+.personalPurchaseNum{
+	color:#999999;
+
+}
 
 #purchase{
 	width:90%;
@@ -135,6 +131,12 @@
 		height:40px;
 		
 	}
+	
+	
+	.rightDiv{
+		margin-left:50px;
+	}
+	
 
 	.name{
 		font-size:16px;
@@ -147,7 +149,7 @@
 	}
 
 	.time{
-		font-size:12px;
+		font-size:16px;
 	}
 
 }  
@@ -179,6 +181,10 @@
 		height:64px;
 		
 	}
+	
+	.rightDiv{
+		margin-left:74px;
+	}
 
 	.name{
 		font-size:20px;
@@ -192,7 +198,7 @@
 
 
 	.time{
-		font-size:16px;
+		font-size:20px;
 	}
 
 	.salesPrice{
@@ -239,6 +245,10 @@
 		
 	}
 
+	.rightDiv{
+		margin-left:110px;
+	}
+
 	.name{
 		font-size:24px;
 		bottom:50px;
@@ -250,7 +260,7 @@
 	}
 
 	.time{
-		font-size:20px;
+		font-size:24px;
 	}
 
 	.salesPrice{
@@ -293,6 +303,10 @@
 		height:120px;
 		
 	}
+	
+	.rightDiv{
+		margin-left:130px;
+	}
 
 	.name{
 		font-size:28px;
@@ -305,7 +319,7 @@
 	}
 
 	.time{
-		font-size:24px;
+		font-size:28px;
 	}
 
 	.salesPrice{
@@ -350,6 +364,10 @@
 		
 	}
 
+	.rightDiv{
+		margin-left:130px;
+	}
+
 	.name{
 		font-size:32px;
 		bottom:60px;
@@ -361,7 +379,7 @@
 	}
 
 	.time{
-		font-size:28px;
+		font-size:32px;
 	}
 
 	.salesPrice{
