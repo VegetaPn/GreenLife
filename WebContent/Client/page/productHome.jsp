@@ -385,7 +385,18 @@
 								Comment comment = commentList.get(i);
 
 								UserInfo userInfo = UserInfoDao.getUserInfo(comment.getWechatId());
-
+								String wechatName = userInfo.getWechatName();
+								/*
+								String personalName = null;
+								
+								if(wechatName.length() == 0){
+									personalName = "***";
+								}else if(wechatName.length() <= 2){
+									personalName = wechatName.substring(0,1) + "***";
+								}else{
+									personalName = wechatName.substring(0,1) + "***" + wechatName.substring(wechatName.length()-1);
+									
+								}*/
 								String commentTime = comment.getTime();
 								Date commentDate = sdf.parse(commentTime);
 								SimpleDateFormat commentSdf = new SimpleDateFormat("yy-MM-dd HH:mm");
@@ -396,7 +407,7 @@
 								<img class="avatar" src="<%=userInfo.getPhotoPath()%>" />
 							</div>
 
-							<div class="name"><%=userInfo.getWechatName()%></div>
+							<div class="name"><%=wechatName%></div>
 							<div class="time"><%=showTime%></div>
 						</div>
 

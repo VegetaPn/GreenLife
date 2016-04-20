@@ -1,6 +1,8 @@
 package com.greenlife.services;
 
+import com.greenlife.dao.GoodsInfoDao;
 import com.greenlife.dao.GoodsOrderDao;
+import com.greenlife.model.GoodsInfo;
 import com.greenlife.model.GoodsOrder;
 import com.greenlife.wechatservice.WechatService;
 
@@ -17,6 +19,9 @@ public class GoodsOrderService {
 			else if(state == 2){
 				
 				if(WechatService.refund(order)){
+					GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(order.getGoodsId());
+					goodsInfo.setGoodsSoldnum(goodsInfo.getGoodsSoldnum()-order.getGoodsNum());
+					GoodsInfoDao.updateGoodsInfo(goodsInfo);
 					order.setOrderState(8);
 				}else{
 					return false;
@@ -25,6 +30,9 @@ public class GoodsOrderService {
 			else if(state == 3){
 				
 				if(WechatService.refund(order)){
+					GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(order.getGoodsId());
+					goodsInfo.setGoodsSoldnum(goodsInfo.getGoodsSoldnum()-order.getGoodsNum());
+					GoodsInfoDao.updateGoodsInfo(goodsInfo);
 					order.setOrderState(8);
 				}else{
 					return false;
@@ -33,6 +41,9 @@ public class GoodsOrderService {
 			else if(state == 5){
 				
 				if(WechatService.refund(order)){
+					GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(order.getGoodsId());
+					goodsInfo.setGoodsSoldnum(goodsInfo.getGoodsSoldnum()-order.getGoodsNum());
+					GoodsInfoDao.updateGoodsInfo(goodsInfo);
 					order.setOrderState(8);
 					
 				}else{
@@ -49,6 +60,9 @@ public class GoodsOrderService {
 			}
 			else if(state == 12){
 				if(WechatService.refund(order)){
+					GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(order.getGoodsId());
+					goodsInfo.setGoodsSoldnum(goodsInfo.getGoodsSoldnum()-order.getGoodsNum());
+					GoodsInfoDao.updateGoodsInfo(goodsInfo);
 					order.setOrderState(18);
 					
 				}else{
@@ -57,6 +71,9 @@ public class GoodsOrderService {
 			}
 			else if(state == 14){
 				if(WechatService.refund(order)){
+					GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(order.getGoodsId());
+					goodsInfo.setGoodsSoldnum(goodsInfo.getGoodsSoldnum()-order.getGoodsNum());
+					GoodsInfoDao.updateGoodsInfo(goodsInfo);
 					order.setOrderState(18);
 				}else{
 					return false;
