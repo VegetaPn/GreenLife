@@ -68,7 +68,7 @@
 							%>
 
 							<td><%=oneGoodsOrder.getTradeTime()%>
-							<td><%=oneGoodsOrder.getPrepayId()%>
+							<td><%=oneGoodsOrder.getOutTradeNo()%>
 							<td><%=user.getWechatName()%></td>
 							<td><%=g.getGoodsName()%></td>
 							<td><%=oneGoodsOrder.getGoodsNum()%></td>
