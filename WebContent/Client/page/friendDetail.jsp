@@ -54,7 +54,7 @@
 					UserInfo userInfo = UserInfoDao.getUserInfo(puchaseWechatId);
 					String wechatName = userInfo.getWechatName();
 					
-					String personalName = null;
+					/*String personalName = null;
 					
 					if(wechatName.length() == 0){
 						personalName = "***";
@@ -64,7 +64,7 @@
 					}else{
 						personalName = wechatName.substring(0,1) + "***" + wechatName.substring(wechatName.length()-1);
 						
-					}
+					}*/
 					
 					String time = GoodsOrderDao.getMaxTradeTimeByWechatId(puchaseWechatId);
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
@@ -81,7 +81,7 @@
 				<div class="avatarDiv"><img class="avatar" src="<%=userInfo.getPhotoPath()%>"/></div>
 				<div class="rightDiv">
 					<div class="topDiv">
-						<span class="name"><%=personalName%></span>
+						<span class="name"><%=wechatName%></span>
 						<span class="time"><%=time1+" "+time2%></span>
 					</div>
 				
