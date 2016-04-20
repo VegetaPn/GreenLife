@@ -42,7 +42,7 @@ public class GoodsOrderDao {
 				goodsOrder.setGroupMinnum(rs.getInt("group_minnum"));
 				goodsOrder.setOrderState(rs.getInt("order_state"));
 				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
-				goodsOrder.setReceiverName(rs.getString("addr_detail"));
+				
 				goodsOrder.setReceiverName(rs.getString("receiver_name"));
 				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
@@ -119,7 +119,7 @@ public class GoodsOrderDao {
 				goodsOrder.setGroupMinnum(rs.getInt("group_minnum"));
 				goodsOrder.setOrderState(rs.getInt("order_state"));
 				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
-				goodsOrder.setReceiverName(rs.getString("addr_detail"));
+				
 				goodsOrder.setReceiverName(rs.getString("receiver_name"));
 				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
