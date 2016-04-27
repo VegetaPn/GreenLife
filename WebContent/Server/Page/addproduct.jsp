@@ -181,7 +181,7 @@
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
-	<script type="text/javascript" src="../js/laydate.js"></script>
+	
 	<script type="text/javascript">
 		!function() {
 			laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
