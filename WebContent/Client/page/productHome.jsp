@@ -381,7 +381,7 @@
 					<div id="commentInfo">
 
 						<%
-							for (int i = commentListSize - 1; i > commentListSize - 3 && i >= 0; i--) {
+							for (int i = commentListSize - 1; i>= 0; i--) {
 								Comment comment = commentList.get(i);
 
 								UserInfo userInfo = UserInfoDao.getUserInfo(comment.getWechatId());
