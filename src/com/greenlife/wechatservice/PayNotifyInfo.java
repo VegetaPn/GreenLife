@@ -6,7 +6,7 @@ public class PayNotifyInfo {
 	private String appid;
 	private String mch_id;
 	private String device_info;
-	private String nonce_str;
+	private String noncestr;
 	private String sign;
 	private String result_code;
 	private String err_code;
@@ -68,12 +68,14 @@ public class PayNotifyInfo {
 		this.device_info = device_info;
 	}
 
-	public String getNonce_str() {
-		return nonce_str;
+	
+
+	public String getNoncestr() {
+		return noncestr;
 	}
 
-	public void setNonce_str(String nonce_str) {
-		this.nonce_str = nonce_str;
+	public void setNoncestr(String noncestr) {
+		this.noncestr = noncestr;
 	}
 
 	public String getSign() {

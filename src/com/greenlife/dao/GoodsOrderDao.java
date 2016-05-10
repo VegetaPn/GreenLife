@@ -759,6 +759,8 @@ public class GoodsOrderDao {
 		return orderList;
 	}
 
+	
+	//N个数据库访问性能BUG
 	public static String getMaxTradeTimeByWechatId(String wechatId,int goodsId) {
 		String sql = "select max(trade_time) as maxTime from goods_order where wechat_id=? and goods_id=? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14));";
 
@@ -777,7 +779,6 @@ public class GoodsOrderDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("数据库访问异常："+sql);
 			return null;
 		} finally {
 			clearUp(conn);
