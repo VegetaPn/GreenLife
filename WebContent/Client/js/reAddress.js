@@ -1,4 +1,8 @@
+
+
 window.onload = function() { init();  setup(); };
+
+
 
 function init(){
    document.getElementById("iRegione").onclick = choseAddress;

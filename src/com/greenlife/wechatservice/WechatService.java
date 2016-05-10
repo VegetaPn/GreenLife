@@ -550,7 +550,12 @@ public class WechatService {
 		PayNotifyInfo notifyInfo = new PayNotifyInfo();
 		XStream xs = new XStream(new DomDriver());
 		xs.alias("xml", PayNotifyInfo.class);
-		notifyInfo = (PayNotifyInfo) xs.fromXML(notifyXML);
+		try{
+			notifyInfo = (PayNotifyInfo) xs.fromXML(notifyXML);
+		}catch(Exception e){
+			System.out.println("XML-类转换异常："+notifyXML);
+		}
+		
 
 		if (notifyInfo.getReturn_code().equals("FAIL")) {
 			return false;
@@ -952,6 +957,7 @@ public class WechatService {
 
 			return sb.toString();
 		} catch (Exception e) {
+			System.out.println("异常URL："+url);
 			e.printStackTrace();
 			return null;
 		}

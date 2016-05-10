@@ -66,7 +66,7 @@
 						
 					}*/
 					
-					String time = GoodsOrderDao.getMaxTradeTimeByWechatId(puchaseWechatId);
+					String time = GoodsOrderDao.getMaxTradeTimeByWechatId(puchaseWechatId,goodsId);
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
 					Date date = sdf.parse(time);
 					

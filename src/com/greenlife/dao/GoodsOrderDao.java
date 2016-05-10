@@ -759,8 +759,8 @@ public class GoodsOrderDao {
 		return orderList;
 	}
 
-	public static String getMaxTradeTimeByWechatId(String wechatId) {
-		String sql = "select max(trade_time) as maxTime from goods_order where wechat_id=? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14));";
+	public static String getMaxTradeTimeByWechatId(String wechatId,int goodsId) {
+		String sql = "select max(trade_time) as maxTime from goods_order where wechat_id=? and goods_id=? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14));";
 
 		String maxTime = null;
 
@@ -768,6 +768,7 @@ public class GoodsOrderDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, wechatId);
+			ps.setInt(2, goodsId);
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				maxTime = rs.getString("maxTime");
@@ -776,6 +777,7 @@ public class GoodsOrderDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("数据库访问异常："+sql);
 			return null;
 		} finally {
 			clearUp(conn);
