@@ -579,8 +579,8 @@ public class WechatService {
 		if (notifyInfo.getDevice_info() != null) {
 			strs.add("device_info=" + notifyInfo.getDevice_info());
 		}
-		if (notifyInfo.getNoncestr() != null) {
-			strs.add("noncestr=" + notifyInfo.getNoncestr());
+		if (notifyInfo.getNonce_str() != null) {
+			strs.add("nonce_str=" + notifyInfo.getNonce_str());
 		}
 		if (notifyInfo.getResult_code() != null) {
 			strs.add("result_code=" + notifyInfo.getResult_code());
