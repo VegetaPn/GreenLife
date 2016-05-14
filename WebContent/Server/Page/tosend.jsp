@@ -9,14 +9,15 @@
 <title>待发货</title>
 </head>
 
-<body>
+<body id="body">
+
+
 	<%
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
 			response.sendRedirect("/Server/Page/login.jsp");
 		}
 	%>
-
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="navbaroforder.jsp"></jsp:include>
 	<div class="row">
@@ -26,15 +27,14 @@
 				订单 <span>&gt;</span> <big><strong>待发货</strong></big>
 			</div>
 			<!-- Content -->
-			<div class="panel-body">
+			<div class="panel-body" >
 
 				<!-- Table -->
 				<table aria-describedby="dataTables-example_info" role="grid"
-					class="table table-striped table-bordered table-hover datatable"
-					id="group">
+					id="datatable"
+					class="table table-striped table-bordered table-hover datatable">
 					<thead>
 						<tr>
-
 							<th>交易时间</th>
 							<th>交易号</th>
 							<th>微信昵称</th>
@@ -49,44 +49,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%
-							List<GoodsOrder> GoodsOrderByPerson = GoodsOrderDao.getGoodsOrderListByState(3);//团购订单待发货
-							List<GoodsOrder> GoodsOrderByGroup = GoodsOrderDao.getGoodsOrderListByState(12);//个人订单待发货
-							String type = "";
-							GoodsOrderByGroup.addAll(GoodsOrderByPerson);
-							for (int i = 0; i < GoodsOrderByGroup.size(); i++) {
-								GoodsOrder oneGoodsOrder = GoodsOrderByGroup.get(i);//被遍历到的商品
-								if (oneGoodsOrder.getOrderState() == 3) {
-									type = "团购";
-								} else {
-									type = "个人";
-								}
-						%>
-						<tr class="goods">
 
-							<%
-								//订单对应的用户信息和商品信息
-									UserInfo user = UserInfoDao.getUserInfo(oneGoodsOrder.getWechatId());
-									GoodsInfo g = GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());
-							%>
-
-							<td><%=oneGoodsOrder.getTradeTime()%></td>
-							<td><%=oneGoodsOrder.getOutTradeNo()%></td>
-							<td><%=user.getWechatName()%></td>
-							<td><%=g.getGoodsName()%></td>
-							<td><%=oneGoodsOrder.getGoodsNum()%></td>
-							<td><%=oneGoodsOrder.getReceiverName()%></td>
-							<td><%=oneGoodsOrder.getAddrDetail()%></td>
-							<td><%=oneGoodsOrder.getPhoneNumber()%></td>
-							<td><%=type%></td>
-							<td><button id="<%=oneGoodsOrder.getOrderId()%>"
-									class="btn btn-info btn-sm send">发货</button></td>
-							<td><button class="btn btn-danger refund"
-									id="<%=oneGoodsOrder.getOrderId()%>">取消并退款</button></td>
-						</tr>
-						<%
-							}
-						%>
 					</tbody>
 				</table>
 			</div>
@@ -95,7 +58,7 @@
 	<jsp:include page="footer.html"></jsp:include>
 	<script src="../js/refund.js"></script>
 	<script src="../js/send.js"></script>
-	<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
+	<script type="text/javascript" src="../js/list/tosend.js"></script>
 </body>
 
 

@@ -7,9 +7,9 @@
 <head>
 <title>已完成订单</title>
 </head>
-<body>
+<body id="body">
 
-	<%
+<%
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
 			response.sendRedirect("/Server/Page/login.jsp");
@@ -30,7 +30,7 @@
 				<!-- Table -->
 				<table aria-describedby="dataTables-example_info" role="grid"
 					class="table table-striped table-bordered table-hover datatable"
-					id="group">
+					id="datatable">
 					<thead>
 						<tr>
 
@@ -47,42 +47,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%
-							List<GoodsOrder> GoodsOrderByPerson = GoodsOrderDao.getGoodsOrderListByState(5);//团购订单待收货
-							List<GoodsOrder> GoodsOrderByGroup = GoodsOrderDao.getGoodsOrderListByState(14);//个人订单待收货
-							String type = "";
-							GoodsOrderByGroup.addAll(GoodsOrderByPerson);
-							for (int i = 0; i < GoodsOrderByGroup.size(); i++) {
-								GoodsOrder oneGoodsOrder = GoodsOrderByGroup.get(i);//被遍历到的商品
-								if (oneGoodsOrder.getOrderState() == 5) {
-									type = "团购(" + oneGoodsOrder.getGoodsId() + ")";
-								} else {
-									type = "个人";
-								}
-						%>
-						<tr class="goods">
-
-							<%
-								GoodsInfo g = GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());
-									UserInfo user = UserInfoDao.getUserInfo(oneGoodsOrder.getWechatId());
-							%>
-
-							<td><%=oneGoodsOrder.getTradeTime()%>
-							<td><%=oneGoodsOrder.getOutTradeNo()%>
-							<td><%=user.getWechatName()%></td>
-							<td><%=g.getGoodsName()%></td>
-							<td><%=oneGoodsOrder.getGoodsNum()%></td>
-							<td><%=oneGoodsOrder.getReceiverName()%>
-							<td><%=oneGoodsOrder.getAddrDetail()%></td>
-							<td><%=oneGoodsOrder.getPhoneNumber()%></td>
-							<td><button class="btn btn-danger refund"
-									id="<%=oneGoodsOrder.getOrderId()%>">取消并退款</button></td>
-
-						</tr>
-						<%
-							}
-						%>
-					
 				</table>
 
 			</div>
@@ -91,5 +55,5 @@
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
 	<script src="../js/refund.js"></script>
-	<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
+	<script type="text/javascript" src="../js/list/finish.js"></script>
 </html>

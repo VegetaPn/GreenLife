@@ -10,7 +10,8 @@
 <title>待收货</title>
 <script src="../js/datatable-zn-sort.js"></script>
 </head>
-<body>
+<body id="body">
+
 	<%
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
@@ -32,7 +33,7 @@
 				<!-- Table -->
 				<table aria-describedby="dataTables-example_info" role="grid"
 					class="table table-striped table-bordered table-hover datatable"
-					id="group">
+					id="datatable">
 					<thead>
 						<tr>
 
@@ -49,40 +50,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%
-							List<GoodsOrder> GoodsOrderByPerson = GoodsOrderDao.getGoodsOrderListByState(4);//团购订单待收货
-							List<GoodsOrder> GoodsOrderByGroup = GoodsOrderDao.getGoodsOrderListByState(13);//个人订单待收货
-							String type = "";
-							GoodsOrderByGroup.addAll(GoodsOrderByPerson);
-							for (int i = 0; i < GoodsOrderByGroup.size(); i++) {
-								GoodsOrder oneGoodsOrder = GoodsOrderByGroup.get(i);//被遍历到的商品
-								if (oneGoodsOrder.getOrderState() == 4) {
-									type = "团购("+oneGoodsOrder.getGoodsId()+")";
-								} else
-									type = "个人";
-						%>
-						<tr class="goods">
-
-							<%
-								//订单对应的用户信息和商品信息
-									UserInfo user = UserInfoDao.getUserInfo(oneGoodsOrder.getWechatId());
-									GoodsInfo g = GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());
-							%>
-
-							<td><%=oneGoodsOrder.getTradeTime() %></td>
-							<td><%=oneGoodsOrder.getOutTradeNo() %></td>
-							<td><%=user.getWechatName()%></td>
-							<td><%=g.getGoodsName()%></td>
-							<td><%=oneGoodsOrder.getGoodsNum()%></td>
-							<td><%=oneGoodsOrder.getReceiverName()%></td>
-							<td><%=oneGoodsOrder.getAddrDetail()%></td>
-							<td><%=oneGoodsOrder.getPhoneNumber()%></td>
-							<td><%=type%></td>
-						</tr>
-						<%
-							}
-						%>
-
+						
 					</tbody>
 				</table>
 
@@ -91,7 +59,7 @@
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
-	<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
+	<script type="text/javascript" src="../js/list/toreceive.js"></script>
 </body>
 
 

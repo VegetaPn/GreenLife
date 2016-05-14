@@ -4,9 +4,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>源来生活后台管理系统</title>
+<script>
+var context="/GreenLife";
+
+</script>
+
+
 <%@ include file="common.html"%>
 </head>
 <body style="background-color: #E1E1E1">
+    <input type="display:none" id ="context" value="<%=request.getContextPath() %>" />
 	<div class="container-fluid">
 		<div class="container-fluid block">
 			<div class="navbar navbar-default" style="margin: 0px;">

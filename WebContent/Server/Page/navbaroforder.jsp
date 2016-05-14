@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.greenlife.server.service.*"%>
-<div class="row">
-
+<div class="row" id="navbar-list">
 	<button type="button" onclick="location.href='togroup.jsp'"
 		class="btn btn-primary">待成团(<%=OrderCountService.getToGroupCount()%>)</button>
 	<button type="button" onclick="location.href='topay.jsp'"

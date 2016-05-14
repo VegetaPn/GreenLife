@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
 	<%
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
@@ -22,7 +23,7 @@
 			信息管理 <span>&gt;</span> 用户列表
 		</div>
 		<div class="panel-body ">
-			<table
+			<table id="datatable"
 				class="table table-striped table-bordered table-hover datatable ">
 				<thead>
 					<tr>
@@ -32,26 +33,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%
-						List<UserInfo> allUser = UserInfoDao.getUsersList();//用户信息
-
-							for (int i = 0; i < allUser.size(); i++) {
-								UserInfo oneUser = allUser.get(i);//
-								AdressInfo ad = AdressInfoDao.getAdressInfo(oneUser.getAddrId());
-					%>
-					<tr class="goods">
-						<td><%=oneUser.getWechatId()%></td>
-						<td><%=oneUser.getWechatName()%></td>
-					</tr>
-					<%
-						}
-					%>
+				
 
 				</tbody>
 			</table>
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
-	<script type="text/javascript" src="../js/datatable-zn.js"></script>
+	<script type="text/javascript" src="../js/list/user.js"></script>
 </body>
 </html>

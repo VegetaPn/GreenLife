@@ -10,13 +10,14 @@
 <title>待成团</title>
 </head>
 
-<body>
-	<%
+<body id="body">
+<%
 		///登录判断，防止未登录直接修改
 		if (session.getAttribute("login") == null) {//用户没有登录
 			response.sendRedirect("/Server/Page/login.jsp");
 		}
 	%>
+
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="navbaroforder.jsp"></jsp:include>
 
@@ -32,7 +33,7 @@
 				<!-- Table -->
 				<table aria-describedby="dataTables-example_info" role="grid"
 					class="table table-striped table-bordered table-hover datatable"
-					id="group">
+					id="datatable">
 					<thead>
 						<tr>
 							<th>下单时间</th>
@@ -47,32 +48,6 @@
 					</thead>
 					<tbody>
 
-						<%
-								List<GoodsOrder> allGoodsOrder = GoodsOrderDao.getGoodsOrderListByState(2);//获得所有商品列表
-								for (int i = 0; i < allGoodsOrder.size(); i++) {
-									GoodsOrder oneGoodsOrder = allGoodsOrder.get(i);//被遍历到的商品	
-							%>
-						<tr class="goods">
-
-
-							<% //订单对应的用户信息和商品信息
-							   UserInfo user=UserInfoDao.getUserInfo(oneGoodsOrder.getWechatId());
-							   GoodsInfo g=GoodsInfoDao.getGoodsInfo(oneGoodsOrder.getGoodsId());
-							   
-							%>
-							
-							<td><%=oneGoodsOrder.getTradeTime() %></td>
-							<td><%=oneGoodsOrder.getOutTradeNo()%></td>
-							<td><%=user.getWechatName()%></td>
-							<td><%=g.getGoodsName() %></td>
-							<td><%=oneGoodsOrder.getGoodsNum() %></td>
-							<td><%=oneGoodsOrder.getReceiverName() %></td>
-							<td><%=oneGoodsOrder.getAddrDetail() %></td>
-							<td><%=oneGoodsOrder.getPhoneNumber() %></td>
-						</tr>
-						<%
-								}
-							%>
 					</tbody>
 				</table>
 
@@ -81,5 +56,5 @@
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
-<script type="text/javascript" src="../js/datatable-zn-sort.js"></script>
+<script type="text/javascript" src="../js/list/togroup.js"></script>
 </html>

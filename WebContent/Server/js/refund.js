@@ -1,12 +1,7 @@
 /**
  * 
  */
-$(document).ready(function() {
-	$('.refund').on('click', function() {
-		var orderId = $(this).attr("id");
-
-		var locate=window.location.pathname;
-		
+function refund(orderId){
 		$.confirm({
 			title : '',
 			content : '确认为此订单退款',
@@ -16,10 +11,26 @@ $(document).ready(function() {
 			icon : 'fa fa-question-circle',
 			animation : 'scale',
 			confirm : function() {
-				
-				window.location.href = "/Refund?orderId=" + orderId+"&locate="+locate;
+				$("#body").showLoading();
+				$.ajax({
+					"url" : "/refund",
+					"method" : "post",
+					"data" : {
+						"orderId" : orderId
+					},
+					"success" : function(data, status) {
+						$("#body").hideLoading();
+						if(data=="403"){
+							window.location.href = "/Server/Page/login.jsp";
+						}else if(data=="yes"){
+							refreshdata();
+							showError("退款成功");
+						} else {
+							showError("退款失败");
+						}
 
+					}
+				});
 			}
 		});
-	});
-});
+}

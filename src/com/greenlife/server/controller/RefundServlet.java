@@ -33,31 +33,30 @@ public class RefundServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String orderId = request.getParameter("orderId");
-		String locate=request.getParameter("locate");
-		GoodsOrder order = null;
-		GoodsOrderDao dao = new GoodsOrderDao();
-		order = dao.getGoodsOrderById(Integer.parseInt(orderId));
-		// 取消订单
-		GoodsOrderService.cancleOrder(order);
+		// TODO Auto-generated method stub
+		if (request.getSession().getAttribute("login") == null) {// 用户没有登录
+			response.getWriter().write("403");
+		} else {
 
-		
-	
+			String orderId = request.getParameter("orderId");
+			GoodsOrder order = null;
+			GoodsOrderDao dao = new GoodsOrderDao();
+			order = GoodsOrderDao.getGoodsOrderById(Integer.parseInt(orderId));
 
-		response.sendRedirect(locate);
+			if (GoodsOrderService.cancleOrder(order)) {
+				response.getWriter().write("yes");
+			} else {
+				response.getWriter().write("no");
+			}
+
+			response.getWriter().flush();
+		}
 
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		if (request.getSession().getAttribute("login") == null) {// 用户没有登录
-			response.sendRedirect("/Server/Page/login.jsp");
-		} else {
-		this.doPost(request, response);
-		}
-
 	}
 
 }
