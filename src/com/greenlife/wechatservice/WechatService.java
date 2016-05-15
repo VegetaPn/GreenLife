@@ -551,7 +551,9 @@ public class WechatService {
 		XStream xs = new XStream(new DomDriver());
 		xs.alias("xml", PayNotifyInfo.class);
 		try{
+			System.out.println(notifyXML);
 			notifyInfo = (PayNotifyInfo) xs.fromXML(notifyXML);
+			
 		}catch(Exception e){
 			System.out.println("XML-类转换异常："+notifyXML);
 		}
