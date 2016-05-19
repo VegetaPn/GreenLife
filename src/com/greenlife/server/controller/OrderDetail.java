@@ -21,7 +21,7 @@ public class OrderDetail {
 	}
 
 	public void setBuytype(int statenum) {
-		if (statenum == 1) {
+		if (statenum <10) {
 			buytype = "ÍÅ¹º("+goodsOrder.getOrderId()+")";
 		} else{
 			buytype = "¸öÈË";
