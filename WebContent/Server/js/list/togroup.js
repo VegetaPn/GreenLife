@@ -10,7 +10,7 @@ $(document).ready(function() {
 	$('#datatable').on('error.dt', function(e, settings, techNote, message) {
 		refreshdata();
 	}).DataTable({
-		"ordering" : true,
+		"ordering" : false,
 		"pagingType" : "simple_numbers", // 分页类型
 		"searching" : false, // 搜索
 		"lengthChange" : false, // 每页长度不可变
