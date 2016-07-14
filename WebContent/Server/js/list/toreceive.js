@@ -5,16 +5,19 @@
  */
 
 $(document).ready(function() {
-	$('#datatable').DataTable({
+	$.fn.dataTable.ext.errMode = 'none';
+	$('#datatable').on( 'error.dt', function ( e, settings, techNote, message ) {
+		refreshdata();
+    } ).DataTable({
 		"ordering" : true,
-		"orderFixed" : {
-			"pre" : [ 0, 'desc' ]
-		},
 		"pagingType" : "simple_numbers", // 分页类型
-		"searching" : true, // 搜索
+		"searching" : false, // 搜索
 		"lengthChange" : false, // 每页长度不可变
 		"pageLength" : 15,
 		"processing" : true,// 每页长度
+		"stateSave" : true,
+		"serverSide":true,
+		"displayStart":0,
 		
 
 		"language" : { // 国际化配置

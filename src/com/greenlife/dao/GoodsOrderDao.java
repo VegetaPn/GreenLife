@@ -835,9 +835,7 @@ public class GoodsOrderDao {
 	 */
 	public static int getCountByState(int orderstate) {
 		String sql = "select count(*) as count from goods_order where order_state = ?";
-
 		int count = 0;
-
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
@@ -853,5 +851,48 @@ public class GoodsOrderDao {
 			clearUp(conn);
 		}
 		return count;
+	}
+	
+	public static List<GoodsOrder> getGoodsOrderListAndSearch(String condition) {
+
+		List<GoodsOrder> orderList = new ArrayList<>();
+		String sql = "select * from goods_order";
+
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				GoodsOrder goodsOrder = new GoodsOrder();
+
+				goodsOrder.setOrderId(rs.getInt("order_id"));
+				goodsOrder.setGoodsId(rs.getInt("goods_id"));
+				goodsOrder.setWechatId(rs.getString("wechat_id"));
+				goodsOrder.setGoodsNum(rs.getInt("goods_num"));
+				goodsOrder.setTradeTime(rs.getString("trade_time"));
+				goodsOrder.setComment(rs.getString("comment"));
+				goodsOrder.setMailPrice(rs.getDouble("mail_price"));
+				goodsOrder.setTotalPrice(rs.getDouble("total_price"));
+				goodsOrder.setGroupId(rs.getInt("group_id"));
+				goodsOrder.setSendTime(rs.getString("send_time"));
+				goodsOrder.setGroupMinnum(rs.getInt("group_minnum"));
+				goodsOrder.setOrderState(rs.getInt("order_state"));
+				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
+				goodsOrder.setReceiverName(rs.getString("receiver_name"));
+				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
+				goodsOrder.setPrepayId(rs.getString("prepay_id"));
+				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+				goodsOrder.setTransactionId(rs.getString("transaction_id"));
+				goodsOrder.setOrderTime(rs.getString("order_time"));
+				orderList.add(goodsOrder);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+
+		return orderList;
 	}
 }

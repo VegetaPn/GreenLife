@@ -3,17 +3,19 @@
  */
 
 $(document).ready(function() {
-	$('#datatable').DataTable({
-		"ordering" : true,
-		"orderFixed" : {
-			"pre" : [ 0, 'desc' ]
-		},
+	$.fn.dataTable.ext.errMode = 'none';
+	$('#datatable').on( 'error.dt', function ( e, settings, techNote, message ) {
+		refreshdata();
+    } ).DataTable({
+		"ordering" : false,
 		"pagingType" : "simple_numbers", // 分页类型
-		"searching" : true, // 搜索
+		"searching" : false, // 搜索
 		"lengthChange" : false, // 每页长度不可变
 		"pageLength" : 15,
 		"processing" : true,// 每页长度
-		
+		"stateSave" : true,
+		"serverSide":true,
+		"displayStart":0,
 
 		"language" : { // 国际化配置
 			"lengthMenu" : "显示 _MENU_ 条",

@@ -5,19 +5,23 @@
 $(document)
 		.ready(
 				function() {
+					$.fn.dataTable.ext.errMode = 'none';
 					$('#datatable')
+							.on('error.dt',
+									function(e, settings, techNote, message) {
+										refreshdata();
+									})
 							.DataTable(
 									{
 										"ordering" : true,
-										"orderFixed" : {
-											"pre" : [ 0, 'desc' ]
-										},
 										"pagingType" : "simple_numbers", // 分页类型
-										"searching" : true, // 搜索
+										"searching" : false, // 搜索
 										"lengthChange" : false, // 每页长度不可变
 										"pageLength" : 15,
 										"processing" : true,// 每页长度
 										"stateSave" : true,
+										"serverSide" : true,
+										"displayStart" : 0,
 
 										"language" : { // 国际化配置
 											"lengthMenu" : "显示 _MENU_ 条",
@@ -96,7 +100,7 @@ $(document)
 										],
 										"fnInitComplete" : function(settings,
 												json) {
-
+											$("#body").hideLoading();
 										}
 									});
 
@@ -120,15 +124,15 @@ function send(orderId) {
 					"orderId" : orderId
 				},
 				"success" : function(data, status) {
-					$("#body").hideLoading();
+
 					if (status == "success") {
 						if (data == "403") {
 							window.location.href = "/Server/Page/login.jsp";
 						} else if (data == "yes") {
-							
+
 							refreshdata();
 							showError("发货成功");
-							
+
 						} else {
 							showError("发货失败");
 						}

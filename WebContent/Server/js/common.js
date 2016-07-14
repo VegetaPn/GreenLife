@@ -11,7 +11,8 @@ function showError(str,callback) {   //错误提示
 function refreshdata() {
 	refreshnav();
 	var table = $('#datatable').DataTable();
-	table.ajax.reload( function(){
+	table.ajax.reload( function(json){
+		$("#body").hideLoading();
 	}, false );
 }
 
