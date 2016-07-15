@@ -83,7 +83,7 @@ if(city != null){
 	GoodsPostage goodsPostage = GoodsPostageDao.getGoodsPostage(goodsId);
 	
 	if(goodsPostage != null){
-		String[] localCitys = goodsPostage.getLocalCity().split(";");
+		String[] localCitys = goodsPostage.getLocalCity().split("1");
 		
 		for(int i=0;i<localCitys.length;i++){
 			if(city.equals(localCitys[i])){
