@@ -60,6 +60,7 @@ public class PurchaseServlet extends HttpServlet {
 		 String receiver = request.getParameter("sCusName");
 		 String phone = request.getParameter("sPhoneNum");
 		 String orderTime = request.getParameter("orderTime");
+		 double mailPrice = Double.valueOf(request.getParameter("mailPrice"));
 		 
 		 int serchOrderId = GoodsOrderDao.getOrderIdByWechatIdAndOrderTime(wechatId, orderTime);
 		 
@@ -76,11 +77,12 @@ public class PurchaseServlet extends HttpServlet {
 			 goodsOrder.setGroupMinnum(2);
 			 goodsOrder.setSendTime(send_time);
 			 goodsOrder.setOrderTime(orderTime);
+			 goodsOrder.setMailPrice(mailPrice);
 			 Date now = new Date(); 
 			 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
 			 String tradeTime = dateFormat.format(now); 
 			 goodsOrder.setTradeTime(tradeTime);
-			 goodsOrder.setMailPrice(0);
+			 
 			 
 			 if(group.equals("true")){
 				 goodsOrder.setOrderState(1);

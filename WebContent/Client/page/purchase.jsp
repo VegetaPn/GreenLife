@@ -54,6 +54,10 @@ AdressInfo defaultAddressInfo = null;
 int index = -1;
 String defaultAddr = new String();
 
+String city = null;
+boolean isLocalCity = false;
+double mailPrice = 0;
+
 for(int i =0; i<addressInfos.size();i++){
 	   if(addressInfos.get(i).getAddrId() == addressId){
 		   defaultAddressInfo = addressInfos.get(i);
@@ -66,10 +70,39 @@ for(int i =0; i<addressInfos.size();i++){
     			   temp.append(temps[j]+" ");
     		   }
     	   }
+    	   
+    	   if(temps.length > 2){
+    		   city = temps[1];
+    	   }
+    	   
     	   defaultAddr = temp.toString();
 	   }
 }
+
+if(city != null){
+	GoodsPostage goodsPostage = GoodsPostageDao.getGoodsPostage(goodsId);
+	
+	if(goodsPostage != null){
+		String[] localCitys = goodsPostage.getLocalCity().split(";");
+		
+		for(int i=0;i<localCitys.length;i++){
+			if(city.equals(localCitys[i])){
+				isLocalCity=true;
+				mailPrice = goodsPostage.getLocalPostage();
+			}
+		}
+		
+		
+		if(!isLocalCity){
+			mailPrice = goodsPostage.getAlienPostage();
+		}
+	}
+	
+}
+
+
 %>
+
 
 
 
@@ -173,7 +206,19 @@ for(int i =0; i<addressInfos.size();i++){
 			</div>
 
 			<div id="dMail">
-			    <span class="span">邮费：</span><span id="sMail">免邮费</span>
+			    <span class="span">邮费：</span><span id="sMail">
+			    <%
+			    	if(mailPrice == 0){
+			    %>
+			    免邮费
+			    <%
+			    	}else{
+			    		
+			    %>
+			    		<%=mailPrice%>元
+			    <%
+			    	}
+			    %></span>
 			</div>
 						
 			<div class="blank"></div>
@@ -192,11 +237,13 @@ for(int i =0; i<addressInfos.size();i++){
 			<div class="right">
 				<div id="iSubmit" <%=notClick?"disabled='disabled' style='background-color:gray'":"" %>>确认支付</div>
 			</div>
-			<div class="left">实付款：<span><span id="sTotalPrice"><%=price%></span>元</span></div>
+			<div class="left">实付款：<span><span id="sTotalPrice"><%=String.format("%.2f",(price+mailPrice))%></span>元</span></div>
 		</div>
 		
 		<div id="prompt"></div>
 		<script>
+		var mailPrice = <%=mailPrice%>;
+		
 		 $("#iSubmit").click(function(){
 			 $("#iSubmit").attr("disabled", "disabled"); 
 			 if(<%=defaultAddressInfo==null?1:0%>){
@@ -212,11 +259,12 @@ for(int i =0; i<addressInfos.size();i++){
 					sCusName:$("#sCusName").text(),
 					sPhoneNum:$("#sPhoneNum").text(),
 					sAddress:$("#sAddress").text(),
-					sTotalPrice:$("#stPrice").text(),
+					sTotalPrice:$("#sTotalPrice").text(),
 					iMessage:$("#iMessage").val(),
 					sPostTime:$("#sPostTime").text(),
 					iNumber:$("#iNumber").val(),
 					orderTime:$("#orderTime").text(),
+					mailPrice:<%=mailPrice%>,
 					goodsId:<%=goodsId%>,
 					group:<%=group%>
 				},//提交的数据(自定义的一些后台程序需要的参数)
@@ -244,8 +292,11 @@ for(int i =0; i<addressInfos.size();i++){
 		 		$("#iNumber").val(number);
 		 		$("#sNumber").text(number);
 		 		var price = $("#sProductPrice").text();
-		 		$("#stPrice").text(parseInt(number)*parseFloat(price));
-		 		$("#sTotalPrice").text(parseInt(number)*parseFloat(price));
+		 		var total = (parseInt(number)*parseFloat(price)).toFixed(2);
+			 	$("#stPrice").text(total);
+			 	
+			 	
+			 	$("#sTotalPrice").text((parseFloat(total)+parseFloat(mailPrice)).toFixed(2));
 		 	}
 		 } 
 
@@ -264,7 +315,7 @@ for(int i =0; i<addressInfos.size();i++){
 		 	var total = (parseInt(number)*parseFloat(price)).toFixed(2);
 		 	$("#stPrice").text(total);
 		 	
-		 	$("#sTotalPrice").text(total);
+		 	$("#sTotalPrice").text((parseFloat(total)+parseFloat(mailPrice)).toFixed(2));
 		 }
 
 		 function calculate(){
@@ -289,7 +340,7 @@ for(int i =0; i<addressInfos.size();i++){
 		 	var total = (parseInt(number)*parseFloat(price)).toFixed(2);
 		 	$("#stPrice").text(total);
 		 	
-		 	document.getElementById("sTotalPrice").innerText = total;	
+		 	document.getElementById("sTotalPrice").innerText = (parseFloat(total)+parseFloat(mailPrice)).toFixed(2);	
 		 }
 
 		 function mousedown(){

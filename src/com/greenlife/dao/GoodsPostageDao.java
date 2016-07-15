@@ -14,7 +14,7 @@ public class GoodsPostageDao {
 	private static ResultSet rs;
 	
 	
-	public GoodsPostage getGoodsPostage(int goodsId){
+	public static GoodsPostage getGoodsPostage(int goodsId){
 		GoodsPostage goodsPostage = new GoodsPostage();
 		
 		String sql = "select * from goods_postage where goods_id = ?";
