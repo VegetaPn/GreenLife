@@ -85,7 +85,7 @@
 				
 				<div class="middleTag">
 					<div class="tagLeft">运费：</div>
-					<div class="blackNormal" id="freight">免邮费
+					<div class="blackNormal" id="freight">免运费
 					</div>
 				</div>
 

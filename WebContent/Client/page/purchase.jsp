@@ -206,11 +206,11 @@ if(city != null){
 			</div>
 
 			<div id="dMail">
-			    <span class="span">邮费：</span><span id="sMail">
+			    <span class="span">运费：</span><span id="sMail">
 			    <%
 			    	if(mailPrice == 0){
 			    %>
-			    免邮费
+			    免运费
 			    <%
 			    	}else{
 			    		
