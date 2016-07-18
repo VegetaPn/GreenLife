@@ -57,50 +57,24 @@ public class SearchServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		
-		int grouptype = Integer.parseInt(request.getParameter("grouptype"));
+		int groupType = Integer.parseInt(request.getParameter("grouptype"));
 		int type = Integer.parseInt(request.getParameter("type"));
 		int start = Integer.parseInt(request.getParameter("start"));
 		int length = Integer.parseInt(request.getParameter("length"));
+		String condition = request.getParameter("search[value]");
 		int total=0;
 		
-		List<GoodsOrder> person = GoodsOrderDao.getGoodsOrderListByState(type);// 团购订单付款
-		List<GoodsOrder> group = GoodsOrderDao.getGoodsOrderListByState(grouptype);// 个人订单付款
-		List<GoodsOrder> all = new ArrayList<GoodsOrder>();
-		
-		//日期比较器
-		Comparator<GoodsOrder> comparator = new Comparator<GoodsOrder>(){
-
-			@Override
-			public int compare(GoodsOrder o1, GoodsOrder o2) {
-				// TODO Auto-generated method stub
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
-				
-				Date date1=null;
-				Date date2=null;
-				try {
-					date1 = sdf.parse(o1.getOrderTime());
-					date2 = sdf.parse(o2.getOrderTime());
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return date1.getTime()>date2.getTime()?1:-1;
-			}
-		};
-		
-		Collections.sort(all,comparator);
-		
-		all.addAll(person);
-		all.addAll(group);
-		total= all.size();
-		List<GoodsOrder> showedList =new ArrayList<GoodsOrder>();
-		for(int i=start;i<start + length;i++){
-			if(i<all.size()){
-			showedList.add(all.get(i));
-			}else{
-				break;
-			}
+		List<GoodsOrder> showedList =null;
+		if(condition.equals("")){
+			 showedList =GoodsOrderDao.getGoodsOrderListWithoutSearch(groupType, type, start, length);
+			 total =GoodsOrderDao.getCountByState(groupType)+GoodsOrderDao.getCountByState(type);
+		}else{
+			showedList =GoodsOrderDao.getGoodsOrderListAndSearch(groupType, type, start, length,condition);
+			total =GoodsOrderDao.getCountWithSearchCondition(groupType, type, condition);
 		}
+		
+	
+		
 		List<OrderDetail> showedDetailList = this.getDetail(showedList);
 		response.setCharacterEncoding("UTF-8");
 		String totalString ="{\"start\":" +"\""+start+"\""+","+

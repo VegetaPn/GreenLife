@@ -12,7 +12,7 @@ $(document).ready(function() {
 	}).DataTable({
 		"ordering" : false,
 		"pagingType" : "simple_numbers", // 分页类型
-		"searching" : false, // 搜索
+		"searching" : true, // 搜索
 		"lengthChange" : false, // 每页长度不可变
 		"pageLength" : 15,
 		"processing" : true,// 每页长度

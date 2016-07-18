@@ -42,7 +42,7 @@ public class GoodsOrderDao {
 				goodsOrder.setGroupMinnum(rs.getInt("group_minnum"));
 				goodsOrder.setOrderState(rs.getInt("order_state"));
 				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
-				
+
 				goodsOrder.setReceiverName(rs.getString("receiver_name"));
 				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
@@ -119,7 +119,7 @@ public class GoodsOrderDao {
 				goodsOrder.setGroupMinnum(rs.getInt("group_minnum"));
 				goodsOrder.setOrderState(rs.getInt("order_state"));
 				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
-				
+
 				goodsOrder.setReceiverName(rs.getString("receiver_name"));
 				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
 				goodsOrder.setPrepayId(rs.getString("prepay_id"));
@@ -759,9 +759,8 @@ public class GoodsOrderDao {
 		return orderList;
 	}
 
-	
-	//N个数据库访问性能BUG
-	public static String getMaxTradeTimeByWechatId(String wechatId,int goodsId) {
+	// N个数据库访问性能BUG
+	public static String getMaxTradeTimeByWechatId(String wechatId, int goodsId) {
 		String sql = "select max(trade_time) as maxTime from goods_order where wechat_id=? and goods_id=? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14));";
 
 		String maxTime = null;
@@ -852,15 +851,120 @@ public class GoodsOrderDao {
 		}
 		return count;
 	}
+
+	/*
+	 * 参数列表 groupType 团购类型
+	 * 
+	 * type 个人购买类型
+	 * 
+	 * condition 查询类型。
+	 */
 	
-	public static List<GoodsOrder> getGoodsOrderListAndSearch(String condition) {
+	public static List<GoodsOrder> getGoodsOrderListAndSearch(int groupType, int type,int start,int length,String condition) {
 
 		List<GoodsOrder> orderList = new ArrayList<>();
-		String sql = "select * from goods_order";
-
+		String sql = "select g_order.*"
+				+"from goods_order  AS  g_order ,goods_info  as g_info "
+				+"where g_order.goods_id=g_info.goods_id  and ( order_state=? or order_state=? ) and CONCAT(g_order.trade_time,g_order.out_trade_no,g_info.goods_name,g_order.receiver_name,g_order.addr_detail,g_order.phone_number) LIKE ? "
+				+"ORDER BY trade_time " 
+				+"LIMIT ?,? ";
+		
 		Connection conn = new DBUtil().getConn();
+		
 		try {
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, groupType);
+			ps.setInt(2, type);
+			ps.setString(3, "%"+condition+"%");
+			ps.setInt(4, start);
+			ps.setInt(5, length);
+		
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				GoodsOrder goodsOrder = new GoodsOrder();
+
+				goodsOrder.setOrderId(rs.getInt("order_id"));
+				goodsOrder.setGoodsId(rs.getInt("goods_id"));
+				goodsOrder.setWechatId(rs.getString("wechat_id"));
+				goodsOrder.setGoodsNum(rs.getInt("goods_num"));
+				goodsOrder.setTradeTime(rs.getString("trade_time"));
+				goodsOrder.setComment(rs.getString("comment"));
+				goodsOrder.setMailPrice(rs.getDouble("mail_price"));
+				goodsOrder.setTotalPrice(rs.getDouble("total_price"));
+				goodsOrder.setGroupId(rs.getInt("group_id"));
+				goodsOrder.setSendTime(rs.getString("send_time"));
+				goodsOrder.setGroupMinnum(rs.getInt("group_minnum"));
+				goodsOrder.setOrderState(rs.getInt("order_state"));
+				goodsOrder.setAddrDetail(rs.getString("addr_detail"));
+				goodsOrder.setReceiverName(rs.getString("receiver_name"));
+				goodsOrder.setPhoneNumber(rs.getString("phone_number"));
+				goodsOrder.setPrepayId(rs.getString("prepay_id"));
+				goodsOrder.setOutTradeNo(rs.getString("out_trade_no"));
+				goodsOrder.setTransactionId(rs.getString("transaction_id"));
+				goodsOrder.setOrderTime(rs.getString("order_time"));
+				orderList.add(goodsOrder);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+
+		return orderList;
+	}
+	
+	/*
+	 * 
+	 */
+	public static int getCountWithSearchCondition(int groupType, int type,String condition){
+	
+		List<GoodsOrder> orderList = new ArrayList<>();
+		String sql = "select count(g_order.goods_id) as num "
+				+"from goods_order  AS  g_order ,goods_info  as g_info " 
+				+"where g_order.goods_id=g_info.goods_id  and ( order_state=? or order_state=? ) and CONCAT(g_order.trade_time,g_order.out_trade_no,g_info.goods_name,g_order.receiver_name,g_order.addr_detail,g_order.phone_number) LIKE ?";
+							
+		
+		Connection conn = new DBUtil().getConn();
+		
+		int count=0;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, groupType);
+			ps.setInt(2, type);
+			ps.setString(3, "%"+condition+"%");
+			rs = ps.executeQuery();
+			rs.next();
+			count = rs.getInt("num");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+
+		return count;
+	}
+	/*
+	 * 
+	 */
+	public static List<GoodsOrder> getGoodsOrderListWithoutSearch(int groupType, int type,int start,int length) {
+
+		List<GoodsOrder> orderList = new ArrayList<>();
+		String sql = "select g_order.*"
+				+"from goods_order  AS  g_order "
+				+"where   order_state=? or order_state=?  "
+				+"ORDER BY trade_time " 
+				+"LIMIT ?,? ";
+		
+		Connection conn = new DBUtil().getConn();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, groupType);
+			ps.setInt(2, type);
+			ps.setInt(3, start);
+			ps.setInt(4, length);
+		
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				GoodsOrder goodsOrder = new GoodsOrder();
