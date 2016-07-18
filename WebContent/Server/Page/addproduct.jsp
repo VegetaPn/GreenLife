@@ -122,6 +122,24 @@
 												class="form-control" rows="3"></textarea>
 										</div>
 									</div>
+
+
+
+									<div class="form-group">
+										<label>本地城市列表(例：北京市1天津市1上海市1 ) 1为分割符 城市为市级城市</label> <input
+											id="local_city" type="text" autocomplete="off"
+											name="local_city" class="form-control">
+									</div>
+									<div class="form-group">
+										<label>本地城市邮费</label> <input id="local_postage" type="text"
+											autocomplete="off" name="local_postage" class="form-control">
+
+									</div>
+									<div class="form-group">
+										<label>异地城市邮费</label> <input id="alien_postage" type="text"
+											autocomplete="off" name="alien_postage" class="form-control">
+
+									</div>
 									<div class="form-group-lg">
 										<label>设置为广告</label> <label class="checkbox-inline"> <input
 											name="adv" type="radio" id="inlineCheckbox1" value="0"
@@ -129,9 +147,9 @@
 										</label> <label class="checkbox-inline"> <input type="radio"
 											name="adv" id="inlineCheckbox2" value="1"> 是
 										</label>
-
 									</div>
 								</div>
+
 								<div class="col-lg-6">
 									<div class="form-group">
 										<label>主页大图片(400*200)</label> <input type="file"
@@ -181,7 +199,7 @@
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
-	
+
 	<script type="text/javascript">
 		!function() {
 			laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库

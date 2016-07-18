@@ -18,9 +18,10 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.greenlife.dao.GoodsInfoDao;
-import com.greenlife.model.GoodsInfo;
+import com.greenlife.*;
+import com.greenlife.model.*;
 import com.greenlife.util.PropertiesUtil;
+import com.greenlife.dao.*;
 
 public class ChangeGoodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,6 +39,10 @@ public class ChangeGoodServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 
 			GoodsInfo changedGood = null;
+			GoodsPostage postage=null;
+			
+			int  goodId=0;
+			
 			String goodName = null;
 			String packagePath = null;
 
@@ -57,6 +62,13 @@ public class ChangeGoodServlet extends HttpServlet {
 
 			String subTitle = null;
 			String adv = null;
+			
+			
+			//” ∑—
+			String localCity=null;
+			double localPostage=0;
+			double alienPostage=0;
+			
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 
 			ServletFileUpload upload = new ServletFileUpload(factory);
@@ -81,7 +93,9 @@ public class ChangeGoodServlet extends HttpServlet {
 
 					
 					if (name.equals("good_id")) {
-						changedGood = GoodsInfoDao.getGoodsInfo(Integer.parseInt(value));
+						goodId =Integer.parseInt(value);
+						changedGood = GoodsInfoDao.getGoodsInfo(goodId);
+						postage =GoodsPostageDao.getGoodsPostage(goodId);
 						packagePath = changedGood.getPackagePath();
 					} else if (name.equals("good_name")) {
 						goodName = value;
@@ -107,6 +121,14 @@ public class ChangeGoodServlet extends HttpServlet {
 						subTitle = value;
 					} else if (name.equals("adv")) {
 						adv = value;
+					}else if(name.equals("local_city")){
+						/////////////////////////
+						localCity=value;
+						
+					}else if(name.equals("local_postage")){
+						localPostage = Double.parseDouble(value);
+					}else if(name.equals("alien_postage")){
+						alienPostage = Double.parseDouble(value);
 					}
 					
 				} else {
@@ -163,6 +185,25 @@ public class ChangeGoodServlet extends HttpServlet {
 			changedGood.setSubTitle(subTitle);
 			changedGood.setIsAdv(Integer.parseInt(adv));
 			GoodsInfoDao.updateGoodsInfo(changedGood);
+			
+			
+			
+			
+			if(postage==null){
+				postage =new GoodsPostage();
+				postage.setGoodsId(goodId);
+				postage.setLocalCity(localCity);
+				postage.setLocalPostage(localPostage);
+				postage.setAlienPostage(alienPostage);
+				GoodsPostageDao.addGoodsPostage(postage);	
+			}else{
+				postage.setLocalCity(localCity);
+				postage.setLocalPostage(localPostage);
+				postage.setAlienPostage(alienPostage);
+				GoodsPostageDao.updateGoodsPostage(postage);	
+			}
+			
+			
 			response.sendRedirect("/Server/Page/product.jsp");
 		}
 	}

@@ -25,6 +25,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.greenlife.dao.GoodsInfoDao;
 import com.greenlife.model.GoodsInfo;
 import com.greenlife.util.PropertiesUtil;
+import com.greenlife.model.GoodsPostage;
+import com.greenlife.dao.GoodsPostageDao;
 
 /**
  * Servlet implementation class AddProductServlet
@@ -79,6 +81,11 @@ public class AddGoodServlet extends HttpServlet {
 
 			String subTitle = null;
 			String adv = null;
+			
+			//邮费
+			String localCity=null;
+			double localPostage=0;
+			double alienPostage=0;
 
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 
@@ -126,6 +133,14 @@ public class AddGoodServlet extends HttpServlet {
 						subTitle = value;
 					} else if (name.equals("adv")) {
 						adv = value;
+					} else if(name.equals("local_city")){
+						/////////////////////////
+						localCity=value;
+						
+					}else if(name.equals("local_postage")){
+						localPostage = Double.parseDouble(value);
+					}else if(name.equals("alien_postage")){
+						alienPostage = Double.parseDouble(value);
 					}
 				} else {
 					String filename = "";
@@ -182,6 +197,24 @@ public class AddGoodServlet extends HttpServlet {
 			newGood.setOrderIndex(GoodsInfoDao.getNextOrderIndex());
 
 			int i = GoodsInfoDao.addGoodsInfo(newGood);
+			
+			//邮费修改添加
+			GoodsPostage postage=GoodsPostageDao.getGoodsPostage(goodId);
+			if(postage==null){
+				postage =new GoodsPostage();
+				postage.setGoodsId(goodId);
+				postage.setLocalCity(localCity);
+				postage.setLocalPostage(localPostage);
+				postage.setAlienPostage(alienPostage);
+				GoodsPostageDao.addGoodsPostage(postage);	
+			}else{
+				postage.setLocalCity(localCity);
+				postage.setLocalPostage(localPostage);
+				postage.setAlienPostage(alienPostage);
+				GoodsPostageDao.updateGoodsPostage(postage);	
+			}
+			
+		
 			response.sendRedirect("/Server/Page/product.jsp");
 		}
 

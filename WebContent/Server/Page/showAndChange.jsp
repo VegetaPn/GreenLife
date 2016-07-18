@@ -21,15 +21,31 @@
 
 <body>
 	<%
-	GoodsInfo showedGood = null;
-	String id = request.getParameter("id");
-	if (id == null) {
-		response.sendRedirect("/Server/Page/product.jsp");
-	} else {
-		if (session.getAttribute("login") == null) {
-			response.sendRedirect("/Server/Page/login.jsp");
+		GoodsInfo showedGood = null;
+		//邮费
+		GoodsPostage postage = null;
+		String local_city = null;
+		String local_postage = null;
+		String alien_postage = null;
+
+		String id = request.getParameter("id");
+		if (id == null) {
+			response.sendRedirect("/Server/Page/product.jsp");
 		} else {
-			showedGood = GoodsInfoDao.getGoodsInfo(Integer.parseInt(id));
+			if (session.getAttribute("login") == null) {
+				response.sendRedirect("/Server/Page/login.jsp");
+			} else {
+				showedGood = GoodsInfoDao.getGoodsInfo(Integer.parseInt(id));
+				postage = GoodsPostageDao.getGoodsPostage(Integer.parseInt(id));
+				if (postage == null) {
+					local_city = "";
+					local_postage = "";
+					alien_postage = "";
+				} else {
+					local_city = postage.getLocalCity();
+					local_postage = Double.toString(postage.getLocalPostage());
+					alien_postage = Double.toString(postage.getAlienPostage());
+				}
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div id="page-wrapper"
@@ -165,6 +181,26 @@
 												class="form-control" rows="3"><%=showedGood.getGoodsText2()%></textarea>
 										</div>
 									</div>
+
+									<div class="form-group">
+										<label>本地城市列表(例：北京市1天津市1上海市1 ) 1为分割符 城市为市级城市</label> <input
+											id="local_city" type="text" autocomplete="off"
+											value="<%=local_city%>" name="local_city" disabled="true"
+											class="form-control">
+									</div>
+									<div class="form-group">
+										<label>本地城市邮费</label> <input id="local_postage" type="text"
+											autocomplete="off" value="<%=local_postage%>" disabled="true"
+											name="local_postage" class="form-control">
+
+									</div>
+									<div class="form-group">
+										<label>异地城市邮费</label> <input id="alien_postage" type="text"
+											autocomplete="off" value="<%=alien_postage%>" disabled="true"
+											name="alien_postage" class="form-control">
+
+									</div>
+
 									<div class="form-group-lg">
 										<label>设置为广告</label>
 										<%

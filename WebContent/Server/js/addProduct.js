@@ -36,9 +36,15 @@ function checkAddProduct() {
 	var good_text2 = document.getElementById("good_text2").value;
 
 	/*
+	 * 邮费
+	 */
+	var local_city =document.getElementById("local_city").value;
+	var local_postage =document.getElementById("local_postage").value;
+	var alien_postage=document.getElementById("alien_postage").value;
+
+	/*
 	 * 微信标签内容
 	 */
-
 	var normal_img = document.getElementById("normal_img").value;
 	var small_img = document.getElementById("small_img").value;
 	var detail_img = document.getElementById("detail_img").value;
@@ -147,6 +153,46 @@ function checkAddProduct() {
 	}
 
 	/*
+	 * 邮费标准检测
+	 */
+	if(local_city==""){
+		showError("请填写至少一个本地城市");
+		return false;
+	}else{
+		//格式检测
+		var pattern = new RegExp("^([\u4e00-\u9fa5]*[1])+$");// /正则表达式
+		if (!pattern.test(local_city)) {
+			showError("本地城市格式填写错误");
+			return false;
+		}
+	}
+	
+	
+	
+	if(local_postage==""){
+		showError("请填写本地邮费");
+		return false;
+	}else{
+		var pattern = new RegExp("^[0-9]+(.[0-9]{1,2})?$");// /正则表达式
+		if (!pattern.test(local_postage)) {// 价格格式
+			showError("本地邮费格式错误，保留两位小数");
+			return false;
+		}
+	}
+	
+	if(alien_postage==""){
+		showError("请填写外地地邮费");
+		return false;
+	}else{
+		var pattern = new RegExp("^[0-9]+(.[0-9]{1,2})?$");// /正则表达式
+		if (!pattern.test(alien_postage)) {// 价格格式
+			showError("外地邮费格式错误，保留两位小数");
+			return false;
+		}
+	}
+	
+	
+	/*
 	 * 微信标签内容判断
 	 */
 
@@ -164,6 +210,7 @@ function checkAddProduct() {
 			return false;
 		}
 	}
+	
 	return true;
 
 }

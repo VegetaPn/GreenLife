@@ -34,7 +34,8 @@
 							<li class="list-group-item" style="border: 0px"><a
 								href="knowUs.jsp">关于我们</a></li>
 						</ul>
-					</div>
+					
 				</nav>
+				</div>
 				
 				<div class="col-lg-12" id="content">
