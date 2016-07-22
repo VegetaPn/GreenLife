@@ -11,7 +11,7 @@ public class DBUtil {
 	public Connection getConn() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://120.27.102.139:3306/greenlife?useUnicode=true&amp;characterEncoding=UTF-8";
+			String url = "jdbc:mysql://123.206.31.239:3306/greenlife?useUnicode=true&amp;characterEncoding=UTF-8";
             String username = "greenlife";
             String password = "greenlife";
             
