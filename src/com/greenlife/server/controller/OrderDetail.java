@@ -2,8 +2,8 @@ package com.greenlife.server.controller;
 /**
  * by hellomie
  * 
- * ÎªÁËÄÜ¹»½«ÐÅÏ¢´«Êäµ½ä¯ÀÀÆ÷£¬ÌØ´Ë
- * ½«¶à±í²éÑ¯½á¹û·ÅÈë´ËÀàÖÐ
+ * Îªï¿½ï¿½ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½äµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 import com.greenlife.model.GoodsOrder;
 
@@ -11,8 +11,8 @@ public class OrderDetail {
 
 	private GoodsOrder goodsOrder;
 	
-	private String weichatName;  //Î¢ÐÅÃû
-	private String goodsName;    //ÉÌÆ·Ãû
+	private String weichatName;  //Î¢ï¿½ï¿½ï¿½ï¿½
+	private String goodsName;    //ï¿½ï¿½Æ·ï¿½ï¿½
 	private String buytype;
 	
 	
@@ -22,9 +22,9 @@ public class OrderDetail {
 
 	public void setBuytype(int statenum) {
 		if (statenum <10) {
-			buytype = "ÍÅ¹º("+goodsOrder.getOrderId()+")";
+			buytype = "å›¢è´­("+goodsOrder.getOrderId()+")";
 		} else{
-			buytype = "¸öÈË";
+			buytype = "ä¸ªäºº";
 		}
 	}
 

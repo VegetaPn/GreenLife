@@ -866,7 +866,7 @@ public class GoodsOrderDao {
 		String sql = "select g_order.*"
 				+"from goods_order  AS  g_order ,goods_info  as g_info "
 				+"where g_order.goods_id=g_info.goods_id  and ( order_state=? or order_state=? ) and CONCAT(g_order.trade_time,g_order.out_trade_no,g_info.goods_name,g_order.receiver_name,g_order.addr_detail,g_order.phone_number) LIKE ? "
-				+"ORDER BY trade_time " 
+				+"ORDER BY trade_time desc" 
 				+"LIMIT ?,? ";
 		
 		Connection conn = new DBUtil().getConn();
@@ -953,7 +953,7 @@ public class GoodsOrderDao {
 		String sql = "select g_order.*"
 				+"from goods_order  AS  g_order "
 				+"where   order_state=? or order_state=?  "
-				+"ORDER BY trade_time " 
+				+"ORDER BY trade_time desc " 
 				+"LIMIT ?,? ";
 		
 		Connection conn = new DBUtil().getConn();
