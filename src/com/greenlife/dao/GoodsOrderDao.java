@@ -759,7 +759,7 @@ public class GoodsOrderDao {
 		return orderList;
 	}
 
-	// N¸öÊý¾Ý¿â·ÃÎÊÐÔÄÜBUG
+	// Nï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½BUG
 	public static String getMaxTradeTimeByWechatId(String wechatId, int goodsId) {
 		String sql = "select max(trade_time) as maxTime from goods_order where wechat_id=? and goods_id=? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14));";
 
@@ -853,11 +853,11 @@ public class GoodsOrderDao {
 	}
 
 	/*
-	 * ²ÎÊýÁÐ±í groupType ÍÅ¹ºÀàÐÍ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ groupType ï¿½Å¹ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
-	 * type ¸öÈË¹ºÂòÀàÐÍ
+	 * type ï¿½ï¿½ï¿½Ë¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
-	 * condition ²éÑ¯ÀàÐÍ¡£
+	 * condition ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Í¡ï¿½
 	 */
 	
 	public static List<GoodsOrder> getGoodsOrderListAndSearch(int groupType, int type,int start,int length,String condition) {
@@ -866,7 +866,7 @@ public class GoodsOrderDao {
 		String sql = "select g_order.*"
 				+"from goods_order  AS  g_order ,goods_info  as g_info "
 				+"where g_order.goods_id=g_info.goods_id  and ( order_state=? or order_state=? ) and CONCAT(g_order.trade_time,g_order.out_trade_no,g_info.goods_name,g_order.receiver_name,g_order.addr_detail,g_order.phone_number) LIKE ? "
-				+"ORDER BY trade_time desc" 
+				+"ORDER BY trade_time desc " 
 				+"LIMIT ?,? ";
 		
 		Connection conn = new DBUtil().getConn();
