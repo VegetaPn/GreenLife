@@ -56,18 +56,25 @@ public class TimerCheckService {
 		ArrayList<TodayGroup> list = TodayGroupDao.getOverdueOrderByHour(0, 24);
 		for(int i=0;i<list.size();i++){
 			TodayGroup group = list.get(i);
+			System.out.println("团购退款,groupId："+group.getGroupId());
 			boolean allCancel = true;
 			ArrayList<GoodsOrder> orderlist = GoodsOrderDao.getGoodsOrderListByGroupIdAndState(
 					group.getGroupId(), 2);
 			for(int j=0;j<orderlist.size();j++){
 				GoodsOrder order = orderlist.get(j);
 				if(!GoodsOrderService.cancleOrder(order)){
+					System.out.println("订单退款失败,orderId："+order.getOrderId());
 					allCancel =false;
+				}else{
+					System.out.println("订单退款成功,orderId："+order.getOrderId());
 				}
 			}
 			if(allCancel){
+				System.out.println("团购退款成功,groupId："+group.getGroupId());
 				group.setIsDelete(1);
 				TodayGroupDao.updateTodayGroup(group);
+			}else{
+				System.out.println("团购退款失败,groupId："+group.getGroupId()+"&&isDelete:"+group.getIsDelete());
 			}
 		
 			

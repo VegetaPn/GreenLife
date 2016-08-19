@@ -999,4 +999,25 @@ public class GoodsOrderDao {
 
 		return orderList;
 	}
+	
+	public static double getGoodsOrderMoney(){
+		String sql = "select sum(total_price) as money from goods_order where order_state=5||order_state=14";
+				
+		Connection conn = new DBUtil().getConn();
+		
+		double money = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			rs.next();
+			money = rs.getDouble("money");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clearUp(conn);
+		}
+
+		return money;
+	}
 }
