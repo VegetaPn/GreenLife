@@ -13,5 +13,5 @@ hs_err_pid*
 /bin/
 
 
-/src/com/greenlife/util/init.properties
-/src/com/greenlife/util/DBUtil.java
+src/com/greenlife/util/init.properties
+src/com/greenlife/util/DBUtil.java
