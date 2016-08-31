@@ -44,6 +44,7 @@
 							<th>收货人</th>
 							<th>收货地址</th>
 							<th>电话</th>
+							<th>退款</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -56,5 +57,6 @@
 		</div>
 	</div>
 	<jsp:include page="footer.html"></jsp:include>
+	<script src="../js/refund.js"></script>
 <script type="text/javascript" src="../js/list/togroup.js"></script>
 </html>
