@@ -69,13 +69,19 @@
 							onsubmit="return checkChangeProduct()" method="post">
 							<div class="row">
 								<div class="col-lg-6">
+								
 									<div class="form-group">
 										<label>商品编号</label> <input id="good_id" type="text"
 											value="<%=showedGood.getGoodsId()%>" readonly=true
 											name="good_id" class="form-control">
 									</div>
-
-
+									
+									<div class="form-group">
+										<label>父产品编号(产品本身是父产品，则填0)</label> <input id="parent_id" type="text"
+											name="parent_id" class="form-control" autocomplete="off" 
+											value="<%=showedGood.getParentId() %>" disabled="true">
+									</div>
+									
 									<div class="form-group">
 										<label>商品名称</label> <input id="good_name" type="text"
 											autocomplete="off" value="<%=showedGood.getGoodsName()%>"

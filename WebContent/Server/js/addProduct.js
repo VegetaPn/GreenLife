@@ -4,6 +4,8 @@
  * 提交前判断填写信息是否完整
  */
 function checkAddProduct() {
+	var parent_id = document.getElementById("parent_id").value;
+	
 	/*
 	 * 商品名称
 	 */
@@ -50,6 +52,11 @@ function checkAddProduct() {
 	var detail_img = document.getElementById("detail_img").value;
 	var report_image = document.getElementById("report_img").value;
 
+	if(parent_id == ""){
+		showError("请填写父产品编号");
+		return false;
+	}
+	
 	/*
 	 * 商品名称检测；
 	 */

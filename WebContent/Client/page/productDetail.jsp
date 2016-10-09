@@ -12,6 +12,12 @@
 	GoodsInfo goodsInfo = GoodsInfoDao.getGoodsInfo(goodsId);
 	String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"normal.jpg";
 	String detailPath = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"detail.jpg";
+	
+	int targetGoodsId = goodsId;
+
+	if(goodsInfo.getParentId()!=0){
+		targetGoodsId = goodsInfo.getParentId();
+	}
 %>
 
 
@@ -44,6 +50,8 @@
 		
 		String shareImg = request.getScheme()+"://"+ request.getServerName()+"/Client/images/yuanlai.jpg";
 		String shareDesc = "我们拥有绿色农场（北京平谷）和牧场（内蒙古草原腹地），可为中国家庭提供来自源头的自然生态食品。";
+		
+		
 	%>
     
     <script>
@@ -105,7 +113,7 @@
 		<div id="content">
 		
 		
-			<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
+			<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=targetGoodsId%>'">
 			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
 						
 			

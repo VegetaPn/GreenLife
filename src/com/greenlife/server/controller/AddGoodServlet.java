@@ -65,6 +65,8 @@ public class AddGoodServlet extends HttpServlet {
 			int goodId = GoodsInfoDao.getNextGoodsId();
 			String packagePath = "goods/" + goodId + "/";
 
+			int parentId = 0;
+			
 			double goodPrice = 0;
 			double groupPrice = 0;
 			int totalNum = 0;
@@ -108,8 +110,10 @@ public class AddGoodServlet extends HttpServlet {
 
 					String name = item.getFieldName();
 					String value = new String(item.getString("UTF-8"));
-
-					if (name.equals("good_name")) {
+					
+					if (name.equals("parent_id")){
+						parentId = Integer.parseInt(value);
+					} else if (name.equals("good_name")) {
 						goodName = value;
 					} else if (name.equals("good_price")) {
 						goodPrice = Double.parseDouble(value);
@@ -177,6 +181,7 @@ public class AddGoodServlet extends HttpServlet {
 			}
 
 			GoodsInfo newGood = new GoodsInfo();
+			newGood.setParentId(parentId);
 			newGood.setGoodsName(goodName);
 			newGood.setGoodsId(goodId);
 			newGood.setPackagePath(packagePath);

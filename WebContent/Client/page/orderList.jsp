@@ -80,8 +80,15 @@
                         {
                                 orderToShow = orderList.get(orderIndex);
                                 goodsinfo = GoodsInfoDao.getGoodsInfo(orderToShow.getGoodsId());
+                            
                                 orderstate = orderToShow.getOrderState();
                                 String productImg = PropertiesUtil.getPath() + goodsinfo.getPackagePath() + "small.jpg";
+                                int targetGoodsId = goodsinfo.getGoodsId();
+
+                            	if(goodsinfo.getParentId()!=0){
+                            		targetGoodsId = goodsinfo.getParentId();
+                            	}
+                                
                                 if (whatToShow != 4)
                                 {
                                         if (whatToShow == 0 && orderstate != 2)
@@ -286,9 +293,10 @@
                                         else if (orderstate == 5 || orderstate == 14)
                                         {
                                                 //已完成
+                                                
                                 %>
                          
-                           		<div class="functionButton" onclick="location.href='comment.jsp?goodsId=<%=orderToShow.getGoodsId()%>'">我来说两句</div>
+                           		<div class="functionButton" onclick="location.href='comment.jsp?goodsId=<%=targetGoodsId%>'">我来说两句</div>
                                 <%
                                     }
                                 %>

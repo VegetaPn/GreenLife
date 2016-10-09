@@ -168,25 +168,25 @@
 }
 
 
-#productSalesPrice{
+.productSalesPrice{
 	width:90%;
 	margin:auto;
 	margin-top:20px;
 }
 
-#salesProductImgDiv{
+.salesProductImgDiv{
 	width:100%;
 	text-align:center;
 	margin:auto;
 	
 }
 
-#salesProductImg{
+.salesProductImg{
 	width:89%;
 	margin-right:2px;
 }
 
-#productSalesInfo{
+.productSalesInfo{
 	width:90%;
 	margin:auto;
 	background-color:#ffffff;
@@ -195,7 +195,7 @@
 	
 }
 
-#salesInfo{
+.salesInfo{
 	padding:10px 0 10px 15px;
 }
 
@@ -204,26 +204,26 @@
 	font-weight:bold;
 }
 
-#purchaseLeft{
+.purchaseLeft{
 	width:50%;
 	float:left;
 }
 
 
 
-#purchaseRight{
+.purchaseRight{
 	width:50%;
 	float:right;
 }
 
-#teamPurchase{
+.teamPurchase{
 	padding-top:10px;
 	padding-right:5px;
 	float:right;
 	
 }
 
-#personalPurchase{
+.personalPurchase{
 	padding-top:10px;
 	padding-left:5px;
 	
@@ -242,11 +242,11 @@
 	
 }
 
-#teamPrice{
+.teamPrice{
 	background-color:#FF3300;
 }
 
-#personalPrice{
+.personalPrice{
 	background-color:#FFCC33;
 }
 
@@ -392,7 +392,7 @@
 	padding:10px 20px 10px 20px;
 }
 
-#LastGrayDiv{
+.LastGrayDiv{
 	padding-bottom:20px;
 }
 
@@ -470,7 +470,7 @@
 	}
 
 
-	#salesProductImg{
+	.salesProductImg{
 		
 		height:180px;
 
@@ -605,7 +605,7 @@
 	}
 
 
-	#salesProductImg{
+	.salesProductImg{
 		height:260px;
 	}
 
@@ -743,7 +743,7 @@
 	}
 
 
-	#salesProductImg{
+	.salesProductImg{
 		height:320px;
 	}
 
@@ -879,7 +879,7 @@
 	}
 
 
-	#salesProductImg{
+	.salesProductImg{
 		height:380px;
 	}
 
@@ -1015,7 +1015,7 @@
 	}
 
 
-	#salesProductImg{
+	.salesProductImg{
 		height:440px;
 	}
 

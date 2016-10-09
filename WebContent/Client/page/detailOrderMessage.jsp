@@ -31,6 +31,13 @@
 		String productImg = PropertiesUtil.getPath() + goodsinfo.getPackagePath() + "normal.jpg";
 
 		String time = orderToShow.getSendTime();
+		
+		
+		int targetGoodsId = goodsId;
+
+		if(goodsinfo.getParentId()!=0){
+			targetGoodsId = goodsinfo.getParentId();
+		}
 	%>
 
 	<jsp:include page="header.jsp" />
@@ -40,7 +47,7 @@
 
 
 		<div id="product"
-			onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
+			onclick="location.href='productHome.jsp?goodsId=<%=targetGoodsId%>'">
 
 
 			<img id="productImg" src=<%=productImg%> />
@@ -303,7 +310,7 @@
 				else if (orderstate == 5 || orderstate == 14)
 				{
 			%>
-				<div class="functionButton" onclick="location.href='comment.jsp?goodsId=<%=orderToShow.getGoodsId()%>'">我来说两句</div>
+				<div class="functionButton" onclick="location.href='comment.jsp?goodsId=<%=targetGoodsId%>'">我来说两句</div>
 	
 			<%
 				}

@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import com.greenlife.model.GoodsInfo;
 import com.greenlife.model.GoodsOrder;
 import com.greenlife.util.DBUtil;
 
@@ -63,36 +64,80 @@ public class GoodsOrderDao {
 	}
 
 	public static ArrayList<HashMap<String, String>> getGoodsBuyInfo(int goodsId) {
-		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+		List<GoodsInfo> subGoods = GoodsInfoDao.getGoodsListByParentId(goodsId);
+		
+		if(subGoods == null || subGoods.size()==0){
+			ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
-		String sql = "select wechat_id, sum(goods_num) as number from goods_order "
-				+ "where goods_id = ? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14))"
-				+ "group by wechat_id" + " order by number DESC;";
-		Connection conn = new DBUtil().getConn();
+			String sql = "select wechat_id, sum(goods_num) as number from goods_order "
+					+ "where goods_id = ? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14))"
+					+ " group by wechat_id" + " order by number DESC;";
+			Connection conn = new DBUtil().getConn();
 
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, goodsId);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				String id = rs.getString("wechat_id");
-				int number = rs.getInt("number");
-				// int state = rs.getInt("order_state");
-				// if(state == 1 || state == 2 || state == 11 || state == 9 ||
-				// state == 19)continue;
-				HashMap<String, String> map = new HashMap<String, String>();
-				map.put("wechat_id", id);
-				map.put("number", Integer.toString(number));
-				list.add(map);
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, goodsId);
+				rs = ps.executeQuery();
+				while (rs.next()) {
+					String id = rs.getString("wechat_id");
+					int number = rs.getInt("number");
+					// int state = rs.getInt("order_state");
+					// if(state == 1 || state == 2 || state == 11 || state == 9 ||
+					// state == 19)continue;
+					HashMap<String, String> map = new HashMap<String, String>();
+					map.put("wechat_id", id);
+					map.put("number", Integer.toString(number));
+					list.add(map);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			} finally {
+				clearUp(conn);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			clearUp(conn);
-		}
 
-		return list;
+			return list;
+		}else{
+			ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+			
+			String sql = "select wechat_id, sum(goods_num) as number from goods_order "
+					+ "where (goods_id = ? ";
+			for(int i=0;i<subGoods.size();i++){
+				sql += " or goods_id=" + subGoods.get(i).getGoodsId();
+			}
+			sql += ") and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14))"
+					+ " group by wechat_id" + " order by number DESC;";
+			
+			
+			Connection conn = new DBUtil().getConn();
+
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, goodsId);
+				rs = ps.executeQuery();
+				while (rs.next()) {
+					String id = rs.getString("wechat_id");
+					int number = rs.getInt("number");
+					// int state = rs.getInt("order_state");
+					// if(state == 1 || state == 2 || state == 11 || state == 9 ||
+					// state == 19)continue;
+					HashMap<String, String> map = new HashMap<String, String>();
+					map.put("wechat_id", id);
+					map.put("number", Integer.toString(number));
+					list.add(map);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			} finally {
+				clearUp(conn);
+			}
+
+			return list;
+		}
+		
+		
+		
 	}
 
 	public static GoodsOrder getGoodsOrderByOutTradeNo(String out_trade_no) {
@@ -158,28 +203,61 @@ public class GoodsOrderDao {
 	}
 
 	public static int getGoodsOrderNum(int goodsId) {
-		int num = -1;
+		List<GoodsInfo> subGoods = GoodsInfoDao.getGoodsListByParentId(goodsId);
+		
+		if(subGoods == null || subGoods.size()==0){
+			int num = -1;
 
-		String sql = "select count(*) as cnt from goods_order where goods_id = ? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14))";
+			String sql = "select count(*) as cnt from goods_order where goods_id = ? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14));";
 
-		Connection conn = new DBUtil().getConn();
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, goodsId);
-			rs = ps.executeQuery();
-			if (rs.next()) {
-				num = rs.getInt("cnt");
-			} else {
+			Connection conn = new DBUtil().getConn();
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, goodsId);
+				rs = ps.executeQuery();
+				if (rs.next()) {
+					num = rs.getInt("cnt");
+				} else {
+					return -1;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 				return -1;
+			} finally {
+				clearUp(conn);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return -1;
-		} finally {
-			clearUp(conn);
-		}
 
-		return num;
+			return num;
+		}else{
+			int num = -1;
+			
+			String sql = "select count(*) as cnt from goods_order where (goods_id = ?";
+			for(int i=0;i<subGoods.size();i++){
+				sql += " or goods_id=" + subGoods.get(i).getGoodsId();
+			}
+			sql += ") and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14));";
+			
+			Connection conn = new DBUtil().getConn();
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, goodsId);
+				rs = ps.executeQuery();
+				if (rs.next()) {
+					num = rs.getInt("cnt");
+				} else {
+					return -1;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return -1;
+			} finally {
+				clearUp(conn);
+			}
+
+			return num;
+		}
+		
+		
 	}
 
 	public static int addGoodsOrder(GoodsOrder order) {
@@ -761,29 +839,63 @@ public class GoodsOrderDao {
 
 	// N�����ݿ��������BUG
 	public static String getMaxTradeTimeByWechatId(String wechatId, int goodsId) {
-		String sql = "select max(trade_time) as maxTime from goods_order where wechat_id=? and goods_id=? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14));";
+		List<GoodsInfo> subGoods = GoodsInfoDao.getGoodsListByParentId(goodsId);
+		
+		if(subGoods == null || subGoods.size()==0){
+			String sql = "select max(trade_time) as maxTime from goods_order where wechat_id=? and goods_id=? and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14));";
 
-		String maxTime = null;
+			String maxTime = null;
 
-		Connection conn = new DBUtil().getConn();
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, wechatId);
-			ps.setInt(2, goodsId);
-			rs = ps.executeQuery();
-			if (rs.next()) {
-				maxTime = rs.getString("maxTime");
-			} else {
+			Connection conn = new DBUtil().getConn();
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, wechatId);
+				ps.setInt(2, goodsId);
+				rs = ps.executeQuery();
+				if (rs.next()) {
+					maxTime = rs.getString("maxTime");
+				} else {
+					return null;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 				return null;
+			} finally {
+				clearUp(conn);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			clearUp(conn);
-		}
 
-		return maxTime;
+			return maxTime;
+		}else{
+			String sql = "select max(trade_time) as maxTime from goods_order where wechat_id=? and (goods_id=?";
+			for(int i=0;i<subGoods.size();i++){
+				sql += " or goods_id=" + subGoods.get(i).getGoodsId();
+			}
+			sql += ") and ((order_state >= 3 and order_state <= 5) or (order_state >= 12 and order_state <=14));";
+
+			String maxTime = null;
+
+			Connection conn = new DBUtil().getConn();
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, wechatId);
+				ps.setInt(2, goodsId);
+				rs = ps.executeQuery();
+				if (rs.next()) {
+					maxTime = rs.getString("maxTime");
+				} else {
+					return null;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			} finally {
+				clearUp(conn);
+			}
+
+			return maxTime;
+		}
+		
+		
 	}
 
 	public static int getOrderIdByWechatIdAndOrderTime(String wechatId, String orderTime) {

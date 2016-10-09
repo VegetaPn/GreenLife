@@ -51,8 +51,8 @@
 									<th>团价格</th>
 									<th>总量</th>
 									<th>卖出</th>
+									<th>父产品编号</th>
 									<th>优先级调整</th>
-
 
 								</tr>
 							</thead>
@@ -76,7 +76,8 @@
 										class="center"><%=oneGoods.getGoodsTotalnum()%></td>
 									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
 										class="center"><%=oneGoods.getGoodsSoldnum()%></td>
-
+									<td onclick="showInfo(<%=oneGoods.getGoodsId()%>)"
+										class="center"><%=oneGoods.getParentId()%></td>
 									<td>
 										<%
 											if (i != 0) {//第一行不显示按钮

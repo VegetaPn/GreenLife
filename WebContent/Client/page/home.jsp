@@ -14,7 +14,7 @@ import="com.greenlife.wechatservice.*"
 <!DOCTYPE html>
 <%	
 	List<GoodsInfo> goodsList = new ArrayList<GoodsInfo>();
-	goodsList = GoodsInfoDao.getGoodsListByOrderIndex();
+	goodsList = GoodsInfoDao.getGoodsListByParentId(0);
 	
 	String wechatId = (String)session.getAttribute("wechatId");
 	String nickname = (String)session.getAttribute("nickname");

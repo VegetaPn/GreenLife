@@ -17,6 +17,12 @@ String productImg = PropertiesUtil.getPath()+goodsInfo.getPackagePath()+"normal.
 List<Comment> commentList = CommentDao.getCommentList(goodsId);
 
 int commentListSize = commentList.size();
+
+int targetGoodsId = goodsId;
+
+if(goodsInfo.getParentId()!=0){
+	targetGoodsId = goodsInfo.getParentId();
+}
 %>
 
 <html>
@@ -37,7 +43,7 @@ int commentListSize = commentList.size();
 		
 		<div id="content">
 		
-		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
+		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=targetGoodsId%>'">
 			<img id="productImg" src="<%=productImg%>"/>
 						
 			

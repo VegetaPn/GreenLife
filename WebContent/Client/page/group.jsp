@@ -86,6 +86,12 @@
 	}
 	
 	
+	int targetGoodsId = goodsId;
+
+	if(goodsInfo.getParentId()!=0){
+		targetGoodsId = goodsInfo.getParentId();
+	}
+	
 %>
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -191,7 +197,7 @@
 		<jsp:include page="header.jsp" />
 
 	<div id="content">
-		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
+		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=targetGoodsId%>'">
 			<img id="productImg" src="<%=productImg%>"/>
 						
 			

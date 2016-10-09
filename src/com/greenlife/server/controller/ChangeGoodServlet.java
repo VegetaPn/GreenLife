@@ -43,6 +43,7 @@ public class ChangeGoodServlet extends HttpServlet {
 			
 			int  goodId=0;
 			
+			int parentId = 0;
 			String goodName = null;
 			String packagePath = null;
 
@@ -64,7 +65,7 @@ public class ChangeGoodServlet extends HttpServlet {
 			String adv = null;
 			
 			
-			//ÓÊ·Ñ
+			//ï¿½Ê·ï¿½
 			String localCity=null;
 			double localPostage=0;
 			double alienPostage=0;
@@ -97,7 +98,9 @@ public class ChangeGoodServlet extends HttpServlet {
 						changedGood = GoodsInfoDao.getGoodsInfo(goodId);
 						postage =GoodsPostageDao.getGoodsPostage(goodId);
 						packagePath = changedGood.getPackagePath();
-					} else if (name.equals("good_name")) {
+					} else if (name.equals("parent_id")) {
+						parentId = Integer.parseInt(value);
+					}else if (name.equals("good_name")) {
 						goodName = value;
 					} else if (name.equals("good_price")) {
 						goodPrice = Double.parseDouble(value);
@@ -167,7 +170,7 @@ public class ChangeGoodServlet extends HttpServlet {
 				}
 			}
 
-			
+			changedGood.setParentId(parentId);
 			changedGood.setGoodsName(goodName);
 			changedGood.setGoodsPrice(goodPrice);
 			changedGood.setGoodsTotalnum(totalNum);

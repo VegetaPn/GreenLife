@@ -46,6 +46,12 @@
 	    
 	    String productImg = PropertiesUtil.getPath()+goodsinfo.getPackagePath()+"normal.jpg";
 		
+	    
+	    int targetGoodsId = goodsID;
+
+		if(goodsinfo.getParentId()!=0){
+			targetGoodsId = goodsinfo.getParentId();
+		}
 	%>
 
 	<jsp:include page="header.jsp" />
@@ -54,7 +60,7 @@
 
 
 		
-		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsID%>'">
+		<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=targetGoodsId%>'">
 			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
 						
 			

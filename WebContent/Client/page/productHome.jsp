@@ -56,6 +56,9 @@
 		totalSaleNum += Integer.parseInt(strNum);
 
 	}
+	
+	
+	List<GoodsInfo> subGoodsInfos = GoodsInfoDao.getGoodsListByParentId(goodsId);
 %>
 
 <!DOCTYPE html>
@@ -285,25 +288,31 @@
 			<%
 				}
 			%>
-			<div class="labelHeader" id="productSalesPrice">
+
+		</div>
+		
+		<%
+		if(subGoodsInfos == null || subGoodsInfos.size() == 0){
+			
+		
+		%>
+		
+		<div class="grayDiv">
+			<div class="labelHeader productSalesPrice">
 
 				<div class="whiteDiv"></div>
 				<span class="label">购买详情</span>
 
 			</div>
-
-
-
-
+		</div>
+		
+		<div class="grayDiv salesProductImgDiv">
+			<img class="salesProductImg" src="<%=productImg%>" />
 		</div>
 
-		<div class="grayDiv" id="salesProductImgDiv">
-			<img id="salesProductImg" src="<%=productImg%>" />
-		</div>
-
-		<div class="grayDiv" id="LastGrayDiv">
-			<div id="productSalesInfo">
-				<div id="salesInfo">
+		<div class="grayDiv LastGrayDiv">
+			<div class="productSalesInfo">
+				<div class="salesInfo">
 
 					<%=goodsInfo.getGoodsText2().replace("\n", "<br/>")%>
 
@@ -311,19 +320,19 @@
 
 
 
-				<div id="purchaseLeft">
-					<div id="teamPurchase"
+				<div class="purchaseLeft">
+					<div class="teamPurchase"
 						onclick="location.href='startGroup.jsp?goodsId=<%=goodsId%>'">
-						<div class="salesPrice" id="teamPrice">
+						<div class="salesPrice teamPrice">
 							<span><%=goodsInfo.getGoodsDiscontPrice()%></span>元/份
 						</div>
 						<div class="purchaseLink">2人团></div>
 					</div>
 				</div>
-				<div id="purchaseRight">
-					<div id="personalPurchase"
+				<div class="purchaseRight">
+					<div class="personalPurchase"
 						onclick="location.href='purchase.jsp?group=false&goodsId=<%=goodsId%>'">
-						<div class="salesPrice" id="personalPrice">
+						<div class="salesPrice personalPrice">
 							<span><%=goodsInfo.getGoodsPrice()%></span>元/份
 						</div>
 						<div class="purchaseLink">单独预定</div>
@@ -343,6 +352,73 @@
 			</script>
 			<%
 				}
+			}else{
+				for(GoodsInfo subGoods : subGoodsInfos){
+					
+					String subProductImg = PropertiesUtil.getPath() + subGoods.getPackagePath() + "normal.jpg";
+					
+			
+			%>
+
+				<div class="grayDiv">
+					<div class="labelHeader productSalesPrice">
+		
+						<div class="whiteDiv"></div>
+						<span class="label"><%=subGoods.getGoodsName() %></span>
+		
+					</div>
+				</div>
+				
+				<div class="grayDiv salesProductImgDiv">
+					<img class="salesProductImg" src="<%=subProductImg%>" />
+				</div>
+		
+				<div class="grayDiv LastGrayDiv">
+					<div class="productSalesInfo">
+						<div class="salesInfo">
+		
+							<%=subGoods.getGoodsText2().replace("\n", "<br/>")%>
+		
+						</div>
+		
+		
+		
+						<div class="purchaseLeft">
+							<div class="teamPurchase"
+								onclick="location.href='startGroup.jsp?goodsId=<%=subGoods.getGoodsId()%>'">
+								<div class="salesPrice teamPrice">
+									<span><%=subGoods.getGoodsDiscontPrice()%></span>元/份
+								</div>
+								<div class="purchaseLink">2人团></div>
+							</div>
+						</div>
+						<div class="purchaseRight">
+							<div class="personalPurchase"
+								onclick="location.href='purchase.jsp?group=false&goodsId=<%=subGoods.getGoodsId()%>'">
+								<div class="salesPrice personalPrice">
+									<span><%=subGoods.getGoodsPrice()%></span>元/份
+								</div>
+								<div class="purchaseLink">单独预定</div>
+							</div>
+						</div>
+					</div>
+		
+					<%
+						if (GoodsInfoService.getGoodsStatus(subGoods) != 1) {
+					%>
+					<script>
+						$(function() {
+							$("#teamPurchase").hide();
+							$("#personalPurchase").hide();
+		
+						});
+					</script>
+
+
+			<%
+					}
+				}
+			}
 			%>
 
 			<%
@@ -359,7 +435,7 @@
 					</div>
 					<div id="qualityRight">
 						<div id="qualityInfo">
-							<span id="qualityFont">已通过<%=reportNum%>项田园检测
+							<span id="qualityFont">已通过<%=reportNum%>项权威检测
 							</span> <br /> <br /> <span id="qualityLink"
 								onclick="location.href='report.jsp?goodsId=<%=goodsId%>'">查看检测详情></span>
 						</div>

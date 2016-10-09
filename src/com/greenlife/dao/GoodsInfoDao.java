@@ -63,9 +63,9 @@ public class GoodsInfoDao {
 				+ "`goods_price`, `goods_totalnum`, `goods_soldnum`, "
 				+ "`start_time`, `end_time`, `goods_discount_price`, "
 				+ "`goods_unit`, `is_delete`, `is_adv`, `goods_text1`, "
-				+ "`goods_text2`, `sub_title`, `report_num`, `order_index`) "
+				+ "`goods_text2`, `sub_title`, `report_num`, `order_index`, `parent_id`) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, "
-				+ "?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
 			ps = conn.prepareStatement(sql);
@@ -86,6 +86,7 @@ public class GoodsInfoDao {
 			ps.setString(14, info.getSubTitle());
 			ps.setInt(15, info.getReportNum());
 			ps.setInt(16, info.getOrderIndex());
+			ps.setInt(17, info.getParentId());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -130,7 +131,8 @@ public class GoodsInfoDao {
 				+ "`goods_text2`=? , "
 				+ "`sub_title`=? , "
 				+ "`report_num`=? , "
-				+ "`order_index`=? "
+				+ "`order_index`=? , "
+				+ "`parent_id`=? "
 				+ "WHERE (`goods_id`= ?);";
 		Connection conn = new DBUtil().getConn();
 		try {
@@ -151,7 +153,8 @@ public class GoodsInfoDao {
 			ps.setString(14, info.getSubTitle());
 			ps.setInt(15, info.getReportNum());
 			ps.setInt(16, info.getOrderIndex());
-			ps.setInt(17, info.getGoodsId());
+			ps.setInt(17, info.getParentId());
+			ps.setInt(18, info.getGoodsId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -192,6 +195,7 @@ public class GoodsInfoDao {
 				goodsInfo.setSubTitle(rs.getString("sub_title"));
 				goodsInfo.setReportNum(rs.getInt("report_num"));
 				goodsInfo.setOrderIndex(rs.getInt("order_index"));
+				goodsInfo.setParentId(rs.getInt("parent_id"));
 			}else{
 				return null;
 			}
@@ -236,6 +240,7 @@ public class GoodsInfoDao {
 				goodsInfo.setSubTitle(rs.getString("sub_title"));
 				goodsInfo.setReportNum(rs.getInt("report_num"));
 				goodsInfo.setOrderIndex(rs.getInt("order_index"));
+				goodsInfo.setParentId(rs.getInt("parent_id"));
 				goodsList.add(goodsInfo);
 			}
 		} catch (SQLException e) {
@@ -407,6 +412,7 @@ public class GoodsInfoDao {
 				goodsInfo.setSubTitle(rs.getString("sub_title"));
 				goodsInfo.setReportNum(rs.getInt("report_num"));
 				goodsInfo.setOrderIndex(rs.getInt("order_index"));
+				goodsInfo.setParentId(rs.getInt("parent_id"));
 				goodsList.add(goodsInfo);
 			}
 		} catch (SQLException e) {
@@ -418,6 +424,51 @@ public class GoodsInfoDao {
 		
 		return goodsList;
 	}
+	
+	public static ArrayList<GoodsInfo> getGoodsListByParentId(int parentId){
+		ArrayList<GoodsInfo> goodsList = new ArrayList<>();
+		String sql = "select * from goods_info where parent_id = ? order by order_index desc";
+		
+		Connection conn = new DBUtil().getConn();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, parentId);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				GoodsInfo goodsInfo = new GoodsInfo();
+				
+				// stupid set method......
+				goodsInfo.setGoodsId(rs.getInt("goods_id"));
+				goodsInfo.setGoodsName(rs.getString("goods_name"));
+				goodsInfo.setPackagePath(rs.getString("package_path"));
+				goodsInfo.setGoodsPrice(rs.getDouble("goods_price"));
+				goodsInfo.setGoodsTotalnum(rs.getInt("goods_totalnum"));
+				goodsInfo.setGoodsSoldnum(rs.getInt("goods_soldnum"));
+				goodsInfo.setStartTime(rs.getString("start_time"));
+				goodsInfo.setEndTime(rs.getString("end_time"));
+				goodsInfo.setGoodsDiscontPrice(rs.getDouble("goods_discount_price"));
+				goodsInfo.setGoods_unit(rs.getString("goods_unit"));
+				goodsInfo.setIsDelete(rs.getInt("is_delete"));
+				goodsInfo.setIsAdv(rs.getInt("is_adv"));
+				goodsInfo.setGoodsText1(rs.getString("goods_text1"));
+				goodsInfo.setGoodsText2(rs.getString("goods_text2"));
+				goodsInfo.setSubTitle(rs.getString("sub_title"));
+				goodsInfo.setReportNum(rs.getInt("report_num"));
+				goodsInfo.setOrderIndex(rs.getInt("order_index"));
+				goodsInfo.setParentId(rs.getInt("parent_id"));
+				goodsList.add(goodsInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			clearUp(conn);
+		}
+		
+		return goodsList;
+	}
+	
+	
 	
 	
 	public static void clearUp(Connection conn) {

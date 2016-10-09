@@ -21,6 +21,14 @@
 		totalSaleNum += Integer.parseInt(strNum);
 		
 	}
+	
+	int targetGoodsId = goodsId;
+
+	if(goodsInfo.getParentId()!=0){
+		targetGoodsId = goodsInfo.getParentId();
+	}
+	
+	List<GoodsInfo> subGoodsInfos = GoodsInfoDao.getGoodsListByParentId(goodsId);
 %>
 
 
@@ -38,7 +46,7 @@
 		
 		<div id="content">
 		
-			<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=goodsId%>'">
+			<div id="product" onclick="location.href='productHome.jsp?goodsId=<%=targetGoodsId%>'">
 			<div id="productImgDiv"><img id="productImg" src="<%=productImg%>"/></div>
 						
 			

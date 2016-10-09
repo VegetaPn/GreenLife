@@ -2,6 +2,9 @@
 
 function changeAvaliable() {
 
+	var parent_id = document.getElementById("parent_id");
+	parent_id.disabled = false;
+	
 	var good_name = document.getElementById("good_name");
 	var sub_title = document.getElementById("sub_title");
 	good_name.disabled = false;
@@ -80,6 +83,7 @@ function cancelChange() {
 }
 
 function checkChangeProduct() {
+	var parent_id = document.getElementById("parent_id").value;
 	
 	/*
 	 * 商品名称
@@ -131,6 +135,11 @@ function checkChangeProduct() {
 	var detail_img = document.getElementById("detail_img").value;
 	var report_image = document.getElementById("report_img").value;
 
+	if(parent_id == ""){
+		showError("请填写父产品编号");
+		return false;
+	}
+	
 	/*
 	 * 商品名称检测；
 	 */

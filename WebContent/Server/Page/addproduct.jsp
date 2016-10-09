@@ -32,6 +32,11 @@
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="form-group">
+										<label>父产品编号(产品本身是父产品，则填0)</label> <input id="parent_id" type="text"
+											name="parent_id" class="form-control" autocomplete="off">
+									</div>
+									
+									<div class="form-group">
 										<label>商品名称</label> <input id="good_name" type="text"
 											name="good_name" class="form-control" autocomplete="off">
 									</div>
